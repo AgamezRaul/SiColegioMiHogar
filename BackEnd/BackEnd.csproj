@@ -10,7 +10,6 @@
     <Folder Include="Estudiante\Aplicacion\Services\Actualizar\" />
     <Folder Include="Estudiante\Aplicacion\Services\Eliminar\" />
     <Folder Include="Estudiante\Dominio\Repositories\" />
-    <Folder Include="Responsable\Aplicacion\" />
     <Folder Include="Responsable\Dominio\" />
     <Folder Include="Responsable\Infra\" />
   </ItemGroup>
