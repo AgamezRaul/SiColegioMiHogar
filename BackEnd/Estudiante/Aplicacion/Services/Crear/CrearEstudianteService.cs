@@ -39,12 +39,12 @@ namespace BackEnd.Estudiante.Aplicacion.Services.Crear
                 {
                     _unitOfWork.EstudianteServiceRepository.Add(newEstudiante);
                     _unitOfWork.Commit();
-                    return new CrearEstudianteResponse() { Message = $"Empleado Creado Exitosamente" };
+                    return new CrearEstudianteResponse() { Message = $"Estudiante Creado Exitosamente" };
                 }
             }
             else
             {
-                return new CrearEstudianteResponse() { Message = $"Empleado ya existe" };
+                return new CrearEstudianteResponse() { Message = $"Estudiante ya existe" };
             }
         }
     }
