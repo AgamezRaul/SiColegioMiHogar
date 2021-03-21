@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BackEnd.Estudiante.Infra
+namespace BackEnd.Base
 {
-    class EstudianteRepository
+    public interface IEntity<T>
     {
+        T Id { get; set; }
     }
 }

@@ -5,13 +5,24 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Estudiante\Aplicacion\Request\" />
-    <Folder Include="Estudiante\Aplicacion\Services\Crear\" />
     <Folder Include="Estudiante\Aplicacion\Services\Actualizar\" />
     <Folder Include="Estudiante\Aplicacion\Services\Eliminar\" />
-    <Folder Include="Estudiante\Dominio\Repositories\" />
     <Folder Include="Responsable\Dominio\" />
     <Folder Include="Responsable\Infra\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
   </ItemGroup>
 
 </Project>
