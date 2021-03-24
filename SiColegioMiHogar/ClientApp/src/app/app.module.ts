@@ -10,6 +10,10 @@ import { HomeComponent } from './home/home.component';
 import { EstudianteComponent } from './estudiante/estudiante.component';
 import { FormEstudianteComponent } from './estudiante/form-estudiante/form-estudiante.component';
 import { PreMatriculaComponent } from './pre-matricula/pre-matricula.component';
+import { ResponsableComponent } from './responsable/responsable.component';
+import { FormResponsablePadreComponent } from './responsable/form-responsable-padre/form-responsable-padre.component';
+import { FormResponsableMadreComponent } from './responsable/form-responsable-madre/form-responsable-madre.component';
+import { FormResponsableAcudienteComponent } from './responsable/form-responsable-acudiente/form-responsable-acudiente.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,11 @@ import { PreMatriculaComponent } from './pre-matricula/pre-matricula.component';
     HomeComponent,
     EstudianteComponent,
     FormEstudianteComponent,
-    PreMatriculaComponent
+    PreMatriculaComponent,
+    ResponsableComponent,
+    FormResponsablePadreComponent,
+    FormResponsableMadreComponent,
+    FormResponsableAcudienteComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
