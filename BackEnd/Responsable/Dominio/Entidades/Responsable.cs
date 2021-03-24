@@ -73,6 +73,8 @@ namespace BackEnd.Responsable.Dominio
                 errors.Add("Campo Correo responsable vacio");
             if (string.IsNullOrEmpty(responsable.Acudiente))
                 errors.Add("Campo Acudiente vacio");
+            if (responsable.IdEstudiante == 0)
+                errors.Add("Campo identiificacion dee estudiante vacio");
 
             return errors;
         }

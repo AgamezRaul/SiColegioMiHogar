@@ -1,4 +1,5 @@
 ﻿using BackEnd.Estudiante.Dominio.Repositories;
+using BackEnd.Matricula.Dominio.Repositories;
 using BackEnd.Responsable.Dominio.Repositories;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ namespace BackEnd.Base
     {
         IEstudianteServiceRepository EstudianteServiceRepository { get; }
         IResponsableServiceRepository ResponsableServiceRepository { get; }
+        IMatriculaServiceRepository MatriculaServiceRepository { get; }
 
         int Commit();
     }
