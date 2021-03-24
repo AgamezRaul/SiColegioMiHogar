@@ -4,6 +4,8 @@ using BackEnd.Matricula.Dominio.Repositories;
 using BackEnd.Matricula.Infra;
 using BackEnd.Responsable.Dominio.Repositories;
 using BackEnd.Responsable.Infra;
+using BackEnd.Usuario.Dominio.Repositories;
+using BackEnd.Usuario.Infra;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -22,6 +24,7 @@ namespace BackEnd.Base
         private IEstudianteServiceRepository _estudianteServiceRepository;
         private IResponsableServiceRepository _responsableServiceRepository;
         private IMatriculaServiceRepository _matriculaServiceRepository;
+        private IUsuarioServiceRepository _usuarioServiceRepository;
 
         public IEstudianteServiceRepository EstudianteServiceRepository
         {
@@ -45,6 +48,13 @@ namespace BackEnd.Base
             }
         }
 
+        public IUsuarioServiceRepository UsuarioServiceRepository
+        {
+            get
+            {
+                return _usuarioServiceRepository ?? (_usuarioServiceRepository = new UsuarioServiceRepository(_dbContext));
+            }
+        }
 
 
 
