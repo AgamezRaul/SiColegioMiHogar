@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Estudiante\Aplicacion\Services\Eliminar\" />
-    <Folder Include="Responsable\Dominio\" />
     <Folder Include="Responsable\Infra\" />
   </ItemGroup>
 
