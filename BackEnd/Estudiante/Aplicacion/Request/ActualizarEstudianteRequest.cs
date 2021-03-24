@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BackEnd.Estudiante.Aplicacion.Request
 {
-    public class CrearEstudianteRequest
+    public class ActualizarEstudianteRequest
     {
         public int id { get; set; }
         public string IdeEstudiante { get; set; }
@@ -23,12 +23,13 @@ namespace BackEnd.Estudiante.Aplicacion.Request
         public string TipoDocumento { get; set; }
         public string TelEstudiante { get; set; }
     }
-    public class CrearEstudianteResponse
+    public class ActualizarEstudianteResponse
     {
         public string Message { get; set; }
         public bool isOk()
         {
-            return this.Message.Equals("Estudiante Creado Exitosamente");
+            return this.Message.Equals("Estudiante Actualizado Exitosamente");
         }
     }
 }
+

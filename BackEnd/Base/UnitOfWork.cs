@@ -1,5 +1,7 @@
 ﻿using BackEnd.Estudiante.Dominio.Repositories;
 using BackEnd.Estudiante.Infra;
+using BackEnd.Responsable.Dominio.Repositories;
+using BackEnd.Responsable.Infra;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -16,11 +18,20 @@ namespace BackEnd.Base
         }
         //Repositorios
         private IEstudianteServiceRepository _estudianteServiceRepository;
+        private IResponsableServiceRepository _responsableServiceRepository;
+
         public IEstudianteServiceRepository EstudianteServiceRepository
         {
             get
             {
                 return _estudianteServiceRepository ?? (_estudianteServiceRepository = new EstudianteServiceRepository(_dbContext));
+            }
+        }
+        public IResponsableServiceRepository ResponsableServiceRepository
+        {
+            get
+            {
+                return _responsableServiceRepository ?? (_responsableServiceRepository = new ResponsableServiceRepository(_dbContext));
             }
         }
 

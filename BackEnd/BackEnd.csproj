@@ -5,9 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Estudiante\Aplicacion\Services\Actualizar\" />
     <Folder Include="Estudiante\Aplicacion\Services\Eliminar\" />
-    <Folder Include="Responsable\Infra\" />
   </ItemGroup>
 
   <ItemGroup>
