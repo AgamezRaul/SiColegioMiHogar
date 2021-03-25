@@ -1,4 +1,4 @@
-﻿using BackEnd.Base;
+using BackEnd.Base;
 using BackEnd.Estudiante.Aplicacion.Request;
 using System;
 using System.Collections.Generic;
@@ -47,4 +47,3 @@ namespace BackEnd.Estudiante.Aplicacion.Services.Actualizar
         }
     }
 }
-
