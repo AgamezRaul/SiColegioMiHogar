@@ -1,11 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
+import { MaterialModule } from './material-module';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { SidenavMenuComponent } from './sidenav-menu/sidenav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { EstudianteComponent } from './estudiante/estudiante.component';
 import { FormEstudianteComponent } from './estudiante/form-estudiante/form-estudiante.component';
@@ -19,6 +21,7 @@ import { FormResponsableAcudienteComponent } from './responsable/form-responsabl
   declarations: [
     AppComponent,
     NavMenuComponent,
+    SidenavMenuComponent,
     HomeComponent,
     EstudianteComponent,
     FormEstudianteComponent,
@@ -30,6 +33,7 @@ import { FormResponsableAcudienteComponent } from './responsable/form-responsabl
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    MaterialModule,
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
