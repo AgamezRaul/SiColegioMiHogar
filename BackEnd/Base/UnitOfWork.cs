@@ -2,6 +2,10 @@
 using BackEnd.Estudiante.Infra;
 using BackEnd.Matricula.Dominio.Repositories;
 using BackEnd.Matricula.Infra;
+using BackEnd.PreMatricula.Dominio.Repositories;
+using BackEnd.PreMatricula.Infra;
+using BackEnd.RelacionUR.Dominio.Repositories;
+using BackEnd.RelacionUR.Infra;
 using BackEnd.Responsable.Dominio.Repositories;
 using BackEnd.Responsable.Infra;
 using BackEnd.Usuario.Dominio.Repositories;
@@ -25,6 +29,8 @@ namespace BackEnd.Base
         private IResponsableServiceRepository _responsableServiceRepository;
         private IMatriculaServiceRepository _matriculaServiceRepository;
         private IUsuarioServiceRepository _usuarioServiceRepository;
+        private IPreMatriculaServiceRepository _prematriculaServiceRepository;
+        private IRelacionURServiceRepository _relacionURServiceRepository;
 
         public IEstudianteServiceRepository EstudianteServiceRepository
         {
@@ -56,7 +62,20 @@ namespace BackEnd.Base
             }
         }
 
-
+        public IPreMatriculaServiceRepository PreMatriculaServiceRepository
+        {
+            get
+            {
+                return _prematriculaServiceRepository ?? (_prematriculaServiceRepository = new PreMatriculaServiceRepository(_dbContext));
+            }
+        }
+        public IRelacionURServiceRepository RelacionURServiceRepository
+        {
+            get
+            {
+                return _relacionURServiceRepository ?? (_relacionURServiceRepository = new RelacionURServiceRepository(_dbContext));
+            }
+        }
 
 
         public int Commit()
