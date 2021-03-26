@@ -8,7 +8,7 @@ import { IUsuario } from './usuario.component';
 })
 export class UsuarioService {
 
-  apiURL = this.baseUrl + "api/Empleado";
+  apiURL = this.baseUrl + "api/Usuario";
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
 
   getEmpleados(): Observable<IUsuario[]> {

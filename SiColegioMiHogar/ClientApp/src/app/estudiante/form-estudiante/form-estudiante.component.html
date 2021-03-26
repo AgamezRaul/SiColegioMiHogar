@@ -1,1 +1,97 @@
-<p>form-estudiante works!</p>
+<div class="container" align="center">
+  <h1>Formulario de estudiantes</h1>
+  <form [formGroup]="formGroup">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="name">Nombre completo</label>
+        <input type="text" class="form-control" formControlName="nomEstudiante" id="name" placeholder="Ej: Juan Pérez">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="grado">Grado a cursar</label>
+        <input type="text" class="form-control" formControlName="gradoEstudiante" id="grado" placeholder="Ej: 4">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="born">Lugar de naacimiento</label>
+        <input type="text" class="form-control" formControlName="lugNacimiento" id="born" placeholder="Ej: Valledupar/Cesar">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="eps">EPS</label>
+        <input type="text" class="form-control" formControlName="eps" id="eps" placeholder="Ej: SolSalud">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="genero">Género</label>
+        <select id="genero" formControlName="sexo" class="form-control">
+          <option selected>Elija una opción</option>
+          <option>Masculino</option>
+          <option>Femenino</option>
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="date">Fecha de nacimiento</label>
+        <input type="date" formControlName="fecNacimiento" class="form-control" id="date">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="tipo">Tipo de documento</label>
+        <select id="tipo" formControlName="tipoDocumento" class="form-control">
+          <option selected>Elija una opción</option>
+          <option>Tarjeta de identidad</option>
+          <option>Registro Civil</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="Ndoc">Número de documento</label>
+        <input type="text" class="form-control" formControlName="ideEstudiante" id="Ndoc" placeholder="Ej: 1002456457">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="exped">Lugar de expedición</label>
+        <input type="text" class="form-control" formControlName="lugExpedicion" id="exped" placeholder="Ej: Valledupar/Cesar">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="direccion">Dirección</label>
+        <input type="text" class="form-control" formControlName="dirResidencia" id="direccion" placeholder="Ej: Mz 11 Cs 11 Caciques">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="tel">Teléfono</label>
+        <input type="text" class="form-control" formControlName="telEstudiante" id="tel" placeholder="Ej: 7101375">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="cel">Celular</label>
+        <input type="text" class="form-control" formControlName="celEstudiante" id="cel" placeholder="Ej: 3246543546">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="correo">Correo electrónico</label>
+        <input type="email" class="form-control" formControlName="correo" id="correo" placeholder="Ej: ejemplo@gmail.com">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="sangre">Tipo de sangre</label>
+        <input type="text" class="form-control" formControlName="tipSangre" id="sangre" placeholder="Ej: O+">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inst">Institución de procedencia</label>
+        <input type="text" class="form-control" formControlName="insProcedencia" id="inst" placeholder="Ej: I.E. San Ignacio">
+      </div>
+    </div>
+  </form>
+</div>

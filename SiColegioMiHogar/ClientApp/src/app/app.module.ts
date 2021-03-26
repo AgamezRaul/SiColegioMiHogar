@@ -20,6 +20,10 @@ import { LoginComponent } from './login/login.component';
 import { UsuarioComponent } from './login/usuario/usuario.component';
 import { FormUsuarioComponent } from './login/usuario/form-usuario/form-usuario.component';
 import { PerfilComponent } from './login/perfil/perfil.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -44,10 +48,14 @@ import { PerfilComponent } from './login/perfil/perfil.component';
     MaterialModule,
     HttpClientModule,
     FormsModule,
+    MatDatepickerModule, MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'registrar-usuario', component: FormUsuarioComponent }
+      { path: 'registrar-usuario', component: FormUsuarioComponent },
+      { path: 'registrar-prematricula', component: PreMatriculaComponent }
 ], { relativeLinkResolution: 'legacy' })
   ],
   providers: [],

@@ -32,7 +32,7 @@ export class FormUsuarioComponent implements OnInit {
 
   }
   onSaveSuccess() {
-    this.router.navigate(["/registrar-usuario"]);
+    this.router.navigate(["/"]);
   }
 
   get correo() {
