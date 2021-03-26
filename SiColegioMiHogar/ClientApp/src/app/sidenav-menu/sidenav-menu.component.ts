@@ -16,7 +16,7 @@ export class SidenavMenuComponent implements OnInit {
 
   fillerNav = [
     { name: "home", route: "", icon: "home" },
-    { name: "Registro Prematricula", route: "/", icon: "supervised_user_circle" },
+    { name: "Registro usuario", route: "registrar-usuario", icon: "supervised_user_circle" },
     
 
   ]

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
@@ -16,6 +16,10 @@ import { ResponsableComponent } from './responsable/responsable.component';
 import { FormResponsablePadreComponent } from './responsable/form-responsable-padre/form-responsable-padre.component';
 import { FormResponsableMadreComponent } from './responsable/form-responsable-madre/form-responsable-madre.component';
 import { FormResponsableAcudienteComponent } from './responsable/form-responsable-acudiente/form-responsable-acudiente.component';
+import { LoginComponent } from './login/login.component';
+import { UsuarioComponent } from './login/usuario/usuario.component';
+import { FormUsuarioComponent } from './login/usuario/form-usuario/form-usuario.component';
+import { PerfilComponent } from './login/perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -29,15 +33,21 @@ import { FormResponsableAcudienteComponent } from './responsable/form-responsabl
     ResponsableComponent,
     FormResponsablePadreComponent,
     FormResponsableMadreComponent,
-    FormResponsableAcudienteComponent
+    FormResponsableAcudienteComponent,
+    LoginComponent,
+    UsuarioComponent,
+    FormUsuarioComponent,
+    PerfilComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     MaterialModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
-    { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: 'registrar-usuario', component: FormUsuarioComponent }
 ], { relativeLinkResolution: 'legacy' })
   ],
   providers: [],

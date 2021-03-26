@@ -6,6 +6,6 @@ using System.Text;
 namespace BackEnd.Usuario.Dominio.Repositories
 {
   public  interface IUsuarioServiceRepository : IGenericRepository<Usuario>
-    {
-    }
+  {
+  }
 }

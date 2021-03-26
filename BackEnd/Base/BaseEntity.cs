@@ -6,6 +6,7 @@ namespace BackEnd.Base
 {
     public abstract class BaseEntity
     {
+
     }
     public abstract class Entity<T> : BaseEntity, IEntity<T>
     {

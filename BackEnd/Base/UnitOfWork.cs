@@ -24,14 +24,9 @@ namespace BackEnd.Base
         {
             _dbContext = context;
         }
+
         //Repositorios
         private IEstudianteServiceRepository _estudianteServiceRepository;
-        private IResponsableServiceRepository _responsableServiceRepository;
-        private IMatriculaServiceRepository _matriculaServiceRepository;
-        private IUsuarioServiceRepository _usuarioServiceRepository;
-        private IPreMatriculaServiceRepository _prematriculaServiceRepository;
-        private IRelacionURServiceRepository _relacionURServiceRepository;
-
         public IEstudianteServiceRepository EstudianteServiceRepository
         {
             get
@@ -39,6 +34,7 @@ namespace BackEnd.Base
                 return _estudianteServiceRepository ?? (_estudianteServiceRepository = new EstudianteServiceRepository(_dbContext));
             }
         }
+        private IResponsableServiceRepository _responsableServiceRepository;
         public IResponsableServiceRepository ResponsableServiceRepository
         {
             get
@@ -46,6 +42,7 @@ namespace BackEnd.Base
                 return _responsableServiceRepository ?? (_responsableServiceRepository = new ResponsableServiceRepository(_dbContext));
             }
         }
+        private IMatriculaServiceRepository _matriculaServiceRepository;
         public IMatriculaServiceRepository MatriculaServiceRepository
         {
             get
@@ -53,7 +50,7 @@ namespace BackEnd.Base
                 return _matriculaServiceRepository ?? (_matriculaServiceRepository = new MatriculaServiceRepository(_dbContext));
             }
         }
-
+        private IUsuarioServiceRepository _usuarioServiceRepository;
         public IUsuarioServiceRepository UsuarioServiceRepository
         {
             get
@@ -61,7 +58,7 @@ namespace BackEnd.Base
                 return _usuarioServiceRepository ?? (_usuarioServiceRepository = new UsuarioServiceRepository(_dbContext));
             }
         }
-
+        private IPreMatriculaServiceRepository _prematriculaServiceRepository;
         public IPreMatriculaServiceRepository PreMatriculaServiceRepository
         {
             get
@@ -69,6 +66,8 @@ namespace BackEnd.Base
                 return _prematriculaServiceRepository ?? (_prematriculaServiceRepository = new PreMatriculaServiceRepository(_dbContext));
             }
         }
+        private IRelacionURServiceRepository _relacionURServiceRepository;
+
         public IRelacionURServiceRepository RelacionURServiceRepository
         {
             get
