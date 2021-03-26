@@ -1,43 +1,55 @@
-<p>estudiante works!</p>
+
 <span>
   <div>
-    <label> Nombre completo:</label> <input type="text" name="name" placeholder="Ej: Juan Andrés" />
-    <label> Parentesco con el estudiante:</label> <input type="text" name="parentesco" />
+    <label> Nombre completo:</label> <input type="text" name="name" placeholder="Ej: Juan Pérez" required/>
+    <label> Grado a cursar:</label> <input type="text" name="grado" placeholder="Ej: 4" required/>
   </div>
 </span>
 <span>
   <div>
-    <label> Lugar de nacimiento:</label> <input type="text" name="place" />
-    <label> Fecha de nacimiento:</label> <input type="text" name="born" />
+    <label> Lugar de nacimiento:</label> <input type="text" name="place" placeholder="Ej: Valledupar/Cesar" />
+    <label> EPS:</label> <input type="text" name="eps" placeholder="SolSalud"/>
   </div>
 </span>
 <span>
   <div>
-    <label> Tipo de documento de identidad:</label> <input type="text" />
-    <label> Numero:</label> <input type="text" />
+    <label> Género</label> <select name="select">
+  <option value="value1">M</option>
+  <option value="value2" selected>F</option>
+</select>
+    <label> Fecha:</label> <input type="date" />
   </div>
 </span>
 <span>
   <div>
-    <label> Lugar de expedición:</label> <input type="text" />
-    <label> Celular:</label> <input type="text" />
-    <label> Teléfono:</label> <input type="text" />
+    <label> Tipo de documento:</label> <select name="select">
+  <option value="value1">Tarjeta de identidad</option>
+  <option value="value2" selected>Cédula de ciudadanía</option>
+  <option value="value3" selected>Cédula de extranjería</option>
+</select>
+    <label> Número de documento:</label> <input type="text" placeholder="1002345465" required/>
   </div>
 </span>
 <span>
   <div>
-    <label> Profesión:</label> <input type="text" />
-    <label> Ocupasión:</label> <input type="text" />
+    <label> Lugar de expedición:</label> <input type="text" placeholder="Ej: Valleduppar/Cesar"/>
+    <label> Dirección de residencia:</label> <input type="text" placeholder="Ej: Mz 11 Cs 11 Caciques" required/>
   </div>
 </span>
 <span>
   <div>
-    <label> Entidad en la Trabaja:</label> <input type="text" />
-    <label> Teléfono de la empresa:</label> <input type="text" />
+    <label> Teléfono:</label> <input type="text" placeholder="Ej: 7101393" />
+    <label> Celular:</label> <input type="text" placeholder="3135456345" required/>
   </div>
 </span>
 <span>
   <div>
-    <label> Correo:</label> <input type="text" />
+    <label> Correo electrónico:</label> <input type="email" placeholder="Ej: ejemplo@gmail.com" required/>
+    <label> Tipo de sangre:</label> <input type="text" placeholder="Ej: O+" />
+  </div>
+</span>
+<span>
+  <div>
+    <label> Institución de procedencia:</label> <input type="text" placeholder="Ej: I.E. San Ignacio" />
   </div>
 </span>
