@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { PreMatriculaComponent } from './pre-matricula.component';
+import { ResponsableComponent } from './responsable.component';
 
-describe('PreMatriculaComponent', () => {
-  let component: PreMatriculaComponent;
-  let fixture: ComponentFixture<PreMatriculaComponent>;
+describe('ResponsableComponent', () => {
+  let component: ResponsableComponent;
+  let fixture: ComponentFixture<ResponsableComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PreMatriculaComponent ]
+      declarations: [ ResponsableComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PreMatriculaComponent);
+    fixture = TestBed.createComponent(ResponsableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

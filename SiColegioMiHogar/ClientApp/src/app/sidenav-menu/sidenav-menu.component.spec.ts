@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { PreMatriculaComponent } from './pre-matricula.component';
+import { SidenavMenuComponent } from './sidenav-menu.component';
 
-describe('PreMatriculaComponent', () => {
-  let component: PreMatriculaComponent;
-  let fixture: ComponentFixture<PreMatriculaComponent>;
+describe('SidenavMenuComponent', () => {
+  let component: SidenavMenuComponent;
+  let fixture: ComponentFixture<SidenavMenuComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PreMatriculaComponent ]
+      declarations: [ SidenavMenuComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PreMatriculaComponent);
+    fixture = TestBed.createComponent(SidenavMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
