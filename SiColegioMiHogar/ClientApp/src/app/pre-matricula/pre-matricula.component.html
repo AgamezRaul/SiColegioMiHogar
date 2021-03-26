@@ -1,1 +1,31 @@
-<p>pre-matricula works!</p>
+<mat-tab-group>
+  <mat-tab label="Inventario">
+    <mat-grid-list cols="2" rowHeight="23em">
+      <mat-grid-tile>
+        <app-form-estudiante></app-form-estudiante>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-tab>
+  <mat-tab label="Compras">
+    <mat-grid-list cols="2" rowHeight="26em">
+      <mat-grid-tile>
+        <app-form-responsable-padre></app-form-responsable-padre>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-tab>
+  <mat-tab label="Ventas">
+    <mat-grid-list cols="2" rowHeight="54em">
+      <mat-grid-tile>
+        <app-form-responsable-madre></app-form-responsable-madre>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+  </mat-tab>
+  <mat-tab label="Empleados">
+    <mat-grid-list cols="2" rowHeight="25em">
+      <mat-grid-tile>
+        <app-form-responsable-acudiente></app-form-responsable-acudiente>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-tab>
+</mat-tab-group>
