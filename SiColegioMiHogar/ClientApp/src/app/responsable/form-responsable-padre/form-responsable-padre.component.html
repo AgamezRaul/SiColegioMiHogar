@@ -1,1 +1,79 @@
-<p>form-responsable-padre works!</p>
+<div class="container" align="center">
+  <h1>Formulario del Padre</h1>
+  <form [formGroup]="formGroup">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="nomResponsablePadre">Nombre del padre</label>
+        <input type="text" class="form-control" formControlName="nomResponsablePadre" id="nomResponsablePadre" placeholder="Ej: Juan Perez">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="celResponsablePadre">Celular del Padre</label>
+        <input type="text" class="form-control" formControlName="celResponsablePadre" id="celResponsablePadre" placeholder="Ej: 4964873729">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="lugNacimientoPadre">Lugar de naacimiento</label>
+        <input type="text" class="form-control" formControlName="lugNacimientoPadre" id="lugNacimientoPadre" placeholder="Ej: Valledupar/Cesar">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="fecNacimientoPadre">Fecha de nacimiento</label>
+        <input type="date" formControlName="fecNacimientoPadre" class="form-control" id="fecNacimientoPadre">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="tipDocumentoPadre">Tipo de documento</label>
+        <select id="tipDocumentoPadre" formControlName="tipDocumentoPadre" class="form-control">
+          <option selected>Elija una opción</option>
+          <option>Cedula de ciudadania</option>
+          <option>Cédula de extranjero</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="ideResponsablePadre">Número de documento</label>
+        <input type="text" class="form-control" formControlName="ideResponsablePadre" id="ideResponsablePadre" placeholder="Ej: 1002456457">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="profResponsablePadre">Profesión del Padre</label>
+        <input type="text" class="form-control" formControlName="profResponsablePadre" id="profResponsablePadre" placeholder="Ej: Valledupar/Cesar">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="ocuResponsablePadre">Ocupación del Padre</label>
+        <input type="text" class="form-control" formControlName="ocuResponsablePadre" id="ocuResponsablePadre" placeholder="Ej: Mz 11 Cs 11 Caciques">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="entResonsablePadre">Empresa donde trabaja</label>
+        <input type="text" class="form-control" formControlName="entResonsablePadre" id="entResonsablePadre" placeholder="Ej: 7101375">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="celEmpresaPadre">Celular de la Empresa</label>
+        <input type="text" class="form-control" formControlName="celEmpresaPadre" id="celEmpresaPadre" placeholder="Ej: 3246543546">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="correoPadre">Correo electrónico</label>
+        <input type="email" class="form-control" formControlName="correoPadre" id="correoPadre" placeholder="Ej: ejemplo@gmail.com">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="acudientePadre">Es usted el acudiente?</label>
+        <select id="acudientePadre" formControlName="acudientePadre" class="form-control">
+          <option selected>Elija una opción</option>
+          <option>Si</option>
+          <option>No</option>
+        </select>
+      </div>
+    </div>
+  </form>
+</div>
