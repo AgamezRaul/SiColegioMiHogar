@@ -1,11 +1,12 @@
 ﻿using BackEnd.Base;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace BackEnd.Responsable.Dominio
 {
-   public  class Responsable: Entity<int>
+   public class Responsable: Entity<int>
     {
       
         public string IdeResponsable { get; set; }
@@ -23,7 +24,11 @@ namespace BackEnd.Responsable.Dominio
         public string Correo { get; set; }
         public string Acudiente { get; set; }
         public int IdEstudiante { get; set; }
-        public Responsable(string ideResponsable, string nomResponsable, DateTime fecNacimiento, string lugNacimiento, string lugExpedicion, string tipDocumento, int celResponsable, string profResponsable, string ocuResponsable, string entResponsable, int celEmpresa, string tipoResponsable, string correo, string acudiente, int idEstudiante)
+        public int IdPrematricula { get; set; }
+        public Responsable(string ideResponsable, string nomResponsable, DateTime fecNacimiento, string lugNacimiento, 
+            string lugExpedicion, string tipDocumento, int celResponsable, string profResponsable, string ocuResponsable, 
+            string entResponsable, int celEmpresa, string tipoResponsable, string correo, string acudiente, int idEstudiante,
+            int idPrematricula)
         {
             IdeResponsable = ideResponsable;
             NomResponsable = nomResponsable;
@@ -40,6 +45,7 @@ namespace BackEnd.Responsable.Dominio
             Correo = correo;
             Acudiente = acudiente;
             IdEstudiante = idEstudiante;
+            IdPrematricula = idPrematricula;
         }
 
         public IReadOnlyList<string> CanCrear(Responsable responsable)
@@ -74,7 +80,9 @@ namespace BackEnd.Responsable.Dominio
             if (string.IsNullOrEmpty(responsable.Acudiente))
                 errors.Add("Campo Acudiente vacio");
             if (responsable.IdEstudiante == 0)
-                errors.Add("Campo identiificacion dee estudiante vacio");
+                errors.Add("Campo Identificacion de estudiante vacio");
+            if (responsable.IdPrematricula == 0)
+                errors.Add("Campo Identificacion de prematicula vacio");
 
             return errors;
         }

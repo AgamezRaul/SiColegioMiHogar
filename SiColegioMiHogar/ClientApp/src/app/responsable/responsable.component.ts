@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IEstudiante } from '../estudiante/estudiante.component';
 
 @Component({
   selector: 'app-responsable',
@@ -28,7 +29,9 @@ export interface IPadre {
   celEmpresaPadre: number,
   tipoResponsablePadre: string,
   correoPadre: string,
-  acudientePadre: string
+  acudientePadre: string,
+  idEstudiantePadre: number,
+  idPrematriculaPadre: number
 }
 export interface IMadre {
   ideResponsableMadre: string,
@@ -44,7 +47,9 @@ export interface IMadre {
   celEmpresaMadre: number,
   tipoResponsableMadre: string,
   correoMadre: string,
-  acudienteMadre: string
+  acudienteMadre: string,
+  idEstudianteMadre: number,
+  idPrematriculaMadre: number
 }
 export interface IAcudiente {
   ideResponsableAcudiente: string,
@@ -60,5 +65,14 @@ export interface IAcudiente {
   celEmpresaAcudiente: number,
   tipoResponsableAcudiente: string,
   correoAcudiente: string,
-  acudienteAcudiente: string
+  acudienteAcudiente: string,
+  idEstudianteAcudiente: number,
+  idPrematriculaAcudiente: number
+}
+
+export interface IPrematricula {
+  iPadre: IPadre,
+  iMadre: IMadre,
+  iAcudiente: IAcudiente,
+  iEstudiante: IEstudiante
 }

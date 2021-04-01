@@ -1,32 +1,36 @@
+<form action="/" method="post">
+  <mat-tab-group>
+    <mat-tab label="Estudiante">
+      <mat-grid-list cols="2">
+        <mat-grid-tile>
+          <app-form-estudiante></app-form-estudiante>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-tab>
+    <mat-tab label="Padre">
+      <mat-grid-list cols="2">
+        <mat-grid-tile>
+          <app-form-responsable-padre></app-form-responsable-padre>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-tab>
+    <mat-tab label="Madre">
+      <mat-grid-list cols="2">
+        <mat-grid-tile>
+          <app-form-responsable-madre></app-form-responsable-madre>
+        </mat-grid-tile>
+      </mat-grid-list>
 
-<mat-tab-group>
-  <mat-tab label="Estudiante">
-    <mat-grid-list cols="2">
-      <mat-grid-tile>
-        <app-form-estudiante></app-form-estudiante>
-      </mat-grid-tile>
-    </mat-grid-list>
-  </mat-tab>
-  <mat-tab label="Padre">
-    <mat-grid-list cols="2">
-      <mat-grid-tile>
-        <app-form-responsable-padre></app-form-responsable-padre>
-      </mat-grid-tile>
-    </mat-grid-list>
-  </mat-tab>
-  <mat-tab label="Madre">
-    <mat-grid-list cols="2">
-      <mat-grid-tile>
-        <app-form-responsable-madre></app-form-responsable-madre>
-      </mat-grid-tile>
-    </mat-grid-list>
-
-  </mat-tab>
-  <mat-tab label="Acudiente">
-    <mat-grid-list cols="2">
-      <mat-grid-tile>
-        <app-form-responsable-acudiente></app-form-responsable-acudiente>
-      </mat-grid-tile>
-    </mat-grid-list>
-  </mat-tab>
-</mat-tab-group>
+    </mat-tab>
+    <mat-tab label="Acudiente">
+      <mat-grid-list cols="2">
+        <mat-grid-tile>
+          <app-form-responsable-acudiente></app-form-responsable-acudiente>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-tab>
+  </mat-tab-group>
+  <button type="submit" mat-raised-button color="primary">
+    Guardar pre matricula
+  </button>
+</form>

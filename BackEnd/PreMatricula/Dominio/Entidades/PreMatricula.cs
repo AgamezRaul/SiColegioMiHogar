@@ -1,7 +1,6 @@
 ﻿using BackEnd.Base;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BackEnd.PreMatricula.Dominio
 {
@@ -12,6 +11,9 @@ namespace BackEnd.PreMatricula.Dominio
         public DateTime FecPrematricula { get; set; }
         public int IdResponsable { get; set; }
         public string Estado { get; set; }
+
+        public List<Responsable.Dominio.Responsable> Responsables { get; set; }
+        public Estudiante.Dominio.Estudiante estudiante { get; set; }
         public PreMatricula(DateTime fecPrematricula, int idResponsable, string estado)
         {
             FecPrematricula = fecPrematricula;

@@ -7,5 +7,6 @@ namespace BackEnd.Base
     public interface IEntity<T>
     {
         T Id { get; set; }
+        List<Responsable> Responsables { get; set; }
     }
 }
