@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BackEnd.Base
+namespace TestBackEnd.AplicacionTest.CrearTest
 {
-    public interface IEntity<T>
+    class CrearPreMatricula
     {
-        T Id { get; set; }
     }
 }

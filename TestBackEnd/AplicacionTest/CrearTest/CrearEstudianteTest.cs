@@ -12,7 +12,7 @@ namespace TestBackEnd.AplicacionTest.CrearTest
 {
 
         [TestFixture]
-        public class CrearEstudiante
+        public class CrearEstudianteTest
         {
             MiHogarContextTest _context;
             UnitOfWork _unitOfWork;
@@ -26,8 +26,8 @@ namespace TestBackEnd.AplicacionTest.CrearTest
                 _unitOfWork = new UnitOfWork(_context);
             }
 
-            [TestCaseSource("CreationsEmpleado")]
-            public void CrearEmpleado(CrearEstudianteRequest EstudianteRequest, string expected)
+            [TestCaseSource("CreationsEstudiante")]
+            public void CrearEstudiante(CrearEstudianteRequest EstudianteRequest, string expected)
             {
                 _Estudianteservice = new CrearEstudianteService(_unitOfWork);
                 var response = _Estudianteservice.Ejecutar(EstudianteRequest);
@@ -38,21 +38,23 @@ namespace TestBackEnd.AplicacionTest.CrearTest
                 yield return new TestCaseData(
                     new CrearEstudianteRequest
                     {
-                        IdeEstudiante = "Agamez Rapalino",
-                        NomEstudiante = "Cajero",
+                        IdeEstudiante = "1065",
+                        NomEstudiante = "Raul",
                         FecNacimiento = DateTime.Now,
-                        LugNacimiento = "raagamez@unicesar.edu.co",
-                        LugExpedicion = "Calle 22C #21-61",
-                        InsProcedencia = "Educativa",
-                        DirResidencia = "Calle 40",
-                        CelEstudiante = 123123,
-                        TipSangre = "o+",
-                        GradoEstudiante = "primero",
-                        Eps = "sanitas",
-                        Correo = "raul@unicesar.edu.co",
-                        Sexo = "Masculino"
+                        LugNacimiento = "Valledupar",
+                        LugExpedicion = "Valledupar",
+                        InsProcedencia = "Valledupar",
+                        DirResidencia = "Valledupar",
+                        CelEstudiante = 123456,
+                        TipSangre = "O+",
+                        GradoEstudiante = "6",
+                        Eps = "NO C",
+                        Correo = "raagamez@gmail.com",
+                        Sexo = "Masculino",
+                        TipoDocumento = "Cedula",
+                        TelEstudiante = "1234567"
 
-                    },
+        },
                     "Estudiante Creado Exitosamente"
                     ).SetName("Crear Estudiante Correctamente");
             }
