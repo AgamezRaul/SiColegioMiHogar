@@ -1,8 +1,7 @@
 .login-form {
   padding: 4rem 1rem;
-  mat-card
-
-{
+}
+mat-card{
   max-width: 300px;
   margin: 2rem auto;
   text-align: center;
@@ -16,5 +15,4 @@ button {
 
 .separator {
   margin-bottom: 2rem;
-}
 }

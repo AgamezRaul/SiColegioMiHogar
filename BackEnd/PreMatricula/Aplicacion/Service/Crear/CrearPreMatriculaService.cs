@@ -1,5 +1,6 @@
 ﻿using BackEnd.Base;
 using BackEnd.PreMatricula.Aplicacion.Request;
+using BackEnd.Responsable.Aplicacion.Request;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +19,11 @@ namespace BackEnd.PreMatricula.Aplicacion.Service.Crear
         public CrearPreMatriculaResponse Ejecutar(CrearPreMatriculaRequest request)
         {
             var prematricula = _unitOfWork.PreMatriculaServiceRepository.FindFirstOrDefault(t => t.Id == request.id);
+            
             if (prematricula == null)
             {
                 Dominio.PreMatricula newPreMatricula = new Dominio.PreMatricula(request.FecPrematricula, request.IdResponsable, request.Estado);
-
+                
                 IReadOnlyList<string> errors = newPreMatricula.CanCrear(newPreMatricula);
                 if (errors.Any())
                 {

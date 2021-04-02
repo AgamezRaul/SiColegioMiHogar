@@ -1,60 +1,80 @@
-<p>form-responsable-madre works!</p>
-
-<div class="container">
-  <div class="row">
-    <div class="row">
-      <label> Nombre completo:</label> <input type="text" name="name" />
-      <label> Parentesco con el estudiante:</label> <input type="text" name="parentesco" />
+<div class="container" align="center">
+  <h1>Formulario de la Madre</h1>
+  <form [formGroup]="formGroup">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="nomResponsableMadre">Nombre de la Madre</label>
+        <input type="text" class="form-control" formControlName="nomResponsableMadre" id="nomResponsableMadre" placeholder="Ej: Juana Andrea Mendez Pinzón">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="celResponsableMadre">Celular de la Madre</label>
+        <input type="text" class="form-control" formControlName="celResponsableMadre" id="celResponsableMadre" placeholder="Ej: 4964873729">
+      </div>
     </div>
-    <div class="row">
-      <label> Lugar de nacimiento:</label> <input type="text" name="place" />
-      <label> Fecha de nacimiento:</label> <input type="text" name="born" />
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="lugNacimientoMadre">Lugar de nacimiento</label>
+        <input type="text" class="form-control" formControlName="lugNacimientoMadre" id="lugNacimientoMadre" placeholder="Ej: Valledupar/Cesar">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="fecNacimientoPadre">Fecha de nacimiento</label>
+        <input type="date" formControlName="fecNacimientoMadre" class="form-control" id="fecNacimientoMadre">
+      </div>
     </div>
-    <div class="row">
-      <label> Tipo de documento de identidad:</label> <input type="text" />
-      <label> Numero:</label> <input type="text" />
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="tipDocumentoMadre">Tipo de documento</label>
+        <select id="tipDocumentoMadre" formControlName="tipDocumentoMadre" class="form-control">
+          <option selected>Elija una opción</option>
+          <option>Cedula de ciudadania</option>
+          <option>Cédula de extranjero</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="ideResponsableMadre">Número de documento</label>
+        <input type="text" class="form-control" formControlName="ideResponsableMadre" id="ideResponsableMadre" placeholder="Ej: 1002456457">
+      </div>
     </div>
-    <div class="row">
-      <label> Lugar de expedición:</label> <input type="text" />
-      <label> Celular:</label> <input type="text" />
-      <label> Teléfono:</label> <input type="text" />
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="profResponsableMadre">Profesión de la Madre</label>
+        <input type="text" class="form-control" formControlName="profResponsableMadre" id="profResponsableMadre" placeholder="Ej: Enfermería">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="ocuResponsableMadre">Ocupación de la Madre</label>
+        <input type="text" class="form-control" formControlName="ocuResponsableMadre" id="ocuResponsableMadre" placeholder="Ej: Enfermero en jefe">
+      </div>
     </div>
-    <div class="row">
-      <label> Profesión:</label> <input type="text" />
-      <label> Ocupasión:</label> <input type="text" />
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="entResonsableMadre">Empresa donde trabaja</label>
+        <input type="text" class="form-control" formControlName="entResonsableMadre" id="entResonsableMadre" placeholder="Ej: 7101375">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="celEmpresaMadre">Celular de la Empresa</label>
+        <input type="text" class="form-control" formControlName="celEmpresaMadre" id="celEmpresaMadre" placeholder="Ej: 3246543546">
+      </div>
     </div>
-    <div class="row">
-      <label> Entidad en la Trabaja:</label> <input type="text" />
-      <label> Teléfono de la empresa:</label> <input type="text" />
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="correoMadre">Correo electrónico</label>
+        <input type="email" class="form-control" formControlName="correoMadre" id="correoMadre" placeholder="Ej: ejemplo@gmail.com">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="acudientePadre">Es usted el acudiente?</label>
+        <select id="acudientePadre" formControlName="acudienteMadre" class="form-control">
+          <option selected>Elija una opción</option>
+          <option>Si</option>
+          <option>No</option>
+        </select>
+      </div>
     </div>
-      <div class="row">
-        <label> Correo:</label> <input type="text" />
-        <label> Es acudiente:</label> <input type="text" />
-      </div>
-
-      <div class="row">
-
-      </div>
-      <div class="row">
-        
-      </div>
-      <div class="row">
-      </div>
-      <div class="row">
-       
-      </div>
-      <div class="row">
-
-      </div>
-      <div class="row">
-
-      </div>
-      <div class="row">
-
-      </div>
-      <div class="row">
-
-      </div>
-  
+  </form>
 </div>
-  </div>
+

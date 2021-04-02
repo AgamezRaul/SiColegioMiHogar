@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UsuarioService } from './usuario.service';
 
 @Component({
@@ -10,7 +12,14 @@ export class UsuarioComponent implements OnInit {
 
   usuarios: IUsuario[];
 
-  constructor(private usuariosService: UsuarioService) { }
+  constructor(private fb: FormBuilder, private usuarioService: UsuarioService,
+    private router: Router, private activatedRoute: ActivatedRoute) { }
+
+  formGroup = this.fb.group({
+    correo: ['', [Validators.required]],
+    password: ['', [Validators.required]],
+    nomUsuario: ['', [Validators.required]]
+  });
 
   ngOnInit(): void {
   }

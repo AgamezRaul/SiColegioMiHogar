@@ -22,6 +22,7 @@ namespace BackEnd.Responsable.Aplicacion.Request
         public string Correo { get; set; }
         public string Acudiente { get; set; }
         public int IdEstudiante { get; set; }
+        public int IdPrematricula { get; set; }
     }
     public class ActualizarResponsableResponse
     {

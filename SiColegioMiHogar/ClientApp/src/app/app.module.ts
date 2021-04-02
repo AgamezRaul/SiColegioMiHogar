@@ -55,7 +55,8 @@ import { MatInputModule } from '@angular/material/input';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'registrar-usuario', component: FormUsuarioComponent },
-      { path: 'registrar-prematricula', component: PreMatriculaComponent }
+      { path: 'registrar-prematricula', component: PreMatriculaComponent },
+      { path: 'login', component: LoginComponent }
 ], { relativeLinkResolution: 'legacy' })
   ],
   providers: [],
