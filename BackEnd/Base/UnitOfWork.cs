@@ -2,6 +2,8 @@
 using BackEnd.Estudiante.Infra;
 using BackEnd.Matricula.Dominio.Repositories;
 using BackEnd.Matricula.Infra;
+using BackEnd.Mensualidad.Dominio.Repositories;
+using BackEnd.Mensualidad.Infra;
 using BackEnd.PreMatricula.Dominio.Repositories;
 using BackEnd.PreMatricula.Infra;
 using BackEnd.RelacionUR.Dominio.Repositories;
@@ -73,6 +75,15 @@ namespace BackEnd.Base
             get
             {
                 return _relacionURServiceRepository ?? (_relacionURServiceRepository = new RelacionURServiceRepository(_dbContext));
+            }
+        }
+
+        private IMensualidadServiceRepository _mensualidadServiceRepository;
+        public IMensualidadServiceRepository MensualidadServiceRepository
+        {
+            get
+            {
+                return _mensualidadServiceRepository ?? (_mensualidadServiceRepository = new MensualidadServiceRepository(_dbContext));
             }
         }
 

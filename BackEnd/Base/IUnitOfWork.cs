@@ -1,5 +1,6 @@
 ﻿using BackEnd.Estudiante.Dominio.Repositories;
 using BackEnd.Matricula.Dominio.Repositories;
+using BackEnd.Mensualidad.Dominio.Repositories;
 using BackEnd.PreMatricula.Dominio.Repositories;
 using BackEnd.RelacionUR.Dominio.Repositories;
 using BackEnd.Responsable.Dominio.Repositories;
@@ -19,6 +20,7 @@ namespace BackEnd.Base
         IUsuarioServiceRepository UsuarioServiceRepository { get; }
         IPreMatriculaServiceRepository PreMatriculaServiceRepository { get; }
         IRelacionURServiceRepository RelacionURServiceRepository { get; }
+        IMensualidadServiceRepository MensualidadServiceRepository { get; }
 
         int Commit();
     }
