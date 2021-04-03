@@ -17,7 +17,7 @@ export class SidenavMenuComponent implements OnInit {
   fillerNav = [
     { name: "home", route: "", icon: "home" },
     { name: "Registro Prematricula", route: "registrar-prematricula", icon: "supervised_user_circle" },
-    
+    { name: "Gestion de Materias", route: "gestion-de-materias", icon: "" },
 
   ]
   private _mobileQueryListener: () => void;

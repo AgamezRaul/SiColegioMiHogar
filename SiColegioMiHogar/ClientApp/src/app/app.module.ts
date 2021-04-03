@@ -24,6 +24,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { GestionDeMateriasComponent } from './gestion-de-materias/gestion-de-materias.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { MatInputModule } from '@angular/material/input';
     UsuarioComponent,
     FormUsuarioComponent,
     PerfilComponent,
+    GestionDeMateriasComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -56,7 +58,8 @@ import { MatInputModule } from '@angular/material/input';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'registrar-usuario', component: FormUsuarioComponent },
       { path: 'registrar-prematricula', component: PreMatriculaComponent },
-      { path: 'login', component: LoginComponent }
+      { path: 'login', component: LoginComponent },
+      { path: 'gestion-de-materias', component: GestionDeMateriasComponent }
 ], { relativeLinkResolution: 'legacy' })
   ],
   providers: [],
