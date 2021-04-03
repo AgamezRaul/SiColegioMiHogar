@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using BackEnd.Estudiante.Aplicacion.Request;
+using BackEnd.Responsable.Aplicacion.Request;
 
 namespace BackEnd.PreMatricula.Aplicacion.Service.Crear
 {
@@ -14,10 +16,16 @@ namespace BackEnd.PreMatricula.Aplicacion.Service.Crear
         readonly IUnitOfWork _unitOfWork;
         public CrearEstudianteService estudianteService;
         public CrearResponsableService responsableService;
+        public CrearEstudianteRequest _estudianteRequest;
+        public CrearResponsableRequest _responsableRequest;
 
         public CrearPreMatriculaService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
+            estudianteService = new CrearEstudianteService(_unitOfWork);
+            responsableService = new CrearResponsableService(_unitOfWork);
+
+
         }
         public CrearPreMatriculaResponse Ejecutar(CrearPreMatriculaRequest request)
         {
@@ -26,11 +34,12 @@ namespace BackEnd.PreMatricula.Aplicacion.Service.Crear
             {
                 Dominio.PreMatricula newPreMatricula = new Dominio.PreMatricula(request.FecPrematricula, request.IdResponsable, request.Estado);
 
-                var estudiante = estudianteService.Ejecutar(request.Estudiante);
+                var respuestaE = estudianteService.Ejecutar(request.Estudiante);
                 foreach (var responsable in request.Responsables)
                 {
                     var respuesta = responsableService.Ejecutar(responsable);
                 }
+
                 IReadOnlyList<string> errors = newPreMatricula.CanCrear(newPreMatricula);
                 if (errors.Any())
                 {
