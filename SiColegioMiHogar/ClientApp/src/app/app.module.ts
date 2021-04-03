@@ -24,6 +24,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MensualidadComponent } from './mensualidad/mensualidad.component';
+import { FormMensualidadComponent } from './mensualidad/form-mensualidad/form-mensualidad.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { MatInputModule } from '@angular/material/input';
     UsuarioComponent,
     FormUsuarioComponent,
     PerfilComponent,
+    MensualidadComponent,
+    FormMensualidadComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

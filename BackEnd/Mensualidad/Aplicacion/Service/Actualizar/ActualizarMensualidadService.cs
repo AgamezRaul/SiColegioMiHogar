@@ -31,6 +31,7 @@ namespace BackEnd.Mensualidad.Aplicacion.Service.Actualizar
                 mensualidad.Deuda = request.Deuda;
                 mensualidad.Estado = request.Estado;
                 mensualidad.IdMatricula = request.IdMatricula;
+                mensualidad.TotalMensualidad = request.TotalMensualidad;
                 
                 _unitOfWork.MensualidadServiceRepository.Edit(mensualidad);
                 _unitOfWork.Commit();

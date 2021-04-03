@@ -7,7 +7,8 @@ namespace BackEnd.Mensualidad.Dominio
 {
     public class Mensualidad : Entity<int>
     {
-    
+        
+
         public string Mes { get; set; }
         public int DiaPago { get; set; }
         public DateTime FechaPago { get; set; }
@@ -17,7 +18,8 @@ namespace BackEnd.Mensualidad.Dominio
         public double Deuda { get; set; }
         public string Estado { get; set; }
         public int IdMatricula { get; set; }
-        public Mensualidad(string mes, int diaPago, DateTime fechaPago, double valorMensualidad, double descuentoMensualidad, double abono, double deuda, string estado, int idMatricula)
+        public double TotalMensualidad { get; set; }
+        public Mensualidad(string mes, int diaPago, DateTime fechaPago, double valorMensualidad, double descuentoMensualidad, double abono, double deuda, string estado, int idMatricula, double totalMensualidad)
         {
             Mes = mes;
             DiaPago = diaPago;
@@ -28,7 +30,9 @@ namespace BackEnd.Mensualidad.Dominio
             Deuda = deuda;
             Estado = estado;
             IdMatricula = idMatricula;
+            TotalMensualidad = totalMensualidad;
         }
+
         public IReadOnlyList<string> CanCrear(Mensualidad mensualidad)
         {
             var errors = new List<string>();
@@ -45,8 +49,6 @@ namespace BackEnd.Mensualidad.Dominio
                 errors.Add("Campo Descuento Mensualidad no debe ser negativo");
             if (mensualidad.Abono == 0)
                 errors.Add("Campo Abono vacio");
-            if (mensualidad.Deuda < 0)
-                errors.Add("Campo deudad no debe terner valores negativos");
             if (string.IsNullOrEmpty(mensualidad.Estado))
                 errors.Add("Campo Estado de mensualidad vacio");
             if (mensualidad.IdMatricula == 0)

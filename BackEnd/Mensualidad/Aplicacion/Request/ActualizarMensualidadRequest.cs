@@ -13,9 +13,10 @@ namespace BackEnd.Mensualidad.Aplicacion.Request
         public double ValorMensualidad { get; set; }
         public double DescuentoMensualidad { get; set; }
         public double Abono { get; set; }
-        public double Deuda { get; set; }
+        public double Deuda { get => TotalMensualidad - Abono; }
         public string Estado { get; set; }
         public int IdMatricula { get; set; }
+        public double TotalMensualidad { get => ValorMensualidad - DescuentoMensualidad; }
     }
     public class ActualizarMensualidadResponse
     {

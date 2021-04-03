@@ -20,7 +20,8 @@ namespace BackEnd.Mensualidad.Aplicacion.Service.Crear
             var mensualidad = _unitOfWork.MensualidadServiceRepository.FindFirstOrDefault(t => t.Id == request.id);
             if (mensualidad == null)
             {
-                Dominio.Mensualidad newMensualidad = new Dominio.Mensualidad(request.Mes, request.DiaPago,request.FechaPago,request.ValorMensualidad,request.DescuentoMensualidad,request.Abono,request.Deuda,request.Estado,request.IdMatricula);
+                Dominio.Mensualidad newMensualidad = new Dominio.Mensualidad(request.Mes, request.DiaPago,request.FechaPago,request.ValorMensualidad,
+                    request.DescuentoMensualidad,request.Abono,request.Deuda,request.Estado,request.IdMatricula,request.TotalMensualidad);
             
                 IReadOnlyList<string> errors = newMensualidad.CanCrear(newMensualidad);
                 if (errors.Any())
