@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { IMensualidad } from '../mensualidad.component';
+import { MensualidadService } from '../mensualidad.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-edit-mensualidad',
@@ -6,10 +10,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-mensualidad.component.css']
 })
 export class EditMensualidadComponent implements OnInit {
+  mensualidad: IMensualidad;
+  mes: string;
+  constructor(private route: ActivatedRoute,
+    private mensualidadService: MensualidadService,
+    private location: Location) { }
 
-  constructor() { }
-
-  ngOnInit(): void {
+  ngOnInit() {
+    this.get();
   }
+  get(): void {
+    const mes = +this.route.snapshot.paramMap.get('mes');
+    this.mensualidadService.getMensualidad(mes).subscribe(hero => this.mensualidad = hero);
+  }
+  update(): void {
+    this.mensualidadService.updateMensualidad(this.mensualidad).subscribe(() => this.goBack());
+  }
+  delete(): void {
+
+    this.mensualidadService.deleteMensualidad(this.mensualidad).subscribe(() => this.goBack());
+  }
+  goBack(): void {
+    this.location.back();
+  }
+  
 
 }

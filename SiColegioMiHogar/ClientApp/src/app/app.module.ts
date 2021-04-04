@@ -29,6 +29,7 @@ import { FormMensualidadComponent } from './mensualidad/form-mensualidad/form-me
 import { ListMensualidadComponent } from './mensualidad/list-mensualidad/list-mensualidad.component';
 import { EditMensualidadComponent } from './mensualidad/edit-mensualidad/edit-mensualidad.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +51,7 @@ import { EditMensualidadComponent } from './mensualidad/edit-mensualidad/edit-me
     FormMensualidadComponent,
     ListMensualidadComponent,
     EditMensualidadComponent,
+  
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -65,10 +67,14 @@ import { EditMensualidadComponent } from './mensualidad/edit-mensualidad/edit-me
       { path: 'registrar-usuario', component: FormUsuarioComponent },
       { path: 'registrar-prematricula', component: PreMatriculaComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'form-mensualidad', component: FormMensualidadComponent }
+      { path: 'form-mensualidad', component: FormMensualidadComponent },
+      { path: 'list-mensualidad', component: ListMensualidadComponent },
+      { path: 'edit-mensualidad/:mes', component: EditMensualidadComponent },
+
 ], { relativeLinkResolution: 'legacy' })
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
