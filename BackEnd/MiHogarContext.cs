@@ -22,5 +22,6 @@ namespace BackEnd
         public DbSet<Responsable.Dominio.Responsable> Responsable { get; set; }
         public DbSet<Usuario.Dominio.Usuario> Usuario { get; set; }
         public DbSet<Curso.Dominio.Curso> Curso { get; set; }
+        public DbSet<Mensualidad.Dominio.Mensualidad> Mensualidad { get; set; }
     }
 }
