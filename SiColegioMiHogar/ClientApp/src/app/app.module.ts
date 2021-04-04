@@ -24,6 +24,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MensualidadComponent } from './mensualidad/mensualidad.component';
+import { FormMensualidadComponent } from './mensualidad/form-mensualidad/form-mensualidad.component';
+import { ListMensualidadComponent } from './mensualidad/list-mensualidad/list-mensualidad.component';
+import { EditMensualidadComponent } from './mensualidad/edit-mensualidad/edit-mensualidad.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +46,10 @@ import { MatInputModule } from '@angular/material/input';
     UsuarioComponent,
     FormUsuarioComponent,
     PerfilComponent,
+    MensualidadComponent,
+    FormMensualidadComponent,
+    ListMensualidadComponent,
+    EditMensualidadComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -56,7 +64,8 @@ import { MatInputModule } from '@angular/material/input';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'registrar-usuario', component: FormUsuarioComponent },
       { path: 'registrar-prematricula', component: PreMatriculaComponent },
-      { path: 'login', component: LoginComponent }
+      { path: 'login', component: LoginComponent },
+      { path: 'form-mensualidad', component: FormMensualidadComponent }
 ], { relativeLinkResolution: 'legacy' })
   ],
   providers: [],
