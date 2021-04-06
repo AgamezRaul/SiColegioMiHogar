@@ -26,6 +26,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MensualidadComponent } from './mensualidad/mensualidad.component';
 import { FormMensualidadComponent } from './mensualidad/form-mensualidad/form-mensualidad.component';
+import { FormDocenteComponent } from './Docente/form-docente/form-docente.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { FormMensualidadComponent } from './mensualidad/form-mensualidad/form-me
     PerfilComponent,
     MensualidadComponent,
     FormMensualidadComponent,
+    FormDocenteComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
