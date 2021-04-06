@@ -1,0 +1,46 @@
+<header class="Titulo">
+  <h1>Mensualidades</h1>
+</header>
+<body>
+  <div>
+    <!--- <h1 class="h2">List</h1>-->
+  </div>
+  <div>
+    <table class='table table-striped'>
+      <thead>
+        <tr>
+        <tr>
+          <!--<th>Id</th>-->
+          <th>Mes</th>
+          <th>DiaPago</th>
+          <th>FechaPago</th>
+          <th>ValorMensualidad</th>
+          <th>DescuentoMensualidad</th>
+          <th>Abono</th>
+          <th>Deudad</th>
+          <th>Estado</th>
+          <th>IdMatricula</th>
+          <th>TotalMensualidad</th>
+        </tr>
+       
+      </thead>
+      <tr *ngFor="let mensualidad of mensualidades">
+        <!--<td>{{mensualidad.mes}}</td>-->
+        <td>{{mensualidad.mes}}</td>
+        <td>{{mensualidad.diaPAgo}}</td>
+        <td>{{mensualidad.fechaPago}}</td>
+        <td>{{mensualidad.valorMensualidad}}</td>
+        <td>{{mensualidad.descuentoMensualidad}}</td>
+        <td>{{mensualidad.abono}}</td>
+        <td>{{mensualidad.deudad}}</td>
+        <td>{{mensualidad.idMatricula}}</td>
+        <td>{{mensualidad.totalMensualidad}}</td>
+         <td>
+     <a routerLink="/edit-mensualidad/{{mensualidad.mes}}">
+       ver
+     </a>
+   </td> 
+      </tr>
+    </table>
+  </div>
+</body>
