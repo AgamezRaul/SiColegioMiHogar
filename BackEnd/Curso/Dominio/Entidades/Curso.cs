@@ -8,13 +8,13 @@ namespace BackEnd.Curso.Dominio
     public class Curso : Entity<int>
     {
 
-        public int Id { get; set; }
+        public int Ide { get; set; }
         public string Nombre { get; set; }
         public int MaxEstudiantes { get; set; }
         public int IdDirectorDocente { get; set; }
         public Curso(int id, string nombre, int maxEtudiantes, int idDirectorDocente)
         {
-            Id = id;
+            Ide = id;
             Nombre = nombre;
             MaxEstudiantes = maxEtudiantes;
             IdDirectorDocente = idDirectorDocente;
@@ -25,7 +25,7 @@ namespace BackEnd.Curso.Dominio
 
             if (string.IsNullOrEmpty(curso.Nombre))
                 errors.Add("El campo nombre está vacío");
-            if (curso.Id <= 0)
+            if (curso.Ide <= 0)
                 errors.Add("El id debe ser mayor que cero");
             if (curso.MaxEstudiantes <= 0)
                 errors.Add("El campo debe ser mayor que cero");

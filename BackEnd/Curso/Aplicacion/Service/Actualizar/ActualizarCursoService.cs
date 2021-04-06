@@ -15,14 +15,14 @@ namespace BackEnd.Curso.Aplicacion.Service.Actualizar
         }
         public ActualizarCursoResponse Ejecutar(ActualizarCursoRequest request)
         {
-            Dominio.Curso curso = _unitOfWork.CursoServiceRepository.FindFirstOrDefault(t => t.Id == request.id);
+            Dominio.Curso curso = _unitOfWork.CursoServiceRepository.FindFirstOrDefault(t => t.Ide == request.id);
             if (curso == null)
             {
                 return new ActualizarCursoResponse() { Message = $"Curso no existe" };
             }
             else
             {
-                curso.Id = request.id;
+                curso.Ide = request.id;
                 curso.Nombre = request.nombre;
                 curso.IdDirectorDocente = request.idDirectorDocente;
                 curso.MaxEstudiantes = request.maxEstudiantes;
