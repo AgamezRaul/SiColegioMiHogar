@@ -17,10 +17,10 @@ namespace BackEnd.Curso.Aplicacion.Service.Crear
         }
         public CrearCursoResponse Ejecutar(CrearCursoRequest request)
         {
-            var curso = _unitOfWork.CursoServiceRepository.FindFirstOrDefault(t => t.Ide == request.id);
+            var curso = _unitOfWork.CursoServiceRepository.FindFirstOrDefault(t => t.Id == request.id);
             if (curso == null)
             {
-                Dominio.Curso newCurso = new Dominio.Curso(request.id, request.nombre, request.maxEstudiantes, request.idDirectorDocente);
+                Dominio.Curso newCurso = new Dominio.Curso(request.nombre, request.maxEstudiantes, request.idDirectorDocente);
 
                 IReadOnlyList<string> errors = newCurso.CanCrear(newCurso);
                 if (errors.Any())

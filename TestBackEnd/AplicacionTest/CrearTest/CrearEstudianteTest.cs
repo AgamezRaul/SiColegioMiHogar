@@ -54,9 +54,9 @@ namespace TestBackEnd.AplicacionTest.CrearTest
                         TipoDocumento = "Cedula",
                         TelEstudiante = "1234567"
 
-        },
+                    },
                     "Estudiante Creado Exitosamente"
-                    ).SetName("Crear Estudiante Correctamente");
+                ).SetName("Crear Estudiante Correctamente");
             }
         }
     }

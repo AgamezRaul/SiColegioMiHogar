@@ -37,12 +37,12 @@ namespace BackEnd.RelacionUR.Aplicacion.Service.Crear
                 {
                     _unitOfWork.RelacionURServiceRepository.Add(newRelacionUR);
                     _unitOfWork.Commit();
-                    return new CrearRelacionURResponse() { Message = $"Relacion Responsable Usuario Creada Exitosamente" };
+                    return new CrearRelacionURResponse() { Message = $"Relacion Usuario Responsable Creada Exitosamente" };
                 }
             }
             else
             {
-                return new CrearRelacionURResponse() { Message = $"Relacion Responsable Usuario ya existe" };
+                return new CrearRelacionURResponse() { Message = $"Relacion Usuario Responsable ya existe" };
             }
         }
     }

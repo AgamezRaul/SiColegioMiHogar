@@ -27,7 +27,7 @@ export class FormUsuarioComponent implements OnInit {
   save() {
     let usuario: IUsuario = Object.assign({}, this.formGroup.value);
     console.table(usuario); //ver usuario por consola
-    this.usuarioService.createEmpleado(usuario)
+    this.usuarioService.createUsuario(usuario)
       .subscribe(empleado => this.onSaveSuccess());
 
   }
