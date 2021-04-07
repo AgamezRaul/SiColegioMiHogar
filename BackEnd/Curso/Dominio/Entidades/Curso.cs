@@ -12,11 +12,11 @@ namespace BackEnd.Curso.Dominio
         public string Nombre { get; set; }
         public int MaxEstudiantes { get; set; }
         public int IdDirectorDocente { get; set; }
-        public Curso(int id, string nombre, int maxEtudiantes, int idDirectorDocente)
+        public Curso(int id, string nombre, int maxEstudiantes, int idDirectorDocente)
         {
             Ide = id;
             Nombre = nombre;
-            MaxEstudiantes = maxEtudiantes;
+            MaxEstudiantes = maxEstudiantes;
             IdDirectorDocente = idDirectorDocente;
         }
         public IReadOnlyList<string> CanCrear(Curso curso)
