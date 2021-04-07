@@ -6,6 +6,7 @@ namespace BackEnd.Estudiante.Aplicacion.Request
 {
     public class CrearEstudianteRequest
     {
+        public int id { get; set; }
         public string IdeEstudiante { get; set; }
         public string NomEstudiante { get; set; }
         public DateTime FecNacimiento { get; set; }

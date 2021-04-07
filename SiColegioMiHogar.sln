@@ -5,13 +5,13 @@ VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SiColegioMiHogar", "SiColegioMiHogar\SiColegioMiHogar.csproj", "{C30ECC90-668A-4C7C-85EA-FBA75131096C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackEnd", "BackEnd\BackEnd.csproj", "{543A078B-558C-48E7-8F94-B79DB0542180}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackEnd", "BackEnd\BackEnd.csproj", "{543A078B-558C-48E7-8F94-B79DB0542180}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. FrontEnd", "1. FrontEnd", "{51113D3F-834C-4710-AF07-4B5E51794954}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. BackEnd", "2. BackEnd", "{F98C9F2F-54DE-4367-B8C3-914F1ABC785B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBackEnd", "TestBackEnd\TestBackEnd.csproj", "{6B49C09A-A9A4-4BD7-8216-33B01F310074}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestBackEnd", "TestBackEnd\TestBackEnd.csproj", "{6B49C09A-A9A4-4BD7-8216-33B01F310074}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

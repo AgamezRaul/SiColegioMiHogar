@@ -13,3 +13,21 @@ export class EstudianteComponent implements OnInit {
   }
 
 }
+
+export interface IEstudiante {
+  ideEstudiante: string,
+  nomEstudiante: string,
+  fecNacimiento: string,
+  lugNacimiento: string,
+  lugExpedicion: string,
+  insProcedencia: string,
+  dirResidencia: string,
+  celEstudiante: string,
+  tipSangre: string,
+  gradoEstudiante: string,
+  eps: string,
+  correo: string,
+  sexo: string,
+  tipoDocumento: string,
+  telEstudiante: number
+}

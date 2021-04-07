@@ -1,0 +1,13 @@
+<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Icon Perfil">
+  <mat-icon class="iconoPerfil">account_box</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item routerLink="registrar-usuario" >
+    <mat-icon>login</mat-icon>
+    <span>Registrar Usuario</span>
+  </button>
+  <button mat-menu-item routerLink="login">
+    <mat-icon>login</mat-icon>
+    <span>Iniciar Sesion</span>
+  </button>
+</mat-menu>
