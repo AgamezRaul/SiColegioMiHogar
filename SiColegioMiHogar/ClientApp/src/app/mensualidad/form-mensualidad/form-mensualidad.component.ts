@@ -19,10 +19,10 @@ export class FormMensualidadComponent implements OnInit {
     valorMensualidad:  ['', [Validators.required]],
     descuentoMensualidad: ['', [Validators.required]],
     abono: ['', [Validators.required]],
-    deuda: ['', [Validators.required]],
+    //deuda: ['', [Validators.required]],
     estado: ['', [Validators.required]],
     idMatricula: ['', [Validators.required]],
-    totalMensualidad: ['', [Validators.required]]
+   // totalMensualidad: ['', [Validators.required]]
   });
 
   ngOnInit(): void {
@@ -55,18 +55,18 @@ export class FormMensualidadComponent implements OnInit {
   get abono() {
     return this.formGroup.get('abono');
   }
-  get deuda() {
+  /*get deuda() {
     return this.formGroup.get('deuda');
-  }
+  }*/
   get estado() {
     return this.formGroup.get('estado');
   }
   get idMatricula() {
     return this.formGroup.get('idMatricula');
   }
-  get totalMensualidad() {
+  /*get totalMensualidad() {
     return this.formGroup.get('totalMensualidad');
-  }
+  }*/
  
 
   

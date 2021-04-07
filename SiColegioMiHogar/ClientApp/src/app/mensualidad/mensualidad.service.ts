@@ -15,8 +15,8 @@ export class MensualidadService {
     return this.http.get<IMensualidad[]>(this.apiURL);
   }
 
-  getMensualidad(mes: number): Observable<IMensualidad> {
-    return this.http.get<IMensualidad>(this.apiURL + '/' + mes);
+  getMensualidad(id: number): Observable<IMensualidad> {
+    return this.http.get<IMensualidad>(this.apiURL + '/' + id);
   }
 
   createMensualidad(mensualidad: IMensualidad): Observable<IMensualidad> {
@@ -24,11 +24,11 @@ export class MensualidadService {
   }
 
   updateMensualidad(mensualidad: IMensualidad): Observable<IMensualidad> {
-    return this.http.put<IMensualidad>(this.apiURL + "/" + mensualidad.mes.toString(), mensualidad);
+    return this.http.put<IMensualidad>(this.apiURL + "/" + mensualidad.id.toString(), mensualidad);
   }
 
-  deleteMensualidad(mensualidad: IMensualidad): Observable<IMensualidad> {
-    return this.http.put<IMensualidad>(this.apiURL + "/DeleteMensualidad" + "/" + mensualidad.mes.toString(), mensualidad);
+  deleteMensualidad(id: number): Observable<number> {
+    return this.http.put<number>(this.apiURL + "/DeleteMensualidad" + "/" + id.toString(),id);
   }
 
 }

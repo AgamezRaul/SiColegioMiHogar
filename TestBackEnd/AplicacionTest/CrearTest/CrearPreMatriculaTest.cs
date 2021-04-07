@@ -20,8 +20,7 @@ namespace TestBackEnd.AplicacionTest.CrearTest
         MiHogarContextTest _context;
         UnitOfWork _unitOfWork;
         CrearPreMatriculaService _crearPreMatriculaService;
-        CrearResponsableService _crearResponsableService;
-        CrearEstudianteService _crearEstudianteService;
+     
 
         [SetUp]
         public void Setup()
