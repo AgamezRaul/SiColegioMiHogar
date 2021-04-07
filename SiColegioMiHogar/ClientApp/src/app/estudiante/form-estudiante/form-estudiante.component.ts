@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -9,9 +9,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class FormEstudianteComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute) { }
+  @Input() formGroupE: FormGroup;
 
-  formGroup = this.fb.group({
+  /*formGroupE = this.fb.group({
     ideEstudiante: ['', [Validators.required]],
     nomEstudiante: ['', [Validators.required]],
     fecNacimiento: ['', [Validators.required]],
@@ -27,54 +27,54 @@ export class FormEstudianteComponent implements OnInit {
     sexo: ['', [Validators.required]],
     tipoDocumento: ['', [Validators.required]],
     telEstudiante: ['', [Validators.required]]
-  });
+  });*/
 
+  constructor(private fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute) { }
   ngOnInit() {
   }
-
   get ideEstudiante() {
-    return this.formGroup.get('ideEstudiante');
+    return this.formGroupE.get('ideEstudiante');
   }
   get nomEstudiante() {
-    return this.formGroup.get('nomEstudiante');
+    return this.formGroupE.get('nomEstudiante');
   }
   get fecNacimiento() {
-    return this.formGroup.get('fecNacimiento');
+    return this.formGroupE.get('fecNacimiento');
   }
   get lugNacimiento() {
-    return this.formGroup.get('lugNacimiento');
+    return this.formGroupE.get('lugNacimiento');
   }
   get lugExpedicion() {
-    return this.formGroup.get('lugExpedicion');
+    return this.formGroupE.get('lugExpedicion');
   }
   get insProcedencia() {
-    return this.formGroup.get('insProcedencia');
+    return this.formGroupE.get('insProcedencia');
   }
   get dirResidencia() {
-    return this.formGroup.get('dirResidencia');
+    return this.formGroupE.get('dirResidencia');
   }
   get celEstudiante() {
-    return this.formGroup.get('celEstudiante');
+    return this.formGroupE.get('celEstudiante');
   }
   get tipSangre() {
-    return this.formGroup.get('tipSangre');
+    return this.formGroupE.get('tipSangre');
   }
   get gradoEstudiante() {
-    return this.formGroup.get('gradoEstudiante');
+    return this.formGroupE.get('gradoEstudiante');
   }
   get eps() {
-    return this.formGroup.get('eps');
+    return this.formGroupE.get('eps');
   }
   get correo() {
-    return this.formGroup.get('correo');
+    return this.formGroupE.get('correo');
   }
   get sexo() {
-    return this.formGroup.get('sexo');
+    return this.formGroupE.get('sexo');
   }
   get tipoDocumento() {
-    return this.formGroup.get('tipoDocumento');
+    return this.formGroupE.get('tipoDocumento');
   }
   get telEstudiante() {
-    return this.formGroup.get('telEstudiante');
+    return this.formGroupE.get('telEstudiante');
   }
 }
