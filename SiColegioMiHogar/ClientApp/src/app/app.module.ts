@@ -26,6 +26,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MensualidadComponent } from './mensualidad/mensualidad.component';
 import { FormMensualidadComponent } from './mensualidad/form-mensualidad/form-mensualidad.component';
+import { ListMensualidadComponent } from './mensualidad/list-mensualidad/list-mensualidad.component';
+import { EditMensualidadComponent } from './mensualidad/edit-mensualidad/edit-mensualidad.component';
+import { FormDocenteComponent } from './Docente/form-docente/form-docente.component';
+
 
 @NgModule({
   declarations: [
@@ -46,6 +50,10 @@ import { FormMensualidadComponent } from './mensualidad/form-mensualidad/form-me
     PerfilComponent,
     MensualidadComponent,
     FormMensualidadComponent,
+    ListMensualidadComponent,
+    EditMensualidadComponent,
+  
+    FormDocenteComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -60,10 +68,15 @@ import { FormMensualidadComponent } from './mensualidad/form-mensualidad/form-me
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'registrar-usuario', component: FormUsuarioComponent },
       { path: 'registrar-prematricula', component: PreMatriculaComponent },
-      { path: 'login', component: LoginComponent }
+      { path: 'login', component: LoginComponent },
+      { path: 'form-mensualidad', component: FormMensualidadComponent },
+      { path: 'list-mensualidad', component: ListMensualidadComponent },
+      { path: 'edit-mensualidad/:mes', component: EditMensualidadComponent },
+
 ], { relativeLinkResolution: 'legacy' })
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
