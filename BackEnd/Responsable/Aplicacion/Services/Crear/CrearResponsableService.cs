@@ -22,7 +22,7 @@ namespace BackEnd.Responsable.Aplicacion.Services.Crear
             {
                 Dominio.Responsable newResponsable = new Dominio.Responsable(request.IdeResponsable, request.NomResponsable, request.FecNacimiento, request.LugNacimiento,
                     request.LugExpedicion, request.TipDocumento, request.CelResponsable, request.ProfResponsable, request.OcuResponsable, request.EntResponsable, request.CelEmpresa,
-                    request.TipoResponsable, request.Correo, request.Acudiente, request.IdEstudiante);
+                    request.TipoResponsable, request.Correo, request.Acudiente, request.IdEstudiante, request.IdPrematricula);
 
                 IReadOnlyList<string> errors = newResponsable.CanCrear(newResponsable);
                 if (errors.Any())

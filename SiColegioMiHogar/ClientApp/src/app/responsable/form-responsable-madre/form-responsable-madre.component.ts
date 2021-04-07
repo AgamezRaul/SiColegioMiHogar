@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form-responsable-madre',
@@ -9,16 +9,15 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class FormResponsableMadreComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private router: Router,
-    private activatedRoute: ActivatedRoute) { }
+  @Input() formGroupM: FormGroup;
 
-  formGroup = this.fb.group({
+  /*formGroupM = this.fb.group({
     ideResponsableMadre: ['', [Validators.required]],
     nomResponsableMadre: ['', [Validators.required]],
     fechaNacimientoMadre: ['', [Validators.required]],
     lugNacimientoMadre: ['', [Validators.required]],
     lugExpedicionMadre: ['', [Validators.required]],
-    tipoDocumentoMadre: ['', [Validators.required]],
+    tipDocumentoMadre: ['', [Validators.required]],
     celResponsableMadre: ['', [Validators.required]],
     profResponsableMadre: ['', [Validators.required]],
     ocuResponsableMadre: ['', [Validators.required]],
@@ -27,48 +26,53 @@ export class FormResponsableMadreComponent implements OnInit {
     tipoResponsableMadre: ['', [Validators.required]],
     correoMadre: ['', [Validators.required]],
     acudienteMadre: ['', [Validators.required]]
-  })
+  });*/
+
+  constructor(private fb: FormBuilder, private router: Router,
+    private activatedRoute: ActivatedRoute) { }
+
+  
 
   ngOnInit() {
   }
-
   get ideResponsableMadre() {
-    return this.formGroup.get('ideResponsableMadre');
+    return this.formGroupM.get('ideResponsableMadre');
   }
   get nomResponsableMadre() {
-    return this.formGroup.get('nomResponsableMadre');
+    return this.formGroupM.get('nomResponsableMadre');
   }
-  get fecNacimientoMadre() {
-    return this.formGroup.get('fecNacimientoMadre');
+  get fechaNacimientoMadre() {
+    return this.formGroupM.get('fechaNacimientoMadre');
   }
   get lugNacimientoMadre() {
-    return this.formGroup.get('lugNacimientoMadre');
+    return this.formGroupM.get('lugNacimientoMadre');
   }
   get tipDocumentoMadre() {
-    return this.formGroup.get('tipDocumentoMadre');
+    return this.formGroupM.get('tipDocumentoMadre');
   }
   get celResponsableMadre() {
-    return this.formGroup.get('celResponsableMadre');
+    return this.formGroupM.get('celResponsableMadre');
   }
   get profResponsableMadre() {
-    return this.formGroup.get('profResponsableMadre');
+    return this.formGroupM.get('profResponsableMadre');
   }
   get ocuResponsableMadre() {
-    return this.formGroup.get('ocuResponsableMadre');
+    return this.formGroupM.get('ocuResponsableMadre');
   }
   get entResponsableMadre() {
-    return this.formGroup.get('entResponsableMadre');
+    return this.formGroupM.get('entResponsableMadre');
   }
   get celEmpresaMadre() {
-    return this.formGroup.get('celEmpresaMadre');
+    return this.formGroupM.get('celEmpresaMadre');
   }
   get tipoResponsableMadre() {
-    return this.formGroup.get('tipoResponsableMadre');
+    return this.formGroupM.get('tipoResponsableMadre');
   }
   get correoMadre() {
-    return this.formGroup.get('correoMadre');
+    return this.formGroupM.get('correoMadre');
   }
   get acudienteMadre() {
-    return this.formGroup.get('acudienteMadre');
+    return this.formGroupM.get('acudienteMadre');
   }
+  
 }

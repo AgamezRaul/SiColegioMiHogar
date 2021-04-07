@@ -2,6 +2,8 @@
 using BackEnd.Estudiante.Infra;
 using BackEnd.Matricula.Dominio.Repositories;
 using BackEnd.Matricula.Infra;
+using BackEnd.Mensualidad.Dominio.Repositories;
+using BackEnd.Mensualidad.Infra;
 using BackEnd.PreMatricula.Dominio.Repositories;
 using BackEnd.PreMatricula.Infra;
 using BackEnd.RelacionUR.Dominio.Repositories;
@@ -10,6 +12,8 @@ using BackEnd.Responsable.Dominio.Repositories;
 using BackEnd.Responsable.Infra;
 using BackEnd.Usuario.Dominio.Repositories;
 using BackEnd.Usuario.Infra;
+using BackEnd.Curso.Dominio.Repositories;
+using BackEnd.Curso.Infra;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -73,6 +77,24 @@ namespace BackEnd.Base
             get
             {
                 return _relacionURServiceRepository ?? (_relacionURServiceRepository = new RelacionURServiceRepository(_dbContext));
+            }
+        }
+
+        private IMensualidadServiceRepository _mensualidadServiceRepository;
+        public IMensualidadServiceRepository MensualidadServiceRepository
+        {
+            get
+            {
+                return _mensualidadServiceRepository ?? (_mensualidadServiceRepository = new MensualidadServiceRepository(_dbContext));
+            }
+        }
+
+        private ICursoServiceRepository _cursoServiceRepository;
+        public ICursoServiceRepository CursoServiceRepository
+        {
+            get
+            {
+                return _cursoServiceRepository ?? (_cursoServiceRepository = new CursoServiceRepository(_dbContext));
             }
         }
 

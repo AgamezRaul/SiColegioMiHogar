@@ -6,7 +6,7 @@ using System.Text;
 
 namespace BackEnd.PreMatricula.Aplicacion.Request
 {
-   public  class CrearPreMatriculaRequest
+   public  class CrearPreMatriculaRequest 
     {
         public int id { get; set; }
         public DateTime FecPrematricula { get; set; }

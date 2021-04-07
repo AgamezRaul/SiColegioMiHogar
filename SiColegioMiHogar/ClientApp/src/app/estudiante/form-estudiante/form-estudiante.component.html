@@ -1,6 +1,5 @@
-<div class="container" align="center">
+<div class="container" align="center" [formGroup]="formGroupE">
   <h1>Formulario de estudiantes</h1>
-  <form [formGroup]="formGroup">
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="name">Nombre completo</label>
@@ -93,5 +92,4 @@
         <input type="text" class="form-control" formControlName="insProcedencia" id="inst" placeholder="Ej: I.E. San Ignacio">
       </div>
     </div>
-  </form>
 </div>

@@ -19,6 +19,27 @@ namespace BackEnd.Migrations
                 .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("BackEnd.Curso.Dominio.Curso", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("IdDirectorDocente")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MaxEstudiantes")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Curso");
+                });
+
             modelBuilder.Entity("BackEnd.Estudiante.Dominio.Estudiante", b =>
                 {
                     b.Property<int>("Id")
@@ -94,6 +115,48 @@ namespace BackEnd.Migrations
                     b.ToTable("Matricula");
                 });
 
+            modelBuilder.Entity("BackEnd.Mensualidad.Dominio.Mensualidad", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<double>("Abono")
+                        .HasColumnType("float");
+
+                    b.Property<double>("DescuentoMensualidad")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Deuda")
+                        .HasColumnType("float");
+
+                    b.Property<int>("DiaPago")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Estado")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("FechaPago")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IdMatricula")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Mes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("TotalMensualidad")
+                        .HasColumnType("float");
+
+                    b.Property<double>("ValorMensualidad")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Mensualidad");
+                });
+
             modelBuilder.Entity("BackEnd.PreMatricula.Dominio.PreMatricula", b =>
                 {
                     b.Property<int>("Id")
@@ -110,7 +173,12 @@ namespace BackEnd.Migrations
                     b.Property<int>("IdResponsable")
                         .HasColumnType("int");
 
+                    b.Property<int?>("estudianteId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("estudianteId");
 
                     b.ToTable("PreMatricula");
                 });
@@ -161,6 +229,9 @@ namespace BackEnd.Migrations
                     b.Property<int>("IdEstudiante")
                         .HasColumnType("int");
 
+                    b.Property<int>("IdPrematricula")
+                        .HasColumnType("int");
+
                     b.Property<string>("IdeResponsable")
                         .HasColumnType("nvarchar(max)");
 
@@ -176,6 +247,9 @@ namespace BackEnd.Migrations
                     b.Property<string>("OcuResponsable")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("PreMatriculaId")
+                        .HasColumnType("int");
+
                     b.Property<string>("ProfResponsable")
                         .HasColumnType("nvarchar(max)");
 
@@ -186,6 +260,8 @@ namespace BackEnd.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PreMatriculaId");
 
                     b.ToTable("Responsable");
                 });
@@ -212,6 +288,27 @@ namespace BackEnd.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Usuario");
+                });
+
+            modelBuilder.Entity("BackEnd.PreMatricula.Dominio.PreMatricula", b =>
+                {
+                    b.HasOne("BackEnd.Estudiante.Dominio.Estudiante", "estudiante")
+                        .WithMany()
+                        .HasForeignKey("estudianteId");
+
+                    b.Navigation("estudiante");
+                });
+
+            modelBuilder.Entity("BackEnd.Responsable.Dominio.Responsable", b =>
+                {
+                    b.HasOne("BackEnd.PreMatricula.Dominio.PreMatricula", null)
+                        .WithMany("Responsables")
+                        .HasForeignKey("PreMatriculaId");
+                });
+
+            modelBuilder.Entity("BackEnd.PreMatricula.Dominio.PreMatricula", b =>
+                {
+                    b.Navigation("Responsables");
                 });
 #pragma warning restore 612, 618
         }

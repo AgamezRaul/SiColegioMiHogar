@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form-responsable-acudiente',
@@ -9,10 +9,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class FormResponsableAcudienteComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private router: Router,
-    private activatedRoute: ActivatedRoute) { }
+  @Input() formGroupA: FormGroup;
 
-  formGroup = this.fb.group({
+  /*formGroupA = this.fb.group({
     ideResponsableAcudiente: ['', [Validators.required]],
     nomResponsableAcudiente: ['', [Validators.required]],
     fechaNacimientoAcudiente: ['', [Validators.required]],
@@ -26,46 +25,49 @@ export class FormResponsableAcudienteComponent implements OnInit {
     celEmpresaAcudiente: ['', [Validators.required]],
     tipoResponsableAcudiente: ['', [Validators.required]],
     correoAcudiente: ['', [Validators.required]]
-  })
+  });*/
+
+  constructor(private fb: FormBuilder, private router: Router,
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
   }
+  
   get ideResponsableAcudiente() {
-    return this.formGroup.get('ideResponsableAcudiente');
+    return this.formGroupA.get('ideResponsableAcudiente');
   }
   get nomResponsableAcudiente() {
-    return this.formGroup.get('nomResponsableAcudiente');
+    return this.formGroupA.get('nomResponsableAcudiente');
   }
   get fecNacimientoAcudiente() {
-    return this.formGroup.get('fecNacimientoAcudiente');
+    return this.formGroupA.get('fecNacimientoAcudiente');
   }
   get lugNacimientoAcudiente() {
-    return this.formGroup.get('lugNacimientoAcudiente');
+    return this.formGroupA.get('lugNacimientoAcudiente');
   }
   get tipDocumentoAcudiente() {
-    return this.formGroup.get('tipDocumentoAcudiente');
+    return this.formGroupA.get('tipDocumentoAcudiente');
   }
   get celResponsableAcudiente() {
-    return this.formGroup.get('celResponsableAcudiente');
+    return this.formGroupA.get('celResponsableAcudiente');
   }
   get profResponsableAcudiente() {
-    return this.formGroup.get('profResponsableAcudiente');
+    return this.formGroupA.get('profResponsableAcudiente');
   }
   get ocuResponsableAcudiente() {
-    return this.formGroup.get('ocuResponsableAcudiente');
+    return this.formGroupA.get('ocuResponsableAcudiente');
   }
   get entResponsableAcudiente() {
-    return this.formGroup.get('entResponsableAcudiente');
+    return this.formGroupA.get('entResponsableAcudiente');
   }
   get celEmpresaAcudiente() {
-    return this.formGroup.get('celEmpresaAcudiente');
+    return this.formGroupA.get('celEmpresaAcudiente');
   }
   get tipoResponsableAcudiente() {
-    return this.formGroup.get('tipoResponsableAcudiente');
+    return this.formGroupA.get('tipoResponsableAcudiente');
   }
   get correoAcudiente() {
-    return this.formGroup.get('correoAcudiente');
+    return this.formGroupA.get('correoAcudiente');
   }
-
 }
 
