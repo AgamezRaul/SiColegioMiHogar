@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IMensualidad } from '../mensualidad.component';
+import { MensualidadService } from '../mensualidad.service';
 
 @Component({
   selector: 'app-form-mensualidad',
@@ -9,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class FormMensualidadComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private fb: FormBuilder, private mensualidadService: MensualidadService, private router: Router, private activatedRoute: ActivatedRoute) { }
   formGroup = this.fb.group({
     mes: ['', [Validators.required]],
     diaPago: ['', [Validators.required]],
@@ -24,6 +26,16 @@ export class FormMensualidadComponent implements OnInit {
   });
 
   ngOnInit(): void {
+  }
+  save() {
+    let mensualidad: IMensualidad = Object.assign({}, this.formGroup.value);
+    console.table(mensualidad); //ver mensualidad por consola
+    this.mensualidadService.createMensualidad(mensualidad)
+      .subscribe(mensualidad => this.onSaveSuccess());
+
+  }
+  onSaveSuccess() {
+    this.router.navigate(["/"]);
   }
   get mes() {
     return this.formGroup.get('mes');
