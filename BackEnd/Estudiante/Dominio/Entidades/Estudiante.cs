@@ -22,11 +22,12 @@ namespace BackEnd.Estudiante.Dominio
         public string Sexo { get; set; }
         public string TipoDocumento { get; set; }
         public string TelEstudiante { get; set; }
+        public int IdUsuario { get; set; }
 
         public Estudiante() { }
         public Estudiante(string ideEstudiante, string nomEstudiante, DateTime fecNacimiento, string lugNacimiento, string lugExpedicion, 
             string insProcedencia, string dirResidencia, double celEstudiante, string tipSangre, string gradoEstudiante, string eps, 
-            string correo, string sexo, string tipoDocumento, string telEstudiante)
+            string correo, string sexo, string tipoDocumento, string telEstudiante, int idUsuario)
         {
             IdeEstudiante = ideEstudiante;
             NomEstudiante = nomEstudiante;
@@ -43,6 +44,7 @@ namespace BackEnd.Estudiante.Dominio
             Sexo = sexo;
             TipoDocumento = tipoDocumento;
             TelEstudiante = telEstudiante;
+            IdUsuario = idUsuario;
         }
 
         public IReadOnlyList<string> CanCrear(Estudiante estudiante)
@@ -78,6 +80,8 @@ namespace BackEnd.Estudiante.Dominio
                 errors.Add("Campo Tipo documento vacio");
             if (string.IsNullOrEmpty(estudiante.TelEstudiante))
                 errors.Add("Campo Telefono estudiante vacio");
+            if (estudiante.IdUsuario == 0)
+                errors.Add("Campo Identificación usuario vacio");
             return errors;
         }
     }

@@ -65,6 +65,9 @@ namespace BackEnd.Migrations
                     b.Property<string>("GradoEstudiante")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("IdUsuario")
+                        .HasColumnType("int");
+
                     b.Property<string>("IdeEstudiante")
                         .HasColumnType("nvarchar(max)");
 
@@ -170,7 +173,7 @@ namespace BackEnd.Migrations
                     b.Property<DateTime>("FecPrematricula")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("IdResponsable")
+                    b.Property<int>("IdUsuario")
                         .HasColumnType("int");
 
                     b.Property<int?>("estudianteId")
@@ -181,24 +184,6 @@ namespace BackEnd.Migrations
                     b.HasIndex("estudianteId");
 
                     b.ToTable("PreMatricula");
-                });
-
-            modelBuilder.Entity("BackEnd.RelacionUR.Dominio.RelacionUR", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("IdResponsable")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdUsuario")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("RelacionUR");
                 });
 
             modelBuilder.Entity("BackEnd.Responsable.Dominio.Responsable", b =>
@@ -226,10 +211,7 @@ namespace BackEnd.Migrations
                     b.Property<DateTime>("FecNacimiento")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("IdEstudiante")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdPrematricula")
+                    b.Property<int>("IdUsuario")
                         .HasColumnType("int");
 
                     b.Property<string>("IdeResponsable")
@@ -274,9 +256,6 @@ namespace BackEnd.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Correo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NomUsuario")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")

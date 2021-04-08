@@ -19,7 +19,7 @@ namespace BackEnd.Usuario.Aplicacion.Services.Crear
             var usuario = _unitOfWork.UsuarioServiceRepository.FindFirstOrDefault(t => t.Correo == request.Correo);
             if (usuario == null)
             {
-                Dominio.Usuario newUsuario = new Dominio.Usuario(request.Correo,request.Password, request.NomUsuario,request.TipoUsuario);
+                Dominio.Usuario newUsuario = new Dominio.Usuario(request.Correo,request.Password, request.TipoUsuario);
 
                 IReadOnlyList<string> errors = newUsuario.CanCrear(newUsuario);
                 if (errors.Any())

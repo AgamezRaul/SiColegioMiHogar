@@ -23,12 +23,10 @@ namespace BackEnd.Responsable.Dominio
         public string TipoResponsable { get; set; }
         public string Correo { get; set; }
         public string Acudiente { get; set; }
-        public int IdEstudiante { get; set; }
-        public int IdPrematricula { get; set; }
+        public int IdUsuario { get; set; }
         public Responsable(string ideResponsable, string nomResponsable, DateTime fecNacimiento, string lugNacimiento, 
             string lugExpedicion, string tipDocumento, int celResponsable, string profResponsable, string ocuResponsable, 
-            string entResponsable, int celEmpresa, string tipoResponsable, string correo, string acudiente, int idEstudiante,
-            int idPrematricula)
+            string entResponsable, int celEmpresa, string tipoResponsable, string correo, string acudiente, int idUsuario)
         {
             IdeResponsable = ideResponsable;
             NomResponsable = nomResponsable;
@@ -44,8 +42,7 @@ namespace BackEnd.Responsable.Dominio
             TipoResponsable = tipoResponsable;
             Correo = correo;
             Acudiente = acudiente;
-            IdEstudiante = idEstudiante;
-            IdPrematricula = idPrematricula;
+            IdUsuario = idUsuario;
         }
 
         public IReadOnlyList<string> CanCrear(Responsable responsable)
@@ -79,10 +76,8 @@ namespace BackEnd.Responsable.Dominio
                 errors.Add("Campo Correo responsable vacio");
             if (string.IsNullOrEmpty(responsable.Acudiente))
                 errors.Add("Campo Acudiente vacio");
-            if (responsable.IdEstudiante == 0)
+            if (responsable.IdUsuario == 0)
                 errors.Add("Campo Identificacion de estudiante vacio");
-            if (responsable.IdPrematricula == 0)
-                errors.Add("Campo Identificacion de prematicula vacio");
 
             return errors;
         }

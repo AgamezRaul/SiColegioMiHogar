@@ -9,15 +9,15 @@ namespace BackEnd.PreMatricula.Dominio
        
 
         public DateTime FecPrematricula { get; set; }
-        public int IdResponsable { get; set; }
+        public int IdUsuario { get; set; }
         public string Estado { get; set; }
 
         public List<Responsable.Dominio.Responsable> Responsables { get; set; }
         public Estudiante.Dominio.Estudiante estudiante { get; set; }
-        public PreMatricula(DateTime fecPrematricula, int idResponsable, string estado)
+        public PreMatricula(DateTime fecPrematricula, int idUsuario, string estado)
         {
             FecPrematricula = fecPrematricula;
-            IdResponsable = idResponsable;
+            IdUsuario = idUsuario;
             Estado = estado;
         }
 
@@ -27,8 +27,8 @@ namespace BackEnd.PreMatricula.Dominio
 
             if (string.IsNullOrEmpty(prematricula.FecPrematricula.ToString()))
                 errors.Add("Campo Fecha de Prematricula vacio");
-            if (prematricula.IdResponsable == 0)
-                errors.Add("Campo identiificacion  del responsable  vacio");
+            if (prematricula.IdUsuario == 0)
+                errors.Add("Campo identificacion usuario vacio");
             if (string.IsNullOrEmpty(prematricula.Estado))
                 errors.Add("Campo Estado de prematricula vacio");
             return errors;

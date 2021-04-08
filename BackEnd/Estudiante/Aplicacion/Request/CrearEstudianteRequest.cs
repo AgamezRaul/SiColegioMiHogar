@@ -22,6 +22,7 @@ namespace BackEnd.Estudiante.Aplicacion.Request
         public string Sexo { get; set; }
         public string TipoDocumento { get; set; }
         public string TelEstudiante { get; set; }
+        public int IdUsuario { get; set; }
     }
     public class CrearEstudianteResponse
     {

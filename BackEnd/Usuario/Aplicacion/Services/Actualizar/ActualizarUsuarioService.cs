@@ -24,7 +24,6 @@ namespace BackEnd.Usuario.Aplicacion.Services.Actualizar
             {
                 usuario.Correo = request.Correo;
                 usuario.Password = request.Password;
-                usuario.NomUsuario = request.NomUsuario;
                 usuario.TipoUsuario =request.TipoUsuario;
      
                 _unitOfWork.UsuarioServiceRepository.Edit(usuario);

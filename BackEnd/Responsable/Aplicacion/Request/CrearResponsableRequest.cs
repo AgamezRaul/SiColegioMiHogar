@@ -21,8 +21,7 @@ namespace BackEnd.Responsable.Aplicacion.Request
         public string TipoResponsable { get; set; }
         public string Correo { get; set; }
         public string Acudiente { get; set; }
-        public int IdEstudiante { get; set; }
-        public int IdPrematricula { get; set; }
+        public int IdUsuario { get; set; }
     }
     public class CrearResponsableResponse
     {

@@ -3,8 +3,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-
 import { MaterialModule } from './material-module';
+import { CheckLoginGuard } from './shared/guards/check-login.guard';
+import { CheckNotloginGuard } from './shared/guards/check-notlogin.guard';
+
+//COMPONENTES
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { SidenavMenuComponent } from './sidenav-menu/sidenav-menu.component';
@@ -30,6 +33,9 @@ import { ListMensualidadComponent } from './mensualidad/list-mensualidad/list-me
 import { EditMensualidadComponent } from './mensualidad/edit-mensualidad/edit-mensualidad.component';
 import { FormDocenteComponent } from './Docente/form-docente/form-docente.component';
 import { GestionDeMateriasComponent } from './gestion-de-materias/gestion-de-materias.component';
+import { UsuarioService } from './login/usuario/usuario.service';
+import { PreMatriculaService } from './pre-matricula/pre-matricula.service';
+import { TablePrematriculaComponent } from './pre-matricula/table-prematricula/table-prematricula.component';
 
 
 @NgModule({
@@ -56,6 +62,7 @@ import { GestionDeMateriasComponent } from './gestion-de-materias/gestion-de-mat
   
     FormDocenteComponent,
     GestionDeMateriasComponent,
+    TablePrematriculaComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -75,11 +82,12 @@ import { GestionDeMateriasComponent } from './gestion-de-materias/gestion-de-mat
       { path: 'list-mensualidad', component: ListMensualidadComponent },
       { path: 'edit-mensualidad/:mes', component: EditMensualidadComponent },
 
-      { path: 'login', component: LoginComponent },
+      { path: 'login', component: LoginComponent, canActivate: [CheckLoginGuard] },
       { path: 'gestion-de-materias', component: GestionDeMateriasComponent }
 ], { relativeLinkResolution: 'legacy' })
   ],
-  providers: [],
+  //Aquí en providers se agregan todos los services de angular
+  providers: [UsuarioService, PreMatriculaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
