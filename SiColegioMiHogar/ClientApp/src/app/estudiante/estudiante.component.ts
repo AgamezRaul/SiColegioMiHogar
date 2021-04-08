@@ -29,5 +29,6 @@ export interface IEstudiante {
   correo: string,
   sexo: string,
   tipoDocumento: string,
-  telEstudiante: number
+  telEstudiante: number,
+  idUsuario: number
 }

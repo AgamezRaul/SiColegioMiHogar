@@ -36,6 +36,7 @@ import { GestionDeMateriasComponent } from './gestion-de-materias/gestion-de-mat
 import { UsuarioService } from './login/usuario/usuario.service';
 import { PreMatriculaService } from './pre-matricula/pre-matricula.service';
 import { TablePrematriculaComponent } from './pre-matricula/table-prematricula/table-prematricula.component';
+import { FormPreMatriculaComponent } from './pre-matricula/form-pre-matricula/form-pre-matricula.component';
 
 
 @NgModule({
@@ -63,6 +64,7 @@ import { TablePrematriculaComponent } from './pre-matricula/table-prematricula/t
     FormDocenteComponent,
     GestionDeMateriasComponent,
     TablePrematriculaComponent,
+    FormPreMatriculaComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -76,7 +78,8 @@ import { TablePrematriculaComponent } from './pre-matricula/table-prematricula/t
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'registrar-usuario', component: FormUsuarioComponent },
-      { path: 'registrar-prematricula', component: PreMatriculaComponent },
+      { path: 'registrar-prematricula', component: FormPreMatriculaComponent },
+      { path: 'prematricula', component: PreMatriculaComponent },
       { path: 'login', component: LoginComponent },
       { path: 'form-mensualidad', component: FormMensualidadComponent },
       { path: 'list-mensualidad', component: ListMensualidadComponent },

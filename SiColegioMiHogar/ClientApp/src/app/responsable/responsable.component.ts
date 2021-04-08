@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { IEstudiante } from '../estudiante/estudiante.component';
 
 @Component({
   selector: 'app-responsable',
@@ -15,7 +14,25 @@ export class ResponsableComponent implements OnInit {
 
 }
 
-export interface IPadre {
+export interface IResponsable {
+  ideResponsable: string,
+  nomResponsable: string,
+  fecNacimiento: string,
+  lugNacimiento: string,
+  lugExpedicion: string,
+  tipDocumento: string,
+  celResponsable: number,
+  profResponsable: string,
+  ocuResponsable: string,
+  entResponsable: string,
+  celEmpresa: number,
+  tipoResponsable: string,
+  correo: string,
+  acudiente: string,
+  idUsuario: number
+}
+
+/*export interface IPadre {
   ideResponsablePadre: string,
   nomResponsablePadre: string,
   fecNacimientoPadre: string,
@@ -30,8 +47,7 @@ export interface IPadre {
   tipoResponsablePadre: string,
   correoPadre: string,
   acudientePadre: string,
-  idEstudiantePadre: number,
-  idPrematriculaPadre: number
+  idUsuario: number
 }
 export interface IMadre {
   ideResponsableMadre: string,
@@ -48,8 +64,7 @@ export interface IMadre {
   tipoResponsableMadre: string,
   correoMadre: string,
   acudienteMadre: string,
-  idEstudianteMadre: number,
-  idPrematriculaMadre: number
+  idUsuario: number
 }
 export interface IAcudiente {
   ideResponsableAcudiente: string,
@@ -66,13 +81,5 @@ export interface IAcudiente {
   tipoResponsableAcudiente: string,
   correoAcudiente: string,
   acudienteAcudiente: string,
-  idEstudianteAcudiente: number,
-  idPrematriculaAcudiente: number
-}
-
-export interface IPrematricula {
-  iPadre: IPadre,
-  iMadre: IMadre,
-  iAcudiente: IAcudiente,
-  iEstudiante: IEstudiante
-}
+  idUsuario: number
+}*/

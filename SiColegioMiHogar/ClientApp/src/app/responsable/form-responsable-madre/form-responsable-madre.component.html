@@ -1,31 +1,31 @@
-<div class="container" align="center" [formGroup]="formGroupM">
+<div class="container" align="center" [formGroup]="formGroupResponsable">
   <h1>Formulario de la Madre</h1>
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="nomResponsableMadre">Nombre de la Madre</label>
-        <input type="text" class="form-control" formControlName="nomResponsableMadre" id="nomResponsableMadre" placeholder="Ej: Juana Andrea Mendez Pinzón">
+        <label for="nomResponsable">Nombre de la Madre</label>
+        <input type="text" class="form-control" formControlName="nomResponsable" id="nomResponsable" placeholder="Ej: Juana Andrea Mendez Pinzón">
       </div>
       <div class="form-group col-md-6">
-        <label for="celResponsableMadre">Celular de la Madre</label>
-        <input type="text" class="form-control" formControlName="celResponsableMadre" id="celResponsableMadre" placeholder="Ej: 4964873729">
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="lugNacimientoMadre">Lugar de nacimiento</label>
-        <input type="text" class="form-control" formControlName="lugNacimientoMadre" id="lugNacimientoMadre" placeholder="Ej: Valledupar/Cesar">
-      </div>
-      <div class="form-group col-md-6">
-        <label for="fechaNacimientoMadre">Fecha de nacimiento</label>
-        <input type="date" formControlName="fechaNacimientoMadre" class="form-control" id="fechaNacimientoMadre">
+        <label for="celResponsable">Celular de la Madre</label>
+        <input type="text" class="form-control" formControlName="celResponsable" id="celResponsable" placeholder="Ej: 4964873729">
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="tipDocumentoMadre">Tipo de documento</label>
-        <select id="tipDocumentoMadre" formControlName="tipDocumentoMadre" class="form-control">
+        <label for="lugNacimiento">Lugar de nacimiento</label>
+        <input type="text" class="form-control" formControlName="lugNacimiento" id="lugNacimiento" placeholder="Ej: Valledupar/Cesar">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="fecNacimiento">Fecha de nacimiento</label>
+        <input type="date" formControlName="fecNacimiento" class="form-control" id="fecNacimiento">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="tipDocumento">Tipo de documento</label>
+        <select id="tipDocumento" formControlName="tipDocumento" class="form-control">
           <option selected>Elija una opción</option>
           <option>Cedula de ciudadania</option>
           <option>Cédula de extranjero</option>
@@ -33,41 +33,41 @@
         </select>
       </div>
       <div class="form-group col-md-6">
-        <label for="ideResponsableMadre">Número de documento</label>
-        <input type="text" class="form-control" formControlName="ideResponsableMadre" id="ideResponsableMadre" placeholder="Ej: 1002456457">
+        <label for="ideResponsable">Número de documento</label>
+        <input type="text" class="form-control" formControlName="ideResponsable" id="ideResponsable" placeholder="Ej: 1002456457">
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="profResponsableMadre">Profesión de la Madre</label>
-        <input type="text" class="form-control" formControlName="profResponsableMadre" id="profResponsableMadre" placeholder="Ej: Enfermería">
+        <label for="profResponsable">Profesión de la Madre</label>
+        <input type="text" class="form-control" formControlName="profResponsable" id="profResponsable" placeholder="Ej: Enfermería">
       </div>
       <div class="form-group col-md-6">
-        <label for="ocuResponsableMadre">Ocupación de la Madre</label>
-        <input type="text" class="form-control" formControlName="ocuResponsableMadre" id="ocuResponsableMadre" placeholder="Ej: Enfermero en jefe">
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="entResonsableMadre">Empresa donde trabaja</label>
-        <input type="text" class="form-control" formControlName="entResponsableMadre" id="entResonsableMadre" placeholder="Ej: 7101375">
-      </div>
-      <div class="form-group col-md-6">
-        <label for="celEmpresaMadre">Celular de la Empresa</label>
-        <input type="text" class="form-control" formControlName="celEmpresaMadre" id="celEmpresaMadre" placeholder="Ej: 3246543546">
+        <label for="ocuResponsable">Ocupación de la Madre</label>
+        <input type="text" class="form-control" formControlName="ocuResponsable" id="ocuResponsable" placeholder="Ej: Enfermero en jefe">
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="correoMadre">Correo electrónico</label>
-        <input type="email" class="form-control" formControlName="correoMadre" id="correoMadre" placeholder="Ej: ejemplo@gmail.com">
+        <label for="entResponsable">Empresa donde trabaja</label>
+        <input type="text" class="form-control" formControlName="entResponsable" id="entResponsable" placeholder="Ej: 7101375">
       </div>
       <div class="form-group col-md-6">
-        <label for="acudienteMadre">Es usted el acudiente?</label>
-        <select id="acudienteMadre" formControlName="acudienteMadre" class="form-control">
+        <label for="celEmpresa">Celular de la Empresa</label>
+        <input type="text" class="form-control" formControlName="celEmpresa" id="celEmpresa" placeholder="Ej: 3246543546">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="correo">Correo electrónico</label>
+        <input type="email" class="form-control" formControlName="correo" id="correo" placeholder="Ej: ejemplo@gmail.com">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="acudiente">Es usted el acudiente?</label>
+        <select id="acudiente" formControlName="acudiente" class="form-control">
           <option selected>Elija una opción</option>
           <option>Si</option>
           <option>No</option>

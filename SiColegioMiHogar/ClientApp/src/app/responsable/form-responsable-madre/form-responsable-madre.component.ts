@@ -9,7 +9,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class FormResponsableMadreComponent implements OnInit {
 
-  @Input() formGroupM: FormGroup;
+  @Input() formGroupResponsable: FormGroup;
 
   /*formGroupM = this.fb.group({
     ideResponsableMadre: ['', [Validators.required]],
@@ -35,6 +35,71 @@ export class FormResponsableMadreComponent implements OnInit {
 
   ngOnInit() {
   }
+  get ideResponsable() {
+    return this.formGroupResponsable.get('ideResponsableMadre');
+  }
+  get nomResponsable() {
+    return this.formGroupResponsable.get('nomResponsableMadre');
+  }
+  get fecNacimiento() {
+    return this.formGroupResponsable.get('fecNacimiento');
+  }
+  get lugNacimiento() {
+    return this.formGroupResponsable.get('lugNacimiento');
+  }
+  get tipDocumento() {
+    return this.formGroupResponsable.get('tipDocumento');
+  }
+  get celResponsable() {
+    return this.formGroupResponsable.get('celResponsable');
+  }
+  get profResponsable() {
+    return this.formGroupResponsable.get('profResponsable');
+  }
+  get ocuResponsable() {
+    return this.formGroupResponsable.get('ocuResponsable');
+  }
+  get entResponsable() {
+    return this.formGroupResponsable.get('entResponsable');
+  }
+  get celEmpresa() {
+    return this.formGroupResponsable.get('celEmpresa');
+  }
+  get tipoResponsable() {
+    return this.formGroupResponsable.get('tipoResponsable');
+  }
+  get correo() {
+    return this.formGroupResponsable.get('correo');
+  }
+  get acudiente() {
+    return this.formGroupResponsable.get('acudiente');
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /*
   get ideResponsableMadre() {
     return this.formGroupM.get('ideResponsableMadre');
   }
@@ -73,6 +138,6 @@ export class FormResponsableMadreComponent implements OnInit {
   }
   get acudienteMadre() {
     return this.formGroupM.get('acudienteMadre');
-  }
+  }*/
   
 }

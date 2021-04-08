@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class FormResponsablePadreComponent implements OnInit {
 
-  @Input() formGroupP: FormGroup;
+  @Input() formGroupResponsable: FormGroup;
 
   /*formGroupP = this.fb.group({
     ideResponsablePadre: ['', [Validators.required]],
@@ -35,6 +35,76 @@ export class FormResponsablePadreComponent implements OnInit {
   ngOnInit() {
   }
 
+  get ideResponsable() {
+    return this.formGroupResponsable.get('ideResponsable');
+  }
+  get nomResponsable() {
+    return this.formGroupResponsable.get('nomResponsable');
+  }
+  get fecNacimiento() {
+    return this.formGroupResponsable.get('fecNacimiento');
+  }
+  get lugNacimiento() {
+    return this.formGroupResponsable.get('lugNacimiento');
+  }
+  get lugExpedicion() {
+    return this.formGroupResponsable.get('lugExpedicion');
+  }
+  get tipDocumento() {
+    return this.formGroupResponsable.get('tipDocumento');
+  }
+  get celResponsable() {
+    return this.formGroupResponsable.get('celResponsable');
+  }
+  get profResponsable() {
+    return this.formGroupResponsable.get('profResponsable');
+  }
+  get ocuResponsable() {
+    return this.formGroupResponsable.get('ocuResponsable');
+  }
+  get entResponsable() {
+    return this.formGroupResponsable.get('entResponsable');
+  }
+  get celEmpresa() {
+    return this.formGroupResponsable.get('celEmpresa');
+  }
+  get tipoResponsable() {
+    return this.formGroupResponsable.get('tipoResponsable');
+  }
+  get correo() {
+    return this.formGroupResponsable.get('correo');
+  }
+  get acudiente() {
+    return this.formGroupResponsable.get('acudiente');
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /*
   get ideResponsablePadre() {
     return this.formGroupP.get('ideResponsablePadre');
   }
@@ -77,4 +147,5 @@ export class FormResponsablePadreComponent implements OnInit {
   get acudientePadre() {
     return this.formGroupP.get('acudientePadre');
   }
+  */
 }

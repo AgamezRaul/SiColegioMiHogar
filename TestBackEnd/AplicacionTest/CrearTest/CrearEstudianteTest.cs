@@ -52,8 +52,8 @@ namespace TestBackEnd.AplicacionTest.CrearTest
                         Correo = "raagamez@gmail.com",
                         Sexo = "Masculino",
                         TipoDocumento = "Cedula",
-                        TelEstudiante = "1234567"
-
+                        TelEstudiante = "1234567",
+                        IdUsuario = 1
                     },
                     "Estudiante Creado Exitosamente"
                 ).SetName("Crear Estudiante Correctamente");
