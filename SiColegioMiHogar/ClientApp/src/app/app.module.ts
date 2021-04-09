@@ -30,6 +30,8 @@ import { ListMensualidadComponent } from './mensualidad/list-mensualidad/list-me
 import { EditMensualidadComponent } from './mensualidad/edit-mensualidad/edit-mensualidad.component';
 import { FormDocenteComponent } from './Docente/form-docente/form-docente.component';
 import { GestionDeMateriasComponent } from './gestion-de-materias/gestion-de-materias.component';
+import { CursoComponent } from './curso/curso.component';
+import { FormCursoComponent } from './curso/form-curso/form-curso.component';
 
 
 @NgModule({
@@ -56,6 +58,8 @@ import { GestionDeMateriasComponent } from './gestion-de-materias/gestion-de-mat
   
     FormDocenteComponent,
     GestionDeMateriasComponent,
+    CursoComponent,
+    FormCursoComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
