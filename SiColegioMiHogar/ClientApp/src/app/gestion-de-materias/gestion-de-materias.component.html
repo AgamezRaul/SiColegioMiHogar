@@ -1,0 +1,47 @@
+<div class="container" align="center">
+  <h1>Gestion de materias</h1>
+  <form [formGroup]="formGroup">
+    <div class="form-group">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="IdMateria">Codigo de la materia</label>
+          <input type="text" class="form-control" formControlName="IdMateria" id="IdMateria" placeholder="Ej: 21212">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="nomMateria">Nombre de la materia</label>
+          <input type="text" class="form-control" formControlName="nomMateria" id="nomMateria" placeholder="Ej: Español">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="NombreDocente">Docente</label>
+          <select id="NombreDocente" formControlName="NombreDocente" class="form-control">
+            <option selected>Elija una opción</option>
+            <option>Docente x</option>
+            <option>Docente y</option>
+            <option>Otro</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="NombreCurso">Curso</label>
+          <select id="NombreCurso" formControlName="NombreCurso" class="form-control">
+            <option selected>Elija una opción</option>
+            <option>Primero</option>
+            <option>Segundo</option>
+            <option>Tercero</option>
+            <option>Cuarto</option>
+            <option>Quinto</option>
+            <option>Otro</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

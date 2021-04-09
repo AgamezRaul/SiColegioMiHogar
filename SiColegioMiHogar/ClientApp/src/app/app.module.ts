@@ -3,8 +3,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-
 import { MaterialModule } from './material-module';
+import { CheckLoginGuard } from './shared/guards/check-login.guard';
+import { CheckNotloginGuard } from './shared/guards/check-notlogin.guard';
+
+//COMPONENTES
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { SidenavMenuComponent } from './sidenav-menu/sidenav-menu.component';
@@ -29,6 +32,14 @@ import { FormMensualidadComponent } from './mensualidad/form-mensualidad/form-me
 import { ListMensualidadComponent } from './mensualidad/list-mensualidad/list-mensualidad.component';
 import { EditMensualidadComponent } from './mensualidad/edit-mensualidad/edit-mensualidad.component';
 import { FormDocenteComponent } from './Docente/form-docente/form-docente.component';
+import { GestionDeMateriasComponent } from './gestion-de-materias/gestion-de-materias.component';
+import { UsuarioService } from './login/usuario/usuario.service';
+import { PreMatriculaService } from './pre-matricula/pre-matricula.service';
+import { TablePrematriculaComponent } from './pre-matricula/table-prematricula/table-prematricula.component';
+import { FormPreMatriculaComponent } from './pre-matricula/form-pre-matricula/form-pre-matricula.component';
+import { CdkColumnDef } from '@angular/cdk/table';
+import { MatriculaComponent } from './matricula/matricula.component';
+import { TableMatriculaComponent } from './matricula/table-matricula/table-matricula.component';
 
 
 @NgModule({
@@ -54,6 +65,11 @@ import { FormDocenteComponent } from './Docente/form-docente/form-docente.compon
     EditMensualidadComponent,
   
     FormDocenteComponent,
+    GestionDeMateriasComponent,
+    TablePrematriculaComponent,
+    FormPreMatriculaComponent,
+    MatriculaComponent,
+    TableMatriculaComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -67,15 +83,20 @@ import { FormDocenteComponent } from './Docente/form-docente/form-docente.compon
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'registrar-usuario', component: FormUsuarioComponent },
-      { path: 'registrar-prematricula', component: PreMatriculaComponent },
+      { path: 'registrar-prematricula', component: FormPreMatriculaComponent },
+      { path: 'prematricula', component: PreMatriculaComponent },
+      { path: 'matricula', component: MatriculaComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'form-mensualidad', component: FormMensualidadComponent },
-      { path: 'list-mensualidad', component: ListMensualidadComponent },
+      { path: 'registrar-mensualidad/:id', component: FormMensualidadComponent },
+      { path: 'list-mensualidad', component: MensualidadComponent },
       { path: 'edit-mensualidad/:mes', component: EditMensualidadComponent },
 
+      { path: 'login', component: LoginComponent, canActivate: [CheckLoginGuard] },
+      { path: 'gestion-de-materias', component: GestionDeMateriasComponent }
 ], { relativeLinkResolution: 'legacy' })
   ],
-  providers: [],
+  //Aquí en providers se agregan todos los services de angular
+  providers: [UsuarioService, PreMatriculaService, CdkColumnDef],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -17,10 +17,10 @@ namespace BackEnd.Matricula.Aplicacion.Service.Crear
         }
         public CrearMatriculaResponse Ejecutar(CrearMatriculaRequest request)
         {
-            var matricula = _unitOfWork.MatriculaServiceRepository.FindFirstOrDefault(t => t.Id == request.id);
+            var matricula = _unitOfWork.MatriculaServiceRepository.FindFirstOrDefault(t => t.IdePreMatricula == request.IdPreMatricula);
             if (matricula == null)
             {
-                Dominio.Matricula newMatricula = new Dominio.Matricula(request.FecConfirmacion, request.IdePreMatricula);
+                Dominio.Matricula newMatricula = new Dominio.Matricula(request.FecConfirmacion, request.IdPreMatricula);
 
                 IReadOnlyList<string> errors = newMatricula.CanCrear(newMatricula);
                 if (errors.Any())
