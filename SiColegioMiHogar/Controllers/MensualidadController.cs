@@ -1,9 +1,13 @@
 ﻿using BackEnd;
 using BackEnd.Base;
+using BackEnd.Estudiante.Dominio;
+using BackEnd.Matricula.Dominio;
 using BackEnd.Mensualidad.Aplicacion.Request;
 using BackEnd.Mensualidad.Aplicacion.Service.Actualizar;
 using BackEnd.Mensualidad.Aplicacion.Service.Crear;
 using BackEnd.Mensualidad.Dominio;
+using BackEnd.PreMatricula.Dominio;
+using BackEnd.Usuario.Dominio;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -28,9 +32,32 @@ namespace SiColegioMiHogar.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Mensualidad> GetMensualidades()
+        public object GetMensualidades()
         {
-            return _context.Mensualidad;
+            var result = (from m in _context.Set<Mensualidad>()
+                          join ma in _context.Set<Matricula>()
+                          on m.IdMatricula equals ma.Id
+                          join p in _context.Set<PreMatricula>()
+                          on ma.IdePreMatricula equals p.Id
+                          join u in _context.Set<Usuario>()
+                          on p.IdUsuario equals u.Id
+                          join e in _context.Set<Estudiante>()
+                          on u.Id equals e.IdUsuario
+                          select new
+                          {
+                              Estudiante = e.NomEstudiante,
+                              Mes= m.Mes,
+                              DiaPago= m.DiaPago,
+                              FechaPago=m.FechaPago,
+                              ValorMensualidad=m.ValorMensualidad,
+                              DescuentoMensualidad=m.DescuentoMensualidad,
+                              Abono=m.Abono,
+                              Deuda=m.Deuda,
+                              Estado=m.Estado,
+                              TotalMensualidad =m.TotalMensualidad
+                          }).ToList();
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
+            return result;
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetMensualidad([FromRoute] int id)

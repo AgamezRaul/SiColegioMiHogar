@@ -14,7 +14,7 @@ namespace BackEnd.Estudiante.Aplicacion.Request
         public string LugExpedicion { get; set; }
         public string InsProcedencia { get; set; }
         public string DirResidencia { get; set; }
-        public double CelEstudiante { get; set; }
+        public string CelEstudiante { get; set; }
         public string TipSangre { get; set; }
         public string GradoEstudiante { get; set; }
         public string Eps { get; set; }
@@ -22,6 +22,7 @@ namespace BackEnd.Estudiante.Aplicacion.Request
         public string Sexo { get; set; }
         public string TipoDocumento { get; set; }
         public string TelEstudiante { get; set; }
+        public int IdUsuario { get; set; }
     }
     public class CrearEstudianteResponse
     {

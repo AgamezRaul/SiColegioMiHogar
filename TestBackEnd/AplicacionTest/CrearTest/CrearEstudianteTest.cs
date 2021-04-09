@@ -45,15 +45,15 @@ namespace TestBackEnd.AplicacionTest.CrearTest
                         LugExpedicion = "Valledupar",
                         InsProcedencia = "Valledupar",
                         DirResidencia = "Valledupar",
-                        CelEstudiante = 123456,
+                        CelEstudiante = "123456",
                         TipSangre = "O+",
                         GradoEstudiante = "6",
                         Eps = "NO C",
                         Correo = "raagamez@gmail.com",
                         Sexo = "Masculino",
                         TipoDocumento = "Cedula",
-                        TelEstudiante = "1234567"
-
+                        TelEstudiante = "1234567",
+                        IdUsuario = 1
                     },
                     "Estudiante Creado Exitosamente"
                 ).SetName("Crear Estudiante Correctamente");

@@ -2,7 +2,7 @@
   <mat-card>
     <mat-card-content>
       <h1>Iniciar Sesión</h1>
-      <form [formGroup]="formGroup">
+      <form [formGroup]="formGroup" (ngSubmit)="onLogin()">
         <mat-form-field class="full-width-input">
           <input text="Correo"
                  type="email"
@@ -20,7 +20,7 @@
                  required />
         </mat-form-field>
         <button type="submit" mat-raised-button color="primary">
-          Registrar Usuario
+          Iniciar sesión
         </button>
 
         <a routerLink="/registrar-usuario">¿Ya esta registrado?</a>

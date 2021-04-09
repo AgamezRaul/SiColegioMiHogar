@@ -13,16 +13,15 @@ namespace BackEnd.Responsable.Aplicacion.Request
         public string LugNacimiento { get; set; }
         public string LugExpedicion { get; set; }
         public string TipDocumento { get; set; }
-        public int CelResponsable { get; set; }
+        public string CelResponsable { get; set; }
         public string ProfResponsable { get; set; }
         public string OcuResponsable { get; set; }
         public string EntResponsable { get; set; }
-        public int CelEmpresa { get; set; }
+        public string CelEmpresa { get; set; }
         public string TipoResponsable { get; set; }
         public string Correo { get; set; }
         public string Acudiente { get; set; }
-        public int IdEstudiante { get; set; }
-        public int IdPrematricula { get; set; }
+        public int IdUsuario { get; set; }
     }
     public class ActualizarResponsableResponse
     {
