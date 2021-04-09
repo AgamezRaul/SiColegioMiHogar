@@ -15,12 +15,12 @@ namespace SiColegioMiHogar.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CursoController : Controller
+    public class CursoController : ControllerBase
     {
         private readonly MiHogarContext _context;
         private CrearCursoService _service;
-        private ActualizarCursoService _actualizarService;
         private UnitOfWork _unitOfWork;
+
         public CursoController(MiHogarContext context)
         {
             this._context = context;

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ICurso } from '../curso.component';
+import { CursoService } from '../curso.service';
 
 @Component({
   selector: 'app-form-curso',
@@ -7,9 +11,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormCursoComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute,
+    private cursoService: CursoService) { }
+  formGroup = this.fb.group({
+    nombre: ['', [Validators.required]],
+    MaxEst: ['', [Validators.required]],
+    idDirector: ['1', [Validators.required]],
+  });
   ngOnInit(): void {
   }
+  save() {
+    let curso: ICurso = Object.assign({}, this.formGroup.value);
+    console.table(curso); //ver mensualidad por consola
+    this.cursoService.createCurso(curso)
+      .subscribe(curso => this.onSaveSuccess());
+  }
+  onSaveSuccess() {
+    this.router.navigate(["/"]);
+  }
 
+  get nombre() {
+    return this.formGroup.get('nombre');
+  }
+  get MaxEst() {
+    return this.formGroup.get('MaxEst');
+  }
+  get idDirector() {
+    return this.formGroup.get('idDirector');
+  }
 }

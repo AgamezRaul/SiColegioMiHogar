@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackEnd.Migrations
 {
     [DbContext(typeof(MiHogarContext))]
-    [Migration("20210409031111_Inicial")]
-    partial class Inicial
+    [Migration("20210409152534_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -148,8 +148,8 @@ namespace BackEnd.Migrations
                     b.Property<int>("IdMatricula")
                         .HasColumnType("int");
 
-                    b.Property<string>("Mes")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Mes")
+                        .HasColumnType("int");
 
                     b.Property<double>("TotalMensualidad")
                         .HasColumnType("float");

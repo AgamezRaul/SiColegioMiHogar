@@ -95,7 +95,7 @@ import { FormCursoComponent } from './curso/form-curso/form-curso.component';
       { path: 'registrar-mensualidad/:id', component: FormMensualidadComponent },
       { path: 'list-mensualidad', component: MensualidadComponent },
       { path: 'edit-mensualidad/:mes', component: EditMensualidadComponent },
-
+      { path: 'registrar-curso', component: FormCursoComponent },
       { path: 'login', component: LoginComponent, canActivate: [CheckLoginGuard] },
       { path: 'gestion-de-materias', component: GestionDeMateriasComponent }
 ], { relativeLinkResolution: 'legacy' })

@@ -26,7 +26,7 @@ export interface IMensualidad {
 }
 export interface IMensualidad2 {
   estudiante: string,
-  mes: string,
+  mes: number,
   diaPago: number,
   fechaPago: Date,
   valorMensualidad: number,
