@@ -9,7 +9,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class FormResponsableMadreComponent implements OnInit {
 
-  @Input() formGroupResponsable: FormGroup;
+  @Input() formGroupM: FormGroup;
 
   /*formGroupM = this.fb.group({
     ideResponsableMadre: ['', [Validators.required]],
@@ -36,43 +36,43 @@ export class FormResponsableMadreComponent implements OnInit {
   ngOnInit() {
   }
   get ideResponsable() {
-    return this.formGroupResponsable.get('ideResponsableMadre');
+    return this.formGroupM.get('ideResponsableMadre');
   }
   get nomResponsable() {
-    return this.formGroupResponsable.get('nomResponsableMadre');
+    return this.formGroupM.get('nomResponsableMadre');
   }
   get fecNacimiento() {
-    return this.formGroupResponsable.get('fecNacimiento');
+    return this.formGroupM.get('fecNacimiento');
   }
   get lugNacimiento() {
-    return this.formGroupResponsable.get('lugNacimiento');
+    return this.formGroupM.get('lugNacimiento');
   }
   get tipDocumento() {
-    return this.formGroupResponsable.get('tipDocumento');
+    return this.formGroupM.get('tipDocumento');
   }
   get celResponsable() {
-    return this.formGroupResponsable.get('celResponsable');
+    return this.formGroupM.get('celResponsable');
   }
   get profResponsable() {
-    return this.formGroupResponsable.get('profResponsable');
+    return this.formGroupM.get('profResponsable');
   }
   get ocuResponsable() {
-    return this.formGroupResponsable.get('ocuResponsable');
+    return this.formGroupM.get('ocuResponsable');
   }
   get entResponsable() {
-    return this.formGroupResponsable.get('entResponsable');
+    return this.formGroupM.get('entResponsable');
   }
   get celEmpresa() {
-    return this.formGroupResponsable.get('celEmpresa');
+    return this.formGroupM.get('celEmpresa');
   }
   get tipoResponsable() {
-    return this.formGroupResponsable.get('tipoResponsable');
+    return this.formGroupM.get('tipoResponsable');
   }
   get correo() {
-    return this.formGroupResponsable.get('correo');
+    return this.formGroupM.get('correo');
   }
   get acudiente() {
-    return this.formGroupResponsable.get('acudiente');
+    return this.formGroupM.get('acudiente');
   }
 
 

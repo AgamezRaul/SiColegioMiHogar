@@ -23,10 +23,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    const userData: User = {
-      correo: 'raagamez@unicesar.edu.co',
-      password: '123456'
-    }
   }
 
   onLogin(): void {

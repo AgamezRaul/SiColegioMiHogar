@@ -43,6 +43,17 @@ export class LoginService {
       );
   }
 
+  getIdUser(): number{
+    const user = JSON.parse(localStorage.getItem('user')) || null;//<--- si no existe user sera null
+    console.log(user);
+    if (user) {
+      return user.id;
+    }
+    else {
+      return 0;
+    }
+  }
+
   logout(): void {
     localStorage.removeItem('user');
     this.loggedIn.next(false);

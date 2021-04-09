@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackEnd.Migrations
 {
     [DbContext(typeof(MiHogarContext))]
-    [Migration("20210408141838_CorreccionPrematricula")]
-    partial class CorreccionPrematricula
+    [Migration("20210409031111_Inicial")]
+    partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -49,8 +49,8 @@ namespace BackEnd.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<double>("CelEstudiante")
-                        .HasColumnType("float");
+                    b.Property<string>("CelEstudiante")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Correo")
                         .HasColumnType("nvarchar(max)");
@@ -198,11 +198,11 @@ namespace BackEnd.Migrations
                     b.Property<string>("Acudiente")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CelEmpresa")
-                        .HasColumnType("int");
+                    b.Property<string>("CelEmpresa")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CelResponsable")
-                        .HasColumnType("int");
+                    b.Property<string>("CelResponsable")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Correo")
                         .HasColumnType("nvarchar(max)");

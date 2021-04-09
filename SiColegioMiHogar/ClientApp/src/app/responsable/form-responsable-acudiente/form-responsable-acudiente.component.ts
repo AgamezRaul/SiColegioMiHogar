@@ -9,7 +9,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class FormResponsableAcudienteComponent implements OnInit {
 
-  @Input() formGroupResponsable: FormGroup;
+  @Input() formGroupA: FormGroup;
 
   /*formGroupA = this.fb.group({
     ideResponsableAcudiente: ['', [Validators.required]],
@@ -33,40 +33,40 @@ export class FormResponsableAcudienteComponent implements OnInit {
   ngOnInit() {
   }
   get ideResponsable() {
-    return this.formGroupResponsable.get('ideResponsable');
+    return this.formGroupA.get('ideResponsable');
   }
   get nomResponsable() {
-    return this.formGroupResponsable.get('nomResponsable');
+    return this.formGroupA.get('nomResponsable');
   }
   get fecNacimiento() {
-    return this.formGroupResponsable.get('fecNacimiento');
+    return this.formGroupA.get('fecNacimiento');
   }
   get lugNacimiento() {
-    return this.formGroupResponsable.get('lugNacimiento');
+    return this.formGroupA.get('lugNacimiento');
   }
   get tipDocumento() {
-    return this.formGroupResponsable.get('tipDocumento');
+    return this.formGroupA.get('tipDocumento');
   }
   get celResponsable() {
-    return this.formGroupResponsable.get('celResponsable');
+    return this.formGroupA.get('celResponsable');
   }
   get profResponsable() {
-    return this.formGroupResponsable.get('profResponsable');
+    return this.formGroupA.get('profResponsable');
   }
   get ocuResponsable() {
-    return this.formGroupResponsable.get('ocuResponsable');
+    return this.formGroupA.get('ocuResponsable');
   }
   get entResponsable() {
-    return this.formGroupResponsable.get('entResponsable');
+    return this.formGroupA.get('entResponsable');
   }
   get celEmpresa() {
-    return this.formGroupResponsable.get('celEmpresa');
+    return this.formGroupA.get('celEmpresa');
   }
   get tipoResponsable() {
-    return this.formGroupResponsable.get('tipoResponsable');
+    return this.formGroupA.get('tipoResponsable');
   }
   get correo() {
-    return this.formGroupResponsable.get('correo');
+    return this.formGroupA.get('correo');
   }
 
 

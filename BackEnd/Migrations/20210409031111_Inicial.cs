@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BackEnd.Migrations
 {
-    public partial class initial : Migration
+    public partial class Inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -35,14 +35,15 @@ namespace BackEnd.Migrations
                     LugExpedicion = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     InsProcedencia = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DirResidencia = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CelEstudiante = table.Column<double>(type: "float", nullable: false),
+                    CelEstudiante = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TipSangre = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     GradoEstudiante = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Eps = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Correo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Sexo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TipoDocumento = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TelEstudiante = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    TelEstudiante = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IdUsuario = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -86,20 +87,6 @@ namespace BackEnd.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "RelacionUR",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    IdResponsable = table.Column<int>(type: "int", nullable: false),
-                    IdUsuario = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RelacionUR", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Usuario",
                 columns: table => new
                 {
@@ -121,7 +108,7 @@ namespace BackEnd.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FecPrematricula = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IdResponsable = table.Column<int>(type: "int", nullable: false),
+                    IdUsuario = table.Column<int>(type: "int", nullable: false),
                     Estado = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     estudianteId = table.Column<int>(type: "int", nullable: true)
                 },
@@ -148,16 +135,15 @@ namespace BackEnd.Migrations
                     LugNacimiento = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LugExpedicion = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TipDocumento = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CelResponsable = table.Column<int>(type: "int", nullable: false),
+                    CelResponsable = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProfResponsable = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OcuResponsable = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EntResponsable = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CelEmpresa = table.Column<int>(type: "int", nullable: false),
+                    CelEmpresa = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TipoResponsable = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Correo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Acudiente = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IdEstudiante = table.Column<int>(type: "int", nullable: false),
-                    IdPrematricula = table.Column<int>(type: "int", nullable: false),
+                    IdUsuario = table.Column<int>(type: "int", nullable: false),
                     PreMatriculaId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -192,9 +178,6 @@ namespace BackEnd.Migrations
 
             migrationBuilder.DropTable(
                 name: "Mensualidad");
-
-            migrationBuilder.DropTable(
-                name: "RelacionUR");
 
             migrationBuilder.DropTable(
                 name: "Responsable");

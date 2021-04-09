@@ -27,6 +27,7 @@ namespace BackEnd.Usuario.Aplicacion.Services
             {
                 return new LoginResponse()
                 {
+                    Id = usuario.Id,
                     Message = $"Usuario y Contraseña Correctos",
                     TipoUsuario = usuario.TipoUsuario,
                 };

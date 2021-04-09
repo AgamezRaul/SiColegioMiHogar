@@ -47,8 +47,8 @@ namespace BackEnd.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<double>("CelEstudiante")
-                        .HasColumnType("float");
+                    b.Property<string>("CelEstudiante")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Correo")
                         .HasColumnType("nvarchar(max)");
@@ -196,11 +196,11 @@ namespace BackEnd.Migrations
                     b.Property<string>("Acudiente")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CelEmpresa")
-                        .HasColumnType("int");
+                    b.Property<string>("CelEmpresa")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CelResponsable")
-                        .HasColumnType("int");
+                    b.Property<string>("CelResponsable")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Correo")
                         .HasColumnType("nvarchar(max)");

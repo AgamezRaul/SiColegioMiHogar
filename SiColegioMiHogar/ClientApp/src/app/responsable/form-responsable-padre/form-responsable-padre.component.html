@@ -1,77 +1,86 @@
-<div class="container" align="center" [formGroup]="formGroupResponsable">
+<div class="container" align="center" [formGroup]="formGroupP">
   <h1>Formulario del Padre</h1>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="nomResponsable">Nombre del padre</label>
-        <input type="text" class="form-control" formControlName="nomResponsable" id="nomResponsable" placeholder="Ej: Juan Perez">
-      </div>
-      <div class="form-group col-md-6">
-        <label for="celResponsable">Celular del Padre</label>
-        <input type="text" class="form-control" formControlName="celResponsable" id="celResponsable" placeholder="Ej: 3166873475">
-      </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="nomResponsable">Nombre del padre</label>
+      <input type="text" class="form-control" formControlName="nomResponsable" id="nomResponsable" placeholder="Ej: Juan Perez">
     </div>
+    <div class="form-group col-md-6">
+      <label for="celResponsable">Celular del Padre</label>
+      <input type="text" class="form-control" formControlName="celResponsable" id="celResponsable" placeholder="Ej: 3166873475">
+    </div>
+  </div>
 
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="lugNacimiento">Lugar de nacimiento</label>
-        <input type="text" class="form-control" formControlName="lugNacimiento" id="lugNacimiento" placeholder="Ej: Valledupar/Cesar">
-      </div>
-      <div class="form-group col-md-6">
-        <label for="fecNacimiento">Fecha de nacimiento</label>
-        <input type="date" formControlName="fecNacimiento" class="form-control" id="fecNacimiento">
-      </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="lugNacimiento">Lugar de nacimiento</label>
+      <input type="text" class="form-control" formControlName="lugNacimiento" id="lugNacimiento" placeholder="Ej: Valledupar/Cesar">
     </div>
+    <div class="form-group col-md-6">
+      <label for="fecNacimiento">Fecha de nacimiento</label>
+      <input type="date" formControlName="fecNacimiento" class="form-control" id="fecNacimiento">
+    </div>
+  </div>
 
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="tipDocumento">Tipo de documento</label>
-        <select id="tipDocumento" formControlName="tipDocumento" class="form-control">
-          <option selected>Elija una opción</option>
-          <option>Cedula de ciudadania</option>
-          <option>Cédula de extranjero</option>
-          <option>Otro</option>
-        </select>
-      </div>
-      <div class="form-group col-md-6">
-        <label for="ideResponsable">Número de documento</label>
-        <input type="text" class="form-control" formControlName="ideResponsable" id="ideResponsable" placeholder="Ej: 1002456457">
-      </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="tipDocumento">Tipo de documento</label>
+      <select id="tipDocumento" formControlName="tipDocumento" class="form-control">
+        <option selected>Elija una opción</option>
+        <option>Cedula de ciudadania</option>
+        <option>Cédula de extranjero</option>
+        <option>Otro</option>
+      </select>
     </div>
+    <div class="form-group col-md-6">
+      <label for="ideResponsable">Número de documento</label>
+      <input type="text" class="form-control" formControlName="ideResponsable" id="ideResponsable" placeholder="Ej: 1002456457">
+    </div>
+  </div>
 
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="profResponsable">Profesión del Padre</label>
-        <input type="text" class="form-control" formControlName="profResponsable" id="profResponsable" placeholder="Ej: Valledupar/Cesar">
-      </div>
-      <div class="form-group col-md-6">
-        <label for="ocuResponsable">Ocupación del Padre</label>
-        <input type="text" class="form-control" formControlName="ocuResponsable" id="ocuResponsable" placeholder="Ej: Mz 11 Cs 11 Caciques">
-      </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="lugExpedicion">Lugar de expedición del documento</label>
+      <input type="text" class="form-control" formControlName="lugExpedicion" id="lugExpedicion">
     </div>
+    <input hidden type="text" class="form-control" formControlName="tipoResponsable">
+  </div>
 
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="entResponsable">Empresa donde trabaja</label>
-        <input type="text" class="form-control" formControlName="entResponsable" id="entResponsable">
-      </div>
-      <div class="form-group col-md-6">
-        <label for="celEmpresa">Celular de la Empresa</label>
-        <input type="text" class="form-control" formControlName="celEmpresa" id="celEmpresa" placeholder="Ej: 3246543546">
-      </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="profResponsable">Profesión del Padre</label>
+      <input type="text" class="form-control" formControlName="profResponsable" id="profResponsable" placeholder="Ej: Valledupar/Cesar">
     </div>
+    <div class="form-group col-md-6">
+      <label for="ocuResponsable">Ocupación del Padre</label>
+      <input type="text" class="form-control" formControlName="ocuResponsable" id="ocuResponsable" placeholder="Ej: Mz 11 Cs 11 Caciques">
+    </div>
+  </div>
 
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="correo">Correo electrónico</label>
-        <input type="email" class="form-control" formControlName="correo" id="correo" placeholder="Ej: ejemplo@gmail.com">
-      </div>
-      <div class="form-group col-md-6">
-        <label for="acudiente">Es usted el acudiente?</label>
-        <select id="acudiente" formControlName="acudiente" class="form-control">
-          <option selected>Elija una opción</option>
-          <option>Si</option>
-          <option>No</option>
-        </select>
-      </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="entResponsable">Empresa donde trabaja</label>
+      <input type="text" class="form-control" formControlName="entResponsable" id="entResponsable">
     </div>
+    <div class="form-group col-md-6">
+      <label for="celEmpresa">Celular de la Empresa</label>
+      <input type="text" class="form-control" formControlName="celEmpresa" id="celEmpresa" placeholder="Ej: 3246543546">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="correo">Correo electrónico</label>
+      <input type="email" class="form-control" formControlName="correo" id="correo" placeholder="Ej: ejemplo@gmail.com">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="acudiente">Es usted el acudiente?</label>
+      <select id="acudiente" formControlName="acudiente" class="form-control">
+        <option selected>Elija una opción</option>
+        <option>Si</option>
+        <option>No</option>
+      </select>
+    </div>
+  </div>
+
 </div>

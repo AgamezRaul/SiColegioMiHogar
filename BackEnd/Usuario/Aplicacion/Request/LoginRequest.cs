@@ -12,6 +12,7 @@ namespace BackEnd.Usuario.Aplicacion.Request
 
     public class LoginResponse
     {
+        public int Id { get; set; }
         public string Message { get; set; }
         public string Token { get; set; }
         public string TipoUsuario { get; set; }

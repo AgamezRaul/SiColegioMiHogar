@@ -11,11 +11,8 @@ export class PreMatriculaService {
   apiURL = this.baseUrl + "api/Prematricula";
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
 
-  getPrematriculas(): Observable<IPrematricula[]> {
-    return this.http.get<IPrematricula[]>(this.apiURL);
-  }
-  tablaPrematricula(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiURL + "/tablaPrematricula");
+  getPrematriculas(): Observable<IPrematricula2[]> {
+    return this.http.get<IPrematricula2[]>(this.apiURL);
   }
 
   getPrematricula(id: number): Observable<IPrematricula> {
@@ -23,6 +20,7 @@ export class PreMatriculaService {
   }
 
   createPrematricula(prematricula: IPrematricula): Observable<IPrematricula> {
+    console.log(prematricula);
     return this.http.post<IPrematricula>(this.apiURL, prematricula);
   }
 }

@@ -37,6 +37,9 @@ import { UsuarioService } from './login/usuario/usuario.service';
 import { PreMatriculaService } from './pre-matricula/pre-matricula.service';
 import { TablePrematriculaComponent } from './pre-matricula/table-prematricula/table-prematricula.component';
 import { FormPreMatriculaComponent } from './pre-matricula/form-pre-matricula/form-pre-matricula.component';
+import { CdkColumnDef } from '@angular/cdk/table';
+import { MatriculaComponent } from './matricula/matricula.component';
+import { TableMatriculaComponent } from './matricula/table-matricula/table-matricula.component';
 
 
 @NgModule({
@@ -65,6 +68,8 @@ import { FormPreMatriculaComponent } from './pre-matricula/form-pre-matricula/fo
     GestionDeMateriasComponent,
     TablePrematriculaComponent,
     FormPreMatriculaComponent,
+    MatriculaComponent,
+    TableMatriculaComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -80,6 +85,7 @@ import { FormPreMatriculaComponent } from './pre-matricula/form-pre-matricula/fo
       { path: 'registrar-usuario', component: FormUsuarioComponent },
       { path: 'registrar-prematricula', component: FormPreMatriculaComponent },
       { path: 'prematricula', component: PreMatriculaComponent },
+      { path: 'matricula', component: MatriculaComponent },
       { path: 'login', component: LoginComponent },
       { path: 'form-mensualidad', component: FormMensualidadComponent },
       { path: 'list-mensualidad', component: ListMensualidadComponent },
@@ -90,7 +96,7 @@ import { FormPreMatriculaComponent } from './pre-matricula/form-pre-matricula/fo
 ], { relativeLinkResolution: 'legacy' })
   ],
   //Aquí en providers se agregan todos los services de angular
-  providers: [UsuarioService, PreMatriculaService],
+  providers: [UsuarioService, PreMatriculaService, CdkColumnDef],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -45,7 +45,7 @@ namespace TestBackEnd.AplicacionTest.CrearTest
                         LugExpedicion = "Valledupar",
                         InsProcedencia = "Valledupar",
                         DirResidencia = "Valledupar",
-                        CelEstudiante = 123456,
+                        CelEstudiante = "123456",
                         TipSangre = "O+",
                         GradoEstudiante = "6",
                         Eps = "NO C",

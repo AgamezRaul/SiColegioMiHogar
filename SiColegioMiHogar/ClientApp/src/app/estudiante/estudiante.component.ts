@@ -17,7 +17,7 @@ export class EstudianteComponent implements OnInit {
 export interface IEstudiante {
   ideEstudiante: string,
   nomEstudiante: string,
-  fecNacimiento: string,
+  fecNacimiento: Date,
   lugNacimiento: string,
   lugExpedicion: string,
   insProcedencia: string,
@@ -29,6 +29,6 @@ export interface IEstudiante {
   correo: string,
   sexo: string,
   tipoDocumento: string,
-  telEstudiante: number,
+  telEstudiante: string,
   idUsuario: number
 }

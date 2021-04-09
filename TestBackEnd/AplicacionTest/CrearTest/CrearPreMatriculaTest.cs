@@ -1,11 +1,9 @@
 ﻿using BackEnd;
 using BackEnd.Base;
 using BackEnd.Estudiante.Aplicacion.Request;
-using BackEnd.Estudiante.Aplicacion.Services.Crear;
 using BackEnd.PreMatricula.Aplicacion.Request;
 using BackEnd.PreMatricula.Aplicacion.Service.Crear;
 using BackEnd.Responsable.Aplicacion.Request;
-using BackEnd.Responsable.Aplicacion.Services.Crear;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 using System;
@@ -20,8 +18,6 @@ namespace TestBackEnd.AplicacionTest.CrearTest
         MiHogarContextTest _context;
         UnitOfWork _unitOfWork;
         CrearPreMatriculaService _crearPreMatriculaService;
-        CrearResponsableService _crearResponsableService;
-        CrearEstudianteService _crearEstudianteService;
 
         [SetUp]
         public void Setup()
@@ -44,8 +40,6 @@ namespace TestBackEnd.AplicacionTest.CrearTest
             yield return new TestCaseData(
                 new CrearPreMatriculaRequest
                 {
-                    FecPrematricula = DateTime.Now,
-                    Estado = "Sin Respuesta",
                     Responsables = new List<CrearResponsableRequest> {
                         new CrearResponsableRequest {
                             IdeResponsable = "1234567",
@@ -54,11 +48,11 @@ namespace TestBackEnd.AplicacionTest.CrearTest
                             LugNacimiento = "Valledupar",
                             LugExpedicion = "Valledupar",
                             TipDocumento = "Cedula",
-                            CelResponsable = 1234567,
+                            CelResponsable = "1234567",
                             ProfResponsable = "Estudiante",
                             OcuResponsable = "Estudiante",
                             EntResponsable = "UPC",
-                            CelEmpresa = 1234567,
+                            CelEmpresa = "1234567",
                             TipoResponsable = "Padre",
                             Correo = "raagamez@gmail.com",
                             Acudiente = "No",
@@ -72,11 +66,11 @@ namespace TestBackEnd.AplicacionTest.CrearTest
                             LugNacimiento = "Valledupar",
                             LugExpedicion = "Valledupar",
                             TipDocumento = "Cedula",
-                            CelResponsable = 1234567,
+                            CelResponsable = "1234567",
                             ProfResponsable = "Estudiante",
                             OcuResponsable = "Estudiante",
                             EntResponsable = "UPC",
-                            CelEmpresa = 1234567,
+                            CelEmpresa = "1234567",
                             TipoResponsable = "Madre",
                             Correo = "raagamez@gmail.com",
                             Acudiente = "No",
@@ -90,11 +84,11 @@ namespace TestBackEnd.AplicacionTest.CrearTest
                             LugNacimiento = "Valledupar",
                             LugExpedicion = "Valledupar",
                             TipDocumento = "Cedula",
-                            CelResponsable = 1234567,
+                            CelResponsable = "1234567",
                             ProfResponsable = "Estudiante",
                             OcuResponsable = "Estudiante",
                             EntResponsable = "UPC",
-                            CelEmpresa = 1234567,
+                            CelEmpresa = "1234567",
                             TipoResponsable = "Padre",
                             Correo = "raagamez@gmail.com",
                             Acudiente = "Si",
@@ -109,7 +103,7 @@ namespace TestBackEnd.AplicacionTest.CrearTest
                         LugExpedicion = "Valledupar",
                         InsProcedencia = "Valledupar",
                         DirResidencia = "Calle 22C",
-                        CelEstudiante = 12345,
+                        CelEstudiante = "123455",
                         TipSangre = "O+",
                         GradoEstudiante = "Sexto",
                         Eps = "No se",

@@ -5,7 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { PreMatriculaService } from '../pre-matricula.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IPrematricula2 } from '../form-pre-matricula/form-pre-matricula.component';
-import { CdkColumnDef } from '@angular/cdk/table';
+import { MatriculaService } from '../../matricula/matricula.service';
+
 @Component({
   selector: 'app-table-prematricula',
   templateUrl: './table-prematricula.component.html',
@@ -17,13 +18,14 @@ export class TablePrematriculaComponent implements OnInit {
   displayedColumns: string[] = [
     'nomEstudiante',
     'fecPrematricula',
-    'estado',];
+    'estado',
+    'options'];
   dataSource = new MatTableDataSource<IPrematricula2>(this.prematricula);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(private prematriculaService: PreMatriculaService, private router: Router,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute, private matriculaService: MatriculaService) { }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -34,9 +36,18 @@ export class TablePrematriculaComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
   ngOnInit() {
-    this.prematriculaService.tablaPrematricula()
+    this.prematriculaService.getPrematriculas()
       .subscribe(prematriculas => this.dataSource.data = prematriculas,
-        error => console.error(error)); console.log(this.dataSource.data);
+        error => console.error(error));
+  }
 
+  CrearMatricula(idPreMatricula: number) {
+    this.matriculaService.createMatricula(idPreMatricula).
+      subscribe(empleadoId => this.onCrearMatriculaSuccess(),
+        error => console.error(error))
+  }
+
+  onCrearMatriculaSuccess() {
+    this.router.navigate(["/matricula"]);
   }
 }

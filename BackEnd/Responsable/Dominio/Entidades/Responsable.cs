@@ -15,18 +15,18 @@ namespace BackEnd.Responsable.Dominio
         public string LugNacimiento { get; set; }
         public string LugExpedicion { get; set; }
         public string TipDocumento { get; set; }
-        public int CelResponsable { get; set; }
+        public string CelResponsable { get; set; }
         public string ProfResponsable { get; set; }
         public string OcuResponsable { get; set; }
         public string EntResponsable { get; set; }
-        public int CelEmpresa { get; set; }
+        public string CelEmpresa { get; set; }
         public string TipoResponsable { get; set; }
         public string Correo { get; set; }
         public string Acudiente { get; set; }
         public int IdUsuario { get; set; }
         public Responsable(string ideResponsable, string nomResponsable, DateTime fecNacimiento, string lugNacimiento, 
-            string lugExpedicion, string tipDocumento, int celResponsable, string profResponsable, string ocuResponsable, 
-            string entResponsable, int celEmpresa, string tipoResponsable, string correo, string acudiente, int idUsuario)
+            string lugExpedicion, string tipDocumento, string celResponsable, string profResponsable, string ocuResponsable, 
+            string entResponsable, string celEmpresa, string tipoResponsable, string correo, string acudiente, int idUsuario)
         {
             IdeResponsable = ideResponsable;
             NomResponsable = nomResponsable;
@@ -60,7 +60,7 @@ namespace BackEnd.Responsable.Dominio
                 errors.Add("Campo Lugar expedicion vacio");
             if (string.IsNullOrEmpty(responsable.TipDocumento))
                 errors.Add("Campo Tipo documento vacio");
-            if (responsable.CelResponsable == 0)
+            if (string.IsNullOrEmpty(responsable.CelResponsable))
                 errors.Add("Campo Celular responsable vacio");
             if (string.IsNullOrEmpty(responsable.ProfResponsable))
                 errors.Add("Campo Profesion del responsable vacio");
@@ -68,7 +68,7 @@ namespace BackEnd.Responsable.Dominio
                 errors.Add("Campo Ocupacion del responsable  vacio");
             if (string.IsNullOrEmpty(responsable.EntResponsable))
                 errors.Add("Campo Entidad en la cual trabaja el responsable vacio");
-            if (responsable.CelEmpresa == 0)
+            if (string.IsNullOrEmpty(responsable.CelEmpresa))
                 errors.Add("Campo Celular empresa vacio");
             if (string.IsNullOrEmpty(responsable.TipoResponsable))
                 errors.Add("Campo Tipo responsable vacio");

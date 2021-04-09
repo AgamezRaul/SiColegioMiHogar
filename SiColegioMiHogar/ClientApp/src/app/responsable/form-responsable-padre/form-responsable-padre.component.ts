@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class FormResponsablePadreComponent implements OnInit {
 
-  @Input() formGroupResponsable: FormGroup;
+  @Input() formGroupP: FormGroup;
 
   /*formGroupP = this.fb.group({
     ideResponsablePadre: ['', [Validators.required]],
@@ -36,46 +36,46 @@ export class FormResponsablePadreComponent implements OnInit {
   }
 
   get ideResponsable() {
-    return this.formGroupResponsable.get('ideResponsable');
+    return this.formGroupP.get('ideResponsable');
   }
   get nomResponsable() {
-    return this.formGroupResponsable.get('nomResponsable');
+    return this.formGroupP.get('nomResponsable');
   }
   get fecNacimiento() {
-    return this.formGroupResponsable.get('fecNacimiento');
+    return this.formGroupP.get('fecNacimiento');
   }
   get lugNacimiento() {
-    return this.formGroupResponsable.get('lugNacimiento');
+    return this.formGroupP.get('lugNacimiento');
   }
   get lugExpedicion() {
-    return this.formGroupResponsable.get('lugExpedicion');
+    return this.formGroupP.get('lugExpedicion');
   }
   get tipDocumento() {
-    return this.formGroupResponsable.get('tipDocumento');
+    return this.formGroupP.get('tipDocumento');
   }
   get celResponsable() {
-    return this.formGroupResponsable.get('celResponsable');
+    return this.formGroupP.get('celResponsable');
   }
   get profResponsable() {
-    return this.formGroupResponsable.get('profResponsable');
+    return this.formGroupP.get('profResponsable');
   }
   get ocuResponsable() {
-    return this.formGroupResponsable.get('ocuResponsable');
+    return this.formGroupP.get('ocuResponsable');
   }
   get entResponsable() {
-    return this.formGroupResponsable.get('entResponsable');
+    return this.formGroupP.get('entResponsable');
   }
   get celEmpresa() {
-    return this.formGroupResponsable.get('celEmpresa');
+    return this.formGroupP.get('celEmpresa');
   }
   get tipoResponsable() {
-    return this.formGroupResponsable.get('tipoResponsable');
+    return this.formGroupP.get('tipoResponsable');
   }
   get correo() {
-    return this.formGroupResponsable.get('correo');
+    return this.formGroupP.get('correo');
   }
   get acudiente() {
-    return this.formGroupResponsable.get('acudiente');
+    return this.formGroupP.get('acudiente');
   }
 
 

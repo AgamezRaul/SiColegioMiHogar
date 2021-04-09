@@ -5,6 +5,7 @@ export interface User {
   password: string;
 }
 export interface UserResponse {
+  id: number;
   message: string;
   token: string;
   tipoUsuario: Roles;
