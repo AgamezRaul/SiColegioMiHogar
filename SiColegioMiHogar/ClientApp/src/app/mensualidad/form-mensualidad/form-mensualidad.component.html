@@ -1,7 +1,6 @@
 <div class="container" align="center">
   <h1>Formulario de Mensualidad</h1>
   <form [formGroup]="formGroup" (ngSubmit)="save()">
-    <input type="text" class="form-control" formControlName="idMatricula" id="idMatricula">
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="mes">Mes en el que se registra el pago</label>
@@ -45,16 +44,16 @@
         </select>
       </div>
     </div>
-    <!--<div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="totalMensualidad">TotalMensualidad</label>
-      <input type="text" class="form-control" formControlName="totalMensualidad" id="totalMensualidad" placeholder="">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="totalMensualidad">TotalMensualidad</label>
+        <input type="text" class="form-control" formControlName="totalMensualidad" id="totalMensualidad" placeholder="">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="deuda">Deuda actual</label>
+        <input type="text" class="form-control" formControlName="deuda" id="deuda" placeholder="">
+      </div>
     </div>
-    <div class="form-group col-md-6">
-      <label for="deuda">Deuda actual</label>
-      <input type="text" class="form-control" formControlName="deuda" id="deuda" placeholder="">
-    </div>
-  </div>-->
     <button type="submit" mat-raised-button color="primary">
       Registrar Mensualidad
     </button>

@@ -143,8 +143,8 @@ namespace BackEnd.Migrations
                     b.Property<int>("IdMatricula")
                         .HasColumnType("int");
 
-                    b.Property<int>("Mes")
-                        .HasColumnType("int");
+                    b.Property<string>("Mes")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("TotalMensualidad")
                         .HasColumnType("float");

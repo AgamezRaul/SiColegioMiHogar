@@ -26,7 +26,10 @@ export class EditMensualidadComponent implements OnInit {
   update(): void {
     this.mensualidadService.updateMensualidad(this.mensualidad).subscribe(() => this.goBack());
   }
- 
+  delete(): void {
+
+    this.mensualidadService.deleteMensualidad(this.mensualidad).subscribe(() => this.goBack());
+  }
   goBack(): void {
     this.location.back();
   }
