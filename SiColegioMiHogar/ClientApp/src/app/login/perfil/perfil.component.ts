@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-perfil',
@@ -12,24 +13,24 @@ export class PerfilComponent implements OnInit {
   //Cancelar subscripciones para ahorrar memoria 
   private subscription: Subscription;
 
-  constructor(/*private authService: AuthService*/) {
+  constructor(private loginService: LoginService) {
     this.subscription = new Subscription();
   }
 
   ngOnInit() {
-    /*this.subscription.add(
-      this.authService.isLogged.subscribe((res) => (this.isLogged = res))
+    this.subscription.add(
+      this.loginService.isLogged.subscribe((res) => (this.isLogged = res))
     );
     this.subscription.add(
-      this.authService.isAdmin$.subscribe((res) => (this.isAdmin = res))
-    );*/
+      this.loginService.isAdmin$.subscribe((res) => (this.isAdmin = res))
+    );
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
   public Logout() {
-    /*this.authService.logout();*/
+    this.loginService.logout();
   }
 
 }

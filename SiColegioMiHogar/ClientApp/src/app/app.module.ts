@@ -87,8 +87,8 @@ import { TableMatriculaComponent } from './matricula/table-matricula/table-matri
       { path: 'prematricula', component: PreMatriculaComponent },
       { path: 'matricula', component: MatriculaComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'form-mensualidad', component: FormMensualidadComponent },
-      { path: 'list-mensualidad', component: ListMensualidadComponent },
+      { path: 'registrar-mensualidad/:id', component: FormMensualidadComponent },
+      { path: 'list-mensualidad', component: MensualidadComponent },
       { path: 'edit-mensualidad/:mes', component: EditMensualidadComponent },
 
       { path: 'login', component: LoginComponent, canActivate: [CheckLoginGuard] },

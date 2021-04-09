@@ -32,7 +32,6 @@ export class LoginService {
       .post<UserResponse>(this.apiURL, authData)
       .pipe(
         map((user: UserResponse) => {
-          console.log('Resp', user);
           this.saveLocalStorage(user);
           this.loggedIn.next(true);
           this.role.next(user.tipoUsuario)
@@ -45,7 +44,6 @@ export class LoginService {
 
   getIdUser(): number{
     const user = JSON.parse(localStorage.getItem('user')) || null;//<--- si no existe user sera null
-    console.log(user);
     if (user) {
       return user.id;
     }

@@ -37,8 +37,4 @@ export class TableMatriculaComponent implements OnInit {
       .subscribe(matriculas => this.dataSource.data = matriculas,
         error => console.error(error));
   }
-
-  CrearMensualidad(idMatricula: number) {
-    console.log(idMatricula);
-  }
 }
