@@ -23,8 +23,7 @@ export class FormMensualidadComponent implements OnInit {
     valorMensualidad:  ['', [Validators.required]],
     descuentoMensualidad: ['', [Validators.required]],
     abono: ['', [Validators.required]],
-    estado: ['', [Validators.required]],
-    idMatricula: ['', [Validators.required]]
+    estado: ['', [Validators.required]]
   });
 
   ngOnInit(): void {
@@ -67,9 +66,6 @@ export class FormMensualidadComponent implements OnInit {
   get estado() {
     return this.formGroup.get('estado');
   }
-  get idMatricula() {
-    return this.formGroup.get('idMatricula');
-  }  
 }
 
 
