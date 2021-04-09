@@ -60,9 +60,9 @@ namespace SiColegioMiHogar.Controllers
             return result;
         }
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetMensualidad([FromRoute] string mes)
+        public async Task<IActionResult> GetMensualidad([FromRoute] int id)
         {
-            Mensualidad mensualidad = await _context.Mensualidad.SingleOrDefaultAsync(t => t.Mes == mes);
+            Mensualidad mensualidad = await _context.Mensualidad.SingleOrDefaultAsync(t => t.Id == id);
             if (mensualidad == null)
                 return NotFound();
             return Ok(mensualidad);
@@ -75,8 +75,8 @@ namespace SiColegioMiHogar.Controllers
             if (rta.isOk())
             {
                 await _context.SaveChangesAsync();
-                //preguntar por lo que esta denteo del new
-                return CreatedAtAction("GetMensualidad", new { mes = mensualidad.Mes }, mensualidad);
+                //busaca en la base de datos para guardar
+                return CreatedAtAction("GetMensualidad", new { id = mensualidad.id }, mensualidad);
             }
             return BadRequest(rta.Message);
         }

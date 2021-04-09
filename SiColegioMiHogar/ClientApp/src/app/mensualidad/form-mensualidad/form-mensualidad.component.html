@@ -1,6 +1,7 @@
 <div class="container">
   <h1>Formulario de Mensualidad</h1>
   <form [formGroup]="formGroup" (ngSubmit)="save()">
+    <input type="text" class="form-control" formControlName="idMatricula" id="idMatricula">
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="mes">Mes en el que se registra el pago</label>

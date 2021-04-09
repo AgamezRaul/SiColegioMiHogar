@@ -40,6 +40,8 @@ import { FormPreMatriculaComponent } from './pre-matricula/form-pre-matricula/fo
 import { CdkColumnDef } from '@angular/cdk/table';
 import { MatriculaComponent } from './matricula/matricula.component';
 import { TableMatriculaComponent } from './matricula/table-matricula/table-matricula.component';
+import { CursoComponent } from './curso/curso.component';
+import { FormCursoComponent } from './curso/form-curso/form-curso.component';
 
 
 @NgModule({
@@ -70,6 +72,9 @@ import { TableMatriculaComponent } from './matricula/table-matricula/table-matri
     FormPreMatriculaComponent,
     MatriculaComponent,
     TableMatriculaComponent,
+    CursoComponent,
+    FormCursoComponent,
+
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

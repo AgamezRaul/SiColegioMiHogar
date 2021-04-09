@@ -68,8 +68,7 @@ export class FormMensualidadComponent implements OnInit {
   }
   get idMatricula() {
     return this.formGroup.get('idMatricula');
-  }
-  
+  }  
 }
 
 

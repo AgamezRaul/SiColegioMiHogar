@@ -14,7 +14,8 @@ export class MensualidadComponent implements OnInit {
 
 }
 export interface IMensualidad {
-  mes: string,
+  id: number,
+  mes: number,
   diaPago: number,
   fechaPago: Date,
   valorMensualidad: number,
@@ -35,3 +36,4 @@ export interface IMensualidad2 {
   estado: string,
   totalMensualidad: number
 }
+
