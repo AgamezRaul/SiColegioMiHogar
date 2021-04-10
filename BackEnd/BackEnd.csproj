@@ -7,6 +7,7 @@
   <ItemGroup>
     <Folder Include="Estudiante\Aplicacion\Services\Eliminar\" />
     <Folder Include="Migrations\" />
+    <Folder Include="NewFolder\" />
   </ItemGroup>
 
   <ItemGroup>

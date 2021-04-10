@@ -5,6 +5,7 @@ using BackEnd.PreMatricula.Dominio.Repositories;
 using BackEnd.Responsable.Dominio.Repositories;
 using BackEnd.Usuario.Dominio.Repositories;
 using BackEnd.Curso.Dominio.Repositories;
+using BackEnd.Docente.Dominio.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,6 +21,7 @@ namespace BackEnd.Base
         IUsuarioServiceRepository UsuarioServiceRepository { get; }
         IPreMatriculaServiceRepository PreMatriculaServiceRepository { get; }
         IMensualidadServiceRepository MensualidadServiceRepository { get; }
+        IDocenteServiceRepository DocenteServiceRepository { get;  }
        
 
         int Commit();
