@@ -1,1 +1,42 @@
-<p>form-docente works!</p>
+<div class="container" align="center">
+  <h1>Formulario de Docente</h1>
+  <form [formGroup]="formGroup" (ngSubmit)="save()">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="nombre">Nombre completo</label>
+        <input type="text" class="form-control" formControlName="nombre" id="nombre" placeholder="Ej: Juan Meza García">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="numTar">Número de tarjeta profesional</label>
+        <input type="number" class="form-control" formControlName="numTar" id="numTar" placeholder="Ej: 1924653">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="cedula">Cédula</label>
+        <input type="number" class="form-control" formControlName="cedula" id="cedula" placeholder="Ej: 1002346547">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="celular">Celular</label>
+        <input type="number" class="form-control" formControlName="celular" id="celular" placeholder="Ej: 3214534656">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="correo">Correo electrónico</label>
+        <input type="email" class="form-control" formControlName="correo" id="correo" placeholder="Ej: ejemplo@gmail.com">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="direccion">Direccion</label>
+        <input type="text" class="form-control" formControlName="direccion" id="direccion" placeholder="Ej: Calle 4 No 21-13 Sabanas">
+      </div>
+    </div>
+
+    <button type="submit" mat-raised-button color="primary">
+      Registrar Docente
+    </button>
+  </form>
+</div>
+

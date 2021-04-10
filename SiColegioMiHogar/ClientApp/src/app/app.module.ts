@@ -43,6 +43,7 @@ import { TableMatriculaComponent } from './matricula/table-matricula/table-matri
 import { CursoComponent } from './curso/curso.component';
 import { FormCursoComponent } from './curso/form-curso/form-curso.component';
 import { TableCursoComponent } from './curso/table-curso/table-curso.component';
+import { DocenteComponent } from './docente/docente.component';
 
 
 @NgModule({
@@ -76,6 +77,7 @@ import { TableCursoComponent } from './curso/table-curso/table-curso.component';
     CursoComponent,
     FormCursoComponent,
     TableCursoComponent,
+    DocenteComponent,
 
   ],
   imports: [
