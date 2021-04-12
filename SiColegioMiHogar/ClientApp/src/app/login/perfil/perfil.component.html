@@ -2,12 +2,18 @@
   <mat-icon class="iconoPerfil">account_box</mat-icon>
 </button>
 <mat-menu #menu="matMenu">
-  <button mat-menu-item routerLink="registrar-usuario" >
+  <button mat-menu-item routerLink="registrar-usuario" *ngIf="!isLogged">
     <mat-icon>login</mat-icon>
     <span>Registrar Usuario</span>
   </button>
-  <button mat-menu-item routerLink="login">
+  <button mat-menu-item routerLink="login" *ngIf="!isLogged; else viewLogout">
     <mat-icon>login</mat-icon>
     <span>Iniciar Sesion</span>
   </button>
+  <ng-template #viewLogout>
+    <button mat-menu-item (click)="Logout()">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Cerrar Sesion</span>
+    </button>
+  </ng-template>
 </mat-menu>

@@ -37,11 +37,9 @@ namespace TestBackEnd.AplicacionTest.CrearTest
             yield return new TestCaseData(
                 new CrearCursoRequest
                 {
-                    id = 1065,
                     nombre = "Raul",
                     maxEstudiantes = 30,
                     idDirectorDocente = 8
-
                 },
                 "Curso Creado Exitosamente"
                 ).SetName("Crear Curso Correctamente");

@@ -20,8 +20,18 @@ export interface IMensualidad {
   valorMensualidad: number,
   descuentoMensualidad: number,
   abono: number,
+  estado: string,
+  idMatricula: number
+}
+export interface IMensualidad2 {
+  estudiante: string,
+  mes: number,
+  diaPago: number,
+  fechaPago: Date,
+  valorMensualidad: number,
+  descuentoMensualidad: number,
+  abono: number,
   deuda: number,
-  estado: number,
-  idMatricula: number,
+  estado: string,
   totalMensualidad: number
 }

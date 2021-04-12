@@ -11,7 +11,11 @@ import { MensualidadService } from '../mensualidad.service';
 })
 export class FormMensualidadComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private mensualidadService: MensualidadService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private fb: FormBuilder, private mensualidadService: MensualidadService,
+    private router: Router, private activatedRoute: ActivatedRoute) { }
+
+  id: number;
+
   formGroup = this.fb.group({
     mes: ['', [Validators.required]],
     diaPago: ['', [Validators.required]],
@@ -19,23 +23,27 @@ export class FormMensualidadComponent implements OnInit {
     valorMensualidad:  ['', [Validators.required]],
     descuentoMensualidad: ['', [Validators.required]],
     abono: ['', [Validators.required]],
-    deuda: ['', [Validators.required]],
-    estado: ['', [Validators.required]],
-    idMatricula: ['', [Validators.required]],
-    totalMensualidad: ['', [Validators.required]]
+    estado: ['', [Validators.required]]
   });
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe(params => {
+      if (params["id"] == undefined) {
+        return;
+      }
+      this.id = parseInt(params["id"]);
+    })
   }
   save() {
     let mensualidad: IMensualidad = Object.assign({}, this.formGroup.value);
+    mensualidad.idMatricula = this.id;
     console.table(mensualidad); //ver mensualidad por consola
     this.mensualidadService.createMensualidad(mensualidad)
       .subscribe(mensualidad => this.onSaveSuccess());
 
   }
   onSaveSuccess() {
-    this.router.navigate(["/"]);
+    this.router.navigate(["/list-mensualidad"]);
   }
   get mes() {
     return this.formGroup.get('mes');
@@ -55,21 +63,9 @@ export class FormMensualidadComponent implements OnInit {
   get abono() {
     return this.formGroup.get('abono');
   }
-  get deuda() {
-    return this.formGroup.get('deuda');
-  }
   get estado() {
     return this.formGroup.get('estado');
   }
-  get idMatricula() {
-    return this.formGroup.get('idMatricula');
-  }
-  get totalMensualidad() {
-    return this.formGroup.get('totalMensualidad');
-  }
- 
-
-  
 }
 
 

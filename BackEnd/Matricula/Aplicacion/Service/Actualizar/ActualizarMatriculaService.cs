@@ -22,8 +22,7 @@ namespace BackEnd.Matricula.Aplicacion.Service.Actualizar
             }
             else
             {
-                matricula.FecConfirmacion = request.FecConfirmacion;
-                matricula.IdePreMatricula = request.IdePreMatricula;
+                matricula.IdePreMatricula = request.IdPreMatricula;
                 _unitOfWork.MatriculaServiceRepository.Edit(matricula);
                 _unitOfWork.Commit();
                 return new ActualizarMatriculaResponse() { Message = $"Matricula Actualizada Exitosamente" };

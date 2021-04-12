@@ -32,7 +32,68 @@ export class FormResponsableAcudienteComponent implements OnInit {
 
   ngOnInit() {
   }
-  
+  get ideResponsable() {
+    return this.formGroupA.get('ideResponsable');
+  }
+  get nomResponsable() {
+    return this.formGroupA.get('nomResponsable');
+  }
+  get fecNacimiento() {
+    return this.formGroupA.get('fecNacimiento');
+  }
+  get lugNacimiento() {
+    return this.formGroupA.get('lugNacimiento');
+  }
+  get tipDocumento() {
+    return this.formGroupA.get('tipDocumento');
+  }
+  get celResponsable() {
+    return this.formGroupA.get('celResponsable');
+  }
+  get profResponsable() {
+    return this.formGroupA.get('profResponsable');
+  }
+  get ocuResponsable() {
+    return this.formGroupA.get('ocuResponsable');
+  }
+  get entResponsable() {
+    return this.formGroupA.get('entResponsable');
+  }
+  get celEmpresa() {
+    return this.formGroupA.get('celEmpresa');
+  }
+  get tipoResponsable() {
+    return this.formGroupA.get('tipoResponsable');
+  }
+  get correo() {
+    return this.formGroupA.get('correo');
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /*
   get ideResponsableAcudiente() {
     return this.formGroupA.get('ideResponsableAcudiente');
   }
@@ -68,6 +129,6 @@ export class FormResponsableAcudienteComponent implements OnInit {
   }
   get correoAcudiente() {
     return this.formGroupA.get('correoAcudiente');
-  }
+  }*/
 }
 

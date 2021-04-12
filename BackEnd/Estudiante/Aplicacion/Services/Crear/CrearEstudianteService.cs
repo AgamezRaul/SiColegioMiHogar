@@ -23,7 +23,7 @@ namespace BackEnd.Estudiante.Aplicacion.Services.Crear
             {
                 Dominio.Estudiante newEstudiante = new Dominio.Estudiante(request.IdeEstudiante, request.NomEstudiante, request.FecNacimiento, request.LugNacimiento, 
                     request.LugExpedicion, request.InsProcedencia, request.DirResidencia, request.CelEstudiante, request.TipSangre, request.GradoEstudiante, request.Eps, 
-                    request.Correo, request.Sexo, request.TipoDocumento, request.TelEstudiante);
+                    request.Correo, request.Sexo, request.TipoDocumento, request.TelEstudiante, request.IdUsuario);
 
                 IReadOnlyList<string> errors = newEstudiante.CanCrear(newEstudiante);
                 if (errors.Any())

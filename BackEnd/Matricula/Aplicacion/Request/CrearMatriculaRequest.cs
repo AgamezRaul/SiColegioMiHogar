@@ -7,8 +7,8 @@ namespace BackEnd.Matricula.Aplicacion.Request
    public class CrearMatriculaRequest
     {
         public int id { get; set; }
-        public DateTime FecConfirmacion { get; set; }
-        public int IdePreMatricula { get; set; }
+        public DateTime FecConfirmacion { get => DateTime.Now.Date; }
+        public int IdPreMatricula { get; set; }
 
     }
     public class CrearMatriculaResponse

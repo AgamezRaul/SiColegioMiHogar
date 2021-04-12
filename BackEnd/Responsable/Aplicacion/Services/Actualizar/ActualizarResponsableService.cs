@@ -36,8 +36,6 @@ namespace BackEnd.Responsable.Aplicacion.Services.Actualizar
                responsable.TipoResponsable =request.TipoResponsable;
                responsable.Correo=request.Correo;
                responsable.Acudiente =request.Acudiente;
-               responsable.IdEstudiante =request.IdEstudiante;
-               responsable.IdPrematricula = request.IdPrematricula;
 
                 _unitOfWork.ResponsableServiceRepository.Edit(responsable);
                 _unitOfWork.Commit();

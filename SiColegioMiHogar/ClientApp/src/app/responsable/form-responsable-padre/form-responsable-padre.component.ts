@@ -35,6 +35,76 @@ export class FormResponsablePadreComponent implements OnInit {
   ngOnInit() {
   }
 
+  get ideResponsable() {
+    return this.formGroupP.get('ideResponsable');
+  }
+  get nomResponsable() {
+    return this.formGroupP.get('nomResponsable');
+  }
+  get fecNacimiento() {
+    return this.formGroupP.get('fecNacimiento');
+  }
+  get lugNacimiento() {
+    return this.formGroupP.get('lugNacimiento');
+  }
+  get lugExpedicion() {
+    return this.formGroupP.get('lugExpedicion');
+  }
+  get tipDocumento() {
+    return this.formGroupP.get('tipDocumento');
+  }
+  get celResponsable() {
+    return this.formGroupP.get('celResponsable');
+  }
+  get profResponsable() {
+    return this.formGroupP.get('profResponsable');
+  }
+  get ocuResponsable() {
+    return this.formGroupP.get('ocuResponsable');
+  }
+  get entResponsable() {
+    return this.formGroupP.get('entResponsable');
+  }
+  get celEmpresa() {
+    return this.formGroupP.get('celEmpresa');
+  }
+  get tipoResponsable() {
+    return this.formGroupP.get('tipoResponsable');
+  }
+  get correo() {
+    return this.formGroupP.get('correo');
+  }
+  get acudiente() {
+    return this.formGroupP.get('acudiente');
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /*
   get ideResponsablePadre() {
     return this.formGroupP.get('ideResponsablePadre');
   }
@@ -77,4 +147,5 @@ export class FormResponsablePadreComponent implements OnInit {
   get acudientePadre() {
     return this.formGroupP.get('acudientePadre');
   }
+  */
 }

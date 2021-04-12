@@ -12,7 +12,6 @@ namespace BackEnd.Matricula.Dominio
         public int IdePreMatricula { get; set; }
         public Matricula( DateTime fecConfirmacion, int idePreMatricula)
         {
-           
             FecConfirmacion = fecConfirmacion;
             IdePreMatricula = idePreMatricula;
         }

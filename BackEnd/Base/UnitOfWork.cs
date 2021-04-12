@@ -6,20 +6,21 @@ using BackEnd.Mensualidad.Dominio.Repositories;
 using BackEnd.Mensualidad.Infra;
 using BackEnd.PreMatricula.Dominio.Repositories;
 using BackEnd.PreMatricula.Infra;
-using BackEnd.RelacionUR.Dominio.Repositories;
-using BackEnd.RelacionUR.Infra;
 using BackEnd.Responsable.Dominio.Repositories;
 using BackEnd.Responsable.Infra;
 using BackEnd.Usuario.Dominio.Repositories;
 using BackEnd.Usuario.Infra;
 using BackEnd.Curso.Dominio.Repositories;
 using BackEnd.Curso.Infra;
+using BackEnd.Docente.Dominio.Repositories;
+using BackEnd.Docente.Infra;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using BackEnd.materias.Dominio.Repositories;
 using BackEnd.materias.Infra;
+
 
 namespace BackEnd.Base
 {
@@ -72,15 +73,6 @@ namespace BackEnd.Base
                 return _prematriculaServiceRepository ?? (_prematriculaServiceRepository = new PreMatriculaServiceRepository(_dbContext));
             }
         }
-        private IRelacionURServiceRepository _relacionURServiceRepository;
-
-        public IRelacionURServiceRepository RelacionURServiceRepository
-        {
-            get
-            {
-                return _relacionURServiceRepository ?? (_relacionURServiceRepository = new RelacionURServiceRepository(_dbContext));
-            }
-        }
 
         private IMensualidadServiceRepository _mensualidadServiceRepository;
         public IMensualidadServiceRepository MensualidadServiceRepository
@@ -106,6 +98,14 @@ namespace BackEnd.Base
             get
             {
                 return _materiaServiceRepository ?? (_materiaServiceRepository = new MateriaServiceRepository(_dbContext));
+            }
+        }
+        private IDocenteServiceRepository _docenteServiceRepository;
+        public IDocenteServiceRepository DocenteServiceRepository
+        {
+            get
+            {
+                return _docenteServiceRepository ?? (_docenteServiceRepository = new DocenteServiceRepository(_dbContext));
             }
         }
 

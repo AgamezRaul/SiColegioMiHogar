@@ -17,7 +17,6 @@ export class FormUsuarioComponent implements OnInit {
   formGroup = this.fb.group({
     correo: ['', [Validators.required]],
     password: ['', [Validators.required]],
-    nomUsuario: ['', [Validators.required]],
     tipoUsuario: ['', [Validators.required]]
   });
 
@@ -32,7 +31,7 @@ export class FormUsuarioComponent implements OnInit {
 
   }
   onSaveSuccess() {
-    this.router.navigate(["/"]);
+    this.router.navigate(["/login"]);
   }
 
   get correo() {
@@ -40,9 +39,6 @@ export class FormUsuarioComponent implements OnInit {
   }
   get password() {
     return this.formGroup.get('password');
-  }
-  get nomUsuario() {
-    return this.formGroup.get('nomUsuario');
   }
   get tipoUsuario() {
     return this.formGroup.get('tipoUsuario');
