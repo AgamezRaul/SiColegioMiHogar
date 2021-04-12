@@ -23,6 +23,7 @@ namespace BackEnd
         public DbSet<Usuario.Dominio.Usuario> Usuario { get; set; }
         public DbSet<Mensualidad.Dominio.Mensualidad> Mensualidad { get; set; }
         public DbSet<Curso.Dominio.Curso> Curso { get; set; }
+        public DbSet<materias.Dominio.Entidades.Materias> Materia { get; set; }
         public DbSet<Docente.Dominio.Docente> Docente { get; set; }
     }
 }

@@ -18,6 +18,8 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using BackEnd.materias.Dominio.Repositories;
+using BackEnd.materias.Infra;
 
 
 namespace BackEnd.Base
@@ -90,6 +92,14 @@ namespace BackEnd.Base
             }
         }
 
+        private IMateriaServiceRepository _materiaServiceRepository;
+        public IMateriaServiceRepository MateriaServiceRepository
+        {
+            get
+            {
+                return _materiaServiceRepository ?? (_materiaServiceRepository = new MateriaServiceRepository(_dbContext));
+            }
+        }
         private IDocenteServiceRepository _docenteServiceRepository;
         public IDocenteServiceRepository DocenteServiceRepository
         {
@@ -98,7 +108,6 @@ namespace BackEnd.Base
                 return _docenteServiceRepository ?? (_docenteServiceRepository = new DocenteServiceRepository(_dbContext));
             }
         }
-
 
         public int Commit()
         {

@@ -9,6 +9,7 @@ using BackEnd.Docente.Dominio.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using BackEnd.materias.Dominio.Repositories;
 
 namespace BackEnd.Base
 {
@@ -21,8 +22,9 @@ namespace BackEnd.Base
         IUsuarioServiceRepository UsuarioServiceRepository { get; }
         IPreMatriculaServiceRepository PreMatriculaServiceRepository { get; }
         IMensualidadServiceRepository MensualidadServiceRepository { get; }
+        IMateriaServiceRepository MateriaServiceRepository { get; }
         IDocenteServiceRepository DocenteServiceRepository { get;  }
-       
+
 
         int Commit();
     }

@@ -9,7 +9,7 @@ namespace BackEnd.Mensualidad.Dominio
     {
         
 
-        public int Mes { get; set; }
+        public string Mes { get; set; }
         public int DiaPago { get; set; }
         public DateTime FechaPago { get; set; }
         public double ValorMensualidad { get; set; }
@@ -19,7 +19,7 @@ namespace BackEnd.Mensualidad.Dominio
         public string Estado { get; set; }
         public int IdMatricula { get; set; }
         public double TotalMensualidad { get; set; }
-        public Mensualidad(int mes, int diaPago, DateTime fechaPago, double valorMensualidad, double descuentoMensualidad, double abono, double deuda, string estado, int idMatricula, double totalMensualidad)
+        public Mensualidad(string mes, int diaPago, DateTime fechaPago, double valorMensualidad, double descuentoMensualidad, double abono, double deuda, string estado, int idMatricula, double totalMensualidad)
         {
             Mes = mes;
             DiaPago = diaPago;
@@ -37,7 +37,7 @@ namespace BackEnd.Mensualidad.Dominio
         {
             var errors = new List<string>();
 
-            if (mensualidad.Mes == 0)
+            if (string.IsNullOrEmpty(mensualidad.Mes))
                 errors.Add("Campo Mes en que se realiza el pago vacio");
             if (mensualidad.DiaPago == 0)
                 errors.Add("Campo dia de pago en el que se acordo pagar la mensualidad  vacio");
