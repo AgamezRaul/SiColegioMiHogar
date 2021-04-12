@@ -40,6 +40,10 @@ import { FormPreMatriculaComponent } from './pre-matricula/form-pre-matricula/fo
 import { CdkColumnDef } from '@angular/cdk/table';
 import { MatriculaComponent } from './matricula/matricula.component';
 import { TableMatriculaComponent } from './matricula/table-matricula/table-matricula.component';
+import { CursoComponent } from './curso/curso.component';
+import { FormCursoComponent } from './curso/form-curso/form-curso.component';
+import { TableCursoComponent } from './curso/table-curso/table-curso.component';
+import { DocenteComponent } from './docente/docente.component';
 
 
 @NgModule({
@@ -70,6 +74,11 @@ import { TableMatriculaComponent } from './matricula/table-matricula/table-matri
     FormPreMatriculaComponent,
     MatriculaComponent,
     TableMatriculaComponent,
+    CursoComponent,
+    FormCursoComponent,
+    TableCursoComponent,
+    DocenteComponent,
+
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -90,7 +99,7 @@ import { TableMatriculaComponent } from './matricula/table-matricula/table-matri
       { path: 'registrar-mensualidad/:id', component: FormMensualidadComponent },
       { path: 'list-mensualidad', component: MensualidadComponent },
       { path: 'edit-mensualidad/:mes', component: EditMensualidadComponent },
-
+      { path: 'registrar-curso', component: FormCursoComponent },
       { path: 'login', component: LoginComponent, canActivate: [CheckLoginGuard] },
       { path: 'gestion-de-materias', component: GestionDeMateriasComponent }
 ], { relativeLinkResolution: 'legacy' })

@@ -12,10 +12,15 @@ using BackEnd.Usuario.Dominio.Repositories;
 using BackEnd.Usuario.Infra;
 using BackEnd.Curso.Dominio.Repositories;
 using BackEnd.Curso.Infra;
+using BackEnd.Docente.Dominio.Repositories;
+using BackEnd.Docente.Infra;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using BackEnd.materias.Dominio.Repositories;
+using BackEnd.materias.Infra;
+
 
 namespace BackEnd.Base
 {
@@ -87,6 +92,22 @@ namespace BackEnd.Base
             }
         }
 
+        private IMateriaServiceRepository _materiaServiceRepository;
+        public IMateriaServiceRepository MateriaServiceRepository
+        {
+            get
+            {
+                return _materiaServiceRepository ?? (_materiaServiceRepository = new MateriaServiceRepository(_dbContext));
+            }
+        }
+        private IDocenteServiceRepository _docenteServiceRepository;
+        public IDocenteServiceRepository DocenteServiceRepository
+        {
+            get
+            {
+                return _docenteServiceRepository ?? (_docenteServiceRepository = new DocenteServiceRepository(_dbContext));
+            }
+        }
 
         public int Commit()
         {

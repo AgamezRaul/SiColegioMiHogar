@@ -13,12 +13,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.12" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +30,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BackEnd\BackEnd.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\app\curso\form-curso\" />
+    <Folder Include="ClientApp\src\app\curso\table-curso\" />
+    <Folder Include="ClientApp\src\app\docente\form-docente\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

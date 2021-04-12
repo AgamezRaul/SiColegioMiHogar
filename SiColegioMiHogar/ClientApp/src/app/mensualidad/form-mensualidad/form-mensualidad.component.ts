@@ -11,7 +11,8 @@ import { MensualidadService } from '../mensualidad.service';
 })
 export class FormMensualidadComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private mensualidadService: MensualidadService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private fb: FormBuilder, private mensualidadService: MensualidadService,
+    private router: Router, private activatedRoute: ActivatedRoute) { }
 
   id: number;
 
@@ -22,8 +23,7 @@ export class FormMensualidadComponent implements OnInit {
     valorMensualidad:  ['', [Validators.required]],
     descuentoMensualidad: ['', [Validators.required]],
     abono: ['', [Validators.required]],
-    estado: ['', [Validators.required]],
-    idMatricula: ['', [Validators.required]]
+    estado: ['', [Validators.required]]
   });
 
   ngOnInit(): void {
@@ -43,7 +43,7 @@ export class FormMensualidadComponent implements OnInit {
 
   }
   onSaveSuccess() {
-    this.router.navigate(["/"]);
+    this.router.navigate(["/list-mensualidad"]);
   }
   get mes() {
     return this.formGroup.get('mes');
@@ -66,10 +66,6 @@ export class FormMensualidadComponent implements OnInit {
   get estado() {
     return this.formGroup.get('estado');
   }
-  get idMatricula() {
-    return this.formGroup.get('idMatricula');
-  }
-  
 }
 
 

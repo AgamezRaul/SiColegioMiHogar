@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BackEnd.Migrations
 {
-    public partial class Inicial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -70,7 +70,7 @@ namespace BackEnd.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Mes = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Mes = table.Column<int>(type: "int", nullable: false),
                     DiaPago = table.Column<int>(type: "int", nullable: false),
                     FechaPago = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ValorMensualidad = table.Column<double>(type: "float", nullable: false),
