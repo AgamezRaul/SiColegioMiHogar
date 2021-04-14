@@ -14,6 +14,7 @@ namespace BackEnd.PreMatricula.Dominio
 
         public List<Responsable.Dominio.Responsable> Responsables { get; set; }
         public Estudiante.Dominio.Estudiante estudiante { get; set; }
+        public PreMatricula() { }
         public PreMatricula(DateTime fecPrematricula, int idUsuario, string estado)
         {
             FecPrematricula = fecPrematricula;

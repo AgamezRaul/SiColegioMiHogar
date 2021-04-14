@@ -6,14 +6,16 @@ using System.Text;
 
 namespace BackEnd.PreMatricula.Aplicacion.Request
 {
-    public class ActualizarPreMatriculaRequest
+    public class ActualizarPreMatriculaAllRequest
     {
         public int id { get; set; }
         public DateTime FecPrematricula { get => DateTime.Now.Date; }
-        public string Estado { get => "Confirmado"; }
-        
+        public int IdUsuario { get; set; }
+        public string Estado { get => "No confirmado"; }
+        public List<ActualizarResponsableRequest> Responsables { get; set; }
+        public ActualizarEstudianteRequest Estudiante { get; set; }
     }
-    public class ActualizarPreMatriculaResponse
+    public class ActualizarPreMatriculaAllResponse
     {
         public string Message { get; set; }
         public bool isOk()

@@ -75,7 +75,7 @@ namespace SiColegioMiHogar
                 // see https://go.microsoft.com/fwlink/?linkid=864501
 
                 spa.Options.SourcePath = "ClientApp";
-                spa.Options.StartupTimeout = new TimeSpan(0, 5, 0);
+                spa.Options.StartupTimeout = new TimeSpan(0, 3, 0);
                 if (env.IsDevelopment())
                 {
                     spa.UseAngularCliServer(npmScript: "start");

@@ -2,8 +2,10 @@
 using BackEnd.Base;
 using BackEnd.Estudiante.Dominio;
 using BackEnd.PreMatricula.Aplicacion.Request;
+using BackEnd.PreMatricula.Aplicacion.Service.Actualizar;
 using BackEnd.PreMatricula.Aplicacion.Service.Crear;
 using BackEnd.PreMatricula.Dominio;
+using BackEnd.Responsable.Dominio;
 using BackEnd.Usuario.Dominio;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +23,7 @@ namespace SiColegioMiHogar.Controllers
     {
         private readonly MiHogarContext _context;
         private CrearPreMatriculaService _service;
+        private ActualizarPreMatriculaAllService _actualizarService;
         private UnitOfWork _unitOfWork;
         public PreMatriculaController(MiHogarContext context)
         {
@@ -49,9 +52,40 @@ namespace SiColegioMiHogar.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetPreMatricula([FromRoute] int id)
+        public object GetPreMatricula([FromRoute] int id)
         {
-            PreMatricula preMatricula = await _context.PreMatricula.SingleOrDefaultAsync(t => t.Id == id);
+            var estudiante = (from p in _context.Set<PreMatricula>()
+                          join u in _context.Set<Usuario>()
+                          on p.IdUsuario equals u.Id
+                          join e in _context.Set<Estudiante>()
+                          on u.Id equals e.IdUsuario
+                          where p.Id == id
+                          select new
+                          {
+                              e
+                          }).ToList();
+            
+            var responsables = (from p in _context.Set<PreMatricula>()
+                                join u in _context.Set<Usuario>()
+                                on p.IdUsuario equals u.Id
+                                join r in _context.Set<Responsable>()
+                                on u.Id equals r.IdUsuario
+                                where p.Id == id
+                                select new
+                                {
+                                    r
+                                }).ToList();
+
+            var preMatricula = (from p in _context.Set<PreMatricula>()
+                                where p.Id == id
+                                select new
+                                {                                    
+                                    IdPrematricula = p.Id,
+                                    p.IdUsuario,
+                                    estudiante,
+                                    responsables
+                                }).ToList();
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(preMatricula, Newtonsoft.Json.Formatting.Indented);
             if (preMatricula == null)
                 return NotFound();
             return Ok(preMatricula);
@@ -66,6 +100,19 @@ namespace SiColegioMiHogar.Controllers
             {
                 await _context.SaveChangesAsync();
                 return CreatedAtAction("GetPreMatricula", new { Id = request.id }, request);
+            }
+            return BadRequest(rta.Message);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutPreMatricula([FromRoute] string id, [FromBody] ActualizarPreMatriculaAllRequest request)
+        {
+            _actualizarService = new ActualizarPreMatriculaAllService(_unitOfWork);
+            var rta = _actualizarService.Ejecutar(request);
+            if (rta.isOk())
+            {
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetPreMatricula", new { id = request.id }, request);
             }
             return BadRequest(rta.Message);
         }
