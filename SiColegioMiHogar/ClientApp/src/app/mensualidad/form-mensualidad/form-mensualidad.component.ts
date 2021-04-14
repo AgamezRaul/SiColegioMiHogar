@@ -4,7 +4,7 @@ import { UrlSegment } from '@angular/router';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IMensualidad } from '../mensualidad.component';
 import { MensualidadService } from '../mensualidad.service';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-form-mensualidad',
   templateUrl: './form-mensualidad.component.html',
@@ -14,7 +14,7 @@ export class FormMensualidadComponent implements OnInit {
 
 
   constructor(private fb: FormBuilder, private mensualidadService: MensualidadService,
-    private router: Router, private activatedRoute: ActivatedRoute) { }
+    private router: Router, private activatedRoute: ActivatedRoute, private location: Location) { }
   modoEdicion: boolean = false;
   id: number;
   idMensu: number;
@@ -84,7 +84,7 @@ export class FormMensualidadComponent implements OnInit {
       mensualidad.id = this.idMensu;
       if (this.formGroup.valid) {
         this.mensualidadService.updateMensualidad(mensualidad)
-          .subscribe(mensualidad => this.onSaveSuccess1(),
+          .subscribe(mensualidad => this.goBack(),
             error => console.error(error));
       } else { console.log('No valido') }
       
@@ -104,10 +104,10 @@ export class FormMensualidadComponent implements OnInit {
  onSaveSuccess() {
    this.router.navigate(["/consultar-mensualidad/"+this.id]);
   }
-  onSaveSuccess1() {
-    this.router.navigate(["/matricula"]);
+ 
+  goBack(): void{
+    this.location.back();
   }
-  
 
   get mes() {
     return this.formGroup.get('mes');

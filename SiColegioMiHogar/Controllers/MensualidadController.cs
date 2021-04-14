@@ -5,6 +5,7 @@ using BackEnd.Matricula.Dominio;
 using BackEnd.Mensualidad.Aplicacion.Request;
 using BackEnd.Mensualidad.Aplicacion.Service.Actualizar;
 using BackEnd.Mensualidad.Aplicacion.Service.Crear;
+using BackEnd.Mensualidad.Aplicacion.Service.Eliminar;
 using BackEnd.Mensualidad.Dominio;
 using BackEnd.PreMatricula.Dominio;
 using BackEnd.Usuario.Dominio;
@@ -24,6 +25,7 @@ namespace SiColegioMiHogar.Controllers
         private readonly MiHogarContext _context;
         private CrearMensualidadService _service;
         private ActualizarMensualidadService _actualizarService;
+        private EliminarMensualidadService _eliminarService;
         private UnitOfWork _unitOfWork;
         public MensualidadController(MiHogarContext context)
         {
@@ -127,6 +129,15 @@ namespace SiColegioMiHogar.Controllers
             return BadRequest(rta.Message);
         }
 
+        [HttpDelete("{id}")]
+        public object DeleteMensualidad([FromRoute] int id)
+        {
+            _eliminarService = new EliminarMensualidadService(_unitOfWork);
+            EliminarMensualidadRequest request = new EliminarMensualidadRequest();
+            request.IdMensualidad = id;
+            var rta = _eliminarService.Ejecutar(request);
+            return Ok(rta);
+        }
 
         /* public IActionResult Index()
          {
