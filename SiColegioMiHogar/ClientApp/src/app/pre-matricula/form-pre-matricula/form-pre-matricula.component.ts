@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { element } from 'protractor';
 import { IEstudiante } from '../../estudiante/estudiante.component';
 import { LoginService } from '../../login/login.service';
 import { IResponsable } from '../../responsable/responsable.component';
@@ -14,10 +15,14 @@ import { PreMatriculaService } from '../pre-matricula.service';
 export class FormPreMatriculaComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private serviceUser: LoginService,
-    private servicePrematricula: PreMatriculaService, private router: Router) { }
+    private servicePrematricula: PreMatriculaService, private router: Router,
+    private activatedRoute: ActivatedRoute  ) { }
 
   responsables: IResponsable[] = [];
+  responsable: IResponsable;
   prematricula: IPrematricula;
+  modoEdicion: boolean = false;
+  prematriculaId: number;
 
   formGroupP = this.fb.group({
     ideResponsable: ['12345', [Validators.required]],
@@ -87,7 +92,15 @@ export class FormPreMatriculaComponent implements OnInit {
   });
 
   ngOnInit() {
-
+    this.activatedRoute.params.subscribe(params => {
+      if (params["id"] == undefined) {
+        return;
+      }
+      this.modoEdicion = true;
+      this.prematriculaId = params["id"];
+      this.servicePrematricula.getPrematricula(this.prematriculaId).subscribe(prematricula => this.cargarFormulario(prematricula),
+        error => error(error.message));
+    });
   }
 
   save() {
@@ -101,13 +114,92 @@ export class FormPreMatriculaComponent implements OnInit {
     this.responsables.push(responsablePadre, responsableMadre, responsableAcudiente);
     let estudiante: IEstudiante = Object.assign({}, this.formGroupE.value);
     estudiante.idUsuario = idUsuario;
-    this.prematricula = { idUsuario: idUsuario, responsables: this.responsables, estudiante: estudiante }
+    this.prematricula = { idPrematricula: this.prematriculaId, idUsuario: idUsuario, responsables: this.responsables, estudiante: estudiante }
+    if (this.modoEdicion) {
+      //edita
+      this.servicePrematricula.updatePreMatricula(this.prematricula)
+        .subscribe(prematricula => this.onSaveSuccess());
+    } else {
+      //crea
+      
+      console.log(this.prematricula);
+      this.servicePrematricula.createPrematricula(this.prematricula)
+        .subscribe(prematricula => this.onSaveSuccess());
+    }
+  }
 
-    console.log(this.prematricula);
-
-    this.servicePrematricula.createPrematricula(this.prematricula)
-      .subscribe(empleado => this.onSaveSuccess());
-    
+  cargarFormulario(prematricula: IPrematricula3) {
+    this.formGroupE.patchValue({
+      ideEstudiante: prematricula.estudiante.ideEstudiante,
+      nomEstudiante: prematricula.estudiante.nomEstudiante,
+      fecNacimiento: prematricula.estudiante.fecNacimiento,
+      lugNacimiento: prematricula.estudiante.lugNacimiento,
+      lugExpedicion: prematricula.estudiante.lugExpedicion,
+      insProcedencia: prematricula.estudiante.insProcedencia,
+      dirResidencia: prematricula.estudiante.dirResidencia,
+      celEstudiante: prematricula.estudiante.celEstudiante,
+      tipSangre: prematricula.estudiante.tipSangre,
+      gradoEstudiante: prematricula.estudiante.gradoEstudiante,
+      eps: prematricula.estudiante.eps,
+      correo: prematricula.estudiante.correo,
+      sexo: prematricula.estudiante.sexo,
+      tipoDocumento: prematricula.estudiante.tipoDocumento,
+      telEstudiante: prematricula.estudiante.telEstudiante
+    });
+    prematricula.responsables.forEach(element => {
+      if (element.tipoResponsable == "Padre") {
+        this.formGroupP.patchValue({
+          ideResponsable: element.ideResponsable,
+          nomResponsable: element.nomResponsable,
+          fecNacimiento: element.fecNacimiento,
+          lugNacimiento: element.lugNacimiento,
+          lugExpedicion: element.lugExpedicion,
+          tipDocumento: element.tipDocumento,
+          celResponsable: element.celResponsable,
+          profResponsable: element.profResponsable,
+          ocuResponsable: element.ocuResponsable,
+          entResponsable: element.entResponsable,
+          celEmpresa: element.celEmpresa,
+          tipoResponsable: element.tipoResponsable,
+          correo: element.correo,
+          acudiente: element.acudiente
+        });
+      } else if (element.tipoResponsable == "Madre") {
+        this.formGroupM.patchValue({
+          ideResponsable: element.ideResponsable,
+          nomResponsable: element.nomResponsable,
+          fecNacimiento: element.fecNacimiento,
+          lugNacimiento: element.lugNacimiento,
+          lugExpedicion: element.lugExpedicion,
+          tipDocumento: element.tipDocumento,
+          celResponsable: element.celResponsable,
+          profResponsable: element.profResponsable,
+          ocuResponsable: element.ocuResponsable,
+          entResponsable: element.entResponsable,
+          celEmpresa: element.celEmpresa,
+          tipoResponsable: element.tipoResponsable,
+          correo: element.correo,
+          acudiente: element.acudiente
+        });
+      } else if (element.tipoResponsable == "Acudiente") {
+        this.formGroupA.patchValue({
+          ideResponsable: element.ideResponsable,
+          nomResponsable: element.nomResponsable,
+          fecNacimiento: element.fecNacimiento,
+          lugNacimiento: element.lugNacimiento,
+          lugExpedicion: element.lugExpedicion,
+          tipDocumento: element.tipDocumento,
+          celResponsable: element.celResponsable,
+          profResponsable: element.profResponsable,
+          ocuResponsable: element.ocuResponsable,
+          entResponsable: element.entResponsable,
+          celEmpresa: element.celEmpresa,
+          tipoResponsable: element.tipoResponsable,
+          correo: element.correo,
+          acudiente: element.acudiente
+        });
+      }
+    }); 
   }
 
   onSaveSuccess() {
@@ -122,7 +214,16 @@ export interface IPrematricula2 {
 }
 
 export interface IPrematricula {
+  idPrematricula: number,
   idUsuario: number,
   responsables: IResponsable[],
   estudiante: IEstudiante
+}
+export interface IPrematricula3 {
+  id: number,
+  fecPrematricula: Date,
+  estado: string,
+  idUsuario: number,
+  estudiante: IEstudiante,
+  responsables: IResponsable[]  
 }

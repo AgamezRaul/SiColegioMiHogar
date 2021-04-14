@@ -92,8 +92,9 @@ import { DocenteComponent } from './docente/docente.component';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'registrar-usuario', component: FormUsuarioComponent },
-      { path: 'registrar-prematricula', component: FormPreMatriculaComponent },
       { path: 'prematricula', component: PreMatriculaComponent },
+      { path: 'registrar-prematricula', component: FormPreMatriculaComponent },
+      { path: 'editar-prematricula/:id', component: FormPreMatriculaComponent },
       { path: 'matricula', component: MatriculaComponent },
       { path: 'login', component: LoginComponent },
       { path: 'registrar-mensualidad/:id', component: FormMensualidadComponent },
