@@ -102,7 +102,7 @@ import { DocenteComponent } from './docente/docente.component';
 
       { path: 'consultar-mensualidad/:id', component: MensualidadComponent },
 
-      //{ path: 'list-mensualidad', component: MensualidadComponent },
+   
       { path: 'edit-mensualidad/:mes', component: EditMensualidadComponent },
       { path: 'registrar-curso', component: FormCursoComponent },
       { path: 'login', component: LoginComponent, canActivate: [CheckLoginGuard] },
