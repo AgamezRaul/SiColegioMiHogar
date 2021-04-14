@@ -44,7 +44,6 @@ namespace TestBackEnd.AplicacionTest.CrearTest
                      ValorMensualidad = 300.000,
                      DescuentoMensualidad = 50.000,
                      Abono = 100.000,
-                     Estado = "Mora",
                      IdMatricula = 001
 
                 },

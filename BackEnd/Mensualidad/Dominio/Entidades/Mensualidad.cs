@@ -32,6 +32,7 @@ namespace BackEnd.Mensualidad.Dominio
             IdMatricula = idMatricula;
             TotalMensualidad = totalMensualidad;
         }
+       
 
         public IReadOnlyList<string> CanCrear(Mensualidad mensualidad)
         {

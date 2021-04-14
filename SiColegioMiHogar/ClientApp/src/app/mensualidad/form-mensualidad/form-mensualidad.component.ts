@@ -25,8 +25,8 @@ export class FormMensualidadComponent implements OnInit {
     fechaPago: ['', [Validators.required]],
     valorMensualidad:  ['', [Validators.required]],
     descuentoMensualidad: ['', [Validators.required]],
-    abono: ['', [Validators.required]],
-    estado: ['', [Validators.required]]
+    abono: ['', [Validators.required]]
+    
   });
 
   ngOnInit(): void {
@@ -73,7 +73,7 @@ export class FormMensualidadComponent implements OnInit {
       valorMensualidad: mensualiadad.valorMensualidad,
       descuentoMensualidad: mensualiadad.descuentoMensualidad,
       abono: mensualiadad.abono,
-      estado: mensualiadad.estado
+     
     });
   }
   save() {
@@ -127,9 +127,7 @@ export class FormMensualidadComponent implements OnInit {
   get abono() {
     return this.formGroup.get('abono');
   }
-  get estado() {
-    return this.formGroup.get('estado');
-  }
+  
 }
 
 
