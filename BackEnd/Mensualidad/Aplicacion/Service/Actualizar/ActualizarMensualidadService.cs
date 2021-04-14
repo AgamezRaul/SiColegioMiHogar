@@ -30,7 +30,6 @@ namespace BackEnd.Mensualidad.Aplicacion.Service.Actualizar
                 mensualidad.Abono = request.Abono;
                 mensualidad.Deuda = request.Deuda;
                 mensualidad.Estado = request.Estado;
-                mensualidad.IdMatricula = request.IdMatricula;
                 mensualidad.TotalMensualidad = request.TotalMensualidad;
                 
                 _unitOfWork.MensualidadServiceRepository.Edit(mensualidad);

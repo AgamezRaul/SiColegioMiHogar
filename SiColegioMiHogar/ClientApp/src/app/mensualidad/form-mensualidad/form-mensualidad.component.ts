@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { UrlSegment } from '@angular/router';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IMensualidad } from '../mensualidad.component';
 import { MensualidadService } from '../mensualidad.service';
@@ -29,29 +30,40 @@ export class FormMensualidadComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
-      if (params["id"] == undefined) {
-        return;
-      }
-      if (params["idMensualidad"] == undefined) {
-        return;
-      }
 
+    //con esto se el url utilizo el primer semento para saber que url esta activa
+    const segments: UrlSegment[] = this.activatedRoute.snapshot.url;
+    console.log(segments[0].toString());
 
-      this.id = parseInt(params["id"]);
-      console.log(this.id);
-      //falta el condicional para saber si viene de matricula o viene de mensualidad edicion
-      if (this.idMensu != undefined) { this.modoEdicion = true; }
-      
-     
+    if (segments[0].toString() == 'registrar-mensualidad') {
+      this.modoEdicion = false;
+      console.log("Registando");
+      this.activatedRoute.params.subscribe(params => {
+        if (params["id"] == undefined) {
+          return;
+        }
+        this.id = parseInt(params["id"]);
+        console.log(this.id);
 
-      this.idMensu = parseInt(params["idMensualidad"]);
-      console.log(this.idMensu);
-      this.mensualidadService.getMensualidad(this.idMensu)
-        .subscribe(mensualidad => this.cargarFormulario(mensualidad),
-          error => console.error(error));
-    });
-  
+      });
+    }
+   else {
+      this.modoEdicion = true;
+      console.log("editando")
+      this.activatedRoute.params.subscribe(params => {
+
+        if (params["idMensualidad"] == undefined) {
+          return;
+        }
+        this.idMensu = parseInt(params["idMensualidad"]);
+        console.log(this.idMensu);
+
+        this.mensualidadService.getMensualidad(this.idMensu)
+          .subscribe(mensualidad => this.cargarFormulario(mensualidad),
+            error => console.error(error));
+      });
+    }
+   
   }
   cargarFormulario(mensualiadad: IMensualidad) {
     this.formGroup.patchValue({
@@ -71,7 +83,7 @@ export class FormMensualidadComponent implements OnInit {
     if (this.modoEdicion) {//editar el registro
       mensualidad.id = this.idMensu;
       this.mensualidadService.updateMensualidad(mensualidad)
-        .subscribe(mensualidad => this.onSaveSuccess(),
+        .subscribe(mensualidad => this.onSaveSuccess1(),
           error => console.error(error));
     }
     else {
@@ -88,7 +100,10 @@ export class FormMensualidadComponent implements OnInit {
  onSaveSuccess() {
    this.router.navigate(["/consultar-mensualidad/"+this.id]);
   }
-
+  onSaveSuccess1() {
+    this.router.navigate(["/matricula"]);
+  }
+  
 
   get mes() {
     return this.formGroup.get('mes');
