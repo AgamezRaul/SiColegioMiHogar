@@ -15,3 +15,25 @@ export class PreMatriculaComponent implements OnInit {
 
   }
 }
+export interface IPrematricula2 {
+  idusuario: number,
+  idPrematricula: number,
+  nomEstudiante: string,
+  fecPrematricula: Date,
+  estado: string,
+}
+
+export interface IPrematricula {
+  idPrematricula: number,
+  idUsuario: number,
+  responsables: IResponsable[],
+  estudiante: IEstudiante
+}
+export interface IPrematricula3 {
+  id: number,
+  fecPrematricula: Date,
+  estado: string,
+  idUsuario: number,
+  estudiante: IEstudiante,
+  responsables: IResponsable[]
+}
