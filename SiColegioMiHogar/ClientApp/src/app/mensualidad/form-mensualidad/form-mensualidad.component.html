@@ -1,3 +1,8 @@
+<h1 *ngIf="modoEdicion">Actualizar Pre Matricula</h1>
+<h1 *ngIf="!modoEdicion">
+  Registrar Pre Matricula
+</h1>
+
 <div class="container">
   <h1>Formulario de Mensualidad</h1>
   <form [formGroup]="formGroup" (ngSubmit)="save()">

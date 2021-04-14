@@ -11,10 +11,12 @@ import { MensualidadService } from '../mensualidad.service';
 })
 export class FormMensualidadComponent implements OnInit {
 
+
   constructor(private fb: FormBuilder, private mensualidadService: MensualidadService,
     private router: Router, private activatedRoute: ActivatedRoute) { }
-
+  modoEdicion: boolean = false;
   id: number;
+  idMensu: number;
 
   formGroup = this.fb.group({
     mes: ['', [Validators.required]],
@@ -31,20 +33,63 @@ export class FormMensualidadComponent implements OnInit {
       if (params["id"] == undefined) {
         return;
       }
+      if (params["idMensualidad"] == undefined) {
+        return;
+      }
+
+
       this.id = parseInt(params["id"]);
-    })
+      console.log(this.id);
+      //falta el condicional para saber si viene de matricula o viene de mensualidad edicion
+      if (this.idMensu != undefined) { this.modoEdicion = true; }
+      
+     
+
+      this.idMensu = parseInt(params["idMensualidad"]);
+      console.log(this.idMensu);
+      this.mensualidadService.getMensualidad(this.idMensu)
+        .subscribe(mensualidad => this.cargarFormulario(mensualidad),
+          error => console.error(error));
+    });
+  
+  }
+  cargarFormulario(mensualiadad: IMensualidad) {
+    this.formGroup.patchValue({
+      mes: mensualiadad.mes,
+      diaPago: mensualiadad.diaPago,
+      fechaPago: mensualiadad.fechaPago,
+      valorMensualidad: mensualiadad.valorMensualidad,
+      descuentoMensualidad: mensualiadad.descuentoMensualidad,
+      abono: mensualiadad.abono,
+      estado: mensualiadad.estado
+    });
   }
   save() {
     let mensualidad: IMensualidad = Object.assign({}, this.formGroup.value);
-    mensualidad.idMatricula = this.id;
-    console.table(mensualidad); //ver mensualidad por consola
-    this.mensualidadService.createMensualidad(mensualidad)
-      .subscribe(mensualidad => this.onSaveSuccess());
+  
+
+    if (this.modoEdicion) {//editar el registro
+      mensualidad.id = this.idMensu;
+      this.mensualidadService.updateMensualidad(mensualidad)
+        .subscribe(mensualidad => this.onSaveSuccess(),
+          error => console.error(error));
+    }
+    else {
+    
+      mensualidad.idMatricula = this.id;
+      console.table(mensualidad); //ver mensualidad por consola
+      this.mensualidadService.createMensualidad(mensualidad)
+        .subscribe(mensualidad => this.onSaveSuccess());
+
+    }
+    
 
   }
-  onSaveSuccess() {
-    this.router.navigate(["/list-mensualidad"]);
+ onSaveSuccess() {
+   this.router.navigate(["/consultar-mensualidad/"+this.id]);
   }
+
+
   get mes() {
     return this.formGroup.get('mes');
   }
