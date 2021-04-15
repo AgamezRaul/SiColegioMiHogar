@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IMensualidad } from '../mensualidad.component';
 import { MensualidadService } from '../mensualidad.service';
 import { Location } from '@angular/common';
+import { error } from 'protractor';
+import { equal } from 'assert';
 @Component({
   selector: 'app-form-mensualidad',
   templateUrl: './form-mensualidad.component.html',
@@ -61,6 +63,7 @@ export class FormMensualidadComponent implements OnInit {
         this.mensualidadService.getMensualidad(this.idMensu)
           .subscribe(mensualidad => this.cargarFormulario(mensualidad),
             error => console.error(error));
+        //validar cuando es repetida para avisarle al usuario
       });
     }
    
@@ -95,7 +98,8 @@ export class FormMensualidadComponent implements OnInit {
       console.table(mensualidad); //ver mensualidad por consola
       if (this.formGroup.valid) {
         this.mensualidadService.createMensualidad(mensualidad)
-          .subscribe(mensualidad => this.onSaveSuccess());
+          .subscribe(mensualidad => this.onSaveSuccess()),
+          error => console.error(error);
       } else { console.log('No valido') }
          }
     

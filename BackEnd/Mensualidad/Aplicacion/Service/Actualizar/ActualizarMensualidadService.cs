@@ -22,7 +22,7 @@ namespace BackEnd.Mensualidad.Aplicacion.Service.Actualizar
             }
             else
             {
-                mensualidad.Mes = request.Mes;
+                //mensualidad.Mes = request.Mes;
                 mensualidad.DiaPago = request.DiaPago;
                 mensualidad.FechaPago = request.FechaPago;
                 mensualidad.ValorMensualidad = request.ValorMensualidad;

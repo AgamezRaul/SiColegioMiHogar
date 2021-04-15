@@ -112,7 +112,7 @@ namespace SiColegioMiHogar.Controllers
             {
                 await _context.SaveChangesAsync();
                 //preguntar por lo que esta denteo del new
-                return CreatedAtAction("GetMensualidad", new { mes = mensualidad.Mes }, mensualidad);
+                return CreatedAtAction("GetMensualidad", new { Id = mensualidad.id }, mensualidad);
             }
             return BadRequest(rta.Message);
         }
