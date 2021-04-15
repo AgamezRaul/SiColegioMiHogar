@@ -43,6 +43,10 @@ import { CursoComponent } from './curso/curso.component';
 import { FormCursoComponent } from './curso/form-curso/form-curso.component';
 import { TableCursoComponent } from './curso/table-curso/table-curso.component';
 import { DocenteComponent } from './docente/docente.component';
+import { ListMateriaComponent } from './gestion-de-materias/list-materia/list-materia.component';
+import { GestionDeMateriasService } from './gestion-de-materias/gestion-de-materias.service';
+import { FromMateriaComponent } from './gestion-de-materias/from-materia/from-materia.component';
+import { EditMateriaComponent } from './gestion-de-materias/edit-materia/edit-materia.component';
 
 
 @NgModule({
@@ -75,6 +79,9 @@ import { DocenteComponent } from './docente/docente.component';
     FormCursoComponent,
     TableCursoComponent,
     DocenteComponent,
+    ListMateriaComponent,
+    FromMateriaComponent,
+    EditMateriaComponent,
 
   ],
   imports: [
@@ -99,11 +106,13 @@ import { DocenteComponent } from './docente/docente.component';
       { path: 'consultar-mensualidad/:id', component: MensualidadComponent },
       { path: 'registrar-curso', component: FormCursoComponent },
       { path: 'login', component: LoginComponent, canActivate: [CheckLoginGuard] },
-      { path: 'gestion-de-materias', component: GestionDeMateriasComponent }
+      { path: 'materias', component: ListMateriaComponent },
+      { path: 'registrar-materia', component: FromMateriaComponent },
+      { path: 'registrar-materia/:idMateria', component: FromMateriaComponent }
 ], { relativeLinkResolution: 'legacy' })
   ],
   //Aquí en providers se agregan todos los services de angular
-  providers: [UsuarioService, PreMatriculaService, CdkColumnDef],
+  providers: [UsuarioService, PreMatriculaService, CdkColumnDef, GestionDeMateriasService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

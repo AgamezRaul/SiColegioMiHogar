@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators  } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { GestionDeMateriasService } from './gestion-de-materias.service';
 
 @Component({
   selector: 'app-gestion-de-materias',
@@ -9,29 +10,25 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class GestionDeMateriasComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private router: Router,
-    private activatedRoute: ActivatedRoute) { }
+  constructor() { }
 
-  formGroup = this.fb.group({
-    IdMateria: ['', [Validators.required]],
-    nomMateria: ['', [Validators.required]],
-    NombreDocente: ['', [Validators.required]],
-    NombreCurso: ['', [Validators.required]]
-  });
-
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
-  get IdMateria() {
-    return this.formGroup.get('IdMateria');
-  }
-  get nomMateria() {
-    return this.formGroup.get('nomMateria');
-  }
-  get NombreDocente() {
-    return this.formGroup.get('NombreDocente');
-  }
-  get NombreCurso() {
-    return this.formGroup.get('NombreCurso');
-  }
+}
+
+export interface IMateria {
+
+  IdMateria: number,
+  NombreMateria: string,
+  IdDocente: number,
+  IdCurso: number
+}
+
+export interface IMateria2 {
+
+  IdMateria: number,
+  NombreMateria: string,
+  IdDocente: number,
+  IdCurso: number
 }
