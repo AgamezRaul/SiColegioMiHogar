@@ -33,10 +33,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="Jenkinsfile" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\BackEnd\BackEnd.csproj" />
   </ItemGroup>
 
