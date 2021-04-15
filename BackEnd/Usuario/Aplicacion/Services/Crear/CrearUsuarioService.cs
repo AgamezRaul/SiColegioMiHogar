@@ -21,7 +21,7 @@ namespace BackEnd.Usuario.Aplicacion.Services.Crear
             {
                 Dominio.Usuario newUsuario = new Dominio.Usuario(request.Correo,request.Password, request.TipoUsuario);
 
-                if (newUsuario.Password.Length < 6)
+                if (newUsuario.Password.Length > 6)
                 {
                     IReadOnlyList<string> errors = newUsuario.CanCrear(newUsuario);
 
