@@ -6,6 +6,8 @@ using BackEnd.Responsable.Dominio.Repositories;
 using BackEnd.Usuario.Dominio.Repositories;
 using BackEnd.Curso.Dominio.Repositories;
 using BackEnd.Docente.Dominio.Repositories;
+using BackEnd.Nota.Dominio.Repositories;
+using BackEnd.Periodo.Dominio.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -24,7 +26,8 @@ namespace BackEnd.Base
         IMensualidadServiceRepository MensualidadServiceRepository { get; }
         IMateriaServiceRepository MateriaServiceRepository { get; }
         IDocenteServiceRepository DocenteServiceRepository { get;  }
-
+        InotaServiceRepository NotaServiceRepository { get; }
+        IPeriodoServiceRepository PeriodoServiceRepository { get; }
 
         int Commit();
     }
