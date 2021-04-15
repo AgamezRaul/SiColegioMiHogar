@@ -20,12 +20,11 @@ export class PreMatriculaService {
   }
 
   createPrematricula(prematricula: IPrematricula): Observable<IPrematricula> {
-    console.log(prematricula);
     return this.http.post<IPrematricula>(this.apiURL, prematricula);
   }
 
   updatePreMatricula(prematricula: IPrematricula): Observable<IPrematricula> {
-    return this.http.put<IPrematricula>(this.apiURL + "/" + prematricula.idPrematricula.toString(), prematricula);
+    return this.http.put<IPrematricula>(this.apiURL + "/" + prematricula.id.toString(), prematricula);
   }
 
   deletePreMatricula(idUsuario: number): Observable<number> {

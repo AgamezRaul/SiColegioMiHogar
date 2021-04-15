@@ -24,6 +24,7 @@ namespace SiColegioMiHogar.Controllers
     {
         private readonly MiHogarContext _context;
         private CrearPreMatriculaService _service;
+        private ActualizarPreMatriculaService _actualizarEstadoService;
         private ActualizarPreMatriculaAllService _actualizarService;
         private EliminarPreMatriculaService _eliminarService;
         private UnitOfWork _unitOfWork;
@@ -56,15 +57,15 @@ namespace SiColegioMiHogar.Controllers
         public object GetPreMatricula([FromRoute] int id)
         {
             var estudiante = (from p in _context.Set<PreMatricula>()
-                          join u in _context.Set<Usuario>()
-                          on p.IdUsuario equals u.Id
-                          join e in _context.Set<Estudiante>()
-                          on u.Id equals e.IdUsuario
-                          where p.Id == id
-                          select new
-                          {
-                              e
-                          }).ToList();
+                              join u in _context.Set<Usuario>()
+                              on p.IdUsuario equals u.Id
+                              join e in _context.Set<Estudiante>()
+                              on u.Id equals e.IdUsuario
+                              where p.Id == id
+                              select new
+                              {
+                                  e
+                              }).ToList();
             
             var responsables = (from p in _context.Set<PreMatricula>()
                                 join u in _context.Set<Usuario>()
@@ -80,7 +81,7 @@ namespace SiColegioMiHogar.Controllers
             var preMatricula = (from p in _context.Set<PreMatricula>()
                                 where p.Id == id
                                 select new
-                                {                                    
+                                {
                                     IdPrematricula = p.Id,
                                     p.IdUsuario,
                                     estudiante,

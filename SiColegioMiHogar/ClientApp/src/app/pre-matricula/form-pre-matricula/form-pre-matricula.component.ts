@@ -21,12 +21,13 @@ export class FormPreMatriculaComponent implements OnInit {
   responsables: IResponsable[] = [];
   responsable: IResponsable;
   prematricula: IPrematricula;
+  prematricula1: IPrematricula;
   modoEdicion: boolean = false;
   prematriculaId: number;
 
   formGroupP = this.fb.group({
     ideResponsable: ['1998001', [Validators.required]],
-    nomResponsable: ['Luis', [Validators.required]],
+    nomResponsable: ['', [Validators.required]],
     fecNacimiento: ['', [Validators.required]],
     lugNacimiento: ['Cesar', [Validators.required]],
     lugExpedicion: ['Valledupar', [Validators.required]],
@@ -42,7 +43,7 @@ export class FormPreMatriculaComponent implements OnInit {
   });
   formGroupM = this.fb.group({
     ideResponsable: ['1998002', [Validators.required]],
-    nomResponsable: ['Camila', [Validators.required]],
+    nomResponsable: ['', [Validators.required]],
     fecNacimiento: ['', [Validators.required]],
     lugNacimiento: ['Cesar', [Validators.required]],
     lugExpedicion: ['Valledupar', [Validators.required]],
@@ -58,7 +59,7 @@ export class FormPreMatriculaComponent implements OnInit {
   });
   formGroupA = this.fb.group({
     ideResponsable: ['1998003', [Validators.required]],
-    nomResponsable: ['Camilo', [Validators.required]],
+    nomResponsable: ['', [Validators.required]],
     fecNacimiento: ['', [Validators.required]],
     lugNacimiento: ['Cesar', [Validators.required]],
     lugExpedicion: ['Valledupar', [Validators.required]],
@@ -74,8 +75,8 @@ export class FormPreMatriculaComponent implements OnInit {
   });
   
   formGroupE = this.fb.group({
-    ideEstudiante: ['109283097', [Validators.required]],
-    nomEstudiante: ['Raul Agamez', [Validators.required]],
+    ideEstudiante: ['143614', [Validators.required]],
+    nomEstudiante: ['Raul A', [Validators.required]],
     fecNacimiento: ['', [Validators.required]],
     lugNacimiento: ['Valledupar', [Validators.required]],
     lugExpedicion: ['Valledupar', [Validators.required]],
@@ -97,10 +98,10 @@ export class FormPreMatriculaComponent implements OnInit {
         return;
       }
       this.modoEdicion = true;
-      this.prematriculaId = params["id"];
-      console.log(this.prematriculaId);
+      this.prematriculaId = parseInt(params["id"]);
+      //console.log(this.prematriculaId);
       this.servicePrematricula.getPrematricula(this.prematriculaId)
-        .subscribe(prematricula => console.log(prematricula.idPrematricula)/*this.cargarFormulario(prematricula)*/,
+        .subscribe(prematricula => this.cargarFormulario(prematricula),
         error => error(error.message)); 
     });
   }
@@ -116,7 +117,7 @@ export class FormPreMatriculaComponent implements OnInit {
     this.responsables.push(responsablePadre, responsableMadre, responsableAcudiente);
     let estudiante: IEstudiante = Object.assign({}, this.formGroupE.value);
     estudiante.idUsuario = idUsuario;
-    this.prematricula = { idPrematricula: this.prematriculaId, idUsuario: idUsuario, responsables: this.responsables, estudiante: estudiante }
+    this.prematricula = { id: this.prematriculaId, idUsuario: idUsuario, responsables: this.responsables, estudiante: estudiante }
     if (this.modoEdicion) {
       //edita
       this.servicePrematricula.updatePreMatricula(this.prematricula)
@@ -130,75 +131,75 @@ export class FormPreMatriculaComponent implements OnInit {
     }
   }
 
-  cargarFormulario(prematricula: IPrematricula) {
+  cargarFormulario(prematricula: IPrematricula) {    
     this.formGroupE.patchValue({
-      ideEstudiante: prematricula.estudiante.ideEstudiante,
-      nomEstudiante: prematricula.estudiante.nomEstudiante,
-      fecNacimiento: prematricula.estudiante.fecNacimiento,
-      lugNacimiento: prematricula.estudiante.lugNacimiento,
-      lugExpedicion: prematricula.estudiante.lugExpedicion,
-      insProcedencia: prematricula.estudiante.insProcedencia,
-      dirResidencia: prematricula.estudiante.dirResidencia,
-      celEstudiante: prematricula.estudiante.celEstudiante,
-      tipSangre: prematricula.estudiante.tipSangre,
-      gradoEstudiante: prematricula.estudiante.gradoEstudiante,
-      eps: prematricula.estudiante.eps,
-      correo: prematricula.estudiante.correo,
-      sexo: prematricula.estudiante.sexo,
-      tipoDocumento: prematricula.estudiante.tipoDocumento,
-      telEstudiante: prematricula.estudiante.telEstudiante
+      ideEstudiante: prematricula[0].estudiante[0].e['ideEstudiante'],
+      nomEstudiante: prematricula[0].estudiante[0].e['nomEstudiante'],
+      fecNacimiento: prematricula[0].estudiante[0].e['fecNacimiento'],
+      lugNacimiento: prematricula[0].estudiante[0].e['lugNacimiento'],
+      lugExpedicion: prematricula[0].estudiante[0].e['lugExpedicion'],
+      insProcedencia: prematricula[0].estudiante[0].e['insProcedencia'],
+      dirResidencia: prematricula[0].estudiante[0].e['dirResidencia'],
+      celEstudiante: prematricula[0].estudiante[0].e['celEstudiante'],
+      tipSangre: prematricula[0].estudiante[0].e['tipSangre'],
+      gradoEstudiante: prematricula[0].estudiante[0].e['gradoEstudiante'],
+      eps: prematricula[0].estudiante[0].e['eps'],
+      correo: prematricula[0].estudiante[0].e['correo'],
+      sexo: prematricula[0].estudiante[0].e['sexo'],
+      tipoDocumento: prematricula[0].estudiante[0].e['tipoDocumento'],
+      telEstudiante: prematricula[0].estudiante[0].e['telEstudiante']
     });
-    prematricula.responsables.forEach(element => {
-      if (element.tipoResponsable == "Padre") {
+    prematricula[0].responsables.forEach(element => {      
+      if (element.r.tipoResponsable == "Padre") {
         this.formGroupP.patchValue({
-          ideResponsable: element.ideResponsable,
-          nomResponsable: element.nomResponsable,
-          fecNacimiento: element.fecNacimiento,
-          lugNacimiento: element.lugNacimiento,
-          lugExpedicion: element.lugExpedicion,
-          tipDocumento: element.tipDocumento,
-          celResponsable: element.celResponsable,
-          profResponsable: element.profResponsable,
-          ocuResponsable: element.ocuResponsable,
-          entResponsable: element.entResponsable,
-          celEmpresa: element.celEmpresa,
-          tipoResponsable: element.tipoResponsable,
-          correo: element.correo,
-          acudiente: element.acudiente
+          ideResponsable: element.r.ideResponsable,
+          nomResponsable: element.r.nomResponsable,
+          fecNacimiento: element.r.fecNacimiento,
+          lugNacimiento: element.r.lugNacimiento,
+          lugExpedicion: element.r.lugExpedicion,
+          tipDocumento: element.r.tipDocumento,
+          celResponsable: element.r.celResponsable,
+          profResponsable: element.r.profResponsable,
+          ocuResponsable: element.r.ocuResponsable,
+          entResponsable: element.r.entResponsable,
+          celEmpresa: element.r.celEmpresa,
+          tipoResponsable: element.r.tipoResponsable,
+          correo: element.r.correo,
+          acudiente: element.r.acudiente
         });
-      } else if (element.tipoResponsable == "Madre") {
+      } else if (element.r.tipoResponsable == "Madre") {
         this.formGroupM.patchValue({
-          ideResponsable: element.ideResponsable,
-          nomResponsable: element.nomResponsable,
-          fecNacimiento: element.fecNacimiento,
-          lugNacimiento: element.lugNacimiento,
-          lugExpedicion: element.lugExpedicion,
-          tipDocumento: element.tipDocumento,
-          celResponsable: element.celResponsable,
-          profResponsable: element.profResponsable,
-          ocuResponsable: element.ocuResponsable,
-          entResponsable: element.entResponsable,
-          celEmpresa: element.celEmpresa,
-          tipoResponsable: element.tipoResponsable,
-          correo: element.correo,
-          acudiente: element.acudiente
+          ideResponsable: element.r.ideResponsable,
+          nomResponsable: element.r.nomResponsable,
+          fecNacimiento: element.r.fecNacimiento,
+          lugNacimiento: element.r.lugNacimiento,
+          lugExpedicion: element.r.lugExpedicion,
+          tipDocumento: element.r.tipDocumento,
+          celResponsable: element.r.celResponsable,
+          profResponsable: element.r.profResponsable,
+          ocuResponsable: element.r.ocuResponsable,
+          entResponsable: element.r.entResponsable,
+          celEmpresa: element.r.celEmpresa,
+          tipoResponsable: element.r.tipoResponsable,
+          correo: element.r.correo,
+          acudiente: element.r.acudiente
         });
-      } else if (element.tipoResponsable == "Acudiente") {
+      } else if (element.r.tipoResponsable == "Acudiente") {
         this.formGroupA.patchValue({
-          ideResponsable: element.ideResponsable,
-          nomResponsable: element.nomResponsable,
-          fecNacimiento: element.fecNacimiento,
-          lugNacimiento: element.lugNacimiento,
-          lugExpedicion: element.lugExpedicion,
-          tipDocumento: element.tipDocumento,
-          celResponsable: element.celResponsable,
-          profResponsable: element.profResponsable,
-          ocuResponsable: element.ocuResponsable,
-          entResponsable: element.entResponsable,
-          celEmpresa: element.celEmpresa,
-          tipoResponsable: element.tipoResponsable,
-          correo: element.correo,
-          acudiente: element.acudiente
+          ideResponsable: element.r.ideResponsable,
+          nomResponsable: element.r.nomResponsable,
+          fecNacimiento: element.r.fecNacimiento,
+          lugNacimiento: element.r.lugNacimiento,
+          lugExpedicion: element.r.lugExpedicion,
+          tipDocumento: element.r.tipDocumento,
+          celResponsable: element.r.celResponsable,
+          profResponsable: element.r.profResponsable,
+          ocuResponsable: element.r.ocuResponsable,
+          entResponsable: element.r.entResponsable,
+          celEmpresa: element.r.celEmpresa,
+          tipoResponsable: element.r.tipoResponsable,
+          correo: element.r.correo,
+          acudiente: element.r.acudiente
         });
       }
     }); 

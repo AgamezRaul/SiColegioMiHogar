@@ -22,7 +22,6 @@ namespace BackEnd.PreMatricula.Aplicacion.Service.Actualizar
             }
             else
             {
-                prematricula.FecPrematricula = request.FecPrematricula;
                 prematricula.Estado = request.Estado;
                 _unitOfWork.PreMatriculaServiceRepository.Edit(prematricula);
                 _unitOfWork.Commit();

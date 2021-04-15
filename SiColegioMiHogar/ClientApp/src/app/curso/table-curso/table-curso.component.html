@@ -1,0 +1,56 @@
+<div class="table-responsive">
+  <mat-form-field>
+    <mat-label>Buscar</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Buscar" #input>
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+
+    <!-- id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> Id del curso </th>
+      <td mat-cell *matCellDef="let element"> {{element.Id}} </td>
+    </ng-container>
+
+    <!-- nombre Column -->
+    <ng-container matColumnDef="nombre" hidden>
+      <th mat-header-cell *matHeaderCellDef> Nombre del curso </th>
+      <td mat-cell *matCellDef="let element"> {{element.NombreCurso}} </td>
+    </ng-container>
+
+    <!-- maxEstudiantes Column -->
+    <ng-container matColumnDef="maxEstudiantes">
+      <th mat-header-cell *matHeaderCellDef> Máximo de estudiantes </th>
+      <td mat-cell *matCellDef="let element"> {{element.MaximoEstudiantes}} </td>
+    </ng-container>
+    <!-- IdDirector Column -->
+    <ng-container matColumnDef="idDirector">
+      <th mat-header-cell *matHeaderCellDef> Id Director </th>
+      <td mat-cell *matCellDef="let element"> {{element.IdDirector}} </td>
+    </ng-container>
+    <!-- NombreDirector Column -->
+    <ng-container matColumnDef="nombreDirector">
+      <th mat-header-cell *matHeaderCellDef> Nombre director </th>
+      <td mat-cell *matCellDef="let element"> {{element.NombreDirector}} </td>
+    </ng-container>
+    <!-- Cedula Column -->
+    <ng-container matColumnDef="cedula">
+      <th mat-header-cell *matHeaderCellDef> Cédula docente </th>
+      <td mat-cell *matCellDef="let element"> {{element.CedulaDocente}} </td>
+    </ng-container>
+    <!--Options-->
+    <ng-container matColumnDef="options">
+      <th mat-header-cell *matHeaderCellDef>Opciones</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button color="warn" [routerLink]='["/editar-curso/"+element.id]'>Editar</button>
+        <button mat-icon-button color="warn" (click)="Eliminar(element.id)"><mat-icon>delete_outline</mat-icon></button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
+
+<button (click)="Registrar()" class="btn-flotante">Nuevo Curso</button>

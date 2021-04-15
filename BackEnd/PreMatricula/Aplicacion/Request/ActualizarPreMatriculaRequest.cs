@@ -9,7 +9,6 @@ namespace BackEnd.PreMatricula.Aplicacion.Request
     public class ActualizarPreMatriculaRequest
     {
         public int id { get; set; }
-        public DateTime FecPrematricula { get => DateTime.Now.Date; }
         public string Estado { get => "Confirmado"; }
         
     }
