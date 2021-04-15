@@ -47,6 +47,9 @@ import { ListMateriaComponent } from './gestion-de-materias/list-materia/list-ma
 import { GestionDeMateriasService } from './gestion-de-materias/gestion-de-materias.service';
 import { FromMateriaComponent } from './gestion-de-materias/from-materia/from-materia.component';
 import { EditMateriaComponent } from './gestion-de-materias/edit-materia/edit-materia.component';
+import { PeriodoComponent } from './periodo/periodo.component';
+import { FormPeriodoComponent } from './periodo/form-periodo/form-periodo.component';
+import { TablePeriodoComponent } from './periodo/table-periodo/table-periodo.component';
 
 
 @NgModule({
@@ -82,6 +85,9 @@ import { EditMateriaComponent } from './gestion-de-materias/edit-materia/edit-ma
     ListMateriaComponent,
     FromMateriaComponent,
     EditMateriaComponent,
+    PeriodoComponent,
+    FormPeriodoComponent,
+    TablePeriodoComponent,
 
   ],
   imports: [
