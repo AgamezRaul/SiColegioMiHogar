@@ -4,6 +4,7 @@ using BackEnd.Estudiante.Dominio;
 using BackEnd.PreMatricula.Aplicacion.Request;
 using BackEnd.PreMatricula.Aplicacion.Service.Actualizar;
 using BackEnd.PreMatricula.Aplicacion.Service.Crear;
+using BackEnd.PreMatricula.Aplicacion.Service.Eliminar;
 using BackEnd.PreMatricula.Dominio;
 using BackEnd.Responsable.Dominio;
 using BackEnd.Usuario.Dominio;
@@ -23,7 +24,9 @@ namespace SiColegioMiHogar.Controllers
     {
         private readonly MiHogarContext _context;
         private CrearPreMatriculaService _service;
+        private ActualizarPreMatriculaService _actualizarEstadoService;
         private ActualizarPreMatriculaAllService _actualizarService;
+        private EliminarPreMatriculaService _eliminarService;
         private UnitOfWork _unitOfWork;
         public PreMatriculaController(MiHogarContext context)
         {
@@ -36,12 +39,11 @@ namespace SiColegioMiHogar.Controllers
         public object tablaPrematricula()
         {
             var result = (from p in _context.Set<PreMatricula>()
-                          join u in _context.Set<Usuario>()
-                          on p.IdUsuario equals u.Id
                           join e in _context.Set<Estudiante>()
-                          on u.Id equals e.IdUsuario
+                          on p.IdUsuario equals e.IdUsuario
                           select new
                           {
+                              IdUsuario = p.IdUsuario,
                               IdPrematricula = p.Id,
                               NomEstudiante = e.NomEstudiante,
                               FecPrematricula = p.FecPrematricula,
@@ -55,15 +57,15 @@ namespace SiColegioMiHogar.Controllers
         public object GetPreMatricula([FromRoute] int id)
         {
             var estudiante = (from p in _context.Set<PreMatricula>()
-                          join u in _context.Set<Usuario>()
-                          on p.IdUsuario equals u.Id
-                          join e in _context.Set<Estudiante>()
-                          on u.Id equals e.IdUsuario
-                          where p.Id == id
-                          select new
-                          {
-                              e
-                          }).ToList();
+                              join u in _context.Set<Usuario>()
+                              on p.IdUsuario equals u.Id
+                              join e in _context.Set<Estudiante>()
+                              on u.Id equals e.IdUsuario
+                              where p.Id == id
+                              select new
+                              {
+                                  e
+                              }).ToList();
             
             var responsables = (from p in _context.Set<PreMatricula>()
                                 join u in _context.Set<Usuario>()
@@ -79,7 +81,7 @@ namespace SiColegioMiHogar.Controllers
             var preMatricula = (from p in _context.Set<PreMatricula>()
                                 where p.Id == id
                                 select new
-                                {                                    
+                                {
                                     IdPrematricula = p.Id,
                                     p.IdUsuario,
                                     estudiante,
@@ -115,6 +117,16 @@ namespace SiColegioMiHogar.Controllers
                 return CreatedAtAction("GetPreMatricula", new { id = request.id }, request);
             }
             return BadRequest(rta.Message);
+        }
+
+        [HttpDelete("{id}")]
+        public object DeletePreMatricula([FromRoute] int id)
+        {
+            _eliminarService = new EliminarPreMatriculaService(_unitOfWork);
+            EliminarPreMatriculaRequest request = new EliminarPreMatriculaRequest();
+            request.UsuarioId = id;
+            var rta = _eliminarService.Ejecutar(request);
+            return Ok(rta);
         }
     }
 }

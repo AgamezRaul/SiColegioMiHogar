@@ -4,8 +4,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { PreMatriculaService } from '../pre-matricula.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { IPrematricula2, IPrematricula3 } from '../form-pre-matricula/form-pre-matricula.component';
 import { MatriculaService } from '../../matricula/matricula.service';
+import { IPrematricula, IPrematricula2 } from '../pre-matricula.component';
 
 @Component({
   selector: 'app-table-prematricula',
@@ -13,9 +13,10 @@ import { MatriculaService } from '../../matricula/matricula.service';
   styleUrls: ['./table-prematricula.component.css']
 })
 export class TablePrematriculaComponent implements OnInit {
-  prematricula3: IPrematricula3;
+  prematricula3: IPrematricula;
   prematricula!: IPrematricula2[];
   displayedColumns: string[] = [
+    'idUsuario',
     'idPrematricula',
     'nomEstudiante',
     'fecPrematricula',
@@ -57,5 +58,15 @@ export class TablePrematriculaComponent implements OnInit {
 
   onCrearMatriculaSuccess() {
     this.router.navigate(["/matricula"]);
+  }
+
+  Eliminar(idUsuario: number) {
+    this.prematriculaService.deletePreMatricula(idUsuario).
+      subscribe(nit => this.onDeleteSuccess(),
+        error => console.error(error))
+  }
+
+  onDeleteSuccess() {
+    this.router.navigate(["/prematricula"]);
   }
 }

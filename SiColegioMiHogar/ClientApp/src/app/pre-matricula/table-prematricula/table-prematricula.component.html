@@ -6,6 +6,18 @@
 
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
+    <!-- idUsuario Column -->
+    <ng-container matColumnDef="idUsuario" hidden>
+      <th mat-header-cell *matHeaderCellDef hidden> idUsuario </th>
+      <td mat-cell *matCellDef="let element" hidden> {{element.idUsuario}} </td>
+    </ng-container>
+
+    <!-- idPrematricula Column -->
+    <ng-container matColumnDef="idPrematricula" hidden>
+      <th mat-header-cell *matHeaderCellDef hidden> idPrematricula </th>
+      <td mat-cell *matCellDef="let element" hidden> {{element.idPrematricula}} </td>
+    </ng-container>
+
     <!-- nomEstudiante Column -->
     <ng-container matColumnDef="nomEstudiante">
       <th mat-header-cell *matHeaderCellDef> Fecha pre matricula </th>
@@ -26,7 +38,9 @@
     <ng-container matColumnDef="options">
       <th mat-header-cell *matHeaderCellDef>Opciones</th>
       <td mat-cell *matCellDef="let element">
-        <button mat-icon-button [routerLink]='["/editar-prematricula/" + element.idPrematricula]'>Editar</button>
+        <button mat-icon-button [routerLink]='["/editar-prematricula/" + element.idPrematricula]'><mat-icon> border_color</mat-icon></button>
+        <button mat-icon-button (click)="CrearMatricula(element.idPrematricula)"><mat-icon>done</mat-icon></button>
+        <button mat-icon-button color="warn" (click)="Eliminar(element.idUsuario)"><mat-icon>delete_outline</mat-icon></button>
       </td>
     </ng-container>
 
@@ -35,4 +49,4 @@
   </table>
   <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 </div>
-
+<button [routerLink]='["/registrar-prematricula"]' class="btn-flotante">Nueva Prematricula</button>

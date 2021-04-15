@@ -4,7 +4,9 @@ import { UrlSegment } from '@angular/router';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IMensualidad } from '../mensualidad.component';
 import { MensualidadService } from '../mensualidad.service';
-
+import { Location } from '@angular/common';
+import { error } from 'protractor';
+import { equal } from 'assert';
 @Component({
   selector: 'app-form-mensualidad',
   templateUrl: './form-mensualidad.component.html',
@@ -14,19 +16,19 @@ export class FormMensualidadComponent implements OnInit {
 
 
   constructor(private fb: FormBuilder, private mensualidadService: MensualidadService,
-    private router: Router, private activatedRoute: ActivatedRoute) { }
+    private router: Router, private activatedRoute: ActivatedRoute, private location: Location) { }
   modoEdicion: boolean = false;
   id: number;
   idMensu: number;
 
   formGroup = this.fb.group({
-    mes: ['', [Validators.required]],
-    diaPago: ['', [Validators.required]],
+    mes: ['', [Validators.required, Validators.min(1), Validators.max(12)]],
+    diaPago: ['', [Validators.required, Validators.min(1), Validators.max(31)]],
     fechaPago: ['', [Validators.required]],
     valorMensualidad:  ['', [Validators.required]],
     descuentoMensualidad: ['', [Validators.required]],
-    abono: ['', [Validators.required]],
-    estado: ['', [Validators.required]]
+    abono: ['', [Validators.required]]
+    
   });
 
   ngOnInit(): void {
@@ -61,6 +63,7 @@ export class FormMensualidadComponent implements OnInit {
         this.mensualidadService.getMensualidad(this.idMensu)
           .subscribe(mensualidad => this.cargarFormulario(mensualidad),
             error => console.error(error));
+        //validar cuando es repetida para avisarle al usuario
       });
     }
    
@@ -73,7 +76,7 @@ export class FormMensualidadComponent implements OnInit {
       valorMensualidad: mensualiadad.valorMensualidad,
       descuentoMensualidad: mensualiadad.descuentoMensualidad,
       abono: mensualiadad.abono,
-      estado: mensualiadad.estado
+     
     });
   }
   save() {
@@ -82,28 +85,33 @@ export class FormMensualidadComponent implements OnInit {
 
     if (this.modoEdicion) {//editar el registro
       mensualidad.id = this.idMensu;
-      this.mensualidadService.updateMensualidad(mensualidad)
-        .subscribe(mensualidad => this.onSaveSuccess1(),
-          error => console.error(error));
+      if (this.formGroup.valid) {
+        this.mensualidadService.updateMensualidad(mensualidad)
+          .subscribe(mensualidad => this.goBack(),
+            error => console.error(error));
+      } else { console.log('No valido') }
+      
     }
     else {
     
       mensualidad.idMatricula = this.id;
       console.table(mensualidad); //ver mensualidad por consola
-      this.mensualidadService.createMensualidad(mensualidad)
-        .subscribe(mensualidad => this.onSaveSuccess());
-
-    }
+      if (this.formGroup.valid) {
+        this.mensualidadService.createMensualidad(mensualidad)
+          .subscribe(mensualidad => this.onSaveSuccess()),
+          error => console.error(error);
+      } else { console.log('No valido') }
+         }
     
 
   }
  onSaveSuccess() {
    this.router.navigate(["/consultar-mensualidad/"+this.id]);
   }
-  onSaveSuccess1() {
-    this.router.navigate(["/matricula"]);
+ 
+  goBack(): void{
+    this.location.back();
   }
-  
 
   get mes() {
     return this.formGroup.get('mes');
@@ -123,9 +131,7 @@ export class FormMensualidadComponent implements OnInit {
   get abono() {
     return this.formGroup.get('abono');
   }
-  get estado() {
-    return this.formGroup.get('estado');
-  }
+  
 }
 
 
