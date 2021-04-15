@@ -23,7 +23,7 @@ export class SidenavMenuComponent implements OnInit {
   //  { name: "Consulta Mensualidades", route: "list-mensualidad", icon: "" },
     { name: "Registrar Curso", route: "registrar-curso", icon: "" },
     
-    { name: "Gestion de Materias", route: "gestion-de-materias", icon: "" },
+    { name: "Gestion de Materias", route: "materias", icon: "" },
 
   ]
   private _mobileQueryListener: () => void;

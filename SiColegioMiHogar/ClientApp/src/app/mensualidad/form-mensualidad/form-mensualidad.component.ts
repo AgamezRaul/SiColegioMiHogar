@@ -47,7 +47,7 @@ export class FormMensualidadComponent implements OnInit {
 
       });
     }
-   else {
+    else {
       this.modoEdicion = true;
       console.log("editando")
       this.activatedRoute.params.subscribe(params => {
