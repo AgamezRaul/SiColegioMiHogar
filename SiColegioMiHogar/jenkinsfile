@@ -1,0 +1,28 @@
+﻿node
+{
+
+    stage('Checkout') {
+        git url: 'https://github.com/AgamezRaul/SiColegioMiHogar.git',branch: 'master'
+    }
+
+    stage('Restore Nuget') {
+        bat "dotnet restore BackEnd/BackEnd.csproj"
+    }
+
+    stage('Clean') {
+        bat 'dotnet clean BackEnd/BackEnd.csproj'
+    }
+
+    stage('Build') {
+        bat 'dotnet build BackEnd/BackEnd.csproj --configuration Release'
+    }
+
+    stage('Publish') {
+        bat 'dotnet publish BackEnd/BackEnd.csproj -c Release -o D:/prueba/BackEnd/SiMiHogar'
+    }
+
+    stage('Report Email') {
+        emailext body: 'Se terminó de desplegar', subject: 'BackEnd - Se terminó de desplegar', to: 'raagamez@unicesar.edu.co'
+    }
+
+}
