@@ -114,7 +114,9 @@ import { TablePeriodoComponent } from './periodo/table-periodo/table-periodo.com
       { path: 'login', component: LoginComponent, canActivate: [CheckLoginGuard] },
       { path: 'materias', component: ListMateriaComponent },
       { path: 'registrar-materia', component: FromMateriaComponent },
-      { path: 'registrar-materia/:idMateria', component: FromMateriaComponent }
+      { path: 'registrar-materia/:idMateria', component: FromMateriaComponent },
+      { path: 'listar-periodos', component: TablePeriodoComponent },
+      { path: 'registrar-periodo', component: FormPeriodoComponent },
 ], { relativeLinkResolution: 'legacy' })
   ],
   //Aquí en providers se agregan todos los services de angular

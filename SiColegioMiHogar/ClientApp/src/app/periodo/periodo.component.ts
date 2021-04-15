@@ -13,3 +13,11 @@ export class PeriodoComponent implements OnInit {
   }
 
 }
+
+export interface IPeriodo {
+  id: number,
+  numeroPeriodo: number,
+  nombrePeriodo: string,
+  fechaInicio: Date,
+  fechaFin: Date
+}

@@ -1,1 +1,54 @@
-<p>form-periodo works!</p>
+<h1 *ngIf="modoEdicion">Actualizar Periodo</h1>
+<h1 *ngIf="!modoEdicion">Registrar Periodo</h1>
+
+<div class="container">
+  <h1>Formulario de Periodo</h1>
+  <form [formGroup]="formGroup" (ngSubmit)="save()">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="numeroPeriodo">Numero del periodo</label>
+            <input type="number" class="form-control" formControlName="numeroPeriodo" id="numeroPeriodo" placeholder="Ej: 04">
+            <div class="alert-danger" *ngIf="numeroPeriodo.invalid">
+            <div class="container-error-message" *ngIf="numeroPeriodo.errors.required">
+                El numero del periodo es requerido
+            </div>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="nombrePeriodo">Nombre del periodo</label>
+            <input type="text" class="form-control" formControlName="nombrePeriodo" id="nombrePeriodo" placeholder="Ej: 04">
+            <div class="alert-danger" *ngIf="nombrePeriodo.invalid">
+            <div class="container-error-message" *ngIf="nombrePeriodo.errors.required">
+                El nombre del periodo es requerido
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+            <div class="form-group col-md-6">
+            <label for="fechaInicio">Fecha de inicio del periodo</label>
+            <input type="date" formControlName="fechaInicio" class="form-control" id="fechaInicio">
+            <div class="alert-danger" *ngIf="fechaInicio.invalid">
+                <div class="container-error-message" *ngIf="fechaInicio.errors.required">
+                La fecha de inicio es requerida
+                </div>
+            </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="fechaFin">Fecha de finalizacion del periodo</label>
+                <input type="date" formControlName="fechaFin" class="form-control" id="fechaFin">
+                <div class="alert-danger" *ngIf="fechaFin.invalid">
+                <div class="container-error-message" *ngIf="fechaFin.errors.required">
+                    La fecha de finalizacion es requerida
+                </div>
+                </div>
+            </div>
+    </div>
+    <hr>
+   <div class="text-center">
+    <button type="submit" mat-raised-button color="primary" [disabled]="!formGroup.valid">
+        Salvar Periodo
+       </button>
+   </div>
+  </form>
+</div>
