@@ -16,7 +16,7 @@ namespace SiColegioMiHogar.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class NotaController : Controller
+    public class NotaController : ControllerBase
     {
         private readonly MiHogarContext _context;
         private CrearNotaService _service;

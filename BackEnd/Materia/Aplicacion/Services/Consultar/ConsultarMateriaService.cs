@@ -1,10 +1,10 @@
 ﻿using BackEnd.Base;
-using BackEnd.Nota.Aplicacion.Request;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using BackEnd.Nota.Dominio;
+using BackEnd.materias.Dominio.Entidades;
 
 namespace BackEnd.Materia.Aplicacion.Services.Consultar
 {
@@ -19,16 +19,16 @@ namespace BackEnd.Materia.Aplicacion.Services.Consultar
 
         }
 
-        public List<Nota.Dominio.Entidades.Nota> GetAll()
+        public List<Materias> GetAll()
         {
-            var res = _unitOfWork.NotaServiceRepository.FindBy();
+            var res = _unitOfWork.MateriaServiceRepository.FindBy();
             _unitOfWork.Dispose();
             return res.ToList();
         }
 
-        public Nota.Dominio.Entidades.Nota GetId(int id)
+        public Materias GetId(int id)
         {
-            var ConsultarID = _unitOfWork.NotaServiceRepository.Find(id);
+            var ConsultarID = _unitOfWork.MateriaServiceRepository.Find(id);
             _unitOfWork.Dispose();
             return ConsultarID;
         }
