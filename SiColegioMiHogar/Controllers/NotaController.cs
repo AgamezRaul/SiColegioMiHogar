@@ -2,6 +2,7 @@
 using BackEnd.Base;
 using BackEnd.Nota.Aplicacion.Request;
 using BackEnd.Nota.Aplicacion.Services;
+using BackEnd.Nota.Dominio.Entidades;
 using BackEnd.Nota.Dominio;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
@@ -45,6 +46,15 @@ namespace SiColegioMiHogar.Controllers
                 return CreatedAtAction("GetNota", new { nota = nota.IdEstudiante }, nota);
             }
             return BadRequest(rta.Message);
+        }
+
+        [HttpGet("[action]")]
+        public IEnumerable<Nota> Notas()
+        {
+            ConsultarNotaService servicio = new ConsultarNotaService(_unitOfWork);
+            List<Nota> Lista = servicio.GetAll();
+            return Lista;
+
         }
     }
 }
