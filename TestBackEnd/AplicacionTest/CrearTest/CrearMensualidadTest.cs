@@ -38,13 +38,12 @@ namespace TestBackEnd.AplicacionTest.CrearTest
                 new CrearMensualidadRequest
                 {
 
-                     Mes = "Abril",
+                     Mes = 4,
                      DiaPago = 5,
                      FechaPago = DateTime.Now,
                      ValorMensualidad = 300.000,
                      DescuentoMensualidad = 50.000,
                      Abono = 100.000,
-                     Estado = "Mora",
                      IdMatricula = 001
 
                 },

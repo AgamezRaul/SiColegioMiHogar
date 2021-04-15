@@ -1,3 +1,5 @@
+<h1 *ngIf="modoEdicion">Actualizar Pre Matricula</h1>
+<h1 *ngIf="!modoEdicion">Registrar Pre Matricula</h1>
 <form (submit)="save()" method="post">
   <mat-tab-group>
     <mat-tab label="Estudiante">
@@ -29,7 +31,20 @@
       </mat-grid-list>
     </mat-tab>
   </mat-tab-group>
-  <button type="submit" mat-raised-button color="primary">
-    Guardar pre matricula
-  </button>
+  <div class="form-group">
+    <div class="col-md-4 col-md-offset-2">
+      <span>
+        <button class="btn btn-success"
+                type="submit"
+                [disabled]="!formGroupE.valid">
+          Guardar
+        </button>
+        <button class="btn"
+                type="button"
+                [routerLink]='["/prematricula"]'>
+          Cancelar
+        </button>
+      </span>
+    </div>
+  </div>
 </form>

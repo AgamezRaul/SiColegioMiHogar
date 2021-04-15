@@ -9,10 +9,8 @@ namespace BackEnd.PreMatricula.Aplicacion.Request
     public class ActualizarPreMatriculaRequest
     {
         public int id { get; set; }
-        public DateTime FecPrematricula { get; set; }
-        public string Estado { get; set; }
-        public List<CrearResponsableRequest> Responsables { get; set; }
-        public CrearEstudianteRequest Estudiante { get; set; }
+        public string Estado { get => "Confirmado"; }
+        
     }
     public class ActualizarPreMatriculaResponse
     {

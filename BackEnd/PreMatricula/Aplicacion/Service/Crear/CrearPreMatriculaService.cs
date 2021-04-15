@@ -28,7 +28,7 @@ namespace BackEnd.PreMatricula.Aplicacion.Service.Crear
         }
         public CrearPreMatriculaResponse Ejecutar(CrearPreMatriculaRequest request)
         {
-            var prematricula = _unitOfWork.PreMatriculaServiceRepository.FindFirstOrDefault(t => t.Id == request.id);
+            var prematricula = _unitOfWork.PreMatriculaServiceRepository.FindFirstOrDefault(t => t.Id == request.id || t.IdUsuario == request.IdUsuario);
             if (prematricula == null)
             {
                 Dominio.PreMatricula newPreMatricula = new Dominio.PreMatricula(request.FecPrematricula, request.IdUsuario, request.Estado);

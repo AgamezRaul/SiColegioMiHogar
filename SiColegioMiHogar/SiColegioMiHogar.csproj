@@ -29,6 +29,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="jenkinsfile" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Jenkinsfile" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BackEnd\BackEnd.csproj" />
   </ItemGroup>
 

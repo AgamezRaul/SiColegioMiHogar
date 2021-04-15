@@ -1,5 +1,6 @@
 ﻿using BackEnd;
 using BackEnd.Base;
+using BackEnd.Docente.Dominio;
 using BackEnd.Curso.Aplicacion.Request;
 using BackEnd.Curso.Aplicacion.Service.Actualizar;
 using BackEnd.Curso.Aplicacion.Service.Crear;
@@ -19,6 +20,7 @@ namespace SiColegioMiHogar.Controllers
     {
         private readonly MiHogarContext _context;
         private CrearCursoService _service;
+        private ActualizarCursoService _actualizarService;
         private UnitOfWork _unitOfWork;
 
         public CursoController(MiHogarContext context)
@@ -28,10 +30,43 @@ namespace SiColegioMiHogar.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Curso> GetCurso()
+        public Object GetCursos()
         {
-            return _context.Curso;
+            var result = (from c in _context.Set<Curso>()
+                          join d in _context.Set<Docente>()
+                          on c.IdDirectorDocente equals d.Id
+                          select new
+                          {
+                              IdCurso = c.Id,
+                              NombreCurso = c.Nombre,
+                              MaximoEstudiantes = c.MaxEstudiantes,
+                              Docente = d.NombreCompleto,
+                              IdDocente = d.Id,
+                              CedulaDocente = d.Cedula
+                          }).ToList();
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
+            return result;
         }
+        [HttpGet("GetCursoDocente/{id}")]
+        public Object GetCursoDocente([FromRoute] int id)
+        {
+            var result = (from c in _context.Set<Curso>()
+                          join d in _context.Set<Docente>()
+                          on c.IdDirectorDocente equals d.Id
+                          where c.Id == id
+                          select new
+                          {
+                              IdCurso = c.Id,
+                              NombreCurso = c.Nombre,
+                              MaximoEstudiantes = c.MaxEstudiantes,
+                              Docente = d.NombreCompleto,
+                              IdDocente = d.Id,
+                              CedulaDocente = d.Cedula
+                          }).ToList();
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
+            return result;
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCurso([FromRoute] int id)
         {

@@ -5,6 +5,7 @@ using BackEnd.Matricula.Dominio;
 using BackEnd.Mensualidad.Aplicacion.Request;
 using BackEnd.Mensualidad.Aplicacion.Service.Actualizar;
 using BackEnd.Mensualidad.Aplicacion.Service.Crear;
+using BackEnd.Mensualidad.Aplicacion.Service.Eliminar;
 using BackEnd.Mensualidad.Dominio;
 using BackEnd.PreMatricula.Dominio;
 using BackEnd.Usuario.Dominio;
@@ -24,6 +25,7 @@ namespace SiColegioMiHogar.Controllers
         private readonly MiHogarContext _context;
         private CrearMensualidadService _service;
         private ActualizarMensualidadService _actualizarService;
+        private EliminarMensualidadService _eliminarService;
         private UnitOfWork _unitOfWork;
         public MensualidadController(MiHogarContext context)
         {
@@ -59,14 +61,48 @@ namespace SiColegioMiHogar.Controllers
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
             return result;
         }
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetMensualidad([FromRoute] string mes)
+
+        [HttpGet("GetMensualidadesMatricula/{id}")]
+        public object GetMensualidadesMatricula([FromRoute] int id)
         {
-            Mensualidad mensualidad = await _context.Mensualidad.SingleOrDefaultAsync(t => t.Mes == mes);
+            var result = (from m in _context.Set<Mensualidad>()
+                          join ma in _context.Set<Matricula>()
+                          on m.IdMatricula equals ma.Id
+                          join p in _context.Set<PreMatricula>()
+                          on ma.IdePreMatricula equals p.Id
+                          join u in _context.Set<Usuario>()
+                          on p.IdUsuario equals u.Id
+                          join e in _context.Set<Estudiante>()
+                          on u.Id equals e.IdUsuario
+                          where ma.Id == id
+                          select new
+                          {
+                              Id = m.Id,
+                              Estudiante = e.NomEstudiante,
+                              Mes = m.Mes,
+                              DiaPago = m.DiaPago,
+                              FechaPago = m.FechaPago,
+                              ValorMensualidad = m.ValorMensualidad,
+                              DescuentoMensualidad = m.DescuentoMensualidad,
+                              Abono = m.Abono,
+                              Deuda = m.Deuda,
+                              Estado = m.Estado,
+                              TotalMensualidad = m.TotalMensualidad
+                          }).ToList();
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
+            return result;
+        }
+
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetMensualidad([FromRoute] int id)
+        {
+            Mensualidad mensualidad = await _context.Mensualidad.SingleOrDefaultAsync(t => t.Id == id);
             if (mensualidad == null)
                 return NotFound();
             return Ok(mensualidad);
         }
+       
         [HttpPost]
         public async Task<IActionResult> CreateMensualidad([FromBody] CrearMensualidadRequest mensualidad)
         {
@@ -76,7 +112,7 @@ namespace SiColegioMiHogar.Controllers
             {
                 await _context.SaveChangesAsync();
                 //preguntar por lo que esta denteo del new
-                return CreatedAtAction("GetMensualidad", new { mes = mensualidad.Mes }, mensualidad);
+                return CreatedAtAction("GetMensualidad", new { Id = mensualidad.id }, mensualidad);
             }
             return BadRequest(rta.Message);
         }
@@ -88,13 +124,21 @@ namespace SiColegioMiHogar.Controllers
             if (rta.isOk())
             {
                 await _context.SaveChangesAsync();
-                return CreatedAtAction("GetMensualidad", new { mes = mensualidad.Mes }, mensualidad);
+                return CreatedAtAction("GetMensualidad", new { id = mensualidad.id }, mensualidad);
             }
             return BadRequest(rta.Message);
         }
-        
-      
-       
+
+        [HttpDelete("{id}")]
+        public object DeleteMensualidad([FromRoute] int id)
+        {
+            _eliminarService = new EliminarMensualidadService(_unitOfWork);
+            EliminarMensualidadRequest request = new EliminarMensualidadRequest();
+            request.IdMensualidad = id;
+            var rta = _eliminarService.Ejecutar(request);
+            return Ok(rta);
+        }
+
         /* public IActionResult Index()
          {
              return View();

@@ -18,13 +18,12 @@ namespace BackEnd.PreMatricula.Aplicacion.Service.Actualizar
             Dominio.PreMatricula prematricula = _unitOfWork.PreMatriculaServiceRepository.FindFirstOrDefault(t => t.Id == request.id);
             if (prematricula == null)
             {
-                return new ActualizarPreMatriculaResponse() { Message = $" PreMatricula no existe" };
+                return new ActualizarPreMatriculaResponse() { Message = $"PreMatricula no existe" };
             }
             else
             {
-                prematricula.FecPrematricula = request.FecPrematricula;
                 prematricula.Estado = request.Estado;
-                     _unitOfWork.PreMatriculaServiceRepository.Edit(prematricula);
+                _unitOfWork.PreMatriculaServiceRepository.Edit(prematricula);
                 _unitOfWork.Commit();
                 return new ActualizarPreMatriculaResponse() { Message = $"PreMatricula Actualizada Exitosamente" };
 

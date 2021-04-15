@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IEstudiante } from '../../estudiante/estudiante.component';
 import { LoginService } from '../../login/login.service';
 import { IResponsable } from '../../responsable/responsable.component';
+import { IPrematricula } from '../pre-matricula.component';
 import { PreMatriculaService } from '../pre-matricula.service';
 
 @Component({
@@ -14,80 +15,95 @@ import { PreMatriculaService } from '../pre-matricula.service';
 export class FormPreMatriculaComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private serviceUser: LoginService,
-    private servicePrematricula: PreMatriculaService, private router: Router) { }
+    private servicePrematricula: PreMatriculaService, private router: Router,
+    private activatedRoute: ActivatedRoute  ) { }
 
   responsables: IResponsable[] = [];
+  responsable: IResponsable;
   prematricula: IPrematricula;
+  prematricula1: IPrematricula;
+  modoEdicion: boolean = false;
+  prematriculaId: number;
 
   formGroupP = this.fb.group({
-    ideResponsable: ['12345', [Validators.required]],
-    nomResponsable: ['Raul', [Validators.required]],
+    ideResponsable: ['1998001', [Validators.required]],
+    nomResponsable: ['', [Validators.required]],
     fecNacimiento: ['', [Validators.required]],
-    lugNacimiento: ['Valledupar', [Validators.required]],
+    lugNacimiento: ['Cesar', [Validators.required]],
     lugExpedicion: ['Valledupar', [Validators.required]],
     tipDocumento: ['', [Validators.required]],
-    celResponsable: ['12312312', [Validators.required]],
-    profResponsable: ['Valledupar', [Validators.required]],
-    ocuResponsable: ['Valledupar', [Validators.required]],
-    entResponsable: ['Valledupar', [Validators.required]],
-    celEmpresa: ['12312323', [Validators.required]],
+    celResponsable: ['123456789', [Validators.required]],
+    profResponsable: ['Docente', [Validators.required]],
+    ocuResponsable: ['Docente', [Validators.required]],
+    entResponsable: ['Desconocido', [Validators.required]],
+    celEmpresa: ['Desconocido', [Validators.required]],
     tipoResponsable: ['Padre', [Validators.required]],
-    correo: ['Valledupar@Valledupar', [Validators.required]],
+    correo: ['luis@gmail.com', [Validators.required]],
     acudiente: ['', [Validators.required]]
   });
   formGroupM = this.fb.group({
-    ideResponsable: ['67890', [Validators.required]],
-    nomResponsable: ['Andres', [Validators.required]],
+    ideResponsable: ['1998002', [Validators.required]],
+    nomResponsable: ['', [Validators.required]],
     fecNacimiento: ['', [Validators.required]],
-    lugNacimiento: ['Valledupar', [Validators.required]],
+    lugNacimiento: ['Cesar', [Validators.required]],
     lugExpedicion: ['Valledupar', [Validators.required]],
     tipDocumento: ['', [Validators.required]],
-    celResponsable: ['12312312', [Validators.required]],
-    profResponsable: ['Valledupar', [Validators.required]],
-    ocuResponsable: ['Valledupar', [Validators.required]],
-    entResponsable: ['Valledupar', [Validators.required]],
-    celEmpresa: ['12312323', [Validators.required]],
+    celResponsable: ['123456789', [Validators.required]],
+    profResponsable: ['Docente', [Validators.required]],
+    ocuResponsable: ['Docente', [Validators.required]],
+    entResponsable: ['Desconocido', [Validators.required]],
+    celEmpresa: ['Desconocido', [Validators.required]],
     tipoResponsable: ['Madre', [Validators.required]],
-    correo: ['Valledupar@Valledupar', [Validators.required]],
+    correo: ['camila@gmail.com', [Validators.required]],
     acudiente: ['', [Validators.required]]
   });
   formGroupA = this.fb.group({
-    ideResponsable: ['13579', [Validators.required]],
-    nomResponsable: ['Agamez', [Validators.required]],
+    ideResponsable: ['1998003', [Validators.required]],
+    nomResponsable: ['', [Validators.required]],
     fecNacimiento: ['', [Validators.required]],
-    lugNacimiento: ['Valledupar', [Validators.required]],
+    lugNacimiento: ['Cesar', [Validators.required]],
     lugExpedicion: ['Valledupar', [Validators.required]],
     tipDocumento: ['', [Validators.required]],
-    celResponsable: ['12312312', [Validators.required]],
-    profResponsable: ['Valledupar', [Validators.required]],
-    ocuResponsable: ['Valledupar', [Validators.required]],
-    entResponsable: ['Valledupar', [Validators.required]],
-    celEmpresa: ['12312323', [Validators.required]],
+    celResponsable: ['123456789', [Validators.required]],
+    profResponsable: ['Docente', [Validators.required]],
+    ocuResponsable: ['Docente', [Validators.required]],
+    entResponsable: ['Desconocido', [Validators.required]],
+    celEmpresa: ['Desconocido', [Validators.required]],
     tipoResponsable: ['Acudiente', [Validators.required]],
-    correo: ['Valledupar@Valledupar', [Validators.required]],
+    correo: ['camilo@gmail.com', [Validators.required]],
     acudiente: ['Si', [Validators.required]]
   });
   
   formGroupE = this.fb.group({
-    ideEstudiante: ['12345678', [Validators.required]],
-    nomEstudiante: ['Rapalino', [Validators.required]],
+    ideEstudiante: ['143614', [Validators.required]],
+    nomEstudiante: ['Raul A', [Validators.required]],
     fecNacimiento: ['', [Validators.required]],
     lugNacimiento: ['Valledupar', [Validators.required]],
     lugExpedicion: ['Valledupar', [Validators.required]],
-    insProcedencia: ['Valledupar', [Validators.required]],
-    dirResidencia: ['Valledupar', [Validators.required]],
-    celEstudiante: ['123123123', [Validators.required]],
-    tipSangre: ['O+', [Validators.required]],
-    gradoEstudiante: ['Primero', [Validators.required]],
-    eps: ['Valledupar', [Validators.required]],
-    correo: ['Valledupar@Valledupar', [Validators.required]],
+    insProcedencia: ['Desconocido', [Validators.required]],
+    dirResidencia: ['Desconocido', [Validators.required]],
+    celEstudiante: ['Desconocido', [Validators.required]],
+    tipSangre: ['Desconocido', [Validators.required]],
+    gradoEstudiante: ['1', [Validators.required]],
+    eps: ['Desconocido', [Validators.required]],
+    correo: ['raulagamez@gmail.com', [Validators.required]],
     sexo: ['', [Validators.required]],
     tipoDocumento: ['', [Validators.required]],
-    telEstudiante: ['12312323', [Validators.required]]
+    telEstudiante: ['Desconocido', [Validators.required]]
   });
 
   ngOnInit() {
-
+    this.activatedRoute.params.subscribe(params => {
+      if (params["id"] == undefined) {
+        return;
+      }
+      this.modoEdicion = true;
+      this.prematriculaId = parseInt(params["id"]);
+      //console.log(this.prematriculaId);
+      this.servicePrematricula.getPrematricula(this.prematriculaId)
+        .subscribe(prematricula => this.cargarFormulario(prematricula),
+        error => error(error.message)); 
+    });
   }
 
   save() {
@@ -101,28 +117,96 @@ export class FormPreMatriculaComponent implements OnInit {
     this.responsables.push(responsablePadre, responsableMadre, responsableAcudiente);
     let estudiante: IEstudiante = Object.assign({}, this.formGroupE.value);
     estudiante.idUsuario = idUsuario;
-    this.prematricula = { idUsuario: idUsuario, responsables: this.responsables, estudiante: estudiante }
+    this.prematricula = { id: this.prematriculaId, idUsuario: idUsuario, responsables: this.responsables, estudiante: estudiante }
+    if (this.modoEdicion) {
+      //edita
+      this.servicePrematricula.updatePreMatricula(this.prematricula)
+        .subscribe(prematricula => this.onSaveSuccess());
+    } else {
+      //crea
+      
+      console.log(this.prematricula);
+      this.servicePrematricula.createPrematricula(this.prematricula)
+        .subscribe(prematricula => this.onSaveSuccess());
+    }
+  }
 
-    console.log(this.prematricula);
-
-    this.servicePrematricula.createPrematricula(this.prematricula)
-      .subscribe(empleado => this.onSaveSuccess());
-    
+  cargarFormulario(prematricula: IPrematricula) {    
+    this.formGroupE.patchValue({
+      ideEstudiante: prematricula[0].estudiante[0].e['ideEstudiante'],
+      nomEstudiante: prematricula[0].estudiante[0].e['nomEstudiante'],
+      fecNacimiento: prematricula[0].estudiante[0].e['fecNacimiento'],
+      lugNacimiento: prematricula[0].estudiante[0].e['lugNacimiento'],
+      lugExpedicion: prematricula[0].estudiante[0].e['lugExpedicion'],
+      insProcedencia: prematricula[0].estudiante[0].e['insProcedencia'],
+      dirResidencia: prematricula[0].estudiante[0].e['dirResidencia'],
+      celEstudiante: prematricula[0].estudiante[0].e['celEstudiante'],
+      tipSangre: prematricula[0].estudiante[0].e['tipSangre'],
+      gradoEstudiante: prematricula[0].estudiante[0].e['gradoEstudiante'],
+      eps: prematricula[0].estudiante[0].e['eps'],
+      correo: prematricula[0].estudiante[0].e['correo'],
+      sexo: prematricula[0].estudiante[0].e['sexo'],
+      tipoDocumento: prematricula[0].estudiante[0].e['tipoDocumento'],
+      telEstudiante: prematricula[0].estudiante[0].e['telEstudiante']
+    });
+    prematricula[0].responsables.forEach(element => {      
+      if (element.r.tipoResponsable == "Padre") {
+        this.formGroupP.patchValue({
+          ideResponsable: element.r.ideResponsable,
+          nomResponsable: element.r.nomResponsable,
+          fecNacimiento: element.r.fecNacimiento,
+          lugNacimiento: element.r.lugNacimiento,
+          lugExpedicion: element.r.lugExpedicion,
+          tipDocumento: element.r.tipDocumento,
+          celResponsable: element.r.celResponsable,
+          profResponsable: element.r.profResponsable,
+          ocuResponsable: element.r.ocuResponsable,
+          entResponsable: element.r.entResponsable,
+          celEmpresa: element.r.celEmpresa,
+          tipoResponsable: element.r.tipoResponsable,
+          correo: element.r.correo,
+          acudiente: element.r.acudiente
+        });
+      } else if (element.r.tipoResponsable == "Madre") {
+        this.formGroupM.patchValue({
+          ideResponsable: element.r.ideResponsable,
+          nomResponsable: element.r.nomResponsable,
+          fecNacimiento: element.r.fecNacimiento,
+          lugNacimiento: element.r.lugNacimiento,
+          lugExpedicion: element.r.lugExpedicion,
+          tipDocumento: element.r.tipDocumento,
+          celResponsable: element.r.celResponsable,
+          profResponsable: element.r.profResponsable,
+          ocuResponsable: element.r.ocuResponsable,
+          entResponsable: element.r.entResponsable,
+          celEmpresa: element.r.celEmpresa,
+          tipoResponsable: element.r.tipoResponsable,
+          correo: element.r.correo,
+          acudiente: element.r.acudiente
+        });
+      } else if (element.r.tipoResponsable == "Acudiente") {
+        this.formGroupA.patchValue({
+          ideResponsable: element.r.ideResponsable,
+          nomResponsable: element.r.nomResponsable,
+          fecNacimiento: element.r.fecNacimiento,
+          lugNacimiento: element.r.lugNacimiento,
+          lugExpedicion: element.r.lugExpedicion,
+          tipDocumento: element.r.tipDocumento,
+          celResponsable: element.r.celResponsable,
+          profResponsable: element.r.profResponsable,
+          ocuResponsable: element.r.ocuResponsable,
+          entResponsable: element.r.entResponsable,
+          celEmpresa: element.r.celEmpresa,
+          tipoResponsable: element.r.tipoResponsable,
+          correo: element.r.correo,
+          acudiente: element.r.acudiente
+        });
+      }
+    }); 
   }
 
   onSaveSuccess() {
     this.router.navigate(["/prematricula"]);
   }
 }
-export interface IPrematricula2 {
-  idPrematricula: number,
-  nomEstudiante: string,
-  fecPrematricula: Date,
-  estado: string,
-}
 
-export interface IPrematricula {
-  idUsuario: number,
-  responsables: IResponsable[],
-  estudiante: IEstudiante
-}

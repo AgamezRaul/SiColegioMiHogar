@@ -12,6 +12,12 @@
       <td mat-cell *matCellDef="let element"> {{element.estudiante}} </td>
     </ng-container>
 
+      <!-- id Column -->
+    <ng-container matColumnDef="id" hidden>
+      <th mat-header-cell *matHeaderCellDef> Id </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
     <!-- mes Column -->
     <ng-container matColumnDef="mes">
       <th mat-header-cell *matHeaderCellDef> Mes </th>
@@ -56,12 +62,14 @@
     <ng-container matColumnDef="totalMensualidad">
       <th mat-header-cell *matHeaderCellDef> Total Mensualidad </th>
       <td mat-cell *matCellDef="let element"> {{element.totalMensualidad}} </td>
+     
     </ng-container>
     <!--Options-->
     <ng-container matColumnDef="options">
       <th mat-header-cell *matHeaderCellDef>Opciones</th>
       <td mat-cell *matCellDef="let element">
-        <button mat-icon-button color="warn">Editar Mensualidad</button>
+        <button mat-icon-button color="warn" [routerLink]='["/editar-mensualidad/"+element.id]'>Editar</button>
+        <button mat-icon-button color="warn" (click)="Eliminar(element.id)"><mat-icon>delete_outline</mat-icon></button>
       </td>
     </ng-container>
 
@@ -70,3 +78,5 @@
   </table>
   <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 </div>
+
+  <button (click)="Registrar()" class="btn-flotante">Nueva Mensualidad</button>

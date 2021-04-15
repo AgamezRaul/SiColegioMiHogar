@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IPrematricula, IPrematricula2 } from './form-pre-matricula/form-pre-matricula.component';
+import { IPrematricula, IPrematricula2 } from './pre-matricula.component';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +20,15 @@ export class PreMatriculaService {
   }
 
   createPrematricula(prematricula: IPrematricula): Observable<IPrematricula> {
-    console.log(prematricula);
     return this.http.post<IPrematricula>(this.apiURL, prematricula);
+  }
+
+  updatePreMatricula(prematricula: IPrematricula): Observable<IPrematricula> {
+    return this.http.put<IPrematricula>(this.apiURL + "/" + prematricula.id.toString(), prematricula);
+  }
+
+  deletePreMatricula(idUsuario: number): Observable<number> {
+    return this.http.delete<number>(this.apiURL + "/" + idUsuario);
   }
 }
 

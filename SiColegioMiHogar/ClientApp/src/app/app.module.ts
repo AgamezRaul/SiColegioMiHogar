@@ -30,7 +30,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MensualidadComponent } from './mensualidad/mensualidad.component';
 import { FormMensualidadComponent } from './mensualidad/form-mensualidad/form-mensualidad.component';
 import { ListMensualidadComponent } from './mensualidad/list-mensualidad/list-mensualidad.component';
-import { EditMensualidadComponent } from './mensualidad/edit-mensualidad/edit-mensualidad.component';
 import { FormDocenteComponent } from './Docente/form-docente/form-docente.component';
 import { GestionDeMateriasComponent } from './gestion-de-materias/gestion-de-materias.component';
 import { UsuarioService } from './login/usuario/usuario.service';
@@ -44,6 +43,13 @@ import { CursoComponent } from './curso/curso.component';
 import { FormCursoComponent } from './curso/form-curso/form-curso.component';
 import { TableCursoComponent } from './curso/table-curso/table-curso.component';
 import { DocenteComponent } from './docente/docente.component';
+import { ListMateriaComponent } from './gestion-de-materias/list-materia/list-materia.component';
+import { GestionDeMateriasService } from './gestion-de-materias/gestion-de-materias.service';
+import { FromMateriaComponent } from './gestion-de-materias/from-materia/from-materia.component';
+import { EditMateriaComponent } from './gestion-de-materias/edit-materia/edit-materia.component';
+import { PeriodoComponent } from './periodo/periodo.component';
+import { FormPeriodoComponent } from './periodo/form-periodo/form-periodo.component';
+import { TablePeriodoComponent } from './periodo/table-periodo/table-periodo.component';
 
 
 @NgModule({
@@ -66,8 +72,6 @@ import { DocenteComponent } from './docente/docente.component';
     MensualidadComponent,
     FormMensualidadComponent,
     ListMensualidadComponent,
-    EditMensualidadComponent,
-  
     FormDocenteComponent,
     GestionDeMateriasComponent,
     TablePrematriculaComponent,
@@ -78,6 +82,12 @@ import { DocenteComponent } from './docente/docente.component';
     FormCursoComponent,
     TableCursoComponent,
     DocenteComponent,
+    ListMateriaComponent,
+    FromMateriaComponent,
+    EditMateriaComponent,
+    PeriodoComponent,
+    FormPeriodoComponent,
+    TablePeriodoComponent,
 
   ],
   imports: [
@@ -92,20 +102,23 @@ import { DocenteComponent } from './docente/docente.component';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'registrar-usuario', component: FormUsuarioComponent },
-      { path: 'registrar-prematricula', component: FormPreMatriculaComponent },
       { path: 'prematricula', component: PreMatriculaComponent },
+      { path: 'registrar-prematricula', component: FormPreMatriculaComponent },
+      { path: 'editar-prematricula/:id', component: FormPreMatriculaComponent },
       { path: 'matricula', component: MatriculaComponent },
       { path: 'login', component: LoginComponent },
       { path: 'registrar-mensualidad/:id', component: FormMensualidadComponent },
-      { path: 'list-mensualidad', component: MensualidadComponent },
-      { path: 'edit-mensualidad/:mes', component: EditMensualidadComponent },
+      { path: 'editar-mensualidad/:idMensualidad', component: FormMensualidadComponent },
+      { path: 'consultar-mensualidad/:id', component: MensualidadComponent },
       { path: 'registrar-curso', component: FormCursoComponent },
       { path: 'login', component: LoginComponent, canActivate: [CheckLoginGuard] },
-      { path: 'gestion-de-materias', component: GestionDeMateriasComponent }
+      { path: 'materias', component: ListMateriaComponent },
+      { path: 'registrar-materia', component: FromMateriaComponent },
+      { path: 'registrar-materia/:idMateria', component: FromMateriaComponent }
 ], { relativeLinkResolution: 'legacy' })
   ],
   //Aquí en providers se agregan todos los services de angular
-  providers: [UsuarioService, PreMatriculaService, CdkColumnDef],
+  providers: [UsuarioService, PreMatriculaService, CdkColumnDef, GestionDeMateriasService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

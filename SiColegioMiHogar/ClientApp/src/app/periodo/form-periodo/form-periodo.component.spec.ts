@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditMensualidadComponent } from './edit-mensualidad.component';
+import { FormPeriodoComponent } from './form-periodo.component';
 
-describe('EditMensualidadComponent', () => {
-  let component: EditMensualidadComponent;
-  let fixture: ComponentFixture<EditMensualidadComponent>;
+describe('FormPeriodoComponent', () => {
+  let component: FormPeriodoComponent;
+  let fixture: ComponentFixture<FormPeriodoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditMensualidadComponent ]
+      declarations: [ FormPeriodoComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditMensualidadComponent);
+    fixture = TestBed.createComponent(FormPeriodoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
