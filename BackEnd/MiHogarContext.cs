@@ -7,14 +7,19 @@ namespace BackEnd
 {
     public class MiHogarContext : DbContextBase
     {
-        public MiHogarContext(DbContextOptions options) : base(options)
-        {
-        }
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Data Source=localhost\SQLEXPRESS; Initial Catalog=BdColegioMiHogar; Integrated Security=True; MultipleActiveResultSets=True");
+            //optionsBuilder.UseSqlServer(@"Server=DESKTOP-FDBCSN1\SQLEXPRESS;Database=BdColegioMiHogar;Integrated Security=True;");
+        }
+        
+
+        public MiHogarContext(DbContextOptions options) : base(options)
+        {
         }
 
+       
         public DbSet<Estudiante.Dominio.Estudiante> Estudiante { get; set; }
         public DbSet<Matricula.Dominio.Matricula> Matricula { get; set; }
         public DbSet<PreMatricula.Dominio.PreMatricula> PreMatricula { get; set; }
@@ -24,5 +29,7 @@ namespace BackEnd
         public DbSet<Curso.Dominio.Curso> Curso { get; set; }
         public DbSet<materias.Dominio.Entidades.Materias> Materia { get; set; }
         public DbSet<Docente.Dominio.Docente> Docente { get; set; }
+        public DbSet<Nota.Dominio.Entidades.Nota> Nota { get; set; }
+        public DbSet<Periodo.Dominio.Periodo> Periodo { get; set; }
     }
 }
