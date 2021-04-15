@@ -24,7 +24,7 @@ export interface IPrematricula2 {
 }
 
 export interface IPrematricula {
-  idPrematricula: number,
+  id: number,
   idUsuario: number,
   responsables: IResponsable[],
   estudiante: IEstudiante

@@ -56,15 +56,32 @@ namespace SiColegioMiHogar.Controllers
         public object GetPreMatricula([FromRoute] int id)
         {
             var estudiante = (from p in _context.Set<PreMatricula>()
-                          join u in _context.Set<Usuario>()
-                          on p.IdUsuario equals u.Id
-                          join e in _context.Set<Estudiante>()
-                          on u.Id equals e.IdUsuario
-                          where p.Id == id
-                          select new
-                          {
-                              e
-                          }).ToList();
+                              join u in _context.Set<Usuario>()
+                              on p.IdUsuario equals u.Id
+                              join e in _context.Set<Estudiante>()
+                              on u.Id equals e.IdUsuario
+                              where p.Id == id
+                              select new
+                              {
+                                  /*e.CelEstudiante,
+                                  e.Correo,
+                                  e.DirResidencia,
+                                  e.Eps,
+                                  e.FecNacimiento,
+                                  e.GradoEstudiante,
+                                  e.Id,
+                                  e.IdeEstudiante,
+                                  e.IdUsuario,
+                                  e.InsProcedencia,
+                                  e.LugExpedicion,
+                                  e.LugNacimiento,
+                                  e.NomEstudiante,
+                                  e.Sexo,
+                                  e.TelEstudiante,
+                                  e.TipoDocumento,
+                                  e.TipSangre*/
+                                  e
+                              }).ToList();
             
             var responsables = (from p in _context.Set<PreMatricula>()
                                 join u in _context.Set<Usuario>()
@@ -80,7 +97,7 @@ namespace SiColegioMiHogar.Controllers
             var preMatricula = (from p in _context.Set<PreMatricula>()
                                 where p.Id == id
                                 select new
-                                {                                    
+                                {
                                     IdPrematricula = p.Id,
                                     p.IdUsuario,
                                     estudiante,

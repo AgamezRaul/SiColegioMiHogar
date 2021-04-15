@@ -67,6 +67,6 @@ export class TablePrematriculaComponent implements OnInit {
   }
 
   onDeleteSuccess() {
-    this.router.navigate(["/matricula"]);
+    this.router.navigate(["/prematricula"]);
   }
 }
