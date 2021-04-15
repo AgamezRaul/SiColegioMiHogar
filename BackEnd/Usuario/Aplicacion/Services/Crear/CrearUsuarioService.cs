@@ -21,22 +21,30 @@ namespace BackEnd.Usuario.Aplicacion.Services.Crear
             {
                 Dominio.Usuario newUsuario = new Dominio.Usuario(request.Correo,request.Password, request.TipoUsuario);
 
-                IReadOnlyList<string> errors = newUsuario.CanCrear(newUsuario);
-                if (errors.Any())
+                if (newUsuario.Password.Length < 6)
                 {
-                    string listaErrors = "Errores:";
-                    foreach (var item in errors)
+                    IReadOnlyList<string> errors = newUsuario.CanCrear(newUsuario);
+
+                    if (errors.Any())
                     {
-                        listaErrors += item.ToString();
+                        string listaErrors = "Errores:";
+                        foreach (var item in errors)
+                        {
+                            listaErrors += item.ToString();
+                        }
+                        return new CrearUsuarioResponse() { Message = listaErrors };
                     }
-                    return new CrearUsuarioResponse() { Message = listaErrors };
+                    else
+                    {
+                        _unitOfWork.UsuarioServiceRepository.Add(newUsuario);
+                        _unitOfWork.Commit();
+                        return new CrearUsuarioResponse() { Message = $"Usuario Creado Exitosamente" };
+                    }
                 }
                 else
                 {
-                    _unitOfWork.UsuarioServiceRepository.Add(newUsuario);
-                    _unitOfWork.Commit();
-                    return new CrearUsuarioResponse() { Message = $"Usuario Creado Exitosamente" };
-                }
+                    return new CrearUsuarioResponse() { Message = $"La contraseña debe de contener mas de 6 digitos" };
+                }  
             }
             else
             {
