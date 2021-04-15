@@ -15,6 +15,10 @@ using BackEnd.Curso.Infra;
 using BackEnd.Docente.Dominio.Repositories;
 using BackEnd.Docente.Infra;
 using Microsoft.EntityFrameworkCore;
+using BackEnd.Nota.Dominio.Repositories;
+using BackEnd.Nota.Infra;
+using BackEnd.Periodo.Dominio.Repositories;
+using BackEnd.Periodo.Infra;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -106,6 +110,24 @@ namespace BackEnd.Base
             get
             {
                 return _docenteServiceRepository ?? (_docenteServiceRepository = new DocenteServiceRepository(_dbContext));
+            }
+        }
+
+        private InotaServiceRepository _notaServiceRepository;
+        public InotaServiceRepository NotaServiceRepository
+        {
+            get
+            {
+                return _notaServiceRepository ?? (_notaServiceRepository = new NotaServiceRepository(_dbContext));
+            }
+        }
+
+        private IPeriodoServiceRepository _periodoServiceRepository;
+        public IPeriodoServiceRepository PeriodoServiceRepository
+        {
+            get
+            {
+                return _periodoServiceRepository ?? (_periodoServiceRepository = new PeriodoServiceRepository(_dbContext));
             }
         }
 

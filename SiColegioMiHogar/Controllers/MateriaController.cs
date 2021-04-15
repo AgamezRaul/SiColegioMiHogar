@@ -2,13 +2,11 @@
 using BackEnd.Base;
 using BackEnd.materias.Aplicacion.Request;
 using BackEnd.materias.Aplicacion.Services.Crear;
+using BackEnd.Materia.Aplicacion.Services.Consultar;
 using BackEnd.materias.Dominio.Entidades;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
@@ -56,6 +54,15 @@ namespace SiColegioMiHogar.Controllers
                 return CreatedAtAction("GetMateria", new { id = materias.Id }, materias);
             }
             return BadRequest(rta.Message);
+        }
+
+        [HttpGet("[action]")]
+        public IEnumerable<Materias> Materias()
+        {
+            ConsultarMateriaService  servicio = new ConsultarMateriaService(_unitOfWork);
+            List<Materias> Lista = servicio.GetAll();
+            return Lista;
+
         }
 
         /*         actualizar pero aun presenta errores
