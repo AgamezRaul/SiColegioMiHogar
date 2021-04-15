@@ -24,6 +24,7 @@ namespace SiColegioMiHogar.Controllers
     {
         private readonly MiHogarContext _context;
         private CrearPreMatriculaService _service;
+        private ActualizarPreMatriculaService _actualizarEstadoService;
         private ActualizarPreMatriculaAllService _actualizarService;
         private EliminarPreMatriculaService _eliminarService;
         private UnitOfWork _unitOfWork;
@@ -63,23 +64,6 @@ namespace SiColegioMiHogar.Controllers
                               where p.Id == id
                               select new
                               {
-                                  /*e.CelEstudiante,
-                                  e.Correo,
-                                  e.DirResidencia,
-                                  e.Eps,
-                                  e.FecNacimiento,
-                                  e.GradoEstudiante,
-                                  e.Id,
-                                  e.IdeEstudiante,
-                                  e.IdUsuario,
-                                  e.InsProcedencia,
-                                  e.LugExpedicion,
-                                  e.LugNacimiento,
-                                  e.NomEstudiante,
-                                  e.Sexo,
-                                  e.TelEstudiante,
-                                  e.TipoDocumento,
-                                  e.TipSangre*/
                                   e
                               }).ToList();
             

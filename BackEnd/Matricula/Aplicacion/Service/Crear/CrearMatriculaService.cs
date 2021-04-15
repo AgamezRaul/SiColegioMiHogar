@@ -1,5 +1,7 @@
 ﻿using BackEnd.Base;
 using BackEnd.Matricula.Aplicacion.Request;
+using BackEnd.PreMatricula.Aplicacion.Request;
+using BackEnd.PreMatricula.Aplicacion.Service.Actualizar;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +12,13 @@ namespace BackEnd.Matricula.Aplicacion.Service.Crear
    public class CrearMatriculaService
     {
         readonly IUnitOfWork _unitOfWork;
+        public ActualizarPreMatriculaService preMatriculaService;
+        public ActualizarPreMatriculaRequest preMatriculaRequest;
 
         public CrearMatriculaService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
+            preMatriculaService = new ActualizarPreMatriculaService(_unitOfWork);
         }
         public CrearMatriculaResponse Ejecutar(CrearMatriculaRequest request)
         {
@@ -21,7 +26,9 @@ namespace BackEnd.Matricula.Aplicacion.Service.Crear
             if (matricula == null)
             {
                 Dominio.Matricula newMatricula = new Dominio.Matricula(request.FecConfirmacion, request.IdPreMatricula);
-
+                preMatriculaRequest = new ActualizarPreMatriculaRequest();
+                preMatriculaRequest.id = request.IdPreMatricula;
+                var respuestaP = preMatriculaService.Ejecutar(preMatriculaRequest);
                 IReadOnlyList<string> errors = newMatricula.CanCrear(newMatricula);
                 if (errors.Any())
                 {
