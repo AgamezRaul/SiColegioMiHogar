@@ -30,7 +30,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MensualidadComponent } from './mensualidad/mensualidad.component';
 import { FormMensualidadComponent } from './mensualidad/form-mensualidad/form-mensualidad.component';
 import { ListMensualidadComponent } from './mensualidad/list-mensualidad/list-mensualidad.component';
-import { EditMensualidadComponent } from './mensualidad/edit-mensualidad/edit-mensualidad.component';
 import { FormDocenteComponent } from './Docente/form-docente/form-docente.component';
 import { GestionDeMateriasComponent } from './gestion-de-materias/gestion-de-materias.component';
 import { UsuarioService } from './login/usuario/usuario.service';
@@ -66,8 +65,6 @@ import { DocenteComponent } from './docente/docente.component';
     MensualidadComponent,
     FormMensualidadComponent,
     ListMensualidadComponent,
-    EditMensualidadComponent,
-  
     FormDocenteComponent,
     GestionDeMateriasComponent,
     TablePrematriculaComponent,
@@ -99,12 +96,7 @@ import { DocenteComponent } from './docente/docente.component';
       { path: 'login', component: LoginComponent },
       { path: 'registrar-mensualidad/:id', component: FormMensualidadComponent },
       { path: 'editar-mensualidad/:idMensualidad', component: FormMensualidadComponent },
-
-
       { path: 'consultar-mensualidad/:id', component: MensualidadComponent },
-
-   
-      { path: 'edit-mensualidad/:mes', component: EditMensualidadComponent },
       { path: 'registrar-curso', component: FormCursoComponent },
       { path: 'login', component: LoginComponent, canActivate: [CheckLoginGuard] },
       { path: 'gestion-de-materias', component: GestionDeMateriasComponent }

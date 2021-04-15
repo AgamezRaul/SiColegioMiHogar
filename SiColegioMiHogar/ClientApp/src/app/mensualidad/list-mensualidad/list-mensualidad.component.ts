@@ -1,18 +1,20 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IMensualidad, IMensualidad2 } from '../mensualidad.component';
 import { MensualidadService } from '../mensualidad.service';
+import { Location } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-list-mensualidad',
   templateUrl: './list-mensualidad.component.html',
   styleUrls: ['./list-mensualidad.component.css']
 })
-export class ListMensualidadComponent implements OnInit {
-
+export class ListMensualidadComponent implements OnInit, OnDestroy {
+  suscription: Subscription;
   mensualidad!: IMensualidad2[];
   displayedColumns: string[] = [
     'id',
@@ -30,7 +32,7 @@ export class ListMensualidadComponent implements OnInit {
   dataSource = new MatTableDataSource<IMensualidad2>(this.mensualidad);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  constructor(private mensualidadservice: MensualidadService, private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private mensualidadservice: MensualidadService, private router: Router, private activatedRoute: ActivatedRoute, private location: Location) {
   }
   id: number;
 
@@ -52,9 +54,29 @@ export class ListMensualidadComponent implements OnInit {
     this.mensualidadservice.getMensualidadesMatricula(this.id)
       .subscribe(mensualidades => this.dataSource.data = mensualidades,
         error => console.error(error));
+
+    this.suscription = this.mensualidadservice.refresh$.subscribe(() => {
+      this.mensualidadservice.getMensualidadesMatricula(this.id)
+        .subscribe(mensualidades => this.dataSource.data = mensualidades,
+          error => console.error(error));
+    });
+  }
+  ngOnDestroy(): void {
+    this.suscription.unsubscribe();
+    console.log('observable cerrado');
   }
   Registrar() {
     this.router.navigate(["/registrar-mensualidad/" + this.id]);
+  }
+
+  Eliminar(idMensualidad: number) {
+    this.mensualidadservice.deleteMensualidad(idMensualidad).
+      subscribe(nit => this.onDeleteSuccess(),
+        error => console.error(error))
+  }
+ 
+  onDeleteSuccess() {
+    this.router.navigate(["/consultar-mensualidad/"+this.id]);
   }
 }
 

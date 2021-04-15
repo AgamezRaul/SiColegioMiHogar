@@ -8,10 +8,35 @@
       <div class="form-group col-md-6">
         <label for="mes">Mes en el que se registra el pago</label>
         <input type="number" class="form-control" formControlName="mes" id="mes" placeholder="Ej: 05">
+        <div class="alert-danger" *ngIf="mes.invalid && (mes.dirty || mes.touched)">
+          <div class="container-error-message" *ngIf="mes.errors.required">
+            Mes es requerido
+          </div>
+          <div class="container-error-message" *ngIf="mes.errors.min">
+            El valor minimo del mes es 1, que indica enero
+          </div>
+          <div class="container-error-message" *ngIf="mes.errors.max">
+            El valor maximo del mes es 12, que indica diciembre
+          </div>
+          <div class="container-error-message" *ngIf="modoEdicion">
+            No puede actulizar el Mes
+          </div>
+        </div>
       </div>
       <div class="form-group col-md-6">
         <label for="diaPago">Dia acordado para pago</label>
         <input type="number" class="form-control" formControlName="diaPago" id="diaPago" placeholder="Ej: 04">
+        <div class="alert-danger" *ngIf="diaPago.invalid && (diaPago.dirty || diaPago.touched)">
+          <div class="container-error-message" *ngIf="diaPago.errors.required">
+            El dia del pago es requerido
+          </div>
+          <div class="container-error-message" *ngIf="diaPago.errors.min">
+            Valor mimimo de dia de pago es 1
+          </div>
+          <div class="container-error-message" *ngIf="diaPago.errors.max">
+            Valor maximo de dia de pago es 31
+          </div>
+        </div>
       </div>
     </div>
 
@@ -19,35 +44,43 @@
       <div class="form-group col-md-6">
         <label for="fechaPago">Fecha del pago</label>
         <input type="date" formControlName="fechaPago" class="form-control" id="date">
+        <div class="alert-danger" *ngIf="fechaPago.invalid && (fechaPago.dirty || fechaPago.touched)">
+          <div class="container-error-message" *ngIf="fechaPago.errors.required">
+            La fecha de Pago es requerida
+          </div>
+        </div>
       </div>
       <div class="form-group col-md-6">
         <label for="valorMensualidad">Valor mensualidad</label>
         <input type="number" class="form-control" formControlName="valorMensualidad" id="valorMensualidad" placeholder="Ej: 200.000">
+        <div class="alert-danger" *ngIf="valorMensualidad.invalid && (valorMensualidad.dirty || valorMensualidad.touched)">
+          <div class="container-error-message" *ngIf="valorMensualidad.errors.required">
+            El valor de Mensualidad es requerido
+          </div>
+        </div>
       </div>
     </div>
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="descuentoMensualidad">Descuento a mensualidad</label>
         <input type="number" class="form-control" formControlName="descuentoMensualidad" id="descuentoMensualidad" placeholder="Ej: 20.000">
+        <div class="alert-danger" *ngIf="descuentoMensualidad.invalid && (descuentoMensualidad.dirty || descuentoMensualidad.touched)">
+          <div class="container-error-message" *ngIf="descuentoMensualidad.errors.required">
+            El Descuento a mensualidad es requerido, Si no desea aplicar ninguno digite 0
+          </div>
+        </div>
       </div>
       <div class="form-group col-md-6">
         <label for="abono">Abono que se recibe</label>
         <input type="number" class="form-control" formControlName="abono" id="abono" placeholder="Ej: 100.000">
+        <div class="alert-danger" *ngIf="abono.invalid && (abono.dirty || abono.touched)">
+          <div class="container-error-message" *ngIf="abono.errors.required">
+            El Abono que se recibe es requerido
+          </div>
+        </div>
       </div>
     </div>
-
-
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="estado">Estado</label>
-        <select id="estado" formControlName="estado" class="form-control">
-          <option selected>Elija una opción</option>
-          <option>Paz y salvo</option>
-          <option>Mora</option>
-        </select>
-      </div>
-    </div>
-    <button type="submit" mat-raised-button color="primary">
+    <button type="submit" mat-raised-button color="primary" [disabled]="!formGroup.valid">
      Salvar Mensualidad
     </button>
   </form>
