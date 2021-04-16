@@ -50,6 +50,8 @@ import { EditMateriaComponent } from './gestion-de-materias/edit-materia/edit-ma
 import { PeriodoComponent } from './periodo/periodo.component';
 import { FormPeriodoComponent } from './periodo/form-periodo/form-periodo.component';
 import { TablePeriodoComponent } from './periodo/table-periodo/table-periodo.component';
+import { ListDocenteComponent } from './Docente/list-docente/list-docente.component';
+import { EditDocenteComponent } from './Docente/edit-docente/edit-docente.component';
 import { NotaComponent } from './nota/nota.component';
 import { FormNotaComponent } from './nota/form-nota/form-nota.component';
 import { TableNotaComponent } from './nota/table-nota/table-nota.component';
@@ -91,6 +93,8 @@ import { TableNotaComponent } from './nota/table-nota/table-nota.component';
     PeriodoComponent,
     FormPeriodoComponent,
     TablePeriodoComponent,
+    ListDocenteComponent,
+    EditDocenteComponent,
     NotaComponent,
     FormNotaComponent,
     TableNotaComponent,
@@ -122,6 +126,10 @@ import { TableNotaComponent } from './nota/table-nota/table-nota.component';
       { path: 'registrar-materia', component: FromMateriaComponent },
       { path: 'registrar-materia/:idMateria', component: FromMateriaComponent },
       { path: 'listar-periodos', component: TablePeriodoComponent },
+        { path: 'registrar-periodo', component: FormPeriodoComponent },
+        { path: 'registrar-Docente', component: DocenteComponent },
+        { path: 'lista-docente', component: ListDocenteComponent },
+        {path:'editar-docente',component:EditDocenteComponent},
       { path: 'registrar-periodo', component: FormPeriodoComponent },
       { path: 'listar-notas', component: TableNotaComponent },
       { path: 'registrar-nota', component: FormNotaComponent },

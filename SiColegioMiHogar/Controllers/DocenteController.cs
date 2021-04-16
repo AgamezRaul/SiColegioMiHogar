@@ -19,6 +19,7 @@ namespace SiColegioMiHogar.Controllers
     {
         private readonly MiHogarContext _context;
         private CrearDocenteService _service;
+        private ActualizarDocenteService _actualizarService;
         private UnitOfWork _unitOfWork;
 
         public DocenteController(MiHogarContext context)
@@ -28,6 +29,23 @@ namespace SiColegioMiHogar.Controllers
         }
 
         [HttpGet]
+        public Object GetDocentes()
+        {
+            var result = (from c in _context.Set<Docente>()
+                          select new
+                          {
+                              Id = c.Id,
+                              NombreCompleto = c.NombreCompleto,
+                              NumTarjetaProf = c.NumTarjetaProf,
+                              Cedula= c.Cedula,
+                              Celular=c.Celular,
+                              Correo = c.Correo
+                          }).ToList();
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
+            return result;
+        }
+
+
         public IEnumerable<Docente> GetDocente()
         {
             return _context.Docente;
@@ -49,6 +67,18 @@ namespace SiColegioMiHogar.Controllers
             {
                 await _context.SaveChangesAsync();
                 //busaca en la base de datos para guardar
+                return CreatedAtAction("GetDocente", new { id = docente.id }, docente);
+            }
+            return BadRequest(rta.Message);
+        }
+
+        public async Task<IActionResult> PutDocente([FromRoute] int id, [FromBody] ActualizarDocenteRequest docente)
+        {
+            _actualizarService = new ActualizarDocenteService(_unitOfWork);
+            var rta = _actualizarService.Ejecutar(docente);
+            if (rta.isOk())
+            {
+                await _context.SaveChangesAsync();
                 return CreatedAtAction("GetDocente", new { id = docente.id }, docente);
             }
             return BadRequest(rta.Message);

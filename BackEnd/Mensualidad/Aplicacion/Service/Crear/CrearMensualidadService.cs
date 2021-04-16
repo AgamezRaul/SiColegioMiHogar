@@ -17,9 +17,8 @@ namespace BackEnd.Mensualidad.Aplicacion.Service.Crear
         }
         public CrearMensualidadResponse Ejecutar(CrearMensualidadRequest request)
         {
-            var mensualidad = _unitOfWork.MensualidadServiceRepository.FindFirstOrDefault(t => t.Id == request.id);
-            var mensualidad2= _unitOfWork.MensualidadServiceRepository.FindFirstOrDefault(t => t.Mes == request.Mes);
-            if (mensualidad == null && mensualidad2==null)
+            var mensualidad = _unitOfWork.MensualidadServiceRepository.FindFirstOrDefault(t => t.Id == request.id || t.Mes==request.Mes && t.IdMatricula==request.IdMatricula);
+            if (mensualidad == null)
             {
                 Dominio.Mensualidad newMensualidad = new Dominio.Mensualidad(request.Mes, request.DiaPago,request.FechaPago,request.ValorMensualidad,
                     request.DescuentoMensualidad,request.Abono,request.Deuda,request.Estado,request.IdMatricula,request.TotalMensualidad);
