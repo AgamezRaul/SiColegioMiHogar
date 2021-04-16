@@ -119,11 +119,11 @@ import { EditDocenteComponent } from './Docente/edit-docente/edit-docente.compon
       { path: 'materias', component: ListMateriaComponent },
       { path: 'registrar-materia', component: FromMateriaComponent },
       { path: 'registrar-materia/:idMateria', component: FromMateriaComponent },
-
-      { path: 'registrar-Docente', component: DocenteComponent },
-      { path: 'lista-docente', component: ListDocenteComponent },
-      { path: 'editar-docente', component: EditDocenteComponent }
-
+      { path: 'listar-periodos', component: TablePeriodoComponent },
+        { path: 'registrar-periodo', component: FormPeriodoComponent },
+        { path: 'registrar-Docente', component: DocenteComponent },
+        { path: 'lista-docente', component: ListDocenteComponent },
+        {path:'editar-docente',component:EditDocenteComponent},
 ], { relativeLinkResolution: 'legacy' })
   ],
   //Aquí en providers se agregan todos los services de angular
