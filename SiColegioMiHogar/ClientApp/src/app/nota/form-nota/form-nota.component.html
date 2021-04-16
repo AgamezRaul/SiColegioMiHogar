@@ -1,0 +1,80 @@
+<h1 *ngIf="modoEdicion">Actualizar Nota</h1>
+<h1 *ngIf="!modoEdicion">Registrar Nota</h1>
+
+<div class="container">
+  <h1>Formulario de Notas</h1>
+  <form [formGroup]="formGroup" (ngSubmit)="save()">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="Descripcion">Descripcion</label>
+            <input type="text" class="form-control" formControlName="Descripcion" id="Descripcion" placeholder="Ej: 04">
+            <div class="alert-danger" *ngIf="Descripcion.invalid">
+            <div class="container-error-message" *ngIf="Descripcion.errors.required">
+                La Descripcion es requerida
+            </div>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="NotaAlumno">Nota del alumno</label>
+            <input type="number" class="form-control" formControlName="NotaAlumno" id="NotaAlumno" placeholder="Ej: 04">
+            <div class="alert-danger" *ngIf="NotaAlumno.invalid">
+            <div class="container-error-message" *ngIf="NotaAlumno.errors.required">
+                La Nota del Alumno es requerida
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+            <div class="form-group col-md-12">
+            <label for="IdEstudiante">Estudiante</label>
+            <select formControlName="IdEstudiante" ng-options="IEstudianteNota.nomEstudiante for IEstudianteNota in ListaEstudiantes" ng-model="IEstudianteNota" class="form-control" id="IdEstudiante">
+                <option value="">Seleccione un estudiante</option>
+                <option value="{{dato.ideEstudiante}}" *ngFor="let dato of ListaEstudiantes">
+                    {{dato.nomEstudiante}}
+                </option>
+            </select>
+            <div class="alert-danger" *ngIf="IdEstudiante.invalid">
+                <div class="container-error-message" *ngIf="IdEstudiante.errors.required">
+                 El estudiante es requerido
+                </div>
+            </div>
+            </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+        <label for="IdPeriodo">Periodo</label>
+        <select formControlName="IdPeriodo" class="form-control" id="IdPeriodo">
+            <option value="">Seleccione un periodo</option>
+                <option value="{{dato.id}}" *ngFor="let dato of ListaPeriodos">
+                    {{dato.nombrePeriodo}} -> {{dato.fechaInicio.split('T')[0]}} - {{dato.fechaFin.split('T')[0]}}
+                </option>
+        </select>
+        <div class="alert-danger" *ngIf="IdPeriodo.invalid">
+            <div class="container-error-message" *ngIf="IdPeriodo.errors.required">
+             El estudiante es requerido
+            </div>
+        </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="IdMateria">Materia</label>
+            <select formControlName="IdMateria" class="form-control" id="IdMateria">
+                <option value="">Seleccione una materia</option>
+                <option value="{{dato.idMateria}}" *ngFor="let dato of ListaMaterias">
+                    {{dato.nombreMateria}} 
+                </option>
+            </select>
+            <div class="alert-danger" *ngIf="IdMateria.invalid">
+                <div class="container-error-message" *ngIf="IdMateria.errors.required">
+                 La materia es requerida
+                </div>
+            </div>
+        </div>
+</div>
+    <hr>
+   <div class="text-center">
+    <button type="submit" mat-raised-button color="primary" [disabled]="!formGroup.valid">
+        Salvar Nota
+       </button>
+   </div>
+  </form>
+</div>

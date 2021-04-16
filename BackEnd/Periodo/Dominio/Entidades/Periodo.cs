@@ -13,6 +13,10 @@ namespace BackEnd.Periodo.Dominio
         public DateTime FechaInicio { get; set; }
         public DateTime FechaFin { get; set; }
        
+        public Periodo()
+        {
+
+        }
 
         public Periodo(int NumeroPeriodo, string NombrePeriodo, DateTime FechaInicio, DateTime FechaFin)
         {

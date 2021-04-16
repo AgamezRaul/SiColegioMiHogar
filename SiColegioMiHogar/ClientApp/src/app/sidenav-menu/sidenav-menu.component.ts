@@ -24,6 +24,8 @@ export class SidenavMenuComponent implements OnInit {
     { name: "Registrar Curso", route: "registrar-curso", icon: "" },
     { name: "Periodos", route: "listar-periodos", icon: "" },
     { name: "Registrar Periodo", route: "registrar-periodo", icon: "" },
+    { name: "Notas", route: "listar-notas", icon: "" },
+    { name: "Registrar Nota", route: "registrar-nota", icon: "" },
   ]
   private _mobileQueryListener: () => void;
 

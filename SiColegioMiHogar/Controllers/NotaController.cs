@@ -32,7 +32,7 @@ namespace SiColegioMiHogar.Controllers
 
         public NotaResponse notaResponse;
 
-        [HttpPost]
+        [HttpPost("[action]")]
         public async Task<IActionResult> CreateNota([FromBody] NotaRequest nota)
         {
             notaResponse = new NotaResponse();
@@ -49,10 +49,10 @@ namespace SiColegioMiHogar.Controllers
         }
 
         [HttpGet("[action]")]
-        public IEnumerable<Nota> Notas()
+        public IEnumerable<NotaResponseConsult> Notas()
         {
             ConsultarNotaService servicio = new ConsultarNotaService(_unitOfWork);
-            List<Nota> Lista = servicio.GetAll();
+            List<NotaResponseConsult> Lista = servicio.GetAll();
             return Lista;
 
         }
