@@ -7,11 +7,10 @@ namespace BackEnd.Periodo.Aplicacion.Request
     
     public class PeriodoRequest
     {
-        public int id { get; set; }
-        public int NumeroPeriodo { get; set; }
-        public string NombrePeriodo { get; set; }
-        public DateTime FechaInicio { get; set; }
-        public DateTime FechaFin { get; set; }
+	   public string NombrePeriodo { get; set; }
+           public int NumeroPeriodo { get; set; }
+           public DateTime FechaInicio { get; set; }
+	   public DateTime FechaFin { get; set; }
     }
 }
 
