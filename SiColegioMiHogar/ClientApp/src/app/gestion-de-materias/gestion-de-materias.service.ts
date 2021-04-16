@@ -18,7 +18,7 @@ export class GestionDeMateriasService {
   getMateria(materia: number): Observable<IMateria> {
     return this.http.get<IMateria>(this.apiURL + '/' + materia);
   }
-
+  
   createMateria(materia: IMateria): Observable<IMateria> {
     return this.http.post<IMateria>(this.apiURL, materia);
   }

@@ -4,46 +4,35 @@
 <div class="container">
   <h1>Formulario de Materias</h1>
   <form [formGroup]="formGroup" (ngSubmit)="save()">
-    <div class="form-row">
 
+    <div class="form-row">
       <div class="form-group col-md-6">
         <label for="IdMateria">Codigo de la materia</label>
         <input type="number" class="form-control" formControlName="IdMateria" id="IdMateria" placeholder="Ej: 05">
       </div>
+    </div>
 
+    <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="NombreMateria">Dia acordado para pago</label>
+        <label for="NombreMateria">nombre de materia</label>
         <input type="text" class="form-control" formControlName="NombreMateria" id="NombreMateria" placeholder="Ej: ingles">
       </div>
     </div>
 
+
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="IdDocente">Docente</label>
-        <select id="IdDocente" formControlName="IdDocente" class="form-control">
-          <option selected>Elija una opción</option>
-          <option>Docente x</option>
-          <option>Docente y</option>
-          <option>Otro</option>
-        </select>
+        <label for="IdDocente">Codigo del docente</label>
+        <input type="number" class="form-control" formControlName="IdDocente" id="IdDocente" placeholder="Ej: 05">
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="IdCurso">Curso</label>
-        <select id="IdCurso" formControlName="IdCurso" class="form-control">
-          <option selected>Elija una opción</option>
-          <option>Primero</option>
-          <option>Segundo</option>
-          <option>Tercero</option>
-          <option>Cuarto</option>
-          <option>Quinto</option>
-          <option>Otro</option>
-        </select>
+        <label for="IdCurso">Codigo del curso</label>
+        <input type="number" class="form-control" formControlName="IdCurso" id="IdCurso" placeholder="Ej: 05">
       </div>
     </div>
-    
 
     <button type="submit" mat-raised-button color="primary">
       Guardar materia

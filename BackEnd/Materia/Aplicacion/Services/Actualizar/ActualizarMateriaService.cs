@@ -26,8 +26,8 @@ namespace BackEnd.materias.Aplicacion.Services.Actualizar
             {
                 materia.IdCurso = request.IdCurso;
                 materia.IdDocente = request.IdDocente;
-                materia.idMateria = request.Id;
-                materia.NombreMateria = request.Nombre;
+                materia.IdMateria = request.IdMateria;
+                materia.NombreMateria = request.NombreMateria;
 
                 _unitOfWork.MateriaServiceRepository.Edit(materia);
                 _unitOfWork.Commit();

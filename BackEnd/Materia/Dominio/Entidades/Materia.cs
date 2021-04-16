@@ -7,7 +7,7 @@ namespace BackEnd.materias.Dominio.Entidades
 {
     public class Materias : Entity<int>
     {
-        public int idMateria { get; set; }
+        public int IdMateria { get; set; }
         public string NombreMateria { get; set; }
         public int IdDocente { get; set; }
         public int IdCurso { get; set; }
@@ -16,23 +16,23 @@ namespace BackEnd.materias.Dominio.Entidades
 
         public Materias(int ideMateria, string nombreMateria, int ideDocente, int ideCurso)
         {
-            idMateria = ideMateria;
+            IdMateria = ideMateria;
             NombreMateria = nombreMateria;
-            IdDocente = ideCurso;
+            IdDocente = ideDocente;
             IdCurso = ideCurso;
         }
 
         public IReadOnlyList<string> CanCrear(Materias materias)
         {
             var errors = new List<string>();
-            if (string.IsNullOrEmpty(materias.idMateria.ToString()))
+            if (materias.IdMateria == 0)
                 errors.Add("Campo codigo de materia vacio");
-            if (string.IsNullOrEmpty(materias.NombreMateria))
-                errors.Add("Campo nombre de la materia vacio");
-            if (string.IsNullOrEmpty(materias.IdDocente.ToString()))
+            if (materias.IdDocente == 0)
                 errors.Add("Campo codigo del docente vacio");
-            if (string.IsNullOrEmpty(materias.IdCurso.ToString()))
+            if (materias.IdCurso == 0)
                 errors.Add("Campo codigo del curso vacio");
+            if (string.IsNullOrEmpty(materias.NombreMateria) )
+                errors.Add("Campo nombre de la materia vacio");
             return errors;
         }
     }

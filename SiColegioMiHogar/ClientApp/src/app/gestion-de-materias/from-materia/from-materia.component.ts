@@ -18,6 +18,8 @@ export class FromMateriaComponent implements OnInit {
   id: number;
   idmat: number;
 
+  materia: IMateria
+
   formGroup = this.fb.group({
     IdMateria: ['', [Validators.required]],
     NombreMateria: ['', [Validators.required]],
@@ -64,19 +66,20 @@ export class FromMateriaComponent implements OnInit {
 
   cargarFormulario(materia: IMateria) {
     this.formGroup.patchValue({
-      mes: materia.IdMateria,
-      diaPago: materia.NombreMateria,
-      fechaPago: materia.IdDocente,
-      valorMensualidad: materia.IdCurso
+      IdMateria: materia.IdMateria,
+      NombreMateria: materia.NombreMateria,
+      IdDocente: materia.IdDocente,
+      IdCurso: materia.IdCurso
     });
   }
 
   save() {
-    let materia: IMateria = Object.assign({}, this.formGroup.value);
-    console.table(materia);
+    this.materia = Object.assign({}, this.formGroup.value);
+    console.table(this.materia);
 
-    this.materiaservice.createMateria(materia)
-      .subscribe(materia => this.onSaveSuccess());
+    this.materiaservice.createMateria(this.materia)
+      .subscribe(materia => this.onSaveSuccess()),
+      error => console.error(error);
   }
 
   onSaveSuccess() {
