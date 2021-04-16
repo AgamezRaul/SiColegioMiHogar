@@ -18,17 +18,13 @@ export class SidenavMenuComponent implements OnInit {
   fillerNav = [
     { name: "home", route: "", icon: "home" },
     { name: "Prematricula", route: "prematricula", icon: "" },
-    { name: "Tabla Matriculas", route: "matricula", icon: "" },
-  //  { name: "Consulta Mensualidades", route: "list-mensualidad", icon: "" },
-    { name: "Registrar Curso", route: "registrar-curso", icon: "" },
+    { name: "Matriculas", route: "matricula", icon: "" },
     { name: "Registrar Curso", route: "registrar-curso", icon: "" },
     { name: "Periodos", route: "listar-periodos", icon: "" },
-    { name: "Registrar Periodo", route: "registrar-periodo", icon: "" },
     { name: "Registrar Docente", route:"lista-docente",icon:""},
     { name: "Gestion de Materias", route: "materias", icon: "" },
 
     { name: "Notas", route: "listar-notas", icon: "" },
-    { name: "Registrar Nota", route: "registrar-nota", icon: "" },
   ]
   private _mobileQueryListener: () => void;
 

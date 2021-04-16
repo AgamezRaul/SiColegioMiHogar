@@ -1,53 +1,49 @@
 <div class="table-responsive">
-    <mat-form-field>
-      <mat-label>Buscar</mat-label>
-       <input matInput (keyup)="applyFilter($event)" placeholder="Buscar" #input>
-    </mat-form-field>
-    <div id="prueba" style="margin-left: 7%;">
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort style="width: 90%;">
-        <!-- id Column -->
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef> Id del curso </th>
-          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-        </ng-container>
-    
-        <!-- nombre Column -->
-        <ng-container matColumnDef="numeroPeriodo" hidden>
-          <th mat-header-cell *matHeaderCellDef>Numero de periodo </th>
-          <td mat-cell *matCellDef="let element"> {{element.numeroPeriodo}} </td>
-        </ng-container>
-    
-        <!-- maxEstudiantes Column -->
-        <ng-container matColumnDef="nombrePeriodo">
-          <th mat-header-cell *matHeaderCellDef> Nombre de periodo </th>
-          <td mat-cell *matCellDef="let element"> {{element.nombrePeriodo}} </td>
-        </ng-container>
-        <!-- IdDirector Column -->
-        <ng-container matColumnDef="fechaInicio">
-          <th mat-header-cell *matHeaderCellDef> Fecha de inicio </th>
-          <td mat-cell *matCellDef="let element"> {{element.fechaInicio}} </td>
-        </ng-container>
-        <!-- NombreDirector Column -->
-        <ng-container matColumnDef="fechaFin">
-          <th mat-header-cell *matHeaderCellDef> Fecha de finalizacion </th>
-          <td mat-cell *matCellDef="let element"> {{element.fechaFin}} </td>
-        </ng-container>
-        <!--Options-->
-        <ng-container matColumnDef="Options">
-          <th mat-header-cell *matHeaderCellDef>Opciones</th>
-          <td mat-cell *matCellDef="let element">
-            <button mat-icon-button color="warn">Editar</button>
-            <button mat-icon-button color="warn"><mat-icon>delete_outline</mat-icon></button>
-          </td>
-        </ng-container>
-    
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-    </div>
-    <br>
-    <hr>
-    <mat-paginator style="padding: 0 7%;" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-    <button (click)="Registrar()" class="btn-flotante">Nuevo Periodo</button>
-  </div>
+  <mat-form-field>
+    <mat-label>Buscar</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Buscar" #input>
+  </mat-form-field>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+    <!-- id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> Id del curso </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- nombre Column -->
+    <ng-container matColumnDef="numeroPeriodo" hidden>
+      <th mat-header-cell *matHeaderCellDef>Numero de periodo </th>
+      <td mat-cell *matCellDef="let element"> {{element.numeroPeriodo}} </td>
+    </ng-container>
+
+    <!-- maxEstudiantes Column -->
+    <ng-container matColumnDef="nombrePeriodo">
+      <th mat-header-cell *matHeaderCellDef> Nombre de periodo </th>
+      <td mat-cell *matCellDef="let element"> {{element.nombrePeriodo}} </td>
+    </ng-container>
+    <!-- IdDirector Column -->
+    <ng-container matColumnDef="fechaInicio">
+      <th mat-header-cell *matHeaderCellDef> Fecha de inicio </th>
+      <td mat-cell *matCellDef="let element"> {{element.fechaInicio}} </td>
+    </ng-container>
+    <!-- NombreDirector Column -->
+    <ng-container matColumnDef="fechaFin">
+      <th mat-header-cell *matHeaderCellDef> Fecha de finalizacion </th>
+      <td mat-cell *matCellDef="let element"> {{element.fechaFin}} </td>
+    </ng-container>
+    <!--Options-->
+    <ng-container matColumnDef="Options">
+      <th mat-header-cell *matHeaderCellDef>Opciones</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button color="warn">Editar</button>
+        <button mat-icon-button color="warn"><mat-icon>delete_outline</mat-icon></button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator style="padding: 0 7%;" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
+<button (click)="Registrar()" class="btn-flotante">Nuevo Periodo</button>
   

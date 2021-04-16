@@ -15,7 +15,7 @@ namespace BackEnd.Periodo.Aplicacion.Services
         {
             _unitOfWork = unitOfWork;
         }
-        public PeriodoResponse CrearPerido(PeriodoRequest request)
+        public CrearPeriodoResponse Ejecutar(CrearPeriodoRequest request)
         {
             var matricula = _unitOfWork.PeriodoServiceRepository.FindFirstOrDefault(t => t.NumeroPeriodo == request.NumeroPeriodo);
             if (matricula == null)
@@ -30,18 +30,18 @@ namespace BackEnd.Periodo.Aplicacion.Services
                     {
                         listaErrors += item.ToString();
                     }
-                    return new PeriodoResponse() { Message = listaErrors };
+                    return new CrearPeriodoResponse() { Message = listaErrors };
                 }
                 else
                 {
                     _unitOfWork.PeriodoServiceRepository.Add(newPeriodo);
                     _unitOfWork.Commit();
-                    return new PeriodoResponse() { Message = $"Periodo Registrado Exitosamente" };
+                    return new CrearPeriodoResponse() { Message = $"Periodo Registrado Exitosamente" };
                 }
             }
             else
             {
-                return new PeriodoResponse() { Message = $"Este periodo ya existe" };
+                return new CrearPeriodoResponse() { Message = $"Este periodo ya existe" };
             }
         }
     }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackEnd.Migrations
 {
     [DbContext(typeof(MiHogarContext))]
-    [Migration("20210414164114_Sprint2")]
-    partial class Sprint2
+    [Migration("20210416135632_Sprint3")]
+    partial class Sprint3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -190,6 +190,60 @@ namespace BackEnd.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Mensualidad");
+                });
+
+            modelBuilder.Entity("BackEnd.Nota.Dominio.Entidades.Nota", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Descripcion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("FechaNota")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IdEstudiante")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdMateria")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdPeriodo")
+                        .HasColumnType("int");
+
+                    b.Property<double>("NotaAlumno")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Nota");
+                });
+
+            modelBuilder.Entity("BackEnd.Periodo.Dominio.Periodo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("FechaFin")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("FechaInicio")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NombrePeriodo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NumeroPeriodo")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Periodo");
                 });
 
             modelBuilder.Entity("BackEnd.PreMatricula.Dominio.PreMatricula", b =>

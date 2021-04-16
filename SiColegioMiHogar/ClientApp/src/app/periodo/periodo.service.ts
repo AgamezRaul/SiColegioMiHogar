@@ -10,14 +10,9 @@ import { IPeriodo } from './periodo.component';
 export class PeriodoService {
 
   private _refresh$ = new Subject<void>();
-  apiURL = this.baseUrl + "api/Periodo/Periodos";
-  apiURLCREATE = this.baseUrl + "api/Periodo/CreatePeriodo";
+  apiURL = this.baseUrl + "api/Nota";
 
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
-
-  get refresh$() {
-    return this._refresh$;
-  }
   
   getPeriodos(): Observable<IPeriodo[]> {
     return this.http.get<IPeriodo[]>(this.apiURL);
@@ -28,7 +23,6 @@ export class PeriodoService {
   }
 
   createPeriodo(periodo: IPeriodo): Observable<IPeriodo> {
-    console.log(periodo);
-    return this.http.post<IPeriodo>(this.apiURLCREATE, periodo);
+    return this.http.post<IPeriodo>(this.apiURL, periodo);
   }
 }

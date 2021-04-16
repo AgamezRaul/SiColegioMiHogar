@@ -61,11 +61,9 @@ export class TablePeriodoComponent  implements OnInit, OnDestroy {
         this.dataSource.paginator = this.paginator;
       },error => console.error(error));
 
-    this.suscription = this.periodoservice.refresh$.subscribe(() => {
-      this.periodoservice.getPeriodos()
+    this.suscription = this.periodoservice.getPeriodos()
         .subscribe(periodos => this.dataSource.data = periodos,
           error => console.error(error));
-    });
   }
 
   ngOnDestroy(): void {

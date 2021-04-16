@@ -24,7 +24,6 @@ namespace SiColegioMiHogar.Controllers
     {
         private readonly MiHogarContext _context;
         private CrearPreMatriculaService _service;
-        private ActualizarPreMatriculaService _actualizarEstadoService;
         private ActualizarPreMatriculaAllService _actualizarService;
         private EliminarPreMatriculaService _eliminarService;
         private UnitOfWork _unitOfWork;

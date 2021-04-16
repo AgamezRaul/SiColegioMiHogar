@@ -124,8 +124,6 @@ export class FormPreMatriculaComponent implements OnInit {
         .subscribe(prematricula => this.onSaveSuccess());
     } else {
       //crea
-      
-      console.log(this.prematricula);
       this.servicePrematricula.createPrematricula(this.prematricula)
         .subscribe(prematricula => this.onSaveSuccess());
     }

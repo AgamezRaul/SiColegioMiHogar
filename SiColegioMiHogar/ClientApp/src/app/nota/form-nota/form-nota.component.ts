@@ -33,46 +33,13 @@ export class FormNotaComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    
-    
-    this.notaservice.getEstudiantes().subscribe(estudiantes => this.LLenarEstudiantes(estudiantes),error => console.error(error));
-
-    this.notaservice.getPeriodos().subscribe(periodos => this.LLenarPeriodos(periodos),error => console.error(error));
-
-    this.notaservice.getMaterias().subscribe(materias => this.LLenarMaterias(materias),error => console.error(error));
-
-    //con esto se el url utilizo el primer semento para saber que url esta activa
-    const segments: UrlSegment[] = this.activatedRoute.snapshot.url;
-    console.log(segments[0].toString());
-
-    if (segments[0].toString() == 'registrar-nota') {
-      this.modoEdicion = false;
-      console.log("Registando");
-      this.activatedRoute.params.subscribe(params => {
-        if (params["id"] == undefined) {
-          return;
-        }
-        this.id = parseInt(params["id"]);
-        console.log(this.id);
-
-      });
-    }else{
-      this.modoEdicion = true;
-      console.log("editando")
-      this.activatedRoute.params.subscribe(params => {
-
-        if (params["idNota"] == undefined) {
-          return;
-        }
-        this.idNota = parseInt(params["idNota"]);
-        console.log(this.idNota);
-
-        this.notaservice.getNota(this.idNota)
-          .subscribe(periodo => this.cargarFormulario(periodo),
-            error => console.error(error));
-        //validar cuando es repetida para avisarle al usuario
-      });
-    }  
+    this.notaservice.getEstudiantes().subscribe(estudiantes => this.LLenarEstudiantes(estudiantes),
+      error => console.error(error));
+    this.notaservice.getPeriodos().subscribe(periodos => this.LLenarPeriodos(periodos),
+      error => console.error(error));
+    this.notaservice.getMaterias().subscribe(materias => this.LLenarMaterias(materias),
+      error => console.error(error));
+  
   }
 
   LLenarEstudiantes(estudantes: IEstudianteNota[]){

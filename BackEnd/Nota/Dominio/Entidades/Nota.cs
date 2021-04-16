@@ -16,10 +16,10 @@ namespace BackEnd.Nota.Dominio.Entidades
         public int IdPeriodo { get; set; }
         
 
-        public Nota(string Descripcion, double NotaAlumno, int IdEstudiante, int IdMateria, int IdPeriodo)
+        public Nota(string Descripcion, DateTime fechanota, double NotaAlumno, int IdEstudiante, int IdMateria, int IdPeriodo)
         {
             this.Descripcion = Descripcion;
-            this.FechaNota = DateTime.Now.Date;
+            this.FechaNota = fechanota;
             this.IdEstudiante = IdEstudiante;
             this.IdMateria = IdMateria;
             this.NotaAlumno = NotaAlumno;
@@ -42,8 +42,6 @@ namespace BackEnd.Nota.Dominio.Entidades
                 errors.Add("Campo IdPeriodo vacio");
             if (nota.NotaAlumno == 0)
                 errors.Add("Campo Nota del Alumno vacio");
-            if (nota.IdEstudiante == 0)
-                errors.Add("Campo IdEstudiante vacio");
             return errors;
         }
     }

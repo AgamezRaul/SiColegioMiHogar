@@ -40,11 +40,6 @@ export class NotaService {
   }
 
   createNota(nota: INota): Observable<INota> {
-    nota.IdEstudiante =  +nota.IdEstudiante;
-    nota.IdMateria =  +nota.IdMateria;
-    nota.IdPeriodo =  +nota.IdPeriodo;
-    console.log(nota);
-    return this.http.post<INota>(this.apiURLCREATE, nota);
-    return null;
+    return this.http.post<INota>(this.apiURL, nota);
   }
 }

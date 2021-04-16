@@ -3,14 +3,13 @@ using BackEnd.Base;
 using BackEnd.Periodo.Aplicacion.Request;
 using BackEnd.Periodo.Aplicacion.Services;
 using BackEnd.Periodo.Dominio;
-using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
 namespace SiColegioMiHogar.Controllers
 {
@@ -21,7 +20,6 @@ namespace SiColegioMiHogar.Controllers
     {
         private readonly MiHogarContext _context;
         private CrearPeriodoService _service;
-        //private ActualizarMateriaService _actualizarService;  genera errores
         private UnitOfWork _unitOfWork;
 
         public PeriodoController(MiHogarContext context)
@@ -30,31 +28,26 @@ namespace SiColegioMiHogar.Controllers
             _unitOfWork = new UnitOfWork(_context);
         }
 
-        public PeriodoResponse PeriodoResponse;
-
-        [HttpPost("[action]")]
-        public async Task<IActionResult> CreatePeriodo([FromBody] PeriodoRequest periodo)
+        [HttpGet]
+        public IEnumerable<Periodo> GetPeriodos()
         {
-            PeriodoResponse = new PeriodoResponse();
+            return _context.Periodo;
 
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreatePeriodo([FromBody] CrearPeriodoRequest periodo)
+        {
             _service = new CrearPeriodoService(_unitOfWork);
-
-            var rta = _service.CrearPerido(periodo);
+            var rta = _service.Ejecutar(periodo);
             if (rta.isOk())
             {
                 await _context.SaveChangesAsync();
-                return CreatedAtAction("GetPeriodo", new { periodo = periodo.NumeroPeriodo }, periodo);
+                return CreatedAtAction("GetUsuario", new { NumeroPeriodo = periodo.NumeroPeriodo }, periodo);
             }
             return BadRequest(rta.Message);
         }
 
-        [HttpGet("[action]")]
-        public IEnumerable<Periodo> Periodos()
-        {
-            ConsultarPeriodosService servicio = new ConsultarPeriodosService(_unitOfWork);
-            List<Periodo> Lista = servicio.GetAll();
-            return Lista;
-
-        }
+        
     }
 }

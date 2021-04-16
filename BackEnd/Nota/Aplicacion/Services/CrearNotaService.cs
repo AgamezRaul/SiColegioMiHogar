@@ -15,12 +15,12 @@ namespace BackEnd.Nota.Aplicacion.Services
         {
             _unitOfWork = unitOfWork;
         }
-        public NotaResponse Ejecutar(NotaRequest request)
+        public CrearNotaResponse Ejecutar(CrearNotaRequest request)
         {
             var nota  = _unitOfWork.NotaServiceRepository.FindFirstOrDefault(t => t.IdMateria == request.IdMateria && t.IdEstudiante == request.IdEstudiante && t.IdPeriodo == request.IdPeriodo);
             if (nota == null)
             {
-                Dominio.Entidades.Nota newNota = new Dominio.Entidades.Nota(request.Descripcion, request.NotaAlumno, request.IdEstudiante, request.IdMateria, request.IdPeriodo);
+                Dominio.Entidades.Nota newNota = new Dominio.Entidades.Nota(request.Descripcion, request.FechaNota, request.Nota, request.IdEstudiante, request.IdMateria, request.IdPeriodo);
 
                 IReadOnlyList<string> errors = newNota.CanCrear(newNota);
                 if (errors.Any())
@@ -30,18 +30,18 @@ namespace BackEnd.Nota.Aplicacion.Services
                     {
                         listaErrors += item.ToString();
                     }
-                    return new NotaResponse() { Message = listaErrors };
+                    return new CrearNotaResponse() { Message = listaErrors };
                 }
                 else
                 {
                     _unitOfWork.NotaServiceRepository.Add(newNota);
                     _unitOfWork.Commit();
-                    return new NotaResponse() { Message = $"Nota Registrada Exitosamente" };
+                    return new CrearNotaResponse() { Message = $"Nota Registrada Exitosamente" };
                 }
             }
             else
             {
-                return new NotaResponse() { Message = $"Este estudiante ya tiene la nota de esta materia para el periodo que desea ingresar" };
+                return new CrearNotaResponse() { Message = $"Nota ya registrada" };
             }
         }
     }

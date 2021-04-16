@@ -28,38 +28,6 @@ export class FormPeriodoComponent implements OnInit {
   });
   
   ngOnInit(): void {
-    //con esto se el url utilizo el primer semento para saber que url esta activa
-    const segments: UrlSegment[] = this.activatedRoute.snapshot.url;
-    console.log(segments[0].toString());
-
-    if (segments[0].toString() == 'registrar-periodo') {
-      this.modoEdicion = false;
-      console.log("Registando");
-      this.activatedRoute.params.subscribe(params => {
-        if (params["id"] == undefined) {
-          return;
-        }
-        this.id = parseInt(params["id"]);
-        console.log(this.id);
-
-      });
-    }else{
-      this.modoEdicion = true;
-      console.log("editando")
-      this.activatedRoute.params.subscribe(params => {
-
-        if (params["idPeriodo"] == undefined) {
-          return;
-        }
-        this.idPerio = parseInt(params["idPeriodo"]);
-        console.log(this.idPerio);
-
-        this.periodoservice.getPeriodo(this.idPerio)
-          .subscribe(periodo => this.cargarFormulario(periodo),
-            error => console.error(error));
-        //validar cuando es repetida para avisarle al usuario
-      });
-    }
   }
 
   cargarFormulario(periodo: IPeriodo) {
