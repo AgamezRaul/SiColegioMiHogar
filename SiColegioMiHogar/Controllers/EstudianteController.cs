@@ -19,8 +19,6 @@ namespace SiColegioMiHogar.Controllers
     public class EstudianteController : ControllerBase
     {
         private readonly MiHogarContext _context;
-        private ConsultarEstudanteService _service;
-        //private ActualizarMateriaService _actualizarService;  genera errores
         private UnitOfWork _unitOfWork;
 
         public EstudianteController(MiHogarContext context)
@@ -29,12 +27,10 @@ namespace SiColegioMiHogar.Controllers
             _unitOfWork = new UnitOfWork(_context);
         }
 
-        [HttpGet("[action]")]
+        [HttpGet]
         public IEnumerable<Estudiante> Estudiantes()
         {
-            ConsultarEstudanteService servicio = new ConsultarEstudanteService(_unitOfWork);
-            List<Estudiante> Lista = servicio.GetAll();
-            return Lista;
+            return _context.Estudiante;
 
         }
     }

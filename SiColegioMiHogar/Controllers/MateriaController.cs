@@ -56,15 +56,6 @@ namespace SiColegioMiHogar.Controllers
             return BadRequest(rta.Message);
         }
 
-        [HttpGet("[action]")]
-        public IEnumerable<Materias> Materias()
-        {
-            ConsultarMateriaService  servicio = new ConsultarMateriaService(_unitOfWork);
-            List<Materias> Lista = servicio.GetAll();
-            return Lista;
-
-        }
-
         /*         actualizar pero aun presenta errores
         [HttpPut("{id}")]
         public async Task<IActionResult> PutMensualidad([FromRoute] int id, [FromBody] ActualizarMateriaRequest materias)

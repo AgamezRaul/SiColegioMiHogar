@@ -138,10 +138,5 @@ namespace SiColegioMiHogar.Controllers
             var rta = _eliminarService.Ejecutar(request);
             return Ok(rta);
         }
-
-        /* public IActionResult Index()
-         {
-             return View();
-         }*/
     }
 }
