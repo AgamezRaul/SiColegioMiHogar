@@ -18,11 +18,11 @@ namespace BackEnd.materias.Aplicacion.Services.Crear
 
         public CrearMateriaResponse Ejecutar(CrearMateriaRequest request)
         {
-            var materia = _unitOfWork.MateriaServiceRepository.FindFirstOrDefault(t => t.Id == request.Id);
+            var materia = _unitOfWork.MateriaServiceRepository.FindFirstOrDefault(t => t.NombreMateria == request.NombreMateria);
 
             if (materia == null)
             {
-                Dominio.Entidades.Materias newMateria = new Dominio.Entidades.Materias(request.Id, request.Nombre, request.IdDocente, request.IdCurso);
+                Dominio.Entidades.Materias newMateria = new Dominio.Entidades.Materias(request.NombreMateria, request.IdDocente, request.IdCurso);
 
                 IReadOnlyList<string> errors = newMateria.CanCrear(newMateria);
                 if (errors.Any())

@@ -17,13 +17,10 @@ export class TableCursoComponent implements OnInit, OnDestroy {
   suscription: Subscription;
   curso!: ICurso2[];
   displayedColumns: string[] = [
-    'Id',
-    'NombreCurso',
-    'MaximoEstudiantes',
-    'IdDirector',
-    'NombreDirector',
-    'CedulaDirector',
-    'Options'];
+    'nombreCurso',
+    'maximoEstudiantes',
+    'nombreDirector',
+    'options'];
   dataSource = new MatTableDataSource<ICurso2>(this.curso);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -47,12 +44,12 @@ export class TableCursoComponent implements OnInit, OnDestroy {
       }
       this.id = parseInt(params["id"]);
     })
-    this.cursoservice.getCursoDocente(this.id)
+    this.cursoservice.getCursos()
       .subscribe(cursos => this.dataSource.data = cursos,
         error => console.error(error));
 
     this.suscription = this.cursoservice.refresh$.subscribe(() => {
-      this.cursoservice.getCursoDocente(this.id)
+      this.cursoservice.getCursos()
         .subscribe(cursos => this.dataSource.data = cursos,
           error => console.error(error));
     });
@@ -63,17 +60,7 @@ export class TableCursoComponent implements OnInit, OnDestroy {
     console.log('observable cerrado');
   }
   Registrar() {
-    this.router.navigate(["/registrar-curso/" + this.id]);
-  }
-
-  Eliminar(idCurso: number) {
-    this.cursoservice.deleteCurso(idCurso).
-      subscribe(nit => this.onDeleteSuccess(),
-        error => console.error(error))
-  }
-
-  onDeleteSuccess() {
-    this.router.navigate(["/consultar-curso/" + this.id]);
+    this.router.navigate(["/registrar-curso"]);
   }
 
 }

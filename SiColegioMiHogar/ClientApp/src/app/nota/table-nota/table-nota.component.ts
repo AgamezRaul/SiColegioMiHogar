@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './table-nota.component.html',
   styleUrls: ['./table-nota.component.css']
 })
-export class TableNotaComponent implements OnInit, OnDestroy {
+export class TableNotaComponent implements OnInit {
 
   ListaNotas: INotaConsult[] = [];
 
@@ -35,8 +35,6 @@ export class TableNotaComponent implements OnInit, OnDestroy {
   
   constructor(private notaservice: NotaService, private router: Router, private activatedRoute: ActivatedRoute, private location: Location) {}
   
-  id: number;
-
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -48,32 +46,11 @@ export class TableNotaComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
-      if (params["id"] == undefined) {
-        return;
-      }
-      this.id = parseInt(params["id"]);
-    })
-    
-    this.notaservice.getNotas().subscribe(
-      Response => {
-        this.ListaNotas = Response;
-        this.dataSource = new MatTableDataSource(Response);
-        console.log(this.dataSource.data);
-        this.dataSource.paginator = this.paginator;
-      },error => console.error(error));
-
-    this.suscription = this.notaservice.refresh$.subscribe(() => {
-      this.notaservice.getNotas()
+    this.suscription = this.notaservice.getNotas()
         .subscribe(notas => this.dataSource.data = notas,
           error => console.error(error));
-    });
   }
 
-  ngOnDestroy(): void {
-    this.suscription.unsubscribe();
-    console.log('observable cerrado');
-  }
 
   Registrar() {
     this.router.navigate(["/registrar-nota/"]);

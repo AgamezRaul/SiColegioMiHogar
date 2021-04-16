@@ -7,17 +7,8 @@ import { INota, INotaConsult, IEstudianteNota, IPeriodoNota, MateriaNota} from '
   providedIn: 'root'
 })
 export class NotaService {
-  private _refresh$ = new Subject<void>();
-  apiURL = this.baseUrl + "api/Nota/Notas";
-  apiURLCREATE = this.baseUrl + "api/Nota/CreateNota";
-  apiURLEstudiantes = this.baseUrl + "api/Estudiante/Estudiantes";
-  apiURLPeriodos = this.baseUrl + "api/Periodo/Periodos";
-  apiURLMaterias = this.baseUrl + "api/Materia/Materias";
+  apiURL = this.baseUrl + "api/Nota";
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
-
-  get refresh$() {
-    return this._refresh$;
-  }
 
   getNotas(): Observable<INotaConsult[]> {
     return this.http.get<INotaConsult[]>(this.apiURL);
@@ -25,18 +16,6 @@ export class NotaService {
 
   getNota(id: number): Observable<INotaConsult> {
     return this.http.get<INotaConsult>(this.apiURL+id);
-  }
-
-  getEstudiantes(): Observable<IEstudianteNota[]> {
-    return this.http.get<IEstudianteNota[]>(this.apiURLEstudiantes);
-  }
-
-  getPeriodos(): Observable<IPeriodoNota[]> {
-    return this.http.get<IPeriodoNota[]>(this.apiURLPeriodos);
-  }
-
-  getMaterias(): Observable<MateriaNota[]> {
-    return this.http.get<MateriaNota[]>(this.apiURLMaterias);
   }
 
   createNota(nota: INota): Observable<INota> {

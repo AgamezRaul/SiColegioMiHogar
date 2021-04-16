@@ -38,7 +38,7 @@ namespace TestBackEnd.AplicacionTest.CrearTest
                 new CrearMateriaRequest
                 {
                     Id = 2324,
-                    Nombre = "Español",
+                    NombreMateria = "Español",
                     IdDocente = 1312,
                     IdCurso = 501
                 },

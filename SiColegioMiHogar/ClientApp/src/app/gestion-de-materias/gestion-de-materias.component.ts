@@ -18,17 +18,8 @@ export class GestionDeMateriasComponent implements OnInit {
 }
 
 export interface IMateria {
-
-  IdMateria: number,
-  NombreMateria: string,
-  IdDocente: number,
-  IdCurso: number
-}
-
-export interface IMateria2 {
-
-  IdMateria: number,
-  NombreMateria: string,
-  IdDocente: number,
-  IdCurso: number
+  id: number,
+  nombreMateria: string,
+  idDocente: number,
+  idCurso: number
 }

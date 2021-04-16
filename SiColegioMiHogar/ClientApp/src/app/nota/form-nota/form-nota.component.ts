@@ -7,6 +7,10 @@ import { NotaService } from '../nota.service';
 import { Location } from '@angular/common';
 import { error } from 'protractor';
 import { equal } from 'assert';
+import { EstudianteService } from '../../estudiante/estudiante.service';
+import { PeriodoService } from '../../periodo/periodo.service';
+import { IEstudiante } from '../../estudiante/estudiante.component';
+import { IPeriodo } from '../../periodo/periodo.component';
 
 @Component({
   selector: 'app-form-nota',
@@ -19,7 +23,9 @@ export class FormNotaComponent implements OnInit {
   ListaPeriodos: IPeriodoNota[] = [];
   ListaMaterias: MateriaNota[] = [];
 
-  constructor(private fb: FormBuilder, private notaservice: NotaService,private router: Router, private activatedRoute: ActivatedRoute, private location: Location) { }
+  constructor(private fb: FormBuilder, private notaservice: NotaService,
+    private router: Router, private activatedRoute: ActivatedRoute, private location: Location,
+    private estudianteService: EstudianteService, private periodoService: PeriodoService) { }
   modoEdicion: boolean = false;
   id: number;
   idNota: number;
@@ -33,20 +39,19 @@ export class FormNotaComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.notaservice.getEstudiantes().subscribe(estudiantes => this.LLenarEstudiantes(estudiantes),
+    this.estudianteService.getEstudiantes().subscribe(estudiantes => this.LLenarEstudiantes(estudiantes),
       error => console.error(error));
-    this.notaservice.getPeriodos().subscribe(periodos => this.LLenarPeriodos(periodos),
+    this.periodoService.getPeriodos().subscribe(periodos => this.LLenarPeriodos(periodos),
       error => console.error(error));
-    this.notaservice.getMaterias().subscribe(materias => this.LLenarMaterias(materias),
-      error => console.error(error));
-  
+    /*this.notaservice.getMaterias().subscribe(materias => this.LLenarMaterias(materias),
+      error => console.error(error));*/
   }
 
-  LLenarEstudiantes(estudantes: IEstudianteNota[]){
+  LLenarEstudiantes(estudantes: IEstudiante[]) {
     this.ListaEstudiantes = estudantes;
   }
 
-  LLenarPeriodos(periodos: IPeriodoNota[]){
+  LLenarPeriodos(periodos: IPeriodo[]) {
     this.ListaPeriodos = periodos;
   }
 

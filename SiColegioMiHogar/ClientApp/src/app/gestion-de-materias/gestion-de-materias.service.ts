@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IMateria, IMateria2 } from './gestion-de-materias.component';
+import { IMateria } from './gestion-de-materias.component';
 
 @Injectable({
   providedIn: 'root'
@@ -24,10 +24,10 @@ export class GestionDeMateriasService {
   }
 
   updateMateria(materia: IMateria): Observable<IMateria> {
-    return this.http.put<IMateria>(this.apiURL + "/" + materia.IdCurso, materia);
+    return this.http.put<IMateria>(this.apiURL + "/" + materia.id.toString(), materia);
   }
 
   deleteMateria(materia: IMateria): Observable<IMateria> {
-    return this.http.put<IMateria>(this.apiURL + "/DeleteMateria" + "/" + materia.IdCurso.toString(), materia);
+    return this.http.put<IMateria>(this.apiURL + "/DeleteMateria" + "/" + materia.id.toString(), materia);
   }
 }

@@ -7,7 +7,7 @@ namespace BackEnd.materias.Aplicacion.Request
     public class CrearMateriaRequest
     {
         public int Id { get; set; }
-        public string Nombre { get; set; }
+        public string NombreMateria { get; set; }
         public int IdDocente { get; set; }
         public int IdCurso { get; set; }
     }

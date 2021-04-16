@@ -2,7 +2,6 @@
 using BackEnd.Base;
 using BackEnd.materias.Aplicacion.Request;
 using BackEnd.materias.Aplicacion.Services.Crear;
-using BackEnd.Materia.Aplicacion.Services.Consultar;
 using BackEnd.materias.Dominio.Entidades;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

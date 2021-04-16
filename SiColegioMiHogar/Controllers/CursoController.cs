@@ -39,12 +39,9 @@ namespace SiColegioMiHogar.Controllers
                           on c.IdDirectorDocente equals d.Id
                           select new
                           {
-                              IdCurso = c.Id,
                               NombreCurso = c.Nombre,
                               MaximoEstudiantes = c.MaxEstudiantes,
-                              Docente = d.NombreCompleto,
-                              IdDocente = d.Id,
-                              CedulaDocente = d.Cedula
+                              Docente = d.NombreCompleto
                           }).ToList();
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
             return result;

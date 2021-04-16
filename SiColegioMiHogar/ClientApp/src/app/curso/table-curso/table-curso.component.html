@@ -7,37 +7,23 @@
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
     <!-- id Column -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef> Id del curso </th>
-      <td mat-cell *matCellDef="let element"> {{element.Id}} </td>
+    <ng-container matColumnDef="nombreCurso">
+      <th mat-header-cell *matHeaderCellDef> Nombre curso </th>
+      <td mat-cell *matCellDef="let element"> {{element.nombreCurso}} </td>
     </ng-container>
 
     <!-- nombre Column -->
-    <ng-container matColumnDef="nombre" hidden>
-      <th mat-header-cell *matHeaderCellDef> Nombre del curso </th>
-      <td mat-cell *matCellDef="let element"> {{element.NombreCurso}} </td>
+    <ng-container matColumnDef="maximoEstudiantes" hidden>
+      <th mat-header-cell *matHeaderCellDef> Maximo Estudiantes </th>
+      <td mat-cell *matCellDef="let element"> {{element.maximoEstudiantes}} </td>
     </ng-container>
 
     <!-- maxEstudiantes Column -->
-    <ng-container matColumnDef="maxEstudiantes">
-      <th mat-header-cell *matHeaderCellDef> Máximo de estudiantes </th>
-      <td mat-cell *matCellDef="let element"> {{element.MaximoEstudiantes}} </td>
-    </ng-container>
-    <!-- IdDirector Column -->
-    <ng-container matColumnDef="idDirector">
-      <th mat-header-cell *matHeaderCellDef> Id Director </th>
-      <td mat-cell *matCellDef="let element"> {{element.IdDirector}} </td>
-    </ng-container>
-    <!-- NombreDirector Column -->
     <ng-container matColumnDef="nombreDirector">
-      <th mat-header-cell *matHeaderCellDef> Nombre director </th>
-      <td mat-cell *matCellDef="let element"> {{element.NombreDirector}} </td>
+      <th mat-header-cell *matHeaderCellDef> Nombre Director </th>
+      <td mat-cell *matCellDef="let element"> {{element.nombreDirector}} </td>
     </ng-container>
-    <!-- Cedula Column -->
-    <ng-container matColumnDef="cedula">
-      <th mat-header-cell *matHeaderCellDef> Cédula docente </th>
-      <td mat-cell *matCellDef="let element"> {{element.CedulaDocente}} </td>
-    </ng-container>
+
     <!--Options-->
     <ng-container matColumnDef="options">
       <th mat-header-cell *matHeaderCellDef>Opciones</th>

@@ -6,28 +6,28 @@
 
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
-    <!-- Codigo de materia Column -->
-    <ng-container matColumnDef="IdMateria">
+    <!-- id Column -->
+    <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef> Codigo de la materia </th>
-      <td mat-cell *matCellDef="let element"> {{materia.IdMateria}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
     </ng-container>
 
     <!-- nombre materia Column -->
-    <ng-container matColumnDef="NombreMateria" hidden>
+    <ng-container matColumnDef="nombreMateria" hidden>
       <th mat-header-cell *matHeaderCellDef> Nombre de la materia </th>
-      <td mat-cell *matCellDef="let element"> {{materia.NombreMateria}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.nombreMateria}} </td>
     </ng-container>
 
     <!-- codigo docente Column -->
-    <ng-container matColumnDef="IdDocente">
+    <ng-container matColumnDef="idDocente">
       <th mat-header-cell *matHeaderCellDef> Codigo del docente </th>
-      <td mat-cell *matCellDef="let element"> {{materia.IdDocente}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.idDocente}} </td>
     </ng-container>
 
     <!-- codigo curso Column -->
-    <ng-container matColumnDef="IdCurso">
+    <ng-container matColumnDef="idCurso">
       <th mat-header-cell *matHeaderCellDef> codigo del curso </th>
-      <td mat-cell *matCellDef="let element"> {{materia.IdCurso}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.idCurso}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

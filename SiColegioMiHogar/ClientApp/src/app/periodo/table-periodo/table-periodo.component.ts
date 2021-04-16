@@ -31,9 +31,8 @@ export class TablePeriodoComponent  implements OnInit {
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
     @ViewChild(MatSort, { static: true }) sort: MatSort;
   
-  constructor(private periodoservice: PeriodoService, private router: Router, private activatedRoute: ActivatedRoute, private location: Location) {}
-  
-  id: number;
+  constructor(private periodoservice: PeriodoService, private router: Router,
+    private activatedRoute: ActivatedRoute, private location: Location) { }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

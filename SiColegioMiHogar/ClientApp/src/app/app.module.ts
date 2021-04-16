@@ -120,6 +120,7 @@ import { TableNotaComponent } from './nota/table-nota/table-nota.component';
       { path: 'registrar-mensualidad/:id', component: FormMensualidadComponent },
       { path: 'editar-mensualidad/:idMensualidad', component: FormMensualidadComponent },
       { path: 'consultar-mensualidad/:id', component: MensualidadComponent },
+      { path: 'cursos', component: CursoComponent },
       { path: 'registrar-curso', component: FormCursoComponent },
       { path: 'login', component: LoginComponent, canActivate: [CheckLoginGuard] },
       { path: 'materias', component: ListMateriaComponent },

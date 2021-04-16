@@ -15,14 +15,13 @@ export class CursoComponent implements OnInit {
 }
 
 export interface ICurso {
-  id: number,
   nombre: string,
-  MaxEst: number,
+  maxEst: number,
   idDirector: number
 }
 
 export interface ICurso2 {
-  nombre: string,
-  MaxEst: number,
+  nombreCurso: string,
+  maximoEstudiantes: number,
   docente: string
 }

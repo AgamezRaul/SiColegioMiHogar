@@ -7,16 +7,14 @@ namespace BackEnd.materias.Dominio.Entidades
 {
     public class Materias : Entity<int>
     {
-        public int IdMateria { get; set; }
         public string NombreMateria { get; set; }
         public int IdDocente { get; set; }
         public int IdCurso { get; set; }
 
         public Materias() { }
 
-        public Materias(int ideMateria, string nombreMateria, int ideDocente, int ideCurso)
+        public Materias(string nombreMateria, int ideDocente, int ideCurso)
         {
-            IdMateria = ideMateria;
             NombreMateria = nombreMateria;
             IdDocente = ideDocente;
             IdCurso = ideCurso;
@@ -24,15 +22,14 @@ namespace BackEnd.materias.Dominio.Entidades
 
         public IReadOnlyList<string> CanCrear(Materias materias)
         {
-            var errors = new List<string>();
-            if (materias.IdMateria == 0)
-                errors.Add("Campo codigo de materia vacio");
+            
+            var errors = new List<string>();/*
             if (materias.IdDocente == 0)
                 errors.Add("Campo codigo del docente vacio");
             if (materias.IdCurso == 0)
                 errors.Add("Campo codigo del curso vacio");
             if (string.IsNullOrEmpty(materias.NombreMateria) )
-                errors.Add("Campo nombre de la materia vacio");
+                errors.Add("Campo nombre de la materia vacio");*/
             return errors;
         }
     }
