@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./table-periodo.component.css']
 })
 
-export class TablePeriodoComponent  implements OnInit, OnDestroy {
+export class TablePeriodoComponent  implements OnInit {
 
   ListaPeriodos: IPeriodo[] = [];
 
@@ -45,30 +45,10 @@ export class TablePeriodoComponent  implements OnInit, OnDestroy {
     this.dataSource.sort = this.sort;
   }
 
-  ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
-      if (params["id"] == undefined) {
-        return;
-      }
-      this.id = parseInt(params["id"]);
-    })
-    
-    this.periodoservice.getPeriodos().subscribe(
-      Response => {
-        this.ListaPeriodos = Response;
-        this.dataSource = new MatTableDataSource(Response);
-        console.log(this.dataSource.data);
-        this.dataSource.paginator = this.paginator;
-      },error => console.error(error));
-
-    this.suscription = this.periodoservice.getPeriodos()
-        .subscribe(periodos => this.dataSource.data = periodos,
-          error => console.error(error));
-  }
-
-  ngOnDestroy(): void {
-    this.suscription.unsubscribe();
-    console.log('observable cerrado');
+  ngOnInit(): void {    
+    this.periodoservice.getPeriodos().
+      subscribe(periodos =>  this.dataSource.data = periodos,
+        error => console.error(error));
   }
 
   Registrar() {

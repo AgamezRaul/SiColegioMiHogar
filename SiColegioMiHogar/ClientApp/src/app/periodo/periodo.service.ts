@@ -9,8 +9,7 @@ import { IPeriodo } from './periodo.component';
 })
 export class PeriodoService {
 
-  private _refresh$ = new Subject<void>();
-  apiURL = this.baseUrl + "api/Nota";
+  apiURL = this.baseUrl + "api/Periodo";
 
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
   

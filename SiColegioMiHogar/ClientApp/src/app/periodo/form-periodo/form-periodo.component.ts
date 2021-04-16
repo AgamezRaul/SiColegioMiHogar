@@ -30,24 +30,12 @@ export class FormPeriodoComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  cargarFormulario(periodo: IPeriodo) {
-    this.formGroup.patchValue({
-      numeroPeriodo: periodo.numeroPeriodo,
-      nombrePeriodo: periodo.nombrePeriodo,
-      fechaInicio: periodo.fechaInicio,
-      fechaFin: periodo.fechaFin
-    });
-  }
-
   save(){
     let periodo: IPeriodo = Object.assign({}, this.formGroup.value);
-    if (this.formGroup.valid) {
-      this.periodoservice.createPeriodo(periodo)
-        .subscribe(response => this.onSaveSuccess()),
+    this.periodoservice.createPeriodo(periodo)
+      .subscribe(response => this.onSaveSuccess()),
         error => console.error(error);
-    }else{ 
-      console.log('No valido') 
-    }
+
   }
 
   onSaveSuccess() {

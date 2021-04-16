@@ -45,11 +45,6 @@ namespace SiColegioMiHogar.Controllers
             return result;
         }
 
-
-        public IEnumerable<Docente> GetDocente()
-        {
-            return _context.Docente;
-        }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetDocente([FromRoute] int id)
         {
