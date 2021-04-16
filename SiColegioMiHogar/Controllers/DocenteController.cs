@@ -72,6 +72,7 @@ namespace SiColegioMiHogar.Controllers
             return BadRequest(rta.Message);
         }
 
+        [HttpPut("{id}")]
         public async Task<IActionResult> PutDocente([FromRoute] int id, [FromBody] ActualizarDocenteRequest docente)
         {
             _actualizarService = new ActualizarDocenteService(_unitOfWork);

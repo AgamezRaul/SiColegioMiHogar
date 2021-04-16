@@ -1,7 +1,6 @@
 ﻿using BackEnd;
 using BackEnd.Base;
 using BackEnd.Estudiante.Aplicacion.Request;
-using BackEnd.Estudiante.Aplicacion.Services.Consultar;
 using BackEnd.Estudiante.Dominio;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
