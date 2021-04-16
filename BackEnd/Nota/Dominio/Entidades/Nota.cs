@@ -16,10 +16,10 @@ namespace BackEnd.Nota.Dominio.Entidades
         public int IdPeriodo { get; set; }
         
 
-        public Nota(string Descripcion, DateTime fechanota, double NotaAlumno, int IdEstudiante, int IdMateria, int IdPeriodo)
+        public Nota(string Descripcion, DateTime fechaNota, double NotaAlumno, int IdEstudiante, int IdMateria, int IdPeriodo)
         {
             this.Descripcion = Descripcion;
-            this.FechaNota = fechanota;
+            this.FechaNota = fechaNota;
             this.IdEstudiante = IdEstudiante;
             this.IdMateria = IdMateria;
             this.NotaAlumno = NotaAlumno;

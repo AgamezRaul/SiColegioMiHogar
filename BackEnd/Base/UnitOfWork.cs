@@ -113,8 +113,8 @@ namespace BackEnd.Base
             }
         }
 
-        private InotaServiceRepository _notaServiceRepository;
-        public InotaServiceRepository NotaServiceRepository
+        private INotaServiceRepository _notaServiceRepository;
+        public INotaServiceRepository NotaServiceRepository
         {
             get
             {

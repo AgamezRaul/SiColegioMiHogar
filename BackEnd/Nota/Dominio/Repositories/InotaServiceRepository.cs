@@ -6,7 +6,7 @@ using System.Text;
 
 namespace BackEnd.Nota.Dominio.Repositories
 {
-    public interface InotaServiceRepository : IGenericRepository<Entidades.Nota>
+    public interface INotaServiceRepository : IGenericRepository<Entidades.Nota>
     {
     }
 }

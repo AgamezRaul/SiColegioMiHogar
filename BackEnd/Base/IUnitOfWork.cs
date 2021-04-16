@@ -26,7 +26,7 @@ namespace BackEnd.Base
         IMensualidadServiceRepository MensualidadServiceRepository { get; }
         IMateriaServiceRepository MateriaServiceRepository { get; }
         IDocenteServiceRepository DocenteServiceRepository { get;  }
-        InotaServiceRepository NotaServiceRepository { get; }
+        INotaServiceRepository NotaServiceRepository { get; }
         IPeriodoServiceRepository PeriodoServiceRepository { get; }
 
         int Commit();

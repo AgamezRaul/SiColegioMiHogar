@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackEnd.Migrations
 {
     [DbContext(typeof(MiHogarContext))]
-    [Migration("20210416135632_Sprint3")]
+    [Migration("20210416155000_Sprint3")]
     partial class Sprint3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
