@@ -50,6 +50,8 @@ import { EditMateriaComponent } from './gestion-de-materias/edit-materia/edit-ma
 import { PeriodoComponent } from './periodo/periodo.component';
 import { FormPeriodoComponent } from './periodo/form-periodo/form-periodo.component';
 import { TablePeriodoComponent } from './periodo/table-periodo/table-periodo.component';
+import { ListDocenteComponent } from './Docente/list-docente/list-docente.component';
+import { EditDocenteComponent } from './Docente/edit-docente/edit-docente.component';
 
 
 @NgModule({
@@ -88,6 +90,8 @@ import { TablePeriodoComponent } from './periodo/table-periodo/table-periodo.com
     PeriodoComponent,
     FormPeriodoComponent,
     TablePeriodoComponent,
+    ListDocenteComponent,
+    EditDocenteComponent,
 
   ],
   imports: [
@@ -114,7 +118,12 @@ import { TablePeriodoComponent } from './periodo/table-periodo/table-periodo.com
       { path: 'login', component: LoginComponent, canActivate: [CheckLoginGuard] },
       { path: 'materias', component: ListMateriaComponent },
       { path: 'registrar-materia', component: FromMateriaComponent },
-      { path: 'registrar-materia/:idMateria', component: FromMateriaComponent }
+      { path: 'registrar-materia/:idMateria', component: FromMateriaComponent },
+
+      { path: 'registrar-Docente', component: DocenteComponent },
+      { path: 'lista-docente', component: ListDocenteComponent },
+      { path: 'editar-docente', component: EditDocenteComponent }
+
 ], { relativeLinkResolution: 'legacy' })
   ],
   //Aquí en providers se agregan todos los services de angular

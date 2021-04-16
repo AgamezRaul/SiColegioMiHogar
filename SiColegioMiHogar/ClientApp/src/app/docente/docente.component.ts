@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-docente',
   templateUrl: './docente.component.html',
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DocenteComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
   }

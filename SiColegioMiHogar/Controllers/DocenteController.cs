@@ -29,6 +29,23 @@ namespace SiColegioMiHogar.Controllers
         }
 
         [HttpGet]
+        public Object GetDocentes()
+        {
+            var result = (from c in _context.Set<Docente>()
+                          select new
+                          {
+                              Id = c.Id,
+                              NombreCompleto = c.NombreCompleto,
+                              NumTarjetaProf = c.NumTarjetaProf,
+                              Cedula= c.Cedula,
+                              Celular=c.Celular,
+                              Correo = c.Correo
+                          }).ToList();
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
+            return result;
+        }
+
+
         public IEnumerable<Docente> GetDocente()
         {
             return _context.Docente;

@@ -21,7 +21,7 @@ export class SidenavMenuComponent implements OnInit {
     { name: "Tabla Matriculas", route: "matricula", icon: "" },
   //  { name: "Consulta Mensualidades", route: "list-mensualidad", icon: "" },
     { name: "Registrar Curso", route: "registrar-curso", icon: "" },
-    
+    { name: "Registrar Docente", route:"lista-docente",icon:""},
     { name: "Gestion de Materias", route: "materias", icon: "" },
 
   ]
