@@ -1,11 +1,11 @@
 ﻿using BackEnd.Base;
-using BackEnd.materias.Aplicacion.Request;
+using BackEnd.Materia.Aplicacion.Request;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace BackEnd.materias.Aplicacion.Services.Crear
+namespace BackEnd.Materia.Aplicacion.Services.Crear
 {
     public class CrearMateriaService
     {

@@ -22,8 +22,8 @@ using BackEnd.Periodo.Infra;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using BackEnd.materias.Dominio.Repositories;
-using BackEnd.materias.Infra;
+using BackEnd.Materia.Dominio.Repositories;
+using BackEnd.Materia.Infra;
 
 
 namespace BackEnd.Base

@@ -1,13 +1,14 @@
 ﻿using BackEnd;
 using BackEnd.Base;
-using BackEnd.materias.Aplicacion.Request;
-using BackEnd.materias.Aplicacion.Services.Crear;
-using BackEnd.materias.Dominio.Entidades;
+using BackEnd.Materia.Aplicacion.Request;
+using BackEnd.Materia.Aplicacion.Services.Actualizar;
+using BackEnd.Materia.Aplicacion.Services.Crear;
+using BackEnd.Materia.Aplicacion.Services.Eliminar;
+using BackEnd.Materia.Dominio.Entidades;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
 namespace SiColegioMiHogar.Controllers
 {
@@ -17,7 +18,8 @@ namespace SiColegioMiHogar.Controllers
     {
         private readonly MiHogarContext _context;
         private CrearMateriaService _service;
-        //private ActualizarMateriaService _actualizarService;  genera errores
+        private ActualizarMateriaService _actualizarService;
+        private EliminarMateriaService _eliminarService;
         private UnitOfWork _unitOfWork;
 
         public MateriaController(MiHogarContext context)
@@ -33,40 +35,48 @@ namespace SiColegioMiHogar.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GeMaterias([FromRoute] int Id)
+        public async Task<IActionResult> GetMateria([FromRoute] int id)
         {
-            Materias materias = await _context.Materia.SingleOrDefaultAsync(t => t.Id == Id);
+            Materias materias = await _context.Materia.SingleOrDefaultAsync(t => t.Id == id);
             if (materias == null)
                 return NotFound();
             return Ok(materias);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateMaterias([FromBody] CrearMateriaRequest materias)
+        public async Task<IActionResult> CreateMaterias([FromBody] CrearMateriaRequest request)
         {
             _service = new CrearMateriaService(_unitOfWork);
-            var rta = _service.Ejecutar(materias);
+            var rta = _service.Ejecutar(request);
             if (rta.isOk())
             {
                 await _context.SaveChangesAsync();
-                //preguntar por lo que esta denteo del new
-                return CreatedAtAction("GetMateria", new { id = materias.Id }, materias);
+                return CreatedAtAction("GetMateria", new { idDocente = request.IdDocente }, request);
             }
             return BadRequest(rta.Message);
         }
 
-        /*         actualizar pero aun presenta errores
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMensualidad([FromRoute] int id, [FromBody] ActualizarMateriaRequest materias)
+        public async Task<IActionResult> PutMateria([FromRoute] string id, [FromBody] ActualizarMateriaRequest request)
         {
-            _actualizarService = new ActualizarMensualidadService(_unitOfWork);
-            var rta = _actualizarService.Ejecutar(mensualidad);
+            _actualizarService = new ActualizarMateriaService(_unitOfWork);
+            var rta = _actualizarService.Ejecutar(request);
             if (rta.isOk())
             {
                 await _context.SaveChangesAsync();
-                return CreatedAtAction("GetMensualidad", new { mes = mensualidad.Mes }, mensualidad);
+                return CreatedAtAction("GetMateria", new { id = request.Id }, request);
             }
             return BadRequest(rta.Message);
-        }*/
+        }
+
+        [HttpDelete("{id}")]
+        public object DeletePreMatricula([FromRoute] int id)
+        {
+            _eliminarService = new EliminarMateriaService(_unitOfWork);
+            EliminarMateriaRequest request = new EliminarMateriaRequest();
+            request.Id = id;
+            var rta = _eliminarService.Ejecutar(request);
+            return Ok(rta);
+        }
     }
 }

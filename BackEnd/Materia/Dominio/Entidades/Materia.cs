@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using BackEnd.Base;
 
-namespace BackEnd.materias.Dominio.Entidades
+namespace BackEnd.Materia.Dominio.Entidades
 {
     public class Materias : Entity<int>
     {

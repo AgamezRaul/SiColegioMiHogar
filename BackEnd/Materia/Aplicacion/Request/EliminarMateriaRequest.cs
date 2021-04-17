@@ -4,18 +4,16 @@ using System.Text;
 
 namespace BackEnd.Materia.Aplicacion.Request
 {
-    public class ActualizarMateriaRequest
+    public class EliminarMateriaRequest
     {
         public int Id { get; set; }
-        public string NombreMateria { get; set; }
-        public int IdDocente { get; set; }
     }
-    public class ActualizarMateriaResponse
+    public class EliminarMateriaResponse
     {
         public string Message { get; set; }
         public bool isOk()
         {
-            return this.Message.Equals("Materia actualizado exitosamente");
+            return this.Message.Equals("Materia eliminada exitosamente");
         }
     }
 }

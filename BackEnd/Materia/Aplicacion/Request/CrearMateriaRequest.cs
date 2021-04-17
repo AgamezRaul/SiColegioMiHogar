@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BackEnd.materias.Aplicacion.Request
+namespace BackEnd.Materia.Aplicacion.Request
 {
     public class CrearMateriaRequest
     {

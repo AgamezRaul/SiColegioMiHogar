@@ -1,24 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
-import { IMateria } from '../gestion-de-materias.component';
-import { GestionDeMateriasService } from '../gestion-de-materias.service';
+import { IMateria } from '../materia.component';
+import { MateriaService } from '../materia.service';
 
 @Component({
-  selector: 'app-from-materia',
-  templateUrl: './from-materia.component.html',
-  styleUrls: ['./from-materia.component.css']
+  selector: 'app-form-materia',
+  templateUrl: './form-materia.component.html',
+  styleUrls: ['./form-materia.component.css']
 })
-export class FromMateriaComponent implements OnInit {
+export class FormMateriaComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private materiaservice: GestionDeMateriasService,
+  constructor(private fb: FormBuilder, private materiaservice: MateriaService,
     private router: Router, private activatedRoute: ActivatedRoute) { }
 
   modoEdicion: boolean = false;
   id: number;
-  idmat: number;
-
-  materia: IMateria
 
   formGroup = this.fb.group({
     idMateria: ['', [Validators.required]],
@@ -32,7 +29,6 @@ export class FromMateriaComponent implements OnInit {
 
   save() {
     let materia: IMateria = Object.assign({}, this.formGroup.value);
-    console.table(this.materia);
     this.materiaservice.createMateria(materia)
       .subscribe(materia => this.onSaveSuccess()),
       error => console.error(error);

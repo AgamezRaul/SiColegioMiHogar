@@ -1,7 +1,7 @@
 ﻿using BackEnd;
 using BackEnd.Base;
-using BackEnd.materias.Aplicacion.Request;
-using BackEnd.materias.Aplicacion.Services.Crear;
+using BackEnd.Materia.Aplicacion.Request;
+using BackEnd.Materia.Aplicacion.Services.Crear;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 using System;

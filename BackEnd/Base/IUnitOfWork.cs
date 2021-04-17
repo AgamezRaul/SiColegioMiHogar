@@ -11,7 +11,7 @@ using BackEnd.Periodo.Dominio.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using BackEnd.materias.Dominio.Repositories;
+using BackEnd.Materia.Dominio.Repositories;
 
 namespace BackEnd.Base
 {

@@ -31,7 +31,6 @@ import { MensualidadComponent } from './mensualidad/mensualidad.component';
 import { FormMensualidadComponent } from './mensualidad/form-mensualidad/form-mensualidad.component';
 import { ListMensualidadComponent } from './mensualidad/list-mensualidad/list-mensualidad.component';
 import { FormDocenteComponent } from './Docente/form-docente/form-docente.component';
-import { GestionDeMateriasComponent } from './gestion-de-materias/gestion-de-materias.component';
 import { UsuarioService } from './login/usuario/usuario.service';
 import { PreMatriculaService } from './pre-matricula/pre-matricula.service';
 import { TablePrematriculaComponent } from './pre-matricula/table-prematricula/table-prematricula.component';
@@ -43,10 +42,6 @@ import { CursoComponent } from './curso/curso.component';
 import { FormCursoComponent } from './curso/form-curso/form-curso.component';
 import { TableCursoComponent } from './curso/table-curso/table-curso.component';
 import { DocenteComponent } from './docente/docente.component';
-import { ListMateriaComponent } from './gestion-de-materias/list-materia/list-materia.component';
-import { GestionDeMateriasService } from './gestion-de-materias/gestion-de-materias.service';
-import { FromMateriaComponent } from './gestion-de-materias/from-materia/from-materia.component';
-import { EditMateriaComponent } from './gestion-de-materias/edit-materia/edit-materia.component';
 import { PeriodoComponent } from './periodo/periodo.component';
 import { FormPeriodoComponent } from './periodo/form-periodo/form-periodo.component';
 import { TablePeriodoComponent } from './periodo/table-periodo/table-periodo.component';
@@ -55,7 +50,10 @@ import { EditDocenteComponent } from './Docente/edit-docente/edit-docente.compon
 import { NotaComponent } from './nota/nota.component';
 import { FormNotaComponent } from './nota/form-nota/form-nota.component';
 import { TableNotaComponent } from './nota/table-nota/table-nota.component';
-
+import { MateriaComponent } from './materia/materia.component';
+import { FormMateriaComponent } from './materia/form-materia/form-materia.component';
+import { ListMateriaComponent } from './materia/list-materia/list-materia.component';
+import { MateriaService } from './materia/materia.service';
 
 @NgModule({
   declarations: [
@@ -78,7 +76,6 @@ import { TableNotaComponent } from './nota/table-nota/table-nota.component';
     FormMensualidadComponent,
     ListMensualidadComponent,
     FormDocenteComponent,
-    GestionDeMateriasComponent,
     TablePrematriculaComponent,
     FormPreMatriculaComponent,
     MatriculaComponent,
@@ -87,9 +84,6 @@ import { TableNotaComponent } from './nota/table-nota/table-nota.component';
     FormCursoComponent,
     TableCursoComponent,
     DocenteComponent,
-    ListMateriaComponent,
-    FromMateriaComponent,
-    EditMateriaComponent,
     PeriodoComponent,
     FormPeriodoComponent,
     TablePeriodoComponent,
@@ -98,6 +92,9 @@ import { TableNotaComponent } from './nota/table-nota/table-nota.component';
     NotaComponent,
     FormNotaComponent,
     TableNotaComponent,
+    MateriaComponent,
+    FormMateriaComponent,
+    ListMateriaComponent
 
   ],
   imports: [
@@ -111,33 +108,37 @@ import { TableNotaComponent } from './nota/table-nota/table-nota.component';
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: 'login', component: LoginComponent, canActivate: [CheckLoginGuard] },
       { path: 'registrar-usuario', component: FormUsuarioComponent },
       { path: 'prematricula', component: PreMatriculaComponent },
       { path: 'registrar-prematricula', component: FormPreMatriculaComponent },
       { path: 'editar-prematricula/:id', component: FormPreMatriculaComponent },
       { path: 'matricula', component: MatriculaComponent },
-      { path: 'login', component: LoginComponent },
+
       { path: 'registrar-mensualidad/:id', component: FormMensualidadComponent },
       { path: 'editar-mensualidad/:idMensualidad', component: FormMensualidadComponent },
       { path: 'consultar-mensualidad/:id', component: MensualidadComponent },
+
       { path: 'cursos', component: CursoComponent },
       { path: 'registrar-curso', component: FormCursoComponent },
-      { path: 'login', component: LoginComponent, canActivate: [CheckLoginGuard] },
+
+      
       { path: 'materias', component: ListMateriaComponent },
-      { path: 'registrar-materia', component: FromMateriaComponent },
-      { path: 'registrar-materia/:idMateria', component: FromMateriaComponent },
-      { path: 'listar-periodos', component: TablePeriodoComponent },
+      { path: 'registrar-materia', component: FormMateriaComponent },
+
+      { path: 'periodos', component: TablePeriodoComponent },
       { path: 'registrar-periodo', component: FormPeriodoComponent },
+
       { path: 'registrar-Docente', component: DocenteComponent },
       { path: 'lista-docente', component: ListDocenteComponent },
-      { path: 'editar-docente',component:EditDocenteComponent},
-      { path: 'registrar-periodo', component: FormPeriodoComponent },
+      { path: 'editar-docente', component: EditDocenteComponent },
+
       { path: 'listar-notas', component: TableNotaComponent },
       { path: 'registrar-nota', component: FormNotaComponent },
 ], { relativeLinkResolution: 'legacy' })
   ],
   //Aquí en providers se agregan todos los services de angular
-  providers: [UsuarioService, PreMatriculaService, CdkColumnDef, GestionDeMateriasService],
+  providers: [UsuarioService, PreMatriculaService, CdkColumnDef, MateriaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

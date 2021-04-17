@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using BackEnd.Base;
-using BackEnd.materias.Aplicacion.Request;
+using BackEnd.Materia.Aplicacion.Request;
 
-namespace BackEnd.materias.Aplicacion.Services.Actualizar
+namespace BackEnd.Materia.Aplicacion.Services.Actualizar
 {
-    class ActualizarMateriaService
+    public class ActualizarMateriaService
     {
         readonly IUnitOfWork _unitOfWork;
 
@@ -17,20 +17,19 @@ namespace BackEnd.materias.Aplicacion.Services.Actualizar
 
         public ActualizarMateriaResponse Ejecutar(ActualizarMateriaRequest request)
         {
-            Dominio.Entidades.Materias materia = _unitOfWork.MateriaServiceRepository.FindFirstOrDefault(t => t.IdDocente == request.IdDocente);
+            Dominio.Entidades.Materias materia = _unitOfWork.MateriaServiceRepository.FindFirstOrDefault(t => t.Id == request.Id);
             if (materia == null)
             {
                 return new ActualizarMateriaResponse() { Message = $"La materia no existe" };
             }
             else
             {
-                materia.IdCurso = request.IdCurso;
                 materia.IdDocente = request.IdDocente;
                 materia.NombreMateria = request.NombreMateria;
 
                 _unitOfWork.MateriaServiceRepository.Edit(materia);
                 _unitOfWork.Commit();
-                return new ActualizarMateriaResponse() { Message = $"Estudiante Actualizado Exitosamente" };
+                return new ActualizarMateriaResponse() { Message = $"Materia Actualizado Exitosamente" };
 
             }
         }

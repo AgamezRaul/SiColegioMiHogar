@@ -22,7 +22,7 @@ export class SidenavMenuComponent implements OnInit {
     { name: "Cursos", route: "cursos", icon: "" },
     { name: "Periodos", route: "listar-periodos", icon: "" },
     { name: "Registrar Docente", route:"lista-docente",icon:""},
-    { name: "Gestion de Materias", route: "materias", icon: "" },
+    { name: "Materias", route: "materias", icon: "" },
 
     { name: "Notas", route: "listar-notas", icon: "" },
   ]
