@@ -25,16 +25,56 @@ export class FormMateriaComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe(params => {
+      if (params["id"] == undefined) {
+        return;
+      }
+
+      this.modoEdicion = true;
+
+      this.id = params["id"];
+
+      this.materiaservice.getMateria(this.id)
+        .subscribe(materia => this.cargarFormulario(materia)),
+        error => console.error(error);
+    });
   }
+
+
+  cargarFormulario(materia: IMateria) {
+    this.formGroup.patchValue({
+      idMateria: materia.id,
+      nombreMateria: materia.nombreMateria,
+      idDocente: materia.idDocente,
+      idCurso: materia.idCurso
+    });
+  }
+
 
   save() {
     let materia: IMateria = Object.assign({}, this.formGroup.value);
-    this.materiaservice.createMateria(materia)
-      .subscribe(materia => this.onSaveSuccess()),
-      error => console.error(error);
+
+    if (this.modoEdicion) {
+      //editar registro
+      materia.id = this.id;
+      this.materiaservice.updateMateria(materia)
+        .subscribe(materia => this.onSaveSuccess()),
+        error => console.error(error);
+
+      console.table(materia);
+
+    } else {
+      //agregar registro
+      this.materiaservice.createMateria(materia)
+        .subscribe(materia => this.onSaveSuccess()),
+        error => console.error(error);
+    }
+
   }
 
   onSaveSuccess() {
     this.router.navigate(["/materias"]);
   }
-}
+
+
+  }

@@ -125,6 +125,7 @@ import { MateriaService } from './materia/materia.service';
       
       { path: 'materias', component: ListMateriaComponent },
       { path: 'registrar-materia', component: FormMateriaComponent },
+      { path: 'editar-materia/:id', component: FormMateriaComponent },
 
       { path: 'periodos', component: TablePeriodoComponent },
       { path: 'registrar-periodo', component: FormPeriodoComponent },

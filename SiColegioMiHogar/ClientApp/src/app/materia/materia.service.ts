@@ -15,8 +15,8 @@ export class MateriaService {
     return this.http.get<IMateria[]>(this.apiURL);
   }
 
-  getMateria(materia: number): Observable<IMateria> {
-    return this.http.get<IMateria>(this.apiURL + '/' + materia);
+  getMateria(id: number): Observable<IMateria> {
+    return this.http.get<IMateria>(this.apiURL + '/' + id);
   }
 
   createMateria(materia: IMateria): Observable<IMateria> {
@@ -24,10 +24,10 @@ export class MateriaService {
   }
 
   updateMateria(materia: IMateria): Observable<IMateria> {
-    return this.http.put<IMateria>(this.apiURL + "/" + materia.id.toString(), materia);
+    return this.http.put<IMateria>(this.apiURL + "/" + materia.id, materia);
   }
 
-  deleteMateria(id: number): Observable<number> {
-    return this.http.delete<number>(this.apiURL + "/" + id);
+  deleteMateria(id: number): Observable<IMateria> {
+    return this.http.delete<IMateria> (this.apiURL + "/" + id);
   }
 }

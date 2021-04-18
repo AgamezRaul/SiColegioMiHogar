@@ -14,6 +14,8 @@ import { MateriaService } from '../materia.service';
 export class ListMateriaComponent implements OnInit {
 
   materia!: IMateria[];
+
+
   displayedColumns: string[] = [
     'id',
     'nombreMateria',
@@ -39,22 +41,24 @@ export class ListMateriaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.materiaService.getMaterias()
-      .subscribe(materia => { console.log(materia), this.dataSource.data = materia },
-        error => console.error(error));
+    this.cargardata();
   }
 
   Registrar() {
     this.router.navigate(["/registrar-materia"]);
   }
 
-  Eliminar(id: number) {
-    this.materiaService.deleteMateria(id).
-      subscribe(nit => this.onDeleteSuccess(),
-        error => console.error(error))
+  delete(materia: IMateria) {
+    this.materiaService.deleteMateria(materia.id)
+      .subscribe(materia => this.cargardata()),
+      error => console.error(error);
+
+    console.table(materia);
   }
 
-  onDeleteSuccess() {
-    this.router.navigate(["/materias"]);
+  cargardata() {
+    this.materiaService.getMaterias()
+      .subscribe(materia => { console.log(materia), this.dataSource.data = materia },
+        error => console.error(error));
   }
 }
