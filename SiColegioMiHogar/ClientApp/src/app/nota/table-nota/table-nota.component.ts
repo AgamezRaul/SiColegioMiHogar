@@ -8,6 +8,7 @@ import { INota } from '../nota.component';
 import { NotaService } from '../nota.service';
 import { Location } from '@angular/common';
 import { Subscription } from 'rxjs';
+// CommonJS
 
 @Component({
   selector: 'app-table-nota',
@@ -15,7 +16,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./table-nota.component.css']
 })
 export class TableNotaComponent implements OnInit {
-
+   
   ListaNotas: INotaConsult[] = [];
 
   suscription: Subscription;
@@ -54,6 +55,20 @@ export class TableNotaComponent implements OnInit {
 
   Registrar() {
     this.router.navigate(["/registrar-nota/"]);
+  }
+  
+
+  Consultar(idlink){
+    this.router.navigate(['/consultar-nota', { id: idlink }]);
+  }
+
+  Eliminar (id){
+    this.suscription = this.notaservice.deleteNota(id)
+    .subscribe((notas: any) => {
+      alert(notas.message);
+      location.reload();
+    },
+    error => console.error(error));
   }
 
 

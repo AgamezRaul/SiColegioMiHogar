@@ -63,9 +63,9 @@ export class FormNotaComponent implements OnInit {
     this.formGroup.patchValue({
       Descripcion:  nota.descripcion,
       NotaAlumno: nota.notaAlumno,
-      IdEstudiante: nota.estudiante,
-      IdMateria:  nota.materia,
-      IdPeriodo:  nota.periodo,
+      IdEstudiante: nota.idEstudiante,
+      IdMateria:  nota.idMateria,
+      IdPeriodo:  nota.idPeriodo,
     });
   }
 

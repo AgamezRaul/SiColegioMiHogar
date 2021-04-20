@@ -54,6 +54,7 @@ import { MateriaComponent } from './materia/materia.component';
 import { FormMateriaComponent } from './materia/form-materia/form-materia.component';
 import { ListMateriaComponent } from './materia/list-materia/list-materia.component';
 import { MateriaService } from './materia/materia.service';
+import { ConsultarNotaComponent } from './nota/consultar-nota/consultar-nota.component';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,8 @@ import { MateriaService } from './materia/materia.service';
     TableNotaComponent,
     MateriaComponent,
     FormMateriaComponent,
-    ListMateriaComponent
+    ListMateriaComponent,
+    ConsultarNotaComponent
 
   ],
   imports: [
@@ -137,6 +139,7 @@ import { MateriaService } from './materia/materia.service';
 
       { path: 'listar-notas', component: TableNotaComponent },
       { path: 'registrar-nota', component: FormNotaComponent },
+      { path: 'consultar-nota/:id', component: ConsultarNotaComponent },
 ], { relativeLinkResolution: 'legacy' })
   ],
   //Aquí en providers se agregan todos los services de angular
