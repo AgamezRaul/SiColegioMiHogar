@@ -130,9 +130,10 @@ import { MateriaService } from './materia/materia.service';
       { path: 'periodos', component: TablePeriodoComponent },
       { path: 'registrar-periodo', component: FormPeriodoComponent },
 
-      { path: 'registrar-Docente', component: DocenteComponent },
+      { path: 'Docente', component: DocenteComponent },
       { path: 'lista-docente', component: ListDocenteComponent },
       { path: 'editar-docente', component: EditDocenteComponent },
+      { path: 'registrar-docente', component: FormDocenteComponent},
 
       { path: 'listar-notas', component: TableNotaComponent },
       { path: 'registrar-nota', component: FormNotaComponent },

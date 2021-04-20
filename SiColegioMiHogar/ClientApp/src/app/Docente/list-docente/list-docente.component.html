@@ -4,18 +4,17 @@
     <input matInput (keyup)="applyFilter($event)" placeholder="Buscar" #input>
   </mat-form-field>
 
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z10" matSort>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
-    <!-- id Column -->
+    <!-- Id Column -->
     <ng-container matColumnDef="Id">
       <th mat-header-cell *matHeaderCellDef> Id</th>
       <td mat-cell *matCellDef="let element"> {{element.Id}} </td>
     </ng-container>
 
-    <!--
-  nombre Column -->
+    <!--NombreCompleto Column -->
     <ng-container matColumnDef="NombreCompleto" hidden>
-      <th mat-header-cell *matHeaderCellDef> Nombre Completo </th>
+      <th mat-header-cell *matHeaderCellDef> Nombre</th>
       <td mat-cell *matCellDef="let element"> {{element.NombreCompleto}} </td>
     </ng-container>
 
@@ -23,6 +22,7 @@
       <th mat-header-cell *matHeaderCellDef> Num Tarjeta profesional </th>
       <td mat-cell *matCellDef="let element"> {{element.NombreCompleto}} </td>
     </ng-container>
+
     <!-- maxEstudiantes Column -->
     <ng-container matColumnDef="Cedula">
       <th mat-header-cell *matHeaderCellDef> Cedula </th>

@@ -61,7 +61,7 @@ export class ListDocenteComponent implements OnInit, OnDestroy {
     console.log('observable cerrado');
   }
   Registrar() {
-    this.router.navigate(["/registrar-Docente/" + this.id]);
+    this.router.navigate(["/registrar-docente/" + this.id]);
   }
   Eliminar(idDocente: number) {
     this.docenteservice.deleteDocente(idDocente).
