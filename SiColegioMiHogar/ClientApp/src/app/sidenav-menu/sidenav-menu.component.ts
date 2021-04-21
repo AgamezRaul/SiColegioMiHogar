@@ -20,8 +20,8 @@ export class SidenavMenuComponent implements OnInit {
     { name: "Prematricula", route: "prematricula", icon: "" },
     { name: "Matriculas", route: "matricula", icon: "" },
     { name: "Cursos", route: "cursos", icon: "" },
-    { name: "Periodos", route: "listar-periodos", icon: "" },
-    { name: "Docentes", route:"Docente",icon:""},
+    { name: "Periodos", route: "periodos", icon: "" },
+    { name: "Docente", route:"Docente",icon:""},
     { name: "Materias", route: "materias", icon: "" },
 
     { name: "Notas", route: "listar-notas", icon: "" },
