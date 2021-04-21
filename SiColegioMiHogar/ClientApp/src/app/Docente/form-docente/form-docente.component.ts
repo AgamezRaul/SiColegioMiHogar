@@ -30,14 +30,14 @@ export class FormDocenteComponent implements OnInit {
       .subscribe(docente => this.onSaveSuccess());
   }
   onSaveSuccess() {
-    this.router.navigate(["/"]);
+    this.router.navigate(["/Docente"]);
   }
 
   get nombreCompleto() {
-    return this.formGroup.get('nombre');
+    return this.formGroup.get('nombreCompleto');
   }
   get numTarjetaProf() {
-    return this.formGroup.get('numTar');
+    return this.formGroup.get('numTarjetaProf');
   }
   get cedula() {
     return this.formGroup.get('cedula');

@@ -2,24 +2,25 @@
   <h1>Formulario de Docente</h1>
   <form [formGroup]="formGroup" (ngSubmit)="save()">
     <div class="form-row">
+      
       <div class="form-group col-md-6">
         <label for="nombreCompleto">Nombre completo</label>
-        <input type="text" class="form-control" formControlName="nombreCompleto" id="nombre" placeholder="Ej: Juan Meza García">
+        <input type="text" class="form-control" formControlName="nombreCompleto" id="nombreCompleto" placeholder="Ej: Juan Meza García">
       </div>
       <div class="form-group col-md-6">
         <label for="numTarjetaProf">Número de tarjeta profesional</label>
-        <input type="number" class="form-control" formControlName="numTarjetaProf" id="numTar" placeholder="Ej: 1924653">
+        <input type="text" class="form-control" formControlName="numTarjetaProf" id="numTarjetaProf" placeholder="Ej: 1924653">
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="cedula">Cédula</label>
-        <input type="number" class="form-control" formControlName="cedula" id="cedula" placeholder="Ej: 1002346547">
+        <input type="text" class="form-control" formControlName="cedula" id="cedula" placeholder="Ej: 1002346547">
       </div>
       <div class="form-group col-md-6">
         <label for="celular">Celular</label>
-        <input type="number" class="form-control" formControlName="celular" id="celular" placeholder="Ej: 3214534656">
+        <input type="text" class="form-control" formControlName="celular" id="celular" placeholder="Ej: 3214534656">
       </div>
     </div>
 
