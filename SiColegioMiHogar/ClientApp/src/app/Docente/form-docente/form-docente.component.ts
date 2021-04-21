@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IDocente } from '../docente.component';
 import { DocenteService } from '../docente.service';
+
 @Component({
   selector: 'app-form-docente',
   templateUrl: './form-docente.component.html',
@@ -13,8 +14,8 @@ export class FormDocenteComponent implements OnInit {
   constructor(private fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute,
     private docenteService: DocenteService) { }
   formGroup = this.fb.group({
-    nombre: ['', [Validators.required]],
-    numTar: ['', [Validators.required]],
+    nombreCompleto: ['', [Validators.required]],
+    numTarjetaProf: ['', [Validators.required]],
     cedula: ['', [Validators.required]],
     celular: ['', [Validators.required]],
     correo: ['', [Validators.required]],
@@ -24,7 +25,7 @@ export class FormDocenteComponent implements OnInit {
   }
   save() {
     let docente: IDocente = Object.assign({}, this.formGroup.value);
-    console.table(docente); //ver mensualidad por consola
+    console.table(docente); //ver docente por consola
     this.docenteService.createDocente(docente)
       .subscribe(docente => this.onSaveSuccess());
   }
@@ -32,10 +33,10 @@ export class FormDocenteComponent implements OnInit {
     this.router.navigate(["/"]);
   }
 
-  get nombre() {
+  get nombreCompleto() {
     return this.formGroup.get('nombre');
   }
-  get numTar() {
+  get numTarjetaProf() {
     return this.formGroup.get('numTar');
   }
   get cedula() {

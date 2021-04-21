@@ -19,7 +19,7 @@ namespace BackEnd.Docente.Aplicacion.Request
         public string Message { get; set; }
         public bool isOk()
         {
-            return this.Message.Equals("Docente registrado exitosamente");
+            return this.Message.Equals("Docente Creado Exitosamente");
         }
     }
 
