@@ -28,7 +28,7 @@ namespace BackEnd.Nota.Aplicacion.Services
                 Buscar.IdPeriodo = request.IdPeriodo;
                 Buscar.FechaNota = request.FechaNota;
                 Buscar.Descripcion = request.Descripcion;
-                Buscar.NotaAlumno = request.Nota;
+                Buscar.NotaAlumno = request.NotaAlumno;
 
                 _unitOfWork.NotaServiceRepository.Edit(Buscar);
                 if (_unitOfWork.Commit() > 0)

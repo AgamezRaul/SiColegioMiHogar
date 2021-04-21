@@ -26,4 +26,8 @@ export class NotaService {
     return this.http.delete<string>(this.apiURL+'/DeleteNota?id='+id);
   }
 
+  updateNota(nota: INota): Observable<INota> {
+    return this.http.put<INota>(this.apiURL+'/ActualizarNota', nota);
+  }
+
 }

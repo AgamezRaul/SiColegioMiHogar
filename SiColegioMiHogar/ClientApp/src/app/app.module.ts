@@ -139,6 +139,7 @@ import { ConsultarNotaComponent } from './nota/consultar-nota/consultar-nota.com
 
       { path: 'listar-notas', component: TableNotaComponent },
       { path: 'registrar-nota', component: FormNotaComponent },
+      { path: 'editar-nota/:id', component: FormNotaComponent },
       { path: 'consultar-nota/:id', component: ConsultarNotaComponent },
 ], { relativeLinkResolution: 'legacy' })
   ],

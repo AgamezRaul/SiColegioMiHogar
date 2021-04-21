@@ -59,7 +59,7 @@
             <label for="IdMateria">Materia</label>
             <select formControlName="IdMateria" class="form-control" id="IdMateria">
                 <option value="">Seleccione una materia</option>
-                <option value="{{dato.idMateria}}" *ngFor="let dato of ListaMaterias">
+                <option value="{{dato.id}}" *ngFor="let dato of ListaMaterias">
                     {{dato.nombreMateria}} 
                 </option>
             </select>
@@ -75,6 +75,7 @@
     <button type="submit" mat-raised-button color="primary" [disabled]="!formGroup.valid">
         Salvar Nota
        </button>
+    
    </div>
   </form>
 </div>

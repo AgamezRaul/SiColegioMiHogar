@@ -24,6 +24,7 @@ export interface INotaConsult{
 }
 
 export interface INota{
+  id: number
   Descripcion: string 
   NotaAlumno: number
   IdEstudiante: number

@@ -8,7 +8,7 @@ namespace BackEnd.Nota.Aplicacion.Request
     {
         public int Id { get; set; }
         public string Descripcion { get; set; }
-        public double Nota { get; set; }
+        public double NotaAlumno{ get; set; }
         public DateTime FechaNota { get=>DateTime.Now.Date; }
         public int IdEstudiante { get; set; }
         public int IdMateria { get; set; }
