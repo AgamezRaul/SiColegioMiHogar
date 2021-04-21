@@ -17,13 +17,13 @@ export class ListDocenteComponent implements OnInit, OnDestroy {
   suscription: Subscription;
   docente!: IDocente[];
   displayedColumns: string[] = [
-    'Id',
-    'NombreCompleto',
-    'NumTarjetaProf',
-    'Cedula',
-    'Celular',
-    'Correo',
-    'Direccion'];
+    'id',
+    'nombreCompleto',
+    'numTarjetaProf',
+    'cedula',
+    'celular',
+    'correo',
+    'direccion'];
   dataSource = new MatTableDataSource<IDocente2>(this.docente);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -47,7 +47,6 @@ export class ListDocenteComponent implements OnInit, OnDestroy {
       }
       this.id = parseInt(params["id"]);
     })
-
     this.docenteservice.getDocentes()
       .subscribe(docentes => this.dataSource.data = docentes,
         error => this.alertService.error(error.error));
@@ -64,7 +63,7 @@ export class ListDocenteComponent implements OnInit, OnDestroy {
     console.log('observable cerrado');
   }
   Registrar() {
-    this.router.navigate(["/registrar-docente/" + this.id]);
+    this.router.navigate(["/registrar-docente/"]);
   }
   Eliminar(idDocente: number) {
     this.docenteservice.deleteDocente(idDocente).

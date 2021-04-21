@@ -32,15 +32,16 @@ export class FormDocenteComponent implements OnInit {
         error => this.alertService.error(error.error));
   }
   onSaveSuccess() {
+    this.router.navigate(["/Docente"]);
     this.router.navigate(["/"]);
     this.alertService.success("Guardado exitoso");
   }
 
   get nombreCompleto() {
-    return this.formGroup.get('nombre');
+    return this.formGroup.get('nombreCompleto');
   }
   get numTarjetaProf() {
-    return this.formGroup.get('numTar');
+    return this.formGroup.get('numTarjetaProf');
   }
   get cedula() {
     return this.formGroup.get('cedula');
