@@ -125,7 +125,7 @@ namespace SiColegioMiHogar.Controllers
             EliminarPreMatriculaRequest request = new EliminarPreMatriculaRequest();
             request.UsuarioId = id;
             var rta = _eliminarService.Ejecutar(request);
-            return Ok(rta);
+            return Ok(rta.Message);
         }
     }
 }

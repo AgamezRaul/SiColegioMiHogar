@@ -7,6 +7,7 @@ import { IMensualidad, IMensualidad2 } from '../mensualidad.component';
 import { MensualidadService } from '../mensualidad.service';
 import { Location } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { AlertService } from '../../notifications/_services';
 
 @Component({
   selector: 'app-list-mensualidad',
@@ -32,7 +33,8 @@ export class ListMensualidadComponent implements OnInit, OnDestroy {
   dataSource = new MatTableDataSource<IMensualidad2>(this.mensualidad);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  constructor(private mensualidadservice: MensualidadService, private router: Router, private activatedRoute: ActivatedRoute, private location: Location) {
+  constructor(private mensualidadservice: MensualidadService, private router: Router,
+    private activatedRoute: ActivatedRoute, private location: Location, private alertService: AlertService) {
   }
   id: number;
 
@@ -53,17 +55,17 @@ export class ListMensualidadComponent implements OnInit, OnDestroy {
     })
     this.mensualidadservice.getMensualidadesMatricula(this.id)
       .subscribe(mensualidades => this.dataSource.data = mensualidades,
-        error => console.error(error));
+        error => this.alertService.error(error.error));
 
     this.suscription = this.mensualidadservice.refresh$.subscribe(() => {
       this.mensualidadservice.getMensualidadesMatricula(this.id)
         .subscribe(mensualidades => this.dataSource.data = mensualidades,
-          error => console.error(error));
+          error => this.alertService.error(error.error));
     });
   }
   ngOnDestroy(): void {
     this.suscription.unsubscribe();
-    console.log('observable cerrado');
+    this.alertService.info('observable cerrado');
   }
   Registrar() {
     this.router.navigate(["/registrar-mensualidad/" + this.id]);
@@ -72,11 +74,12 @@ export class ListMensualidadComponent implements OnInit, OnDestroy {
   Eliminar(idMensualidad: number) {
     this.mensualidadservice.deleteMensualidad(idMensualidad).
       subscribe(nit => this.onDeleteSuccess(),
-        error => console.error(error))
+        error => this.alertService.error(error.error))
   }
  
   onDeleteSuccess() {
-    this.router.navigate(["/consultar-mensualidad/"+this.id]);
+    this.router.navigate(["/consultar-mensualidad/" + this.id]);
+    this.alertService.success("Eliminado exitoso");
   }
 }
 

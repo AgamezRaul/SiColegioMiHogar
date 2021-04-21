@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { AlertService } from '../../notifications/_services';
 import { IMatricula } from '../matricula.component';
 import { MatriculaService } from '../matricula.service';
 
@@ -22,7 +23,8 @@ export class TableMatriculaComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  constructor(private matriculaService: MatriculaService, private router: Router) { }
+  constructor(private matriculaService: MatriculaService, private router: Router,
+    private alertService: AlertService ) { }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -35,6 +37,6 @@ export class TableMatriculaComponent implements OnInit {
   ngOnInit() {
     this.matriculaService.getMatriculas()
       .subscribe(matriculas => this.dataSource.data = matriculas,
-        error => console.error(error));
+        error => this.alertService.error(error.error));
   }
 }

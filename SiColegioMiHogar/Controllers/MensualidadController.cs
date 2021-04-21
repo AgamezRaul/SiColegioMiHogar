@@ -136,7 +136,7 @@ namespace SiColegioMiHogar.Controllers
             EliminarMensualidadRequest request = new EliminarMensualidadRequest();
             request.IdMensualidad = id;
             var rta = _eliminarService.Ejecutar(request);
-            return Ok(rta);
+            return Ok(rta.Message);
         }
     }
 }

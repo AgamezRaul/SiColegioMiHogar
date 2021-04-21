@@ -7,6 +7,7 @@ import { PeriodoService } from '../periodo.service';
 import { Location } from '@angular/common';
 import { error } from 'protractor';
 import { equal } from 'assert';
+import { AlertService } from '../../notifications/_services';
 
 @Component({
   selector: 'app-form-periodo',
@@ -15,7 +16,9 @@ import { equal } from 'assert';
 })
 export class FormPeriodoComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private periodoservice: PeriodoService,private router: Router, private activatedRoute: ActivatedRoute, private location: Location) { }
+  constructor(private fb: FormBuilder, private periodoservice: PeriodoService,
+    private router: Router, private activatedRoute: ActivatedRoute,
+    private location: Location, private alertService: AlertService) { }
   modoEdicion: boolean = false;
   id: number;
   idPerio: number;
@@ -34,12 +37,13 @@ export class FormPeriodoComponent implements OnInit {
     let periodo: IPeriodo = Object.assign({}, this.formGroup.value);
     this.periodoservice.createPeriodo(periodo)
       .subscribe(response => this.onSaveSuccess()),
-        error => console.error(error);
+      error => this.alertService.error(error.error);
 
   }
 
   onSaveSuccess() {
     this.router.navigate(["listar-periodos"]);
+    this.alertService.success("Registro exitoso");
   }
 
   get numeroPeriodo() {

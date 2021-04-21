@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
+import { AlertService } from '../../notifications/_services';
 import { IMateria } from '../materia.component';
 import { MateriaService } from '../materia.service';
 
@@ -12,7 +13,8 @@ import { MateriaService } from '../materia.service';
 export class FormMateriaComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private materiaservice: MateriaService,
-    private router: Router, private activatedRoute: ActivatedRoute) { }
+    private router: Router, private activatedRoute: ActivatedRoute,
+    private alertService: AlertService  ) { }
 
   modoEdicion: boolean = false;
   id: number;
@@ -36,7 +38,7 @@ export class FormMateriaComponent implements OnInit {
 
       this.materiaservice.getMateria(this.id)
         .subscribe(materia => this.cargarFormulario(materia)),
-        error => console.error(error);
+        error => this.alertService.error(error.error);
     });
   }
 
@@ -59,7 +61,7 @@ export class FormMateriaComponent implements OnInit {
       materia.id = this.id;
       this.materiaservice.updateMateria(materia)
         .subscribe(materia => this.onSaveSuccess()),
-        error => console.error(error);
+        error => this.alertService.error(error.error);
 
       console.table(materia);
 
@@ -67,13 +69,14 @@ export class FormMateriaComponent implements OnInit {
       //agregar registro
       this.materiaservice.createMateria(materia)
         .subscribe(materia => this.onSaveSuccess()),
-        error => console.error(error);
+        error => this.alertService.error(error.error);
     }
 
   }
 
   onSaveSuccess() {
     this.router.navigate(["/materias"]);
+    this.alertService.success("Guardado exitoso");
   }
 
 

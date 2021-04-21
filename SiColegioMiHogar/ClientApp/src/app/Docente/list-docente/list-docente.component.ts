@@ -7,6 +7,7 @@ import { IDocente, IDocente2 } from '../docente.component';
 import { DocenteService } from '../docente.service';
 import { Location } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { AlertService } from '../../notifications/_services';
 @Component({
   selector: 'app-list-docente',
   templateUrl: './list-docente.component.html',
@@ -26,7 +27,9 @@ export class ListDocenteComponent implements OnInit, OnDestroy {
   dataSource = new MatTableDataSource<IDocente2>(this.docente);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  constructor(private docenteservice: DocenteService, private router: Router, private activatedRoute: ActivatedRoute, private location: Location) { }
+  constructor(private docenteservice: DocenteService, private router: Router,
+    private activatedRoute: ActivatedRoute, private location: Location,
+    private alertService: AlertService) { }
   id: number;
 
   applyFilter(event: Event) {
@@ -47,12 +50,12 @@ export class ListDocenteComponent implements OnInit, OnDestroy {
 
     this.docenteservice.getDocentes()
       .subscribe(docentes => this.dataSource.data = docentes,
-        error => console.error(error));
+        error => this.alertService.error(error.error));
 
     this.suscription = this.docenteservice.refresh$.subscribe(() => {
       this.docenteservice.getDocentes()
         .subscribe(docente => this.dataSource.data = this.docente,
-          error => console.error(error));
+          error => this.alertService.error(error.error));
     });
   }
 
@@ -66,10 +69,11 @@ export class ListDocenteComponent implements OnInit, OnDestroy {
   Eliminar(idDocente: number) {
     this.docenteservice.deleteDocente(idDocente).
       subscribe(nit => this.onDeleteSuccess(),
-        error => console.error(error))
+        error => this.alertService.error(error.error));
   }
   onDeleteSuccess() {
     this.router.navigate(["/consultar-curso/" + this.id]);
+    this.alertService.success("Eliminado exitoso");
   }
   
 

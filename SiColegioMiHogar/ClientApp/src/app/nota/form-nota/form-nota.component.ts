@@ -11,6 +11,7 @@ import { EstudianteService } from '../../estudiante/estudiante.service';
 import { PeriodoService } from '../../periodo/periodo.service';
 import { IEstudiante } from '../../estudiante/estudiante.component';
 import { IPeriodo } from '../../periodo/periodo.component';
+import { AlertService } from '../../notifications/_services';
 
 @Component({
   selector: 'app-form-nota',
@@ -25,7 +26,8 @@ export class FormNotaComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private notaservice: NotaService,
     private router: Router, private activatedRoute: ActivatedRoute, private location: Location,
-    private estudianteService: EstudianteService, private periodoService: PeriodoService) { }
+    private estudianteService: EstudianteService, private periodoService: PeriodoService,
+    private alertService: AlertService  ) { }
   modoEdicion: boolean = false;
   id: number;
   idNota: number;
@@ -40,9 +42,9 @@ export class FormNotaComponent implements OnInit {
 
   ngOnInit(): void {
     this.estudianteService.getEstudiantes().subscribe(estudiantes => this.LLenarEstudiantes(estudiantes),
-      error => console.error(error));
+      error => this.alertService.error(error.error));
     this.periodoService.getPeriodos().subscribe(periodos => this.LLenarPeriodos(periodos),
-      error => console.error(error));
+      error => this.alertService.error(error.error));
     /*this.notaservice.getMaterias().subscribe(materias => this.LLenarMaterias(materias),
       error => console.error(error));*/
   }
@@ -74,15 +76,16 @@ export class FormNotaComponent implements OnInit {
     if (this.formGroup.valid) {
       this.notaservice.createNota(nota)
         .subscribe(response => this.onSaveSuccess()),
-        error => console.error(error);
-    }else{ 
-      console.log('No valido') 
+        error => this.alertService.error(error.error);
+    } else {
+      this.alertService.info('No valido') 
     }
   }
 
   
   onSaveSuccess() {
     this.router.navigate(["listar-notas"]);
+    this.alertService.success("Registrado exitoso");
   }
 
   get IdPeriodo() {

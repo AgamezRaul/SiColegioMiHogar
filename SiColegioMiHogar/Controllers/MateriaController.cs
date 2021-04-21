@@ -76,7 +76,7 @@ namespace SiColegioMiHogar.Controllers
             EliminarMateriaRequest request = new EliminarMateriaRequest();
             request.Id = id;
             var rta = _eliminarService.Ejecutar(request);
-            return Ok(rta);
+            return Ok(rta.Message);
         }
     }
 }

@@ -7,6 +7,7 @@ import { IPeriodo } from '../periodo.component';
 import { PeriodoService } from '../periodo.service';
 import { Location } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { AlertService } from '../../notifications/_services';
 
 @Component({
   selector: 'app-table-periodo',
@@ -32,7 +33,8 @@ export class TablePeriodoComponent  implements OnInit {
     @ViewChild(MatSort, { static: true }) sort: MatSort;
   
   constructor(private periodoservice: PeriodoService, private router: Router,
-    private activatedRoute: ActivatedRoute, private location: Location) { }
+    private activatedRoute: ActivatedRoute, private location: Location,
+    private alertService: AlertService  ) { }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -47,11 +49,12 @@ export class TablePeriodoComponent  implements OnInit {
   ngOnInit(): void {    
     this.periodoservice.getPeriodos().
       subscribe(periodos =>  this.dataSource.data = periodos,
-        error => console.error(error));
+        error => this.alertService.error(error.error));
   }
 
   Registrar() {
     this.router.navigate(["/registrar-periodo/"]);
+    this.alertService.success("Guardado exitoso");
   }
 
 

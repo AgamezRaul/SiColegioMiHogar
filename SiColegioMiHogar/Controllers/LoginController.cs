@@ -64,7 +64,7 @@ namespace SiColegioMiHogar.Controllers
             var tokenHandler = new JwtSecurityTokenHandler();
             var createdToken = tokenHandler.CreateToken(tokenDescriptor);
             rta.Token = tokenHandler.WriteToken(createdToken);
-            return Ok(rta);
+            return Ok(rta.Message);
         }
     }
 }

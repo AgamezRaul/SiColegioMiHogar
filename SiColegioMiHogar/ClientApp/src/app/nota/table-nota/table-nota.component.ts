@@ -8,6 +8,7 @@ import { INota } from '../nota.component';
 import { NotaService } from '../nota.service';
 import { Location } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { AlertService } from '../../notifications/_services';
 
 @Component({
   selector: 'app-table-nota',
@@ -33,7 +34,9 @@ export class TableNotaComponent implements OnInit {
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
     @ViewChild(MatSort, { static: true }) sort: MatSort;
   
-  constructor(private notaservice: NotaService, private router: Router, private activatedRoute: ActivatedRoute, private location: Location) {}
+  constructor(private notaservice: NotaService, private router: Router,
+    private activatedRoute: ActivatedRoute, private location: Location,
+    private alertService: AlertService  ) { }
   
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -48,7 +51,7 @@ export class TableNotaComponent implements OnInit {
   ngOnInit(): void {
     this.suscription = this.notaservice.getNotas()
         .subscribe(notas => this.dataSource.data = notas,
-          error => console.error(error));
+          error => this.alertService.error(error.error));
   }
 
 

@@ -7,6 +7,7 @@ import { ICurso, ICurso2 } from '../curso.component';
 import { CursoService } from '../curso.service';
 import { Location } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { AlertService } from '../../notifications/_services';
 
 @Component({
   selector: 'app-table-curso',
@@ -24,7 +25,9 @@ export class TableCursoComponent implements OnInit, OnDestroy {
   dataSource = new MatTableDataSource<ICurso2>(this.curso);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  constructor(private cursoservice: CursoService, private router: Router, private activatedRoute: ActivatedRoute, private location: Location) {
+  constructor(private cursoservice: CursoService, private router: Router,
+    private activatedRoute: ActivatedRoute, private location: Location,
+    private alertService: AlertService) {
   }
 
   id: number;
@@ -46,12 +49,12 @@ export class TableCursoComponent implements OnInit, OnDestroy {
     })
     this.cursoservice.getCursos()
       .subscribe(cursos => this.dataSource.data = cursos,
-        error => console.error(error));
+        error => this.alertService.error(error.error));
 
     this.suscription = this.cursoservice.refresh$.subscribe(() => {
       this.cursoservice.getCursos()
         .subscribe(cursos => this.dataSource.data = cursos,
-          error => console.error(error));
+          error => this.alertService.error(error.error));
     });
   }
 

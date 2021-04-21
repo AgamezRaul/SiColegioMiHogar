@@ -11,22 +11,6 @@ export class FormResponsableAcudienteComponent implements OnInit {
 
   @Input() formGroupA: FormGroup;
 
-  /*formGroupA = this.fb.group({
-    ideResponsableAcudiente: ['', [Validators.required]],
-    nomResponsableAcudiente: ['', [Validators.required]],
-    fechaNacimientoAcudiente: ['', [Validators.required]],
-    lugNacimientoAcudiente: ['', [Validators.required]],
-    lugExpedicionAcudiente: ['', [Validators.required]],
-    tipoDocumentoAcudiente: ['', [Validators.required]],
-    celResponsableAcudiente: ['', [Validators.required]],
-    profResponsableAcudiente: ['', [Validators.required]],
-    ocuResponsableAcudiente: ['', [Validators.required]],
-    entResponsableAcudiente: ['', [Validators.required]],
-    celEmpresaAcudiente: ['', [Validators.required]],
-    tipoResponsableAcudiente: ['', [Validators.required]],
-    correoAcudiente: ['', [Validators.required]]
-  });*/
-
   constructor(private fb: FormBuilder, private router: Router,
     private activatedRoute: ActivatedRoute) { }
 
