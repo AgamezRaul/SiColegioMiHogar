@@ -17,8 +17,8 @@ export class DocenteComponent implements OnInit {
 
 export interface IDocente {
   id: number,
-  nombre: string,
-  numTar: number,
+  nombreCompleto: string,
+  numTarjetaProf: number,
   cedula: number,
   celular: number,
   correo: string,
@@ -27,8 +27,8 @@ export interface IDocente {
 
 export interface IDocente2 {
   id: number,
-  nombre: string,
-  numTar: number,
+  nombreCompleto: string,
+  numTarjetaProf: number,
   cedula: number,
   celular: number,
   correo: string,
