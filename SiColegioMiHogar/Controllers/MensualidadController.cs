@@ -130,13 +130,18 @@ namespace SiColegioMiHogar.Controllers
         }
 
         [HttpDelete("{id}")]
-        public object DeleteMensualidad([FromRoute] int id)
+        public async Task<IActionResult> DeleteMensualidad([FromRoute] int id)
         {
             _eliminarService = new EliminarMensualidadService(_unitOfWork);
             EliminarMensualidadRequest request = new EliminarMensualidadRequest();
             request.IdMensualidad = id;
             var rta = _eliminarService.Ejecutar(request);
-            return Ok(rta.Message);
+            if (rta.isOk())
+            {
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetMensualidad", new { id = request.IdMensualidad }, request);
+            }
+            return BadRequest(rta.Message);
         }
     }
 }

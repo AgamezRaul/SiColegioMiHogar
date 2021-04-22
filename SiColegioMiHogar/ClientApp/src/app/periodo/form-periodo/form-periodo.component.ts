@@ -37,7 +37,7 @@ export class FormPeriodoComponent implements OnInit {
     let periodo: IPeriodo = Object.assign({}, this.formGroup.value);
     this.periodoservice.createPeriodo(periodo)
       .subscribe(response => this.onSaveSuccess()),
-      error => this.alertService.error(error.error);
+      error => this.alertService.error(error);
 
   }
 

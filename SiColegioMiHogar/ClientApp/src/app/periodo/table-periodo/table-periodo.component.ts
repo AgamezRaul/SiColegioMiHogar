@@ -49,7 +49,7 @@ export class TablePeriodoComponent  implements OnInit {
   ngOnInit(): void {    
     this.periodoservice.getPeriodos().
       subscribe(periodos =>  this.dataSource.data = periodos,
-        error => this.alertService.error(error.error));
+        error => this.alertService.error(error));
   }
 
   Registrar() {

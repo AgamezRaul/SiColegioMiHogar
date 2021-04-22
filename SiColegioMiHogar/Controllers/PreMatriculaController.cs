@@ -119,13 +119,18 @@ namespace SiColegioMiHogar.Controllers
         }
 
         [HttpDelete("{id}")]
-        public object DeletePreMatricula([FromRoute] int id)
+        public async Task<IActionResult> DeletePreMatricula([FromRoute] int id)
         {
-            _eliminarService = new EliminarPreMatriculaService(_unitOfWork);
             EliminarPreMatriculaRequest request = new EliminarPreMatriculaRequest();
             request.UsuarioId = id;
+            _eliminarService = new EliminarPreMatriculaService(_unitOfWork);
             var rta = _eliminarService.Ejecutar(request);
-            return Ok(rta.Message);
+            if (rta.isOk())
+            {
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetPrematricula", new { id = request.UsuarioId }, request);
+            }
+            return BadRequest(rta.Message);
         }
     }
 }

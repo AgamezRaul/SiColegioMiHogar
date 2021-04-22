@@ -28,7 +28,7 @@ export class FormPreMatriculaComponent implements OnInit {
 
   formGroupP = this.fb.group({
     ideResponsable: ['1998001', [Validators.required]],
-    nomResponsable: ['', [Validators.required]],
+    nomResponsable: ['Samuel', [Validators.required]],
     fecNacimiento: ['', [Validators.required]],
     lugNacimiento: ['Cesar', [Validators.required]],
     lugExpedicion: ['Valledupar', [Validators.required]],
@@ -44,7 +44,7 @@ export class FormPreMatriculaComponent implements OnInit {
   });
   formGroupM = this.fb.group({
     ideResponsable: ['1998002', [Validators.required]],
-    nomResponsable: ['', [Validators.required]],
+    nomResponsable: ['Veronica', [Validators.required]],
     fecNacimiento: ['', [Validators.required]],
     lugNacimiento: ['Cesar', [Validators.required]],
     lugExpedicion: ['Valledupar', [Validators.required]],
@@ -60,7 +60,7 @@ export class FormPreMatriculaComponent implements OnInit {
   });
   formGroupA = this.fb.group({
     ideResponsable: ['1998003', [Validators.required]],
-    nomResponsable: ['', [Validators.required]],
+    nomResponsable: ['Mariana', [Validators.required]],
     fecNacimiento: ['', [Validators.required]],
     lugNacimiento: ['Cesar', [Validators.required]],
     lugExpedicion: ['Valledupar', [Validators.required]],
@@ -128,7 +128,7 @@ export class FormPreMatriculaComponent implements OnInit {
       //crea
       this.servicePrematricula.createPrematricula(this.prematricula)
         .subscribe(prematricula => this.onSaveSuccess(),
-          error => this.alertService.error(error.error));
+          error => this.alertService.error(error));
     }
   }
 

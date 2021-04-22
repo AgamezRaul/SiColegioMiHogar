@@ -42,9 +42,9 @@ export class FormNotaComponent implements OnInit {
 
   ngOnInit(): void {
     this.estudianteService.getEstudiantes().subscribe(estudiantes => this.LLenarEstudiantes(estudiantes),
-      error => this.alertService.error(error.error));
+      error => this.alertService.error(error));
     this.periodoService.getPeriodos().subscribe(periodos => this.LLenarPeriodos(periodos),
-      error => this.alertService.error(error.error));
+      error => this.alertService.error(error));
     /*this.notaservice.getMaterias().subscribe(materias => this.LLenarMaterias(materias),
       error => console.error(error));*/
   }
@@ -76,7 +76,7 @@ export class FormNotaComponent implements OnInit {
     if (this.formGroup.valid) {
       this.notaservice.createNota(nota)
         .subscribe(response => this.onSaveSuccess()),
-        error => this.alertService.error(error.error);
+        error => this.alertService.error(error);
     } else {
       this.alertService.info('No valido') 
     }

@@ -55,12 +55,12 @@ export class ListMensualidadComponent implements OnInit, OnDestroy {
     })
     this.mensualidadservice.getMensualidadesMatricula(this.id)
       .subscribe(mensualidades => this.dataSource.data = mensualidades,
-        error => this.alertService.error(error.error));
+        error => this.alertService.error(error));
 
     this.suscription = this.mensualidadservice.refresh$.subscribe(() => {
       this.mensualidadservice.getMensualidadesMatricula(this.id)
         .subscribe(mensualidades => this.dataSource.data = mensualidades,
-          error => this.alertService.error(error.error));
+          error => this.alertService.error(error));
     });
   }
   ngOnDestroy(): void {
@@ -74,7 +74,7 @@ export class ListMensualidadComponent implements OnInit, OnDestroy {
   Eliminar(idMensualidad: number) {
     this.mensualidadservice.deleteMensualidad(idMensualidad).
       subscribe(nit => this.onDeleteSuccess(),
-        error => this.alertService.error(error.error))
+        error => this.alertService.error(error))
   }
  
   onDeleteSuccess() {

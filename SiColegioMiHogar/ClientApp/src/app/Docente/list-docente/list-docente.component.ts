@@ -49,12 +49,12 @@ export class ListDocenteComponent implements OnInit, OnDestroy {
     })
     this.docenteservice.getDocentes()
       .subscribe(docentes => this.dataSource.data = docentes,
-        error => this.alertService.error(error.error));
+        error => this.alertService.error(error));
 
     this.suscription = this.docenteservice.refresh$.subscribe(() => {
       this.docenteservice.getDocentes()
         .subscribe(docente => this.dataSource.data = this.docente,
-          error => this.alertService.error(error.error));
+          error => this.alertService.error(error));
     });
   }
 
