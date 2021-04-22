@@ -3,6 +3,7 @@ using BackEnd.Base;
 using BackEnd.Estudiante.Dominio;
 using BackEnd.Matricula.Dominio;
 using BackEnd.Mensualidad.Aplicacion.Request;
+using BackEnd.Mensualidad.Aplicacion.Service;
 using BackEnd.Mensualidad.Aplicacion.Service.Actualizar;
 using BackEnd.Mensualidad.Aplicacion.Service.Crear;
 using BackEnd.Mensualidad.Aplicacion.Service.Eliminar;
@@ -26,6 +27,7 @@ namespace SiColegioMiHogar.Controllers
         private CrearMensualidadService _service;
         private ActualizarMensualidadService _actualizarService;
         private EliminarMensualidadService _eliminarService;
+        private EviarEmailService _eviarEmail;
         private UnitOfWork _unitOfWork;
         public MensualidadController(MiHogarContext context)
         {
@@ -137,6 +139,13 @@ namespace SiColegioMiHogar.Controllers
             request.IdMensualidad = id;
             var rta = _eliminarService.Ejecutar(request);
             return Ok(rta.Message);
+        }
+        //enviar email prueba
+        [HttpGet("GetEmail")]
+        public object EnviarEmail(){
+            _eviarEmail = new EviarEmailService(_unitOfWork);
+            var rta = _eviarEmail.EnviarEmail();
+            return Ok(rta);
         }
     }
 }
