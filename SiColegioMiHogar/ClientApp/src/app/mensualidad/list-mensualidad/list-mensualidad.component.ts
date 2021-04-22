@@ -81,5 +81,17 @@ export class ListMensualidadComponent implements OnInit, OnDestroy {
     this.router.navigate(["/consultar-mensualidad/" + this.id]);
     this.alertService.success("Eliminado exitoso");
   }
+  onSaveSuccess() {
+    this.router.navigate(["/consultar-mensualidad/" + this.id]);
+    this.alertService.success("Correo Enviado");
+  }
+  EnviarMail() {
+    this.mensualidadservice.EnviarEmail()
+      .subscribe(mensualidad => this.onSaveSuccess()),
+      error => this.alertService.error(error);
+
+      
+  
+  }
 }
 
