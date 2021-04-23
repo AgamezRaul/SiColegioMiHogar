@@ -29,7 +29,7 @@
             <label for="IdEstudiante">Estudiante</label>
             <select formControlName="IdEstudiante" ng-options="IEstudianteNota.nomEstudiante for IEstudianteNota in ListaEstudiantes" ng-model="IEstudianteNota" class="form-control" id="IdEstudiante">
                 <option value="">Seleccione un estudiante</option>
-                <option value="{{dato.ideEstudiante}}" *ngFor="let dato of ListaEstudiantes">
+                <option value="{{dato.id}}" *ngFor="let dato of ListaEstudiantes">
                     {{dato.nomEstudiante}}
                 </option>
             </select>

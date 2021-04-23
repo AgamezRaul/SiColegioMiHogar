@@ -33,6 +33,7 @@ export interface INota{
 }
 
 export interface IEstudianteNota {
+  id: number,
   ideEstudiante: string,
   nomEstudiante: string,
   fecNacimiento: Date,

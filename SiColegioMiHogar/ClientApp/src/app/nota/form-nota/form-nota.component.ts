@@ -88,7 +88,9 @@ export class FormNotaComponent implements OnInit {
 
   save(){
     let nota: INota = Object.assign({}, this.formGroup.value);
-
+    nota.IdMateria = parseInt(nota.IdMateria.toString());
+    nota.IdEstudiante = parseInt(nota.IdEstudiante.toString());
+    nota.IdPeriodo = parseInt(nota.IdPeriodo.toString());
     if (this.modoEdicion) {
       //editar registro
       nota.id = parseInt(this.id.toString());
