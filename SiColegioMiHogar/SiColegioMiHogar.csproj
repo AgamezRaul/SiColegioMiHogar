@@ -39,6 +39,7 @@
     <Folder Include="ClientApp\src\app\curso\form-curso\" />
     <Folder Include="ClientApp\src\app\curso\table-curso\" />
     <Folder Include="ClientApp\src\app\docente\form-docente\" />
+    <Folder Include="ClientApp\src\app\notifications\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

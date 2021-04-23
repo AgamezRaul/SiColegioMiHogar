@@ -101,13 +101,19 @@ namespace SiColegioMiHogar.Controllers
         }
 
         [HttpDelete("{id}")]
-        public object DeleteCurso([FromRoute] int id)
+        public async Task<IActionResult> DeleteCurso([FromRoute] int id)
         {
             _eliminarService = new EliminarCursoService(_unitOfWork);
             EliminarCursoRequest request = new EliminarCursoRequest();
             request.IdCurso = id;
             var rta = _eliminarService.Ejecutar(request);
-            return Ok(rta);
+            if (rta.isOk())
+            {
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetCurso", new { id = request.IdCurso }, request);
+
+            }
+            return BadRequest(rta.Message);
         }
     }
 }

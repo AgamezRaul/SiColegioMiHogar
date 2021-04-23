@@ -11,27 +11,9 @@ export class FormResponsablePadreComponent implements OnInit {
 
   @Input() formGroupP: FormGroup;
 
-  /*formGroupP = this.fb.group({
-    ideResponsablePadre: ['', [Validators.required]],
-    nomResponsablePadre: ['', [Validators.required]],
-    fecNacimientoPadre: ['', [Validators.required]],
-    lugNacimientoPadre: ['', [Validators.required]],
-    lugExpedicionPadre: ['', [Validators.required]],
-    tipDocumentoPadre: ['', [Validators.required]],
-    celResponsablePadre: ['', [Validators.required]],
-    profResponsablePadre: ['', [Validators.required]],
-    ocuResponsablePadre: ['', [Validators.required]],
-    entResonsablePadre: ['', [Validators.required]],
-    celEmpresaPadre: ['', [Validators.required]],
-    tipoResponsablePadre: ['', [Validators.required]],
-    correoPadre: ['', [Validators.required]],
-    acudientePadre: ['', [Validators.required]]
-  });*/
-
   constructor(private fb: FormBuilder, private router: Router,
     private activatedRoute: ActivatedRoute) { }
 
-  
   ngOnInit() {
   }
 

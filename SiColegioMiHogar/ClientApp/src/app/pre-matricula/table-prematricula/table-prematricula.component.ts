@@ -6,6 +6,8 @@ import { PreMatriculaService } from '../pre-matricula.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatriculaService } from '../../matricula/matricula.service';
 import { IPrematricula, IPrematricula2 } from '../pre-matricula.component';
+import { AlertService } from '../../notifications/_services';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-table-prematricula',
@@ -15,6 +17,7 @@ import { IPrematricula, IPrematricula2 } from '../pre-matricula.component';
 export class TablePrematriculaComponent implements OnInit {
   prematricula3: IPrematricula;
   prematricula!: IPrematricula2[];
+  suscription: Subscription;
   displayedColumns: string[] = [
     'idUsuario',
     'idPrematricula',
@@ -27,7 +30,8 @@ export class TablePrematriculaComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(private prematriculaService: PreMatriculaService, private router: Router,
-    private activatedRoute: ActivatedRoute, private matriculaService: MatriculaService) { }
+    private activatedRoute: ActivatedRoute, private matriculaService: MatriculaService,
+    private alertService: AlertService  ) { }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -40,33 +44,41 @@ export class TablePrematriculaComponent implements OnInit {
   ngOnInit() {
     this.prematriculaService.getPrematriculas()
       .subscribe(prematriculas => this.dataSource.data = prematriculas,
-        error => console.error(error));
+        error => this.alertService.error(error));
+
+    this.suscription = this.prematriculaService.refresh$.subscribe(() => {
+      this.prematriculaService.getPrematriculas().
+        subscribe(prematriculas => this.dataSource.data = prematriculas,
+          error => this.alertService.error(error));
+    });
+    
   }
 
   VerPreMatricula(idPreMatricula: number) {
     this.prematriculaService.getPrematricula(idPreMatricula).
       subscribe(prematricula => this.prematricula3 = prematricula,
-        error => console.error(error));
-    console.log(this.prematricula3);
+        error => this.alertService.error(error.error));
   }
 
   CrearMatricula(idPreMatricula: number) {
     this.matriculaService.createMatricula(idPreMatricula).
       subscribe(empleadoId => this.onCrearMatriculaSuccess(),
-        error => console.error(error))
+        error => this.alertService.error(error.error))
   }
 
   onCrearMatriculaSuccess() {
-    this.router.navigate(["/matricula"]);
+    this.router.navigate(["/prematricula"]);
+    this.alertService.success("Guardado exitoso");
   }
 
   Eliminar(idUsuario: number) {
     this.prematriculaService.deletePreMatricula(idUsuario).
       subscribe(nit => this.onDeleteSuccess(),
-        error => console.error(error))
+        error => this.alertService.error(error));
   }
 
   onDeleteSuccess() {
     this.router.navigate(["/prematricula"]);
+    this.alertService.success("Eliminado exitoso");
   }
 }

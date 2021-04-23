@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IEstudiante } from '../../estudiante/estudiante.component';
 import { LoginService } from '../../login/login.service';
+import { AlertService } from '../../notifications/_services';
 import { IResponsable } from '../../responsable/responsable.component';
 import { IPrematricula } from '../pre-matricula.component';
 import { PreMatriculaService } from '../pre-matricula.service';
@@ -16,7 +17,7 @@ export class FormPreMatriculaComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private serviceUser: LoginService,
     private servicePrematricula: PreMatriculaService, private router: Router,
-    private activatedRoute: ActivatedRoute  ) { }
+    private activatedRoute: ActivatedRoute, private alertService: AlertService  ) { }
 
   responsables: IResponsable[] = [];
   responsable: IResponsable;
@@ -27,7 +28,7 @@ export class FormPreMatriculaComponent implements OnInit {
 
   formGroupP = this.fb.group({
     ideResponsable: ['1998001', [Validators.required]],
-    nomResponsable: ['', [Validators.required]],
+    nomResponsable: ['Samuel', [Validators.required]],
     fecNacimiento: ['', [Validators.required]],
     lugNacimiento: ['Cesar', [Validators.required]],
     lugExpedicion: ['Valledupar', [Validators.required]],
@@ -43,7 +44,7 @@ export class FormPreMatriculaComponent implements OnInit {
   });
   formGroupM = this.fb.group({
     ideResponsable: ['1998002', [Validators.required]],
-    nomResponsable: ['', [Validators.required]],
+    nomResponsable: ['Veronica', [Validators.required]],
     fecNacimiento: ['', [Validators.required]],
     lugNacimiento: ['Cesar', [Validators.required]],
     lugExpedicion: ['Valledupar', [Validators.required]],
@@ -59,7 +60,7 @@ export class FormPreMatriculaComponent implements OnInit {
   });
   formGroupA = this.fb.group({
     ideResponsable: ['1998003', [Validators.required]],
-    nomResponsable: ['', [Validators.required]],
+    nomResponsable: ['Mariana', [Validators.required]],
     fecNacimiento: ['', [Validators.required]],
     lugNacimiento: ['Cesar', [Validators.required]],
     lugExpedicion: ['Valledupar', [Validators.required]],
@@ -102,7 +103,7 @@ export class FormPreMatriculaComponent implements OnInit {
       //console.log(this.prematriculaId);
       this.servicePrematricula.getPrematricula(this.prematriculaId)
         .subscribe(prematricula => this.cargarFormulario(prematricula),
-        error => error(error.message)); 
+          error => this.alertService.error(error.error)); 
     });
   }
 
@@ -121,11 +122,13 @@ export class FormPreMatriculaComponent implements OnInit {
     if (this.modoEdicion) {
       //edita
       this.servicePrematricula.updatePreMatricula(this.prematricula)
-        .subscribe(prematricula => this.onSaveSuccess());
+        .subscribe(prematricula => this.onSaveSuccess(),
+          error => this.alertService.error(error));
     } else {
       //crea
       this.servicePrematricula.createPrematricula(this.prematricula)
-        .subscribe(prematricula => this.onSaveSuccess());
+        .subscribe(prematricula => this.onSaveSuccess(),
+          error => this.alertService.error(error));
     }
   }
 
@@ -205,6 +208,7 @@ export class FormPreMatriculaComponent implements OnInit {
 
   onSaveSuccess() {
     this.router.navigate(["/prematricula"]);
+    this.alertService.success("Guardado exitoso");
   }
 }
 

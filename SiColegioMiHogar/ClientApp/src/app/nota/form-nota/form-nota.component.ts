@@ -13,6 +13,8 @@ import { IEstudiante } from '../../estudiante/estudiante.component';
 import { IPeriodo } from '../../periodo/periodo.component';
 import { MateriaService } from '../../materia/materia.service';
 import { IMateria } from 'src/app/materia/materia.component';
+import { AlertService } from '../../notifications/_services';
+
 
 @Component({
   selector: 'app-form-nota',
@@ -27,7 +29,8 @@ export class FormNotaComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private notaservice: NotaService,
     private router: Router, private activatedRoute: ActivatedRoute, private location: Location,
-    private estudianteService: EstudianteService, private periodoService: PeriodoService, private materiaService: MateriaService,) { }
+    private estudianteService: EstudianteService, private periodoService: PeriodoService, private materiaService: MateriaService,private alertService: AlertService  ) { }
+
   modoEdicion: boolean = false;
   id: number;
   idNota: number;
@@ -42,11 +45,11 @@ export class FormNotaComponent implements OnInit {
 
   ngOnInit(): void {
     this.estudianteService.getEstudiantes().subscribe(estudiantes => this.LLenarEstudiantes(estudiantes),
-      error => console.error(error));
+      error => this.alertService.error(error));
     this.periodoService.getPeriodos().subscribe(periodos => this.LLenarPeriodos(periodos),
-      error => console.error(error));
+      error => this.alertService.error(error));
     this.materiaService.getMaterias().subscribe(materia => this.LLenarMaterias(materia)),
-      error => console.error(error);
+      error => this.alertService.error(error));
 
       this.activatedRoute.params.subscribe(params => {
         if (params["id"] == undefined) {
@@ -58,9 +61,8 @@ export class FormNotaComponent implements OnInit {
 
         this.notaservice.getNota(this.id)
         .subscribe(nota => this.cargarFormulario(nota)),
-        error => console.error(error);
+        error => this.alertService.error(error));
       });
-
   }
 
   LLenarEstudiantes(estudantes: IEstudiante[]) {
@@ -100,6 +102,7 @@ export class FormNotaComponent implements OnInit {
       
       this.notaservice.updateNota(nota)
         .subscribe(response => this.onSaveSuccess()),
+
         error => console.error(error);
       console.table(nota);
 
@@ -108,16 +111,16 @@ export class FormNotaComponent implements OnInit {
       if (this.formGroup.valid) {
         this.notaservice.createNota(nota)
           .subscribe(response => this.onSaveSuccess()),
-          error => console.error(error);
-      }else{ 
-        console.log('No valido') 
+          error => this.alertService.error(error);
+      } else {
+        this.alertService.info('No valido') 
       }
-    }
   }
 
   
   onSaveSuccess() {
     this.router.navigate(["listar-notas"]);
+    this.alertService.success("Registrado exitoso");
   }
 
   get IdPeriodo() {

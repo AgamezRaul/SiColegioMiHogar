@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
+import { ICurso2 } from '../../curso/curso.component';
+import { CursoService } from '../../curso/curso.service';
+import { AlertService } from '../../notifications/_services';
 import { IMateria } from '../materia.component';
 import { MateriaService } from '../materia.service';
 
@@ -12,10 +16,14 @@ import { MateriaService } from '../materia.service';
 export class FormMateriaComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private materiaservice: MateriaService,
-    private router: Router, private activatedRoute: ActivatedRoute) { }
+    private router: Router, private activatedRoute: ActivatedRoute,
+    private alertService: AlertService, private cursoservice: CursoService  ) { }
 
   modoEdicion: boolean = false;
   id: number;
+  // cambios
+  curso!: ICurso2[];
+  dataSource = new MatTableDataSource<ICurso2>(this.curso);
 
   formGroup = this.fb.group({
     idMateria: ['', [Validators.required]],
@@ -36,7 +44,7 @@ export class FormMateriaComponent implements OnInit {
 
       this.materiaservice.getMateria(this.id)
         .subscribe(materia => this.cargarFormulario(materia)),
-        error => console.error(error);
+        error => this.alertService.error(error);
     });
   }
 
@@ -51,15 +59,17 @@ export class FormMateriaComponent implements OnInit {
   }
 
 
+
   save() {
     let materia: IMateria = Object.assign({}, this.formGroup.value);
 
     if (this.modoEdicion) {
       //editar registro
       materia.id = this.id;
+
       this.materiaservice.updateMateria(materia)
         .subscribe(materia => this.onSaveSuccess()),
-        error => console.error(error);
+        error => this.alertService.error(error.error);
 
       console.table(materia);
 
@@ -67,14 +77,22 @@ export class FormMateriaComponent implements OnInit {
       //agregar registro
       this.materiaservice.createMateria(materia)
         .subscribe(materia => this.onSaveSuccess()),
-        error => console.error(error);
+        error => this.alertService.error(error.error);
     }
 
   }
 
   onSaveSuccess() {
     this.router.navigate(["/materias"]);
+    this.alertService.success("Guardado exitoso");
   }
 
+
+  //cambio
+  preuba() {
+    this.cursoservice.getCursos()
+      .subscribe(cursos => { console.log(cursos), this.dataSource.data = cursos },
+    error => this.alertService.error(error.error));
+  }
 
   }

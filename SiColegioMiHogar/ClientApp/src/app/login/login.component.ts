@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { from, Subscription } from 'rxjs';
+import { AlertService } from '../notifications/_services';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   hide = true;
   private subscription: Subscription;
   constructor(private loginService: LoginService, private router: Router,
-    private location: Location, private fb: FormBuilder) {
+    private location: Location, private fb: FormBuilder,
+    private alertService: AlertService  ) {
     this.subscription = new Subscription();
   }
 

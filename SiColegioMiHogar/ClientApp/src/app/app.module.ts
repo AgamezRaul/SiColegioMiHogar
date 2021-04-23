@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 import { MaterialModule } from './material-module';
 import { CheckLoginGuard } from './shared/guards/check-login.guard';
 import { CheckNotloginGuard } from './shared/guards/check-notlogin.guard';
+import { AlertComponent } from './notifications/_directives/index';
+import { AlertService } from './notifications/_services/index';
 
 //COMPONENTES
 import { AppComponent } from './app.component';
@@ -59,6 +61,7 @@ import { ConsultarNotaComponent } from './nota/consultar-nota/consultar-nota.com
 @NgModule({
   declarations: [
     AppComponent,
+    AlertComponent,
     NavMenuComponent,
     SidenavMenuComponent,
     HomeComponent,
@@ -144,7 +147,7 @@ import { ConsultarNotaComponent } from './nota/consultar-nota/consultar-nota.com
 ], { relativeLinkResolution: 'legacy' })
   ],
   //Aquí en providers se agregan todos los services de angular
-  providers: [UsuarioService, PreMatriculaService, CdkColumnDef, MateriaService],
+  providers: [UsuarioService, PreMatriculaService, CdkColumnDef, MateriaService, AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlertService } from '../../notifications/_services';
 
 @Component({
   selector: 'app-form-estudiante',
@@ -11,25 +12,8 @@ export class FormEstudianteComponent implements OnInit {
 
   @Input() formGroupE: FormGroup;
 
-  /*formGroupE = this.fb.group({
-    ideEstudiante: ['', [Validators.required]],
-    nomEstudiante: ['', [Validators.required]],
-    fecNacimiento: ['', [Validators.required]],
-    lugNacimiento: ['', [Validators.required]],
-    lugExpedicion: ['', [Validators.required]],
-    insProcedencia: ['', [Validators.required]],
-    dirResidencia: ['', [Validators.required]],
-    celEstudiante: ['', [Validators.required]],
-    tipSangre: ['', [Validators.required]],
-    gradoEstudiante: ['', [Validators.required]],
-    eps: ['', [Validators.required]],
-    correo: ['', [Validators.required]],
-    sexo: ['', [Validators.required]],
-    tipoDocumento: ['', [Validators.required]],
-    telEstudiante: ['', [Validators.required]]
-  });*/
-
-  constructor(private fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private fb: FormBuilder, private router: Router,
+    private activatedRoute: ActivatedRoute, private alertService: AlertService) { }
   ngOnInit() {
   }
   get ideEstudiante() {

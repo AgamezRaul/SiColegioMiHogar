@@ -11,27 +11,8 @@ export class FormResponsableMadreComponent implements OnInit {
 
   @Input() formGroupM: FormGroup;
 
-  /*formGroupM = this.fb.group({
-    ideResponsableMadre: ['', [Validators.required]],
-    nomResponsableMadre: ['', [Validators.required]],
-    fechaNacimientoMadre: ['', [Validators.required]],
-    lugNacimientoMadre: ['', [Validators.required]],
-    lugExpedicionMadre: ['', [Validators.required]],
-    tipDocumentoMadre: ['', [Validators.required]],
-    celResponsableMadre: ['', [Validators.required]],
-    profResponsableMadre: ['', [Validators.required]],
-    ocuResponsableMadre: ['', [Validators.required]],
-    entResponsableMadre: ['', [Validators.required]],
-    celEmpresaMadre: ['', [Validators.required]],
-    tipoResponsableMadre: ['', [Validators.required]],
-    correoMadre: ['', [Validators.required]],
-    acudienteMadre: ['', [Validators.required]]
-  });*/
-
   constructor(private fb: FormBuilder, private router: Router,
     private activatedRoute: ActivatedRoute) { }
-
-  
 
   ngOnInit() {
   }

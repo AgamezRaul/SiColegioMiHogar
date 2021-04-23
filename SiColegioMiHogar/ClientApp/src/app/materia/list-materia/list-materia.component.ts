@@ -3,8 +3,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlertService } from '../../notifications/_services';
 import { IMateria } from '../materia.component';
 import { MateriaService } from '../materia.service';
+
 
 @Component({
   selector: 'app-list-materia',
@@ -14,7 +16,6 @@ import { MateriaService } from '../materia.service';
 export class ListMateriaComponent implements OnInit {
 
   materia!: IMateria[];
-
 
   displayedColumns: string[] = [
     'id',
@@ -26,7 +27,7 @@ export class ListMateriaComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  constructor(private materiaService: MateriaService,
+  constructor(private materiaService: MateriaService, private alertService: AlertService,
     private router: Router, private activatedRoute: ActivatedRoute) {
   }
 
@@ -51,7 +52,7 @@ export class ListMateriaComponent implements OnInit {
   delete(materia: IMateria) {
     this.materiaService.deleteMateria(materia.id)
       .subscribe(materia => this.cargardata()),
-      error => console.error(error);
+      error => this.alertService.error(error);
 
     console.table(materia);
   }
@@ -59,6 +60,6 @@ export class ListMateriaComponent implements OnInit {
   cargardata() {
     this.materiaService.getMaterias()
       .subscribe(materia => { console.log(materia), this.dataSource.data = materia },
-        error => console.error(error));
+        error => this.alertService.error(error));
   }
 }

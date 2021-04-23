@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlertService } from '../../notifications/_services';
 import { IDocente } from '../docente.component';
 import { DocenteService } from '../docente.service';
 
@@ -12,7 +13,7 @@ import { DocenteService } from '../docente.service';
 export class FormDocenteComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute,
-    private docenteService: DocenteService) { }
+    private docenteService: DocenteService, private alertService: AlertService) { }
   formGroup = this.fb.group({
     nombreCompleto: ['', [Validators.required]],
     numTarjetaProf: ['', [Validators.required]],
@@ -27,17 +28,20 @@ export class FormDocenteComponent implements OnInit {
     let docente: IDocente = Object.assign({}, this.formGroup.value);
     console.table(docente); //ver docente por consola
     this.docenteService.createDocente(docente)
-      .subscribe(docente => this.onSaveSuccess());
+      .subscribe(docente => this.onSaveSuccess(),
+        error => this.alertService.error(error));
   }
   onSaveSuccess() {
+    this.router.navigate(["/Docente"]);
     this.router.navigate(["/"]);
+    this.alertService.success("Guardado exitoso");
   }
 
   get nombreCompleto() {
-    return this.formGroup.get('nombre');
+    return this.formGroup.get('nombreCompleto');
   }
   get numTarjetaProf() {
-    return this.formGroup.get('numTar');
+    return this.formGroup.get('numTarjetaProf');
   }
   get cedula() {
     return this.formGroup.get('cedula');

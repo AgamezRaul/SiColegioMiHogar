@@ -9,6 +9,7 @@ namespace BackEnd.Materia.Aplicacion.Request
         public int Id { get; set; }
         public string NombreMateria { get; set; }
         public int IdDocente { get; set; }
+        public int IdCurso { get; set; }
     }
     public class ActualizarMateriaResponse
     {

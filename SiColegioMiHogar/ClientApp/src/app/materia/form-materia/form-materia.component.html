@@ -20,16 +20,24 @@
 
 
     <div class="form-row">
-      <div class="form-group col-md-6">
+      <div class="form-group col-md-12">
         <label for="IdDocente">Codigo del docente</label>
-        <input type="number" class="form-control" formControlName="idDocente" id="IdDocente" placeholder="Ej: 05">
+        <select formControlName="IdDocente" ng-options="" ng-model="" class="form-control" id="IdDocente">
+          <option value="">Seleccione un codigo de curso</option>
+          <option value="{{prueba}}" *ngFor="">
+          </option>
+        </select>
       </div>
     </div>
 
     <div class="form-row">
-      <div class="form-group col-md-6">
+      <div class="form-group col-md-12">
         <label for="IdCurso">Codigo del curso</label>
-        <input type="number" class="form-control" formControlName="idCurso" id="IdCurso" placeholder="Ej: 05">
+        <select formControlName="IdCurso" ng-options="" ng-model="" class="form-control" id="IdCurso">
+          <option value="">Seleccione un codigo de curso</option>
+          <option value="{{prueba}}" *ngFor="">
+          </option>
+        </select>
       </div>
     </div>
 

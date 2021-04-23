@@ -7,6 +7,7 @@ import { MensualidadService } from '../mensualidad.service';
 import { Location } from '@angular/common';
 import { error } from 'protractor';
 import { equal } from 'assert';
+import { AlertService } from '../../notifications/_services';
 @Component({
   selector: 'app-form-mensualidad',
   templateUrl: './form-mensualidad.component.html',
@@ -16,7 +17,8 @@ export class FormMensualidadComponent implements OnInit {
 
 
   constructor(private fb: FormBuilder, private mensualidadService: MensualidadService,
-    private router: Router, private activatedRoute: ActivatedRoute, private location: Location) { }
+    private router: Router, private activatedRoute: ActivatedRoute,
+    private location: Location, private alertService: AlertService) { }
   modoEdicion: boolean = false;
   id: number;
   idMensu: number;
@@ -45,8 +47,6 @@ export class FormMensualidadComponent implements OnInit {
           return;
         }
         this.id = parseInt(params["id"]);
-        console.log(this.id);
-
       });
     }
     else {
@@ -58,11 +58,9 @@ export class FormMensualidadComponent implements OnInit {
           return;
         }
         this.idMensu = parseInt(params["idMensualidad"]);
-        console.log(this.idMensu);
-
         this.mensualidadService.getMensualidad(this.idMensu)
           .subscribe(mensualidad => this.cargarFormulario(mensualidad),
-            error => console.error(error));
+            error => this.alertService.error(error));
         //validar cuando es repetida para avisarle al usuario
       });
     }
@@ -88,7 +86,7 @@ export class FormMensualidadComponent implements OnInit {
       if (this.formGroup.valid) {
         this.mensualidadService.updateMensualidad(mensualidad)
           .subscribe(mensualidad => this.goBack(),
-            error => console.error(error));
+            error => this.alertService.error(error));
       } else { console.log('No valido') }
       
     }
@@ -99,14 +97,15 @@ export class FormMensualidadComponent implements OnInit {
       if (this.formGroup.valid) {
         this.mensualidadService.createMensualidad(mensualidad)
           .subscribe(mensualidad => this.onSaveSuccess()),
-          error => console.error(error);
+          error => this.alertService.error(error);
       } else { console.log('No valido') }
          }
     
 
   }
  onSaveSuccess() {
-   this.router.navigate(["/consultar-mensualidad/"+this.id]);
+   this.router.navigate(["/consultar-mensualidad/" + this.id]);
+   this.alertService.success("Guardado exitoso");
   }
  
   goBack(): void{
