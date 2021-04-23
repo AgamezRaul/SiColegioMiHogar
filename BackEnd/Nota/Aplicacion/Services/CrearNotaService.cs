@@ -20,7 +20,7 @@ namespace BackEnd.Nota.Aplicacion.Services
             var nota  = _unitOfWork.NotaServiceRepository.FindFirstOrDefault(t => t.IdMateria == request.IdMateria && t.IdEstudiante == request.IdEstudiante && t.IdPeriodo == request.IdPeriodo);
             if (nota == null)
             {
-                Dominio.Entidades.Nota newNota = new Dominio.Entidades.Nota(request.Descripcion, request.FechaNota, request.Nota, request.IdEstudiante, request.IdMateria, request.IdPeriodo);
+                Dominio.Entidades.Nota newNota = new Dominio.Entidades.Nota(request.Descripcion, request.FechaNota, request.NotaAlumno, request.IdEstudiante, request.IdMateria, request.IdPeriodo);
 
                 IReadOnlyList<string> errors = newNota.CanCrear(newNota);
                 if (errors.Any())

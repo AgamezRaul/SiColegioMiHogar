@@ -82,14 +82,13 @@ namespace SiColegioMiHogar.Controllers
                               Id = m.Id,
                               Estudiante = e.NomEstudiante,
                               Mes = m.Mes,
-                              DiaPago = m.DiaPago,
-                              FechaPago = m.FechaPago,
                               ValorMensualidad = m.ValorMensualidad,
                               DescuentoMensualidad = m.DescuentoMensualidad,
                               Abono = m.Abono,
                               Deuda = m.Deuda,
                               Estado = m.Estado,
-                              TotalMensualidad = m.TotalMensualidad
+                              TotalMensualidad = m.TotalMensualidad,
+                              Correo =u.Correo
                           }).ToList();
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
             return result;
@@ -132,20 +131,32 @@ namespace SiColegioMiHogar.Controllers
         }
 
         [HttpDelete("{id}")]
-        public object DeleteMensualidad([FromRoute] int id)
+        public async Task<IActionResult> DeleteMensualidad([FromRoute] int id)
         {
             _eliminarService = new EliminarMensualidadService(_unitOfWork);
             EliminarMensualidadRequest request = new EliminarMensualidadRequest();
             request.IdMensualidad = id;
             var rta = _eliminarService.Ejecutar(request);
-            return Ok(rta.Message);
+            if (rta.isOk())
+            {
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetMensualidad", new { id = request.IdMensualidad }, request);
+            }
+            return BadRequest(rta.Message);
         }
         //enviar email prueba
-        [HttpGet("GetEmail")]
-        public object EnviarEmail(){
+        [HttpPut("PutEmail/{correo}")]
+        public async Task<IActionResult> EnviarEmail([FromRoute] string correo, [FromBody] CrearMensualidadRequest mensualidad)
+        {
             _eviarEmail = new EviarEmailService(_unitOfWork);
-            var rta = _eviarEmail.EnviarEmail();
-            return Ok(rta);
+            var rta = _eviarEmail.EnviarEmail(mensualidad,correo);
+            if (rta!=null)
+            {
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetMensualidad", new { id = mensualidad.id }, mensualidad);
+            }
+            return BadRequest(rta);
+
         }
     }
 }

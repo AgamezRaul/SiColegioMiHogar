@@ -60,7 +60,7 @@ export class FormMensualidadComponent implements OnInit {
         this.idMensu = parseInt(params["idMensualidad"]);
         this.mensualidadService.getMensualidad(this.idMensu)
           .subscribe(mensualidad => this.cargarFormulario(mensualidad),
-            error => this.alertService.error(error.error));
+            error => this.alertService.error(error));
         //validar cuando es repetida para avisarle al usuario
       });
     }
@@ -86,7 +86,7 @@ export class FormMensualidadComponent implements OnInit {
       if (this.formGroup.valid) {
         this.mensualidadService.updateMensualidad(mensualidad)
           .subscribe(mensualidad => this.goBack(),
-            error => this.alertService.error(error.error));
+            error => this.alertService.error(error));
       } else { console.log('No valido') }
       
     }

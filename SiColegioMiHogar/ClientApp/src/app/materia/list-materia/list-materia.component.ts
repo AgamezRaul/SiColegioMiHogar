@@ -7,6 +7,7 @@ import { AlertService } from '../../notifications/_services';
 import { IMateria } from '../materia.component';
 import { MateriaService } from '../materia.service';
 
+
 @Component({
   selector: 'app-list-materia',
   templateUrl: './list-materia.component.html',
@@ -15,7 +16,6 @@ import { MateriaService } from '../materia.service';
 export class ListMateriaComponent implements OnInit {
 
   materia!: IMateria[];
-
 
   displayedColumns: string[] = [
     'id',
@@ -52,7 +52,7 @@ export class ListMateriaComponent implements OnInit {
   delete(materia: IMateria) {
     this.materiaService.deleteMateria(materia.id)
       .subscribe(materia => this.cargardata()),
-      error => this.alertService.error(error.error);
+      error => this.alertService.error(error);
 
     console.table(materia);
   }
@@ -60,6 +60,6 @@ export class ListMateriaComponent implements OnInit {
   cargardata() {
     this.materiaService.getMaterias()
       .subscribe(materia => { console.log(materia), this.dataSource.data = materia },
-        error => this.alertService.error(error.error));
+        error => this.alertService.error(error));
   }
 }

@@ -1,0 +1,43 @@
+<div class="container">
+  <h1>Informaciòn de la nota: {{id}}</h1>
+  <form [formGroup]="formGroup">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="Descripcion">Descripcion</label>
+            <input type="text" class="form-control" disabled formControlName="Descripcion" id="Descripcion" placeholder="Ej: 04">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="NotaAlumno">Nota del alumno</label>
+            <input type="number" class="form-control" disabled formControlName="NotaAlumno" id="NotaAlumno" placeholder="Ej: 04">
+        </div>
+    </div>
+    <div class="form-row">
+            <div class="form-group col-md-12">
+            <label for="IdEstudiante">Estudiante</label>
+            <input type="text" formControlName="IdEstudiante" disabled class="form-control">
+            </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+        <label for="IdPeriodo">Periodo</label>
+        <input type="text" formControlName="IdPeriodo" disabled class="form-control">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="IdMateria">Materia</label>
+            <input type="text" formControlName="IdMateria" disabled class="form-control">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+        <label for="FechaNota">Fecha Nota</label>
+        <input type="text" formControlName="FechaNota" disabled class="form-control">
+        </div>
+    </div>
+    <hr>
+   <div class="text-center">
+    <a type="submit" [routerLink]="['/listar-notas']"  mat-raised-button color="primary">
+        <mat-icon>keyboard_return</mat-icon>  Regresar
+    </a>
+   </div>
+  </form>
+</div>

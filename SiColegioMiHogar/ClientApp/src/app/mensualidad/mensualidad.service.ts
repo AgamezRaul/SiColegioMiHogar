@@ -45,7 +45,7 @@ export class MensualidadService {
 
       );
   }
-  EnviarEmail(): Observable<IMensualidad[]> {
-    return this.http.get<IMensualidad[]>(this.apiURL + '/GetEmail');
+  EnviarEmail(mensualidad: IMensualidad2, correo: string): Observable<IMensualidad2> {
+    return this.http.put<IMensualidad2>(this.apiURL + '/PutEmail/' + correo,mensualidad);
   }
 }

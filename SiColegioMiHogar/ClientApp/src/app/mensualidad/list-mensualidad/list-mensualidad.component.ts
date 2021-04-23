@@ -21,14 +21,13 @@ export class ListMensualidadComponent implements OnInit, OnDestroy {
     'id',
     'estudiante',
     'mes',
-    'diaPago',
-    'fechaPago',
     'valorMensualidad',
     'descuentoMensualidad',
     'abono',
     'deuda',
     'estado',
     'totalMensualidad',
+    'correo',
     'options'  ];
   dataSource = new MatTableDataSource<IMensualidad2>(this.mensualidad);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -55,12 +54,12 @@ export class ListMensualidadComponent implements OnInit, OnDestroy {
     })
     this.mensualidadservice.getMensualidadesMatricula(this.id)
       .subscribe(mensualidades => this.dataSource.data = mensualidades,
-        error => this.alertService.error(error.error));
+        error => this.alertService.error(error));
 
     this.suscription = this.mensualidadservice.refresh$.subscribe(() => {
       this.mensualidadservice.getMensualidadesMatricula(this.id)
         .subscribe(mensualidades => this.dataSource.data = mensualidades,
-          error => this.alertService.error(error.error));
+          error => this.alertService.error(error));
     });
   }
   ngOnDestroy(): void {
@@ -74,7 +73,7 @@ export class ListMensualidadComponent implements OnInit, OnDestroy {
   Eliminar(idMensualidad: number) {
     this.mensualidadservice.deleteMensualidad(idMensualidad).
       subscribe(nit => this.onDeleteSuccess(),
-        error => this.alertService.error(error.error))
+        error => this.alertService.error(error))
   }
  
   onDeleteSuccess() {
@@ -85,13 +84,11 @@ export class ListMensualidadComponent implements OnInit, OnDestroy {
     this.router.navigate(["/consultar-mensualidad/" + this.id]);
     this.alertService.success("Correo Enviado");
   }
-  EnviarMail() {
-    this.mensualidadservice.EnviarEmail()
+  EnviarMail(mensualidad: IMensualidad2, correo:string) {
+        this.mensualidadservice.EnviarEmail(mensualidad,correo)
       .subscribe(mensualidad => this.onSaveSuccess()),
       error => this.alertService.error(error);
-
-      
-  
+   
   }
 }
 

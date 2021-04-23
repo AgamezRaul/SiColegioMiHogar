@@ -15,6 +15,7 @@ export class EstudianteComponent implements OnInit {
 }
 
 export interface IEstudiante {
+  id: number,
   ideEstudiante: string,
   nomEstudiante: string,
   fecNacimiento: Date,

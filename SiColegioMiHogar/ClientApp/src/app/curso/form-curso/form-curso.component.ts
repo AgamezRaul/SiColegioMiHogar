@@ -36,7 +36,7 @@ export class FormCursoComponent implements OnInit {
     console.table(curso); //ver mensualidad por consola
     this.cursoService.createCurso(curso)
       .subscribe(curso => this.onSaveSuccess(),
-        error => this.alertService.error(error.error));
+        error => this.alertService.error(error));
   }
   onSaveSuccess() {
     this.router.navigate(["/cursos"]);
