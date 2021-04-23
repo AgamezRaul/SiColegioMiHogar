@@ -7,8 +7,13 @@ import { INota, INotaConsult, IEstudianteNota, IPeriodoNota, MateriaNota} from '
   providedIn: 'root'
 })
 export class NotaService {
+  private _refresh$ = new Subject<void>();
   apiURL = this.baseUrl + "api/Nota";
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
+
+  get refresh$() {
+    return this._refresh$;
+  }
 
   getNotas(): Observable<INotaConsult[]> {
     return this.http.get<INotaConsult[]>(this.apiURL);
@@ -23,7 +28,10 @@ export class NotaService {
   }
 
   deleteNota(id: number){
-    return this.http.delete<string>(this.apiURL+'/DeleteNota?id='+id);
+    return this.http.delete<string>(this.apiURL + '/DeleteNota?id=' + id).
+      pipe(tap(() => {
+        this._refresh$.next();
+      }));
   }
 
   updateNota(nota: INota): Observable<INota> {

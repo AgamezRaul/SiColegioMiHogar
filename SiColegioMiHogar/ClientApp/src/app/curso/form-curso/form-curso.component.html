@@ -13,9 +13,19 @@
     </div>
 
     <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="idDirector">Director de curso</label>
-        <input type="number" class="form-control" formControlName="idDirector" id="idDirector" placeholder="Ej: 2">
+      <div class="form-group col-md-12">
+        <label for="IdDocente">Director docente</label>
+        <select formControlName="IdDocente" ng-options="IDocente.nombreCompleto for IDocente in ListaDocentes" ng-model="IDocente" class="form-control" id="IdDocente">
+          <option value="">Seleccione un director</option>
+          <option value="{{dato.id}}" *ngFor="let dato of ListaDocentes">
+            {{dato.nombreCompleto}}
+          </option>
+        </select>
+        <!--><div class="alert-danger" *ngIf="IdDocente.invalid">
+          <div class="container-error-message" *ngIf="IdDocente.errors.required">
+            El docente director es requerido
+          </div>
+        </div>-->
       </div>
     </div>
 
