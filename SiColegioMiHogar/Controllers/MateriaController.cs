@@ -57,7 +57,7 @@ namespace SiColegioMiHogar.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMateria([FromRoute] string id, [FromBody] ActualizarMateriaRequest request)
+        public async Task<IActionResult> PutMateria([FromRoute] int id, [FromBody] ActualizarMateriaRequest request)
         {
             _actualizarService = new ActualizarMateriaService(_unitOfWork);
             var rta = _actualizarService.Ejecutar(request);

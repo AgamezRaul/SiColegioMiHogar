@@ -7,6 +7,7 @@ import { AlertService } from '../../notifications/_services';
 import { IMateria } from '../materia.component';
 import { MateriaService } from '../materia.service';
 
+
 @Component({
   selector: 'app-list-materia',
   templateUrl: './list-materia.component.html',
@@ -15,7 +16,6 @@ import { MateriaService } from '../materia.service';
 export class ListMateriaComponent implements OnInit {
 
   materia!: IMateria[];
-
 
   displayedColumns: string[] = [
     'id',
