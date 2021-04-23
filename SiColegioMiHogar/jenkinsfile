@@ -16,6 +16,11 @@ node {
     bat 'dotnet build SiColegioMiHogar/SiColegioMiHogar.csproj --configuration Release'
   }
 
+  stage ('Test') {
+    bat "dotnet test TestBackEnd/TestBackEnd.csproj --logger trx;LogFileName=unit_tests.trx"
+    mstest testResultsFile:"**/*.trx", keepLongStdio: true
+  }
+
   stage('Publish') {
     bat 'dotnet publish SiColegioMiHogar/SiColegioMiHogar.csproj -c Release -o G:/ws/NetCore/Creditos'
   }
