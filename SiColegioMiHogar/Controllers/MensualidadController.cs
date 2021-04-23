@@ -82,14 +82,13 @@ namespace SiColegioMiHogar.Controllers
                               Id = m.Id,
                               Estudiante = e.NomEstudiante,
                               Mes = m.Mes,
-                              DiaPago = m.DiaPago,
-                              FechaPago = m.FechaPago,
                               ValorMensualidad = m.ValorMensualidad,
                               DescuentoMensualidad = m.DescuentoMensualidad,
                               Abono = m.Abono,
                               Deuda = m.Deuda,
                               Estado = m.Estado,
-                              TotalMensualidad = m.TotalMensualidad
+                              TotalMensualidad = m.TotalMensualidad,
+                              Correo =u.Correo
                           }).ToList();
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
             return result;
@@ -146,11 +145,18 @@ namespace SiColegioMiHogar.Controllers
             return BadRequest(rta.Message);
         }
         //enviar email prueba
-        [HttpGet("GetEmail")]
-        public object EnviarEmail(){
+        [HttpPut("PutEmail/{correo}")]
+        public async Task<IActionResult> EnviarEmail([FromRoute] string correo, [FromBody] CrearMensualidadRequest mensualidad)
+        {
             _eviarEmail = new EviarEmailService(_unitOfWork);
-            var rta = _eviarEmail.EnviarEmail();
-            return Ok(rta);
+            var rta = _eviarEmail.EnviarEmail(mensualidad,correo);
+            if (rta!=null)
+            {
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetMensualidad", new { id = mensualidad.id }, mensualidad);
+            }
+            return BadRequest(rta);
+
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BackEnd.Base;
+using BackEnd.Mensualidad.Aplicacion.Request;
 using System;
 using System.Collections.Generic;
 using System.Net.Mail;
@@ -8,22 +9,22 @@ namespace BackEnd.Mensualidad.Aplicacion.Service
 {
     public class EviarEmailService
     {
+  
         readonly IUnitOfWork _unitOfWork;
         public EviarEmailService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
-        public MailMessage CrearEmailMensualidad()
+        public MailMessage CrearEmailMensualidad(CrearMensualidadRequest request, string correo)
         {
             MailMessage email = new MailMessage();
-           // Attachment data = new Attachment(@"Mensualidad.pdf");
-            email.To.Add("tatiana120849@gmail.com");
+            email.To.Add(correo);
             email.From = new MailAddress("sicolegiomihogar@gmail.com");
-            email.Subject = "Mesualidad" + DateTime.Now.ToString("dd/ MMM / yyy hh:mm:ss");
-            email.Body = $"Estimado  : Padre de Familia \n se debe cominicar al colegio.";
+            email.Subject = "Mesualidad en Mora, Notificado el dia: " + DateTime.Now.ToString("dd/ MMM / yyy hh:mm:ss");
+            email.Body = $"Estimado  : Padre de Familia el Colegio MiHogar le comuica que se encunetra en {request.Estado}\n Por el mes: {request.Mes} " +
+            $"\n con una deuda de {request.Deuda} \n Por Favor acerquese a las intalaciones del colegio mi Hogar" ;
             email.IsBodyHtml = true;
             email.Priority = MailPriority.Normal;
-            //email.Attachments.Add(data);
             return email;
         }
         public SmtpClient ConfigurarSMTP()
@@ -39,13 +40,13 @@ namespace BackEnd.Mensualidad.Aplicacion.Service
             smtp.Credentials = new System.Net.NetworkCredential("sicolegiomihogar@gmail.com", "kqibngzvomoetukp");
             return smtp;
         }
-        public string EnviarEmail()
+        public string EnviarEmail(CrearMensualidadRequest request, string correo)
         {
             string resultado = string.Empty;
             try
             {
                 SmtpClient smtp = ConfigurarSMTP();
-                MailMessage email = CrearEmailMensualidad();
+                MailMessage email = CrearEmailMensualidad( request, correo);
                 smtp.Send(email);
                 email.Dispose();
                 resultado = "Correo enviado";

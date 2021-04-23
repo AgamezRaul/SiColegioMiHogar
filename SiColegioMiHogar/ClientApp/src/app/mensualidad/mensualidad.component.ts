@@ -29,12 +29,11 @@ export interface IMensualidad2 {
   id: number,
   estudiante: string,
   mes: number,
-  diaPago: number,
-  fechaPago: Date,
   valorMensualidad: number,
   descuentoMensualidad: number,
   abono: number,
   deuda: number,
   estado: string,
-  totalMensualidad: number
+  totalMensualidad: number,
+  correo: string
 }

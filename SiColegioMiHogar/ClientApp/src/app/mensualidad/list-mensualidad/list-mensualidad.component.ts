@@ -21,14 +21,13 @@ export class ListMensualidadComponent implements OnInit, OnDestroy {
     'id',
     'estudiante',
     'mes',
-    'diaPago',
-    'fechaPago',
     'valorMensualidad',
     'descuentoMensualidad',
     'abono',
     'deuda',
     'estado',
     'totalMensualidad',
+    'correo',
     'options'  ];
   dataSource = new MatTableDataSource<IMensualidad2>(this.mensualidad);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -85,13 +84,11 @@ export class ListMensualidadComponent implements OnInit, OnDestroy {
     this.router.navigate(["/consultar-mensualidad/" + this.id]);
     this.alertService.success("Correo Enviado");
   }
-  EnviarMail() {
-    this.mensualidadservice.EnviarEmail()
+  EnviarMail(mensualidad: IMensualidad2, correo:string) {
+        this.mensualidadservice.EnviarEmail(mensualidad,correo)
       .subscribe(mensualidad => this.onSaveSuccess()),
       error => this.alertService.error(error);
-
-      
-  
+   
   }
 }
 
