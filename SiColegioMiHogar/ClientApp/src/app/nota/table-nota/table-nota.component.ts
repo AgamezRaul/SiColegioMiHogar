@@ -51,7 +51,7 @@ export class TableNotaComponent implements OnInit {
   ngOnInit(): void {
     this.suscription = this.notaservice.getNotas()
         .subscribe(notas => this.dataSource.data = notas,
-          error => this.alertService.error(error.error));
+          error => this.alertService.error(error));
   }
 
 

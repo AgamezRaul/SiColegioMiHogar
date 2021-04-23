@@ -29,7 +29,7 @@ export class FormDocenteComponent implements OnInit {
     console.table(docente); //ver docente por consola
     this.docenteService.createDocente(docente)
       .subscribe(docente => this.onSaveSuccess(),
-        error => this.alertService.error(error.error));
+        error => this.alertService.error(error));
   }
   onSaveSuccess() {
     this.router.navigate(["/Docente"]);

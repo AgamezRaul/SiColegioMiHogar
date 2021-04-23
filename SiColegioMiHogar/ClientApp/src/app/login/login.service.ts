@@ -24,6 +24,9 @@ export class LoginService {
   get isAdmin$(): Observable<string> {
     return this.role.asObservable();
   }
+  get isRole(): Observable<string> {
+    return this.role.asObservable();
+  }
   constructor(private htttp: HttpClient, private router: Router,
     @Inject('BASE_URL') private baseUrl: string) { this.checkToken(); }
 

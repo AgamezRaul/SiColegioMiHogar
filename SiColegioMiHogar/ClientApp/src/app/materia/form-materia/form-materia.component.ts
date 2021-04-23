@@ -44,7 +44,7 @@ export class FormMateriaComponent implements OnInit {
 
       this.materiaservice.getMateria(this.id)
         .subscribe(materia => this.cargarFormulario(materia)),
-        error => this.alertService.error(error.error);
+        error => this.alertService.error(error);
     });
   }
 

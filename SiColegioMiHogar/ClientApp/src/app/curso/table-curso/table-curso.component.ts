@@ -49,12 +49,12 @@ export class TableCursoComponent implements OnInit, OnDestroy {
     })
     this.cursoservice.getCursos()
       .subscribe(cursos => this.dataSource.data = cursos,
-        error => this.alertService.error(error.error));
+        error => this.alertService.error(error));
 
     this.suscription = this.cursoservice.refresh$.subscribe(() => {
       this.cursoservice.getCursos()
         .subscribe(cursos => this.dataSource.data = cursos,
-          error => this.alertService.error(error.error));
+          error => this.alertService.error(error));
     });
   }
 
