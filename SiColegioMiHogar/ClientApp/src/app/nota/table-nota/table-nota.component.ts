@@ -49,9 +49,15 @@ export class TableNotaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.suscription = this.notaservice.getNotas()
+    this.notaservice.getNotas()
         .subscribe(notas => this.dataSource.data = notas,
           error => this.alertService.error(error));
+
+    this.suscription = this.notaservice.refresh$.subscribe(() => {
+      this.notaservice.getNotas()
+        .subscribe(notas => this.dataSource.data = notas,
+          error => this.alertService.error(error));
+    });
   }
 
 
@@ -66,12 +72,13 @@ export class TableNotaComponent implements OnInit {
 
   Eliminar (id){
     this.suscription = this.notaservice.deleteNota(id)
-    .subscribe((notas: any) => {
-      alert(notas.message);
-      location.reload();
-    },
-    error => console.error(error));
+      .subscribe(notas => this.onDeleteSuccess(),
+        error => this.alertService.error(error));
   }
 
+  onDeleteSuccess() {
+    this.router.navigate(["/listar-notas"]);
+    this.alertService.success("Eliminado exitoso");
+  }
 
 }
