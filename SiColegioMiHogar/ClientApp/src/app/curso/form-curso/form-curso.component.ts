@@ -21,7 +21,7 @@ export class FormCursoComponent implements OnInit {
   formGroup = this.fb.group({
     nombre: ['', [Validators.required]],
     maxEst: [1, [Validators.required]],
-    idDirector: [1, [Validators.required]],
+    idDocente: [1, [Validators.required]],
   });
   
   ngOnInit(): void {
@@ -36,7 +36,7 @@ export class FormCursoComponent implements OnInit {
     console.table(curso); //ver mensualidad por consola
     this.cursoService.createCurso(curso)
       .subscribe(curso => this.onSaveSuccess(),
-        error => this.alertService.error(error));
+        error => this.alertService.error(error.error));
   }
   onSaveSuccess() {
     this.router.navigate(["/cursos"]);
@@ -49,7 +49,7 @@ export class FormCursoComponent implements OnInit {
   get maxEst() {
     return this.formGroup.get('maxEst');
   }
-  get idDirector() {
-    return this.formGroup.get('idDirector');
+  get idDocente() {
+    return this.formGroup.get('idDocente');
   }
 }

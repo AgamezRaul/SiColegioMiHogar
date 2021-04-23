@@ -78,8 +78,8 @@ export class FormDocenteComponent implements OnInit {
       docente.id = this.idDoc;
       if (this.formGroup.valid) {
         this.docenteService.updateDocente(docente)
-          .subscribe(docente => this.goBack(),
-            error => this.alertService.error(error.error));
+          .subscribe(docente => this.onSaveSuccess(),
+            error => this.alertService.error(error));
       } else { console.log('No valido') }
     } else {
       
@@ -87,7 +87,7 @@ export class FormDocenteComponent implements OnInit {
       if (this.formGroup.valid) {
         this.docenteService.createDocente(docente)
           .subscribe(docente => this.onSaveSuccess(),
-            error => this.alertService.error(error.error));
+            error => this.alertService.error(error));
       } else {
         console.log('No valido')
       }
@@ -96,11 +96,7 @@ export class FormDocenteComponent implements OnInit {
   }
   onSaveSuccess() {
     this.router.navigate(["/Docente"]);
-
     this.alertService.success("Guardado exitoso");
-  }
-  goBack(): void {
-    this.location.back();
   }
 
   get nombreCompleto() {

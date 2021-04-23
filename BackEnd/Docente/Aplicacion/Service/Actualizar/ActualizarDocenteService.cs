@@ -31,7 +31,7 @@ namespace BackEnd.Docente.Aplicacion.Service.Actualizar
 
                 _unitOfWork.DocenteServiceRepository.Edit(docente);
                 _unitOfWork.Commit();
-                return new ActualizarDocenteResponse() { Message = $"Docente Actualizado Exitosamente" };
+                return new ActualizarDocenteResponse() { Message = $"Docente actualizado exitosamente" };
 
             }
         }

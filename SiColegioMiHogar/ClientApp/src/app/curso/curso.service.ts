@@ -33,9 +33,9 @@ export class CursoService {
     return this.http.post<ICurso>(this.apiURL, curso);
   }
 
-  updateCurso(curso: ICurso): Observable<ICurso> {
+  /*updateCurso(curso: ICurso): Observable<ICurso> {
     return this.http.put<ICurso>(this.apiURL + "/" + curso.idDirector, curso);
-  }
+  }*/
 
   deleteCurso(idCurso: number): Observable<number> {
     return this.http.delete<number>(this.apiURL + "/" + idCurso)

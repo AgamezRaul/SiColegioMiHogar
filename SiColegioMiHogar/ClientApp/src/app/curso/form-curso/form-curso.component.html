@@ -15,7 +15,7 @@
     <div class="form-row">
       <div class="form-group col-md-12">
         <label for="IdDocente">Director docente</label>
-        <select formControlName="IdDocente" ng-options="IDocente.nombreCompleto for IDocente in ListaDocentes" ng-model="IDocente" class="form-control" id="IdDocente">
+        <select formControlName="IdDocente" ng-options="IDocente.nombreCompleto for IDocente in ListaDocentes" ng-model="IdDocente" class="form-control" id="IdDocente">
           <option value="">Seleccione un director</option>
           <option value="{{dato.id}}" *ngFor="let dato of ListaDocentes">
             {{dato.nombreCompleto}}

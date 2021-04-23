@@ -72,7 +72,7 @@ namespace SiColegioMiHogar.Controllers
         {
             _actualizarService = new ActualizarDocenteService(_unitOfWork);
             var rta = _actualizarService.Ejecutar(docente);
-            if (rta.isOk())
+            if (rta != null)
             {
                 await _context.SaveChangesAsync();
                 return CreatedAtAction("GetDocente", new { id = docente.id }, docente);
