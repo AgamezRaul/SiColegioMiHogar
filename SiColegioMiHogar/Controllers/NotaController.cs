@@ -48,5 +48,27 @@ namespace SiColegioMiHogar.Controllers
         }
 
         
+        [HttpGet("[action]")]
+        public Nota GetNota(int id)
+        {
+            ConsultarNotaService service = new ConsultarNotaService(_unitOfWork);
+            return service.GetNota(id);
+        }
+
+        [HttpDelete("[action]")]
+        public ActionResult<EliminarResponse> DeleteNota(int id)
+        {
+            EliminarNotaService service = new EliminarNotaService(_unitOfWork);
+            EliminarResponse response = service.DeleteNota(id);
+            return Ok(response);
+        }
+
+        [HttpPut("[action]")]
+        public ActionResult<ActualizarResponse> ActualizarNota([FromBody] CrearNotaRequest request)
+        {
+            ActualizarNotaService service = new ActualizarNotaService(_unitOfWork);
+            ActualizarResponse response = service.ActualizarNota(request);
+            return Ok(response);
+        }
     }
 }

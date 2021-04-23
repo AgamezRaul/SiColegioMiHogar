@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MatriculaService } from '../../matricula/matricula.service';
 import { IPrematricula, IPrematricula2 } from '../pre-matricula.component';
 import { AlertService } from '../../notifications/_services';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-table-prematricula',
@@ -16,6 +17,7 @@ import { AlertService } from '../../notifications/_services';
 export class TablePrematriculaComponent implements OnInit {
   prematricula3: IPrematricula;
   prematricula!: IPrematricula2[];
+  suscription: Subscription;
   displayedColumns: string[] = [
     'idUsuario',
     'idPrematricula',
@@ -42,7 +44,14 @@ export class TablePrematriculaComponent implements OnInit {
   ngOnInit() {
     this.prematriculaService.getPrematriculas()
       .subscribe(prematriculas => this.dataSource.data = prematriculas,
-        error => this.alertService.error(error.error));
+        error => this.alertService.error(error));
+
+    this.suscription = this.prematriculaService.refresh$.subscribe(() => {
+      this.prematriculaService.getPrematriculas().
+        subscribe(prematriculas => this.dataSource.data = prematriculas,
+          error => this.alertService.error(error));
+    });
+    
   }
 
   VerPreMatricula(idPreMatricula: number) {
@@ -58,14 +67,14 @@ export class TablePrematriculaComponent implements OnInit {
   }
 
   onCrearMatriculaSuccess() {
-    this.router.navigate(["/matricula"]);
+    this.router.navigate(["/prematricula"]);
     this.alertService.success("Guardado exitoso");
   }
 
   Eliminar(idUsuario: number) {
     this.prematriculaService.deletePreMatricula(idUsuario).
       subscribe(nit => this.onDeleteSuccess(),
-        error => this.alertService.error(error.error))
+        error => this.alertService.error(error));
   }
 
   onDeleteSuccess() {

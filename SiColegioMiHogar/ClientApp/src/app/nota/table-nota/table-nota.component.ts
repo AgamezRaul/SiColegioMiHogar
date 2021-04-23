@@ -16,7 +16,7 @@ import { AlertService } from '../../notifications/_services';
   styleUrls: ['./table-nota.component.css']
 })
 export class TableNotaComponent implements OnInit {
-
+   
   ListaNotas: INotaConsult[] = [];
 
   suscription: Subscription;
@@ -51,12 +51,26 @@ export class TableNotaComponent implements OnInit {
   ngOnInit(): void {
     this.suscription = this.notaservice.getNotas()
         .subscribe(notas => this.dataSource.data = notas,
-          error => this.alertService.error(error.error));
+          error => this.alertService.error(error));
   }
 
 
   Registrar() {
     this.router.navigate(["/registrar-nota/"]);
+  }
+  
+
+  Consultar(idlink){
+    this.router.navigate(['/consultar-nota', { id: idlink }]);
+  }
+
+  Eliminar (id){
+    this.suscription = this.notaservice.deleteNota(id)
+    .subscribe((notas: any) => {
+      alert(notas.message);
+      location.reload();
+    },
+    error => console.error(error));
   }
 
 

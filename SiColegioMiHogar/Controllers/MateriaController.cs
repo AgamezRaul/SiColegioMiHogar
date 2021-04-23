@@ -57,7 +57,7 @@ namespace SiColegioMiHogar.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMateria([FromRoute] string id, [FromBody] ActualizarMateriaRequest request)
+        public async Task<IActionResult> PutMateria([FromRoute] int id, [FromBody] ActualizarMateriaRequest request)
         {
             _actualizarService = new ActualizarMateriaService(_unitOfWork);
             var rta = _actualizarService.Ejecutar(request);
@@ -70,13 +70,18 @@ namespace SiColegioMiHogar.Controllers
         }
 
         [HttpDelete("{id}")]
-        public object DeletePreMatricula([FromRoute] int id)
+        public async Task<IActionResult> DeletePreMatricula([FromRoute] int id)
         {
             _eliminarService = new EliminarMateriaService(_unitOfWork);
             EliminarMateriaRequest request = new EliminarMateriaRequest();
             request.Id = id;
             var rta = _eliminarService.Ejecutar(request);
-            return Ok(rta.Message);
+            if (rta.isOk())
+            {
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetMateria", new { id = request.Id }, request);
+            }
+            return BadRequest(rta.Message);
         }
     }
 }
