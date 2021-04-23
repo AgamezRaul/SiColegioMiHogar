@@ -18,12 +18,13 @@ export interface INotaConsult{
   descripcion: string;
   notaAlumno: number;
   fechaNota: string;
-  estudiante: string
-  materia: string;
-  periodo: string;
+  idEstudiante: string
+  idMateria: string;
+  idPeriodo: string;
 }
 
 export interface INota{
+  id: number
   Descripcion: string 
   NotaAlumno: number
   IdEstudiante: number
@@ -32,6 +33,7 @@ export interface INota{
 }
 
 export interface IEstudianteNota {
+  id: number,
   ideEstudiante: string,
   nomEstudiante: string,
   fecNacimiento: Date,

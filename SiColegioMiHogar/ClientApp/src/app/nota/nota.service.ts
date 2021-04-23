@@ -15,10 +15,19 @@ export class NotaService {
   }
 
   getNota(id: number): Observable<INotaConsult> {
-    return this.http.get<INotaConsult>(this.apiURL+id);
+    return this.http.get<INotaConsult>(this.apiURL+'/GetNota?id='+id);
   }
 
   createNota(nota: INota): Observable<INota> {
     return this.http.post<INota>(this.apiURL, nota);
   }
+
+  deleteNota(id: number){
+    return this.http.delete<string>(this.apiURL+'/DeleteNota?id='+id);
+  }
+
+  updateNota(nota: INota): Observable<INota> {
+    return this.http.put<INota>(this.apiURL+'/ActualizarNota', nota);
+  }
+
 }

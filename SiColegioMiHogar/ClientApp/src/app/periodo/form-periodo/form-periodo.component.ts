@@ -42,7 +42,7 @@ export class FormPeriodoComponent implements OnInit {
   }
 
   onSaveSuccess() {
-    this.router.navigate(["listar-periodos"]);
+    this.router.navigate(["periodos"]);
     this.alertService.success("Registro exitoso");
   }
 
