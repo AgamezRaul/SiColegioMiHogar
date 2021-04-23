@@ -4,6 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService } from '../../notifications/_services';
 import { ICurso } from '../curso.component';
 import { CursoService } from '../curso.service';
+import { DocenteService } from 'src/app/docente/docente.service';
+import { IDocente2, IDocente } from '../../Docente/docente.component';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-form-curso',
@@ -12,14 +15,21 @@ import { CursoService } from '../curso.service';
 })
 export class FormCursoComponent implements OnInit {
 
+  ListaDocentes: IDocente[] = [];
   constructor(private fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute,
-    private cursoService: CursoService, private alertService: AlertService) { }
+    private docenteService: DocenteService, private cursoService: CursoService, private alertService: AlertService) { }
   formGroup = this.fb.group({
     nombre: ['', [Validators.required]],
-    maxEst: ['', [Validators.required]],
+    maxEst: [1, [Validators.required]],
     idDirector: [1, [Validators.required]],
   });
+  
   ngOnInit(): void {
+    this.docenteService.getDocentes().subscribe(docentes => this.LlenarDocentes(docentes),
+      error => this.alertService.error(error.error));
+  }
+  LlenarDocentes(docentes: IDocente[]) {
+    this.ListaDocentes = docentes;
   }
   save() {
     let curso: ICurso = Object.assign({}, this.formGroup.value);
