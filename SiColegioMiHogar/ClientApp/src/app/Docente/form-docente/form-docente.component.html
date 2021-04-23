@@ -1,8 +1,12 @@
+<h1 *ngIf="modoEdicion">Actualizar Docente</h1>
+<h1 *ngIf="!modoEdicion">Registrar Docente</h1>
+
+
 <div class="container" align="center">
   <h1>Formulario de Docente</h1>
   <form [formGroup]="formGroup" (ngSubmit)="save()">
     <div class="form-row">
-      
+
       <div class="form-group col-md-6">
         <label for="nombreCompleto">Nombre completo</label>
         <input type="text" class="form-control" formControlName="nombreCompleto" id="nombreCompleto" placeholder="Ej: Juan Meza García">
@@ -28,6 +32,7 @@
       <div class="form-group col-md-6">
         <label for="correo">Correo electrónico</label>
         <input type="email" class="form-control" formControlName="correo" id="correo" placeholder="Ej: ejemplo@gmail.com">
+
       </div>
       <div class="form-group col-md-6">
         <label for="direccion">Direccion</label>
@@ -35,7 +40,7 @@
       </div>
     </div>
 
-    <button type="submit" mat-raised-button color="primary">
+    <button type="submit" mat-raised-button color="primary" [disabled]="!formGroup.valid">
       Registrar Docente
     </button>
   </form>

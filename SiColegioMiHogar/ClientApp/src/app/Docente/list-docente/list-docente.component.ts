@@ -23,7 +23,8 @@ export class ListDocenteComponent implements OnInit, OnDestroy {
     'cedula',
     'celular',
     'correo',
-    'direccion'];
+    'direccion',
+    'options'  ];
   dataSource = new MatTableDataSource<IDocente2>(this.docente);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;

@@ -22,12 +22,12 @@ namespace BackEnd.Docente.Aplicacion.Service.Actualizar
             }
             else
             {
-                docente.NombreCompleto = request.Cedula;
-                docente.NumTarjetaProf = request.Celular;
-                docente.Cedula = request.Correo;
-                docente.Celular = request.Direccion;
-                docente.Correo = request.NombreCompleto;
-                docente.Direccion = request.NumTarjetaProf;
+                docente.NombreCompleto = request.NombreCompleto;
+                docente.NumTarjetaProf = request.NumTarjetaProf;
+                docente.Cedula = request.Cedula;
+                docente.Celular = request.Celular;
+                docente.Correo = request.Correo;
+                docente.Direccion = request.Direccion;
 
                 _unitOfWork.DocenteServiceRepository.Edit(docente);
                 _unitOfWork.Commit();

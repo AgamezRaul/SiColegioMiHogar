@@ -135,7 +135,7 @@ import { MateriaService } from './materia/materia.service';
 
       { path: 'Docente', component: DocenteComponent },
       { path: 'lista-docente', component: ListDocenteComponent },
-      { path: 'editar-docente', component: EditDocenteComponent },
+      { path: 'editar-docente/:idDocente', component: FormDocenteComponent },
       { path: 'registrar-docente', component: FormDocenteComponent},
 
       { path: 'listar-notas', component: TableNotaComponent },
