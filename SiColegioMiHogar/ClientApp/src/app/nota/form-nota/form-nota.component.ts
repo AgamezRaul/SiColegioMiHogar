@@ -48,21 +48,21 @@ export class FormNotaComponent implements OnInit {
       error => this.alertService.error(error));
     this.periodoService.getPeriodos().subscribe(periodos => this.LLenarPeriodos(periodos),
       error => this.alertService.error(error));
-    this.materiaService.getMaterias().subscribe(materia => this.LLenarMaterias(materia)),
+    this.materiaService.getMaterias().subscribe(materia => this.LLenarMaterias(materia),
       error => this.alertService.error(error));
 
-      this.activatedRoute.params.subscribe(params => {
-        if (params["id"] == undefined) {
-          return;
-        }else{
-          this.modoEdicion = true;
-        }
-        this.id = params["id"];
+    this.activatedRoute.params.subscribe(params => {
+      if (params["id"] == undefined) {
+        return;
+      } else {
+        this.modoEdicion = true;
+      }
+      this.id = params["id"];
 
-        this.notaservice.getNota(this.id)
-        .subscribe(nota => this.cargarFormulario(nota)),
-        error => this.alertService.error(error));
-      });
+      this.notaservice.getNota(this.id)
+        .subscribe(nota => this.cargarFormulario(nota),
+          error => this.alertService.error(error));
+    });
   }
 
   LLenarEstudiantes(estudantes: IEstudiante[]) {
@@ -88,7 +88,7 @@ export class FormNotaComponent implements OnInit {
     });
   }
 
-  save(){
+  save() {
     let nota: INota = Object.assign({}, this.formGroup.value);
     nota.IdMateria = parseInt(nota.IdMateria.toString());
     nota.IdEstudiante = parseInt(nota.IdEstudiante.toString());
@@ -99,7 +99,7 @@ export class FormNotaComponent implements OnInit {
       nota.IdMateria = parseInt(nota.IdMateria.toString());
       nota.IdEstudiante = parseInt(nota.IdEstudiante.toString());
       nota.IdPeriodo = parseInt(nota.IdPeriodo.toString());
-      
+
       this.notaservice.updateNota(nota)
         .subscribe(response => this.onSaveSuccess()),
 
@@ -113,10 +113,10 @@ export class FormNotaComponent implements OnInit {
           .subscribe(response => this.onSaveSuccess()),
           error => this.alertService.error(error);
       } else {
-        this.alertService.info('No valido') 
+        this.alertService.info('No valido')
       }
+    }
   }
-
   
   onSaveSuccess() {
     this.router.navigate(["listar-notas"]);
