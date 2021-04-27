@@ -7,15 +7,15 @@
         <input type="text" class="form-control" formControlName="nombre" id="nombre" placeholder="Ej: Grado 5A">
       </div>
       <div class="form-group col-md-6">
-        <label for="maxEst">Número máximo de estudiantes</label>
-        <input type="number" class="form-control" formControlName="maxEst" id="maxEst" placeholder="Ej: 30">
+        <label for="maxEstudiantes">Número máximo de estudiantes</label>
+        <input type="number" class="form-control" formControlName="maxEstudiantes" id="maxEstudiantes" placeholder="Ej: 30">
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group col-md-12">
-        <label for="IdDocente">Director docente</label>
-        <select formControlName="IdDocente" ng-options="IDocente.nombreCompleto for IDocente in ListaDocentes" ng-model="IdDocente" class="form-control" id="IdDocente">
+        <label for="idDirectorDocente">Director docente</label>
+        <select formControlName="idDirectorDocente" ng-options="IDocente.nombreCompleto for IDocente in ListaDocentes" ng-model="IdDocente" class="form-control" id="idDirectorDocente">
           <option value="">Seleccione un director</option>
           <option value="{{dato.id}}" *ngFor="let dato of ListaDocentes">
             {{dato.nombreCompleto}}
