@@ -17,7 +17,7 @@ namespace BackEnd.Curso.Aplicacion.Service.Crear
         }
         public CrearCursoResponse Ejecutar(CrearCursoRequest request)
         {
-            var curso = _unitOfWork.CursoServiceRepository.FindFirstOrDefault(t => t.IdDirectorDocente == request.idDirectorDocente);
+            var curso = _unitOfWork.CursoServiceRepository.FindFirstOrDefault(t => t.Id == request.id);
             if (curso == null)
             {
                 Dominio.Curso newCurso = new Dominio.Curso(request.nombre, request.maxEstudiantes, request.idDirectorDocente);

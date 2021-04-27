@@ -16,8 +16,8 @@ export class CursoComponent implements OnInit {
 
 export interface ICurso {
   nombre: string,
-  maxEst: number,
-  idDocente: number
+  maxEstudiantes: number,
+  idDirectorDocente: number
 }
 
 export interface ICurso2 {
