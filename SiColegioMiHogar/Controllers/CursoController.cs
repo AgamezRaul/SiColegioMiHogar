@@ -39,6 +39,7 @@ namespace SiColegioMiHogar.Controllers
                           on c.IdDirectorDocente equals d.Id
                           select new
                           {
+                              Id = c.Id,
                               NombreCurso = c.Nombre,
                               MaximoEstudiantes = c.MaxEstudiantes,
                               Docente = d.NombreCompleto

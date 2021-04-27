@@ -2,11 +2,10 @@
 <h1 *ngIf="!modoEdicion">Registrar Docente</h1>
 
 
-<div class="container" align="center">
+<div class="container">
   <h1>Formulario de Docente</h1>
   <form [formGroup]="formGroup" (ngSubmit)="save()">
     <div class="form-row">
-
       <div class="form-group col-md-6">
         <label for="nombreCompleto">Nombre completo</label>
         <input type="text" class="form-control" formControlName="nombreCompleto" id="nombreCompleto" placeholder="Ej: Juan Meza García">

@@ -8,6 +8,7 @@ import { CursoService } from '../curso.service';
 import { Location } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { AlertService } from '../../notifications/_services';
+import { error } from 'console';
 
 @Component({
   selector: 'app-table-curso',
@@ -66,4 +67,13 @@ export class TableCursoComponent implements OnInit, OnDestroy {
     this.router.navigate(["/registrar-curso"]);
   }
 
+  Eliminar(idCurso: number) {
+    this.cursoservice.deleteCurso(idCurso).
+      subscribe(id => this.onDeleteSuccess(),
+        error => this.alertService.error(error.error));
+  }
+  onDeleteSuccess() {
+    this.router.navigate(["/cursos"]);
+    this.alertService.success("Eliminado exitoso");
+  }
 }

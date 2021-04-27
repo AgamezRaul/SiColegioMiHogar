@@ -29,7 +29,7 @@ namespace BackEnd.Materia.Aplicacion.Services.Actualizar
 
                 _unitOfWork.MateriaServiceRepository.Edit(materia);
                 _unitOfWork.Commit();
-                return new ActualizarMateriaResponse() { Message = $"Materia Actualizado Exitosamente" };
+                return new ActualizarMateriaResponse() { Message = $"Materia actualizado exitosamente" };
 
             }
         }

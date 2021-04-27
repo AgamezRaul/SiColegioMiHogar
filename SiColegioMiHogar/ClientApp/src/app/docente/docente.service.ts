@@ -37,7 +37,6 @@ export class DocenteService {
         tap(() => {
           this._refresh$.next();
         })
-
       );
   }
 

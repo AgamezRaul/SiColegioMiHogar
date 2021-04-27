@@ -6,36 +6,15 @@
 
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="idMateria">Codigo de la materia</label>
-        <input type="number" class="form-control" formControlName="idMateria" id="idMateria" placeholder="Ej: 05">
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="form-group col-md-6">
         <label for="nombreMateria">nombre de materia</label>
         <input type="text" class="form-control" formControlName="nombreMateria" id="nombreMateria" placeholder="Ej: ingles">
       </div>
     </div>
 
-    <div class="form-row" *ngIf="modoEdicion">
-      <div class="form-group col-md-6">
-        <label for="idCurso">Curso</label>
-        <input type="text" class="form-control" formControlName="idCurso" id="idCurso" placeholder="Ej: 5.1">
-      </div>
-    </div>
-
-    <div class="form-row" *ngIf="modoEdicion">
-      <div class="form-group col-md-6">
-        <label for="idDocente">Docente</label>
-        <input type="text" class="form-control" formControlName="idDocente" id="idDocente" placeholder="Ej: 5.1">
-      </div>
-    </div>
-
-    <div class="form-row" *ngIf="!modoEdicion">
+    <div class="form-row">
       <div class="form-group col-md-12">
         <label for="idCurso">Curso</label>
-        <select formControlName="idCurso" ng-options="ICurso.nombreCurso for id in Listacurso" ng-model="idCurso" class="form-control" id="idCurso">
+        <select formControlName="idCurso" ng-options="ICurso.nombreCurso for id in Listacurso" ng-model="ICurso2" class="form-control" id="idCurso">
           <option value="">Seleccione un curso</option>
           <option value="{{datox.id}}" *ngFor="let datox of Listacurso">
             {{datox.nombreCurso}}
@@ -44,7 +23,7 @@
       </div>
     </div>
 
-    <div class="form-row" *ngIf="!modoEdicion">
+    <div class="form-row">
       <div class="form-group col-md-12">
         <label for="idDocente">Docente</label>
         <select formControlName="idDocente" ng-options="IDocente.nomEstudiante for id in Listadocente" ng-model="IDocente" class="form-control" id="idDocente">
@@ -55,8 +34,6 @@
         </select>
       </div>
     </div>
-
-
 
     <button type="submit" mat-raised-button color="primary">
       Guardar materia

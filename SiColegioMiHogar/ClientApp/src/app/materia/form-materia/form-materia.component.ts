@@ -31,7 +31,6 @@ export class FormMateriaComponent implements OnInit {
 
 
   formGroup = this.fb.group({
-    idMateria: ['', [Validators.required]],
     nombreMateria: ['', [Validators.required]],
     idDocente: ['', [Validators.required]],
     idCurso: ['', [Validators.required]]
@@ -42,7 +41,10 @@ export class FormMateriaComponent implements OnInit {
     this.docenteService.getDocentes()
       .subscribe(docentes => this.llenarDocente(docentes),
       error => this.alertService.error(error.error));
-    
+
+    this.cursoservice.getCursos().
+      subscribe(cursos => this.llenarCurso(cursos),
+        error => this.alertService.error(error.error));
 
     this.activatedRoute.params.subscribe(params => {
       if (params["id"] == undefined) {
@@ -80,17 +82,14 @@ export class FormMateriaComponent implements OnInit {
 
   save() {
     let materia: IMateria = Object.assign({}, this.formGroup.value);
-
+    materia.idCurso = +materia.idCurso;
+    materia.idDocente = +materia.idDocente;
     if (this.modoEdicion) {
       //editar registro
-      materia.id = this.id;
-
+      materia.id = +this.id;
       this.materiaservice.updateMateria(materia)
         .subscribe(materia => this.onSaveSuccess()),
         error => this.alertService.error(error.error);
-
-      console.table(materia);
-
     } else {
       //agregar registro
       this.materiaservice.createMateria(materia)

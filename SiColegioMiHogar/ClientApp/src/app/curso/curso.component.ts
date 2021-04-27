@@ -21,6 +21,7 @@ export interface ICurso {
 }
 
 export interface ICurso2 {
+  id:number,
   nombreCurso: string,
   maximoEstudiantes: number,
   docente: string

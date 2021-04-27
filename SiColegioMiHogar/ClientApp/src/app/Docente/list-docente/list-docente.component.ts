@@ -72,7 +72,7 @@ export class ListDocenteComponent implements OnInit, OnDestroy {
         error => this.alertService.error(error.error));
   }
   onDeleteSuccess() {
-    this.router.navigate(["/consultar-curso/" + this.id]);
+    this.router.navigate(["/Docente"]);
     this.alertService.success("Eliminado exitoso");
   }
   

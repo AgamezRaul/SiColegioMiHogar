@@ -24,7 +24,7 @@ namespace BackEnd.Materia.Aplicacion.Services.Eliminar
             {
                 _unitOfWork.MateriaServiceRepository.Delete(materia);
                 _unitOfWork.Commit();
-                return new EliminarMateriaResponse() { Message = $"Materia Eliminado Exitosamente" };
+                return new EliminarMateriaResponse() { Message = $"Materia eliminada exitosamente" };
             }
         }
     }

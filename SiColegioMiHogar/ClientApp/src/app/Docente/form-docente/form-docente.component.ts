@@ -25,12 +25,12 @@ export class FormDocenteComponent implements OnInit {
     idDoc: number;
 
   formGroup = this.fb.group({
-    nombreCompleto: ['', [Validators.required]],
-    numTarjetaProf: ['', [Validators.required]],
-    cedula: ['', [Validators.required]],
-    celular: ['', [Validators.required]],
-    correo: ['', [Validators.required]],
-    direccion: ['', [Validators.required]],
+    nombreCompleto: ['Carlos', [Validators.required]],
+    numTarjetaProf: ['1234567', [Validators.required]],
+    cedula: ['7654321', [Validators.required]],
+    celular: ['13579', [Validators.required]],
+    correo: ['carlos@gmail.com', [Validators.required]],
+    direccion: ['calle 30 #76-25', [Validators.required]],
   });
   ngOnInit(): void {
     //con esto se el url utilizo el primer semento para saber que url esta activa
