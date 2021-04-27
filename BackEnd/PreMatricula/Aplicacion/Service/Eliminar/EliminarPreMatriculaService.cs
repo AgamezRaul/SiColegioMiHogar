@@ -41,7 +41,7 @@ namespace BackEnd.PreMatricula.Aplicacion.Service.Eliminar
                 _unitOfWork.Commit();
                 return new EliminarPreMatriculaResponse($"PreMatricula Eliminado Exitosamente");
             }
-            return new EliminarPreMatriculaResponse($"PreMatricula no se Eliminó");
+            return new EliminarPreMatriculaResponse($"PreMatricula no se Eliminó, ocurrió un error");
         }
     }
 }
