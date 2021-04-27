@@ -25,10 +25,15 @@ namespace BackEnd.Responsable.Aplicacion.Request
     }
     public class CrearResponsableResponse
     {
+        public CrearResponsableResponse(string message)
+        {
+            Message = message;
+        }
+
         public string Message { get; set; }
         public bool isOk()
         {
-            return this.Message.Equals("Responsable Creado Exitosamente");
+            return this.Message.Equals("Responsables Creados Exitosamente");
         }
     }
 

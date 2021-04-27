@@ -26,6 +26,11 @@ namespace BackEnd.Estudiante.Aplicacion.Request
     }
     public class CrearEstudianteResponse
     {
+        public CrearEstudianteResponse(string message)
+        {
+            Message = message;
+        }
+
         public string Message { get; set; }
         public bool isOk()
         {

@@ -67,7 +67,7 @@ export class TablePrematriculaComponent implements OnInit {
   }
 
   onCrearMatriculaSuccess() {
-    this.router.navigate(["/prematricula"]);
+    this.router.navigate(["/matricula"]);
     this.alertService.success("Guardado exitoso");
   }
 

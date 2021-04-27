@@ -15,36 +15,21 @@ namespace BackEnd.Responsable.Aplicacion.Services.Crear
         {
             _unitOfWork = unitOfWork;
         }
-        public CrearResponsableResponse Ejecutar(CrearResponsableRequest request)
+        public CrearResponsableResponse Ejecutar(List<CrearResponsableRequest> responsables)
         {
-            var responsable = _unitOfWork.ResponsableServiceRepository.FindFirstOrDefault(t => t.IdeResponsable == request.IdeResponsable);
-            if (responsable == null)
+            foreach (var request in responsables)
             {
+                var responsable = _unitOfWork.ResponsableServiceRepository.FindFirstOrDefault(t => t.IdeResponsable == request.IdeResponsable);
+                if (responsable != null)
+                {
+                    return new CrearResponsableResponse($"Responsable ya existe");
+                }
                 Dominio.Responsable newResponsable = new Dominio.Responsable(request.IdeResponsable, request.NomResponsable, request.FecNacimiento, request.LugNacimiento,
                     request.LugExpedicion, request.TipDocumento, request.CelResponsable, request.ProfResponsable, request.OcuResponsable, request.EntResponsable, request.CelEmpresa,
                     request.TipoResponsable, request.Correo, request.Acudiente, request.IdUsuario);
-
-                IReadOnlyList<string> errors = newResponsable.CanCrear(newResponsable);
-                if (errors.Any())
-                {
-                    string listaErrors = "Errores:";
-                    foreach (var item in errors)
-                    {
-                        listaErrors += item.ToString();
-                    }
-                    return new CrearResponsableResponse() { Message = listaErrors };
-                }
-                else
-                {
-                    _unitOfWork.ResponsableServiceRepository.Add(newResponsable);
-                    _unitOfWork.Commit();
-                    return new CrearResponsableResponse() { Message = $"Responsable Creado Exitosamente" };
-                }
+                _unitOfWork.ResponsableServiceRepository.Add(newResponsable);
             }
-            else
-            {
-                return new CrearResponsableResponse() { Message = $"Responsable ya existe" };
-            }
+            return new CrearResponsableResponse($"Responsables Creados Exitosamente");
         }
     }
 }

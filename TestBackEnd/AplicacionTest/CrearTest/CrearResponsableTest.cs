@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace TestBackEnd.AplicacionTest.CrearTest
 {
@@ -26,7 +25,7 @@ namespace TestBackEnd.AplicacionTest.CrearTest
         }
 
         [TestCaseSource("CreationsEstudiante")]
-        public void CrearEstudiante(CrearResponsableRequest request, string expected)
+        public void CrearEstudiante(List<CrearResponsableRequest> request, string expected)
         {
             _service = new CrearResponsableService(_unitOfWork);
             var response = _service.Ejecutar(request);
@@ -35,25 +34,63 @@ namespace TestBackEnd.AplicacionTest.CrearTest
         private static IEnumerable<TestCaseData> CreationsEstudiante()
         {
             yield return new TestCaseData(
-                new CrearResponsableRequest
+                new List<CrearResponsableRequest>
                 {
-                    IdeResponsable = "1234567",
-                    NomResponsable = "Raul",
-                    FecNacimiento = DateTime.Now.Date,
-                    LugNacimiento = "Valledupar",
-                    LugExpedicion = "Valledupar",
-                    TipDocumento = "Cedula",
-                    CelResponsable = "123456789",
-                    ProfResponsable = "Estudiante",
-                    OcuResponsable = "Estudiante",
-                    EntResponsable = "UPC",
-                    CelEmpresa = "12345678",
-                    TipoResponsable = "Padre",
-                    Correo = "raagamez@unicesar.edu.co",
-                    Acudiente = "Si",
-                    IdUsuario = 1
-    },
-                "Responsable Creado Exitosamente"
+                    new CrearResponsableRequest {
+                        IdeResponsable = "1234567",
+                        NomResponsable = "Raul",
+                        FecNacimiento = DateTime.Now.Date,
+                        LugNacimiento = "Valledupar",
+                        LugExpedicion = "Valledupar",
+                        TipDocumento = "Cedula",
+                        CelResponsable = "1234567",
+                        ProfResponsable = "Estudiante",
+                        OcuResponsable = "Estudiante",
+                        EntResponsable = "UPC",
+                        CelEmpresa = "1234567",
+                        TipoResponsable = "Padre",
+                        Correo = "raagamez@gmail.com",
+                        Acudiente = "No",
+                        IdUsuario = 1
+                    },
+                    new CrearResponsableRequest
+                    {
+                        IdeResponsable = "89101112",
+                        NomResponsable = "Andres",
+                        FecNacimiento = DateTime.Now,
+                        LugNacimiento = "Valledupar",
+                        LugExpedicion = "Valledupar",
+                        TipDocumento = "Cedula",
+                        CelResponsable = "1234567",
+                        ProfResponsable = "Estudiante",
+                        OcuResponsable = "Estudiante",
+                        EntResponsable = "UPC",
+                        CelEmpresa = "1234567",
+                        TipoResponsable = "Madre",
+                        Correo = "raagamez@gmail.com",
+                        Acudiente = "No",
+                        IdUsuario = 1
+                    },
+                    new CrearResponsableRequest
+                    {
+                        IdeResponsable = "13141516",
+                        NomResponsable = "Agamez",
+                        FecNacimiento = DateTime.Now,
+                        LugNacimiento = "Valledupar",
+                        LugExpedicion = "Valledupar",
+                        TipDocumento = "Cedula",
+                        CelResponsable = "1234567",
+                        ProfResponsable = "Estudiante",
+                        OcuResponsable = "Estudiante",
+                        EntResponsable = "UPC",
+                        CelEmpresa = "1234567",
+                        TipoResponsable = "Padre",
+                        Correo = "raagamez@gmail.com",
+                        Acudiente = "Si",
+                        IdUsuario = 1
+                    }
+                },
+                "Responsables Creados Exitosamente"
             ).SetName("Crear Responsable Correctamente");
         }
     }
