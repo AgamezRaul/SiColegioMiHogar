@@ -123,12 +123,12 @@ export class FormPreMatriculaComponent implements OnInit {
       //edita
       this.servicePrematricula.updatePreMatricula(this.prematricula)
         .subscribe(prematricula => this.onSaveSuccess(),
-          error => this.alertService.error(error));
+          error => this.alertService.error(error.error));
     } else {
       //crea
       this.servicePrematricula.createPrematricula(this.prematricula)
         .subscribe(prematricula => this.onSaveSuccess(),
-          error => this.alertService.error(error));
+          error => this.alertService.error(error.error));
     }
   }
 

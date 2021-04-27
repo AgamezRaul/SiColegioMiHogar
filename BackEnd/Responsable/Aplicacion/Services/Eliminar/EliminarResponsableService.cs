@@ -1,8 +1,5 @@
 ﻿using BackEnd.Base;
 using BackEnd.Responsable.Aplicacion.Request;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BackEnd.Responsable.Aplicacion.Services.Eliminar
 {
@@ -15,17 +12,16 @@ namespace BackEnd.Responsable.Aplicacion.Services.Eliminar
         }
         public EliminarResponsableResponse Ejecutar(EliminarResponsableRequest request)
         {
-            Dominio.Responsable responsable = _unitOfWork.ResponsableServiceRepository.FindFirstOrDefault(t => t.IdUsuario == request.UsuarioId);
-            if (responsable == null)
+            for (int i = 1; i <= 3; i++)
             {
-                return new EliminarResponsableResponse() { Message = $"Responsable no existe" };
-            }
-            else
-            {
+                Dominio.Responsable responsable = _unitOfWork.ResponsableServiceRepository.FindFirstOrDefault(t => t.IdUsuario == request.UsuarioId);
+                if (responsable == null)
+                {
+                    return new EliminarResponsableResponse($"Responsable no existe");
+                }
                 _unitOfWork.ResponsableServiceRepository.Delete(responsable);
-                _unitOfWork.Commit();
-                return new EliminarResponsableResponse() { Message = $"Responsable Eliminado Exitosamente" };
             }
+            return new EliminarResponsableResponse($"Responsables Eliminados Exitosamente");
         }
     }
 }

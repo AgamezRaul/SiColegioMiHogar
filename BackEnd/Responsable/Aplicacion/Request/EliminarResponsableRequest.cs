@@ -10,6 +10,11 @@ namespace BackEnd.Responsable.Aplicacion.Request
     }
     public class EliminarResponsableResponse
     {
+        public EliminarResponsableResponse(string message)
+        {
+            Message = message;
+        }
+
         public string Message { get; set; }
         public bool isOk()
         {

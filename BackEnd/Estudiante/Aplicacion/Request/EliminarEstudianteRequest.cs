@@ -10,6 +10,11 @@ namespace BackEnd.Estudiante.Aplicacion.Request
     }
     public class EliminarEstudianteResponse
     {
+        public EliminarEstudianteResponse(string message)
+        {
+            Message = message;
+        }
+
         public string Message { get; set; }
         public bool isOk()
         {

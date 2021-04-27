@@ -6,7 +6,7 @@ using System.Text;
 
 namespace BackEnd.Responsable.Dominio
 {
-   public class Responsable: Entity<int>
+    public class Responsable: Entity<int>
     {
       
         public string IdeResponsable { get; set; }
@@ -44,43 +44,5 @@ namespace BackEnd.Responsable.Dominio
             Acudiente = acudiente;
             IdUsuario = idUsuario;
         }
-
-        public IReadOnlyList<string> CanCrear(Responsable responsable)
-        {
-            var errors = new List<string>();
-            if (string.IsNullOrEmpty(responsable.IdeResponsable))
-                errors.Add("Campo Identificacion responsable vacio");
-            if (string.IsNullOrEmpty(responsable.NomResponsable))
-                errors.Add("Campo Nombre responsable vacio");
-            if (string.IsNullOrEmpty(responsable.FecNacimiento.ToString()))
-                errors.Add("Campo Fecha nacimiento vacio");
-            if (string.IsNullOrEmpty(responsable.LugNacimiento))
-                errors.Add("Campo Lugar nacimiento vacio");
-            if (string.IsNullOrEmpty(responsable.LugExpedicion))
-                errors.Add("Campo Lugar expedicion vacio");
-            if (string.IsNullOrEmpty(responsable.TipDocumento))
-                errors.Add("Campo Tipo documento vacio");
-            if (string.IsNullOrEmpty(responsable.CelResponsable))
-                errors.Add("Campo Celular responsable vacio");
-            if (string.IsNullOrEmpty(responsable.ProfResponsable))
-                errors.Add("Campo Profesion del responsable vacio");
-            if (string.IsNullOrEmpty(responsable.OcuResponsable))
-                errors.Add("Campo Ocupacion del responsable  vacio");
-            if (string.IsNullOrEmpty(responsable.EntResponsable))
-                errors.Add("Campo Entidad en la cual trabaja el responsable vacio");
-            if (string.IsNullOrEmpty(responsable.CelEmpresa))
-                errors.Add("Campo Celular empresa vacio");
-            if (string.IsNullOrEmpty(responsable.TipoResponsable))
-                errors.Add("Campo Tipo responsable vacio");
-            if (string.IsNullOrEmpty(responsable.Correo))
-                errors.Add("Campo Correo responsable vacio");
-            if (string.IsNullOrEmpty(responsable.Acudiente))
-                errors.Add("Campo Acudiente vacio");
-            if (responsable.IdUsuario == 0)
-                errors.Add("Campo Identificacion de estudiante vacio");
-
-            return errors;
-        }
-
     }
 }

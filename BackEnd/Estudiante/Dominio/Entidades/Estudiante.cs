@@ -46,43 +46,5 @@ namespace BackEnd.Estudiante.Dominio
             TelEstudiante = telEstudiante;
             IdUsuario = idUsuario;
         }
-
-        public IReadOnlyList<string> CanCrear(Estudiante estudiante)
-        {
-            var errors = new List<string>();
-            if (string.IsNullOrEmpty(estudiante.IdeEstudiante))
-                errors.Add("Campo Identificacion estudiante vacio");
-            if (string.IsNullOrEmpty(estudiante.NomEstudiante))
-                errors.Add("Campo Nombre estudiante vacio");
-            if (string.IsNullOrEmpty(estudiante.FecNacimiento.ToString()))
-                errors.Add("Campo Fecha nacimiento vacio");
-            if (string.IsNullOrEmpty(estudiante.LugNacimiento))
-                errors.Add("Campo Lugar nacimiento vacio");
-            if (string.IsNullOrEmpty(estudiante.LugExpedicion))
-                errors.Add("Campo Lugar expedicion vacio");
-            if (string.IsNullOrEmpty(estudiante.InsProcedencia))
-                errors.Add("Campo Institución de procedencia vacio");
-            if (string.IsNullOrEmpty(estudiante.DirResidencia))
-                errors.Add("Campo Dirección residencia vacio");
-            if (string.IsNullOrEmpty(estudiante.CelEstudiante))
-                errors.Add("Campo Celular estudiante vacio");
-            if (string.IsNullOrEmpty(estudiante.TipSangre))
-                errors.Add("Campo Tipo sangre vacio");
-            if (string.IsNullOrEmpty(estudiante.GradoEstudiante))
-                errors.Add("Campo Grado estudiante vacio");
-            if (string.IsNullOrEmpty(estudiante.Eps))
-                errors.Add("Campo Eps vacio");
-            if (string.IsNullOrEmpty(estudiante.Correo))
-                errors.Add("Campo Correo estudiante vacio");
-            if (string.IsNullOrEmpty(estudiante.Sexo))
-                errors.Add("Campo Sexo estudiante vacio");
-            if (string.IsNullOrEmpty(estudiante.TipoDocumento))
-                errors.Add("Campo Tipo documento vacio");
-            if (string.IsNullOrEmpty(estudiante.TelEstudiante))
-                errors.Add("Campo Telefono estudiante vacio");
-            if (estudiante.IdUsuario == 0)
-                errors.Add("Campo Identificación usuario vacio");
-            return errors;
-        }
     }
 }

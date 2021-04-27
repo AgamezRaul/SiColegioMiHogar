@@ -21,18 +21,5 @@ namespace BackEnd.PreMatricula.Dominio
             IdUsuario = idUsuario;
             Estado = estado;
         }
-
-        public IReadOnlyList<string> CanCrear(PreMatricula prematricula)
-        {
-            var errors = new List<string>();
-
-            if (string.IsNullOrEmpty(prematricula.FecPrematricula.ToString()))
-                errors.Add("Campo Fecha de Prematricula vacio");
-            if (prematricula.IdUsuario == 0)
-                errors.Add("Campo identificacion usuario vacio");
-            if (string.IsNullOrEmpty(prematricula.Estado))
-                errors.Add("Campo Estado de prematricula vacio");
-            return errors;
-        }
     }
 }

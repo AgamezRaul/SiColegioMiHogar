@@ -67,14 +67,14 @@ export class TablePrematriculaComponent implements OnInit {
   }
 
   onCrearMatriculaSuccess() {
-    this.router.navigate(["/prematricula"]);
+    this.router.navigate(["/matricula"]);
     this.alertService.success("Guardado exitoso");
   }
 
   Eliminar(idUsuario: number) {
     this.prematriculaService.deletePreMatricula(idUsuario).
       subscribe(nit => this.onDeleteSuccess(),
-        error => this.alertService.error(error));
+        error => this.alertService.error(error.error));
   }
 
   onDeleteSuccess() {
