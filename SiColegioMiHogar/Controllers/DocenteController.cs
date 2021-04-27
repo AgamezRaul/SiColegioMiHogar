@@ -41,7 +41,8 @@ namespace SiColegioMiHogar.Controllers
                               NumTarjetaProf = c.NumTarjetaProf,
                               Cedula= c.Cedula,
                               Celular=c.Celular,
-                              Correo = c.Correo
+                              Correo = c.Correo,
+                              Direccion=c.Direccion
                           }).ToList();
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
             return result;

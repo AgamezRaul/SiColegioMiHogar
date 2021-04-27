@@ -20,8 +20,8 @@ export class FormCursoComponent implements OnInit {
     private docenteService: DocenteService, private cursoService: CursoService, private alertService: AlertService) { }
   formGroup = this.fb.group({
     nombre: ['', [Validators.required]],
-    maxEst: [1, [Validators.required]],
-    idDocente: [1, [Validators.required]],
+    maxEstudiantes: [10, [Validators.required]],
+    idDirectorDocente: [4, [Validators.required]],
   });
   
   ngOnInit(): void {
@@ -33,10 +33,13 @@ export class FormCursoComponent implements OnInit {
   }
   save() {
     let curso: ICurso = Object.assign({}, this.formGroup.value);
+    
     console.table(curso); //ver mensualidad por consola
+    curso.idDirectorDocente = +curso.idDirectorDocente;
+    console.table(curso);
     this.cursoService.createCurso(curso)
       .subscribe(curso => this.onSaveSuccess(),
-        error => this.alertService.error(error.error));
+        error => this.alertService.error(error));
   }
   onSaveSuccess() {
     this.router.navigate(["/cursos"]);
@@ -46,10 +49,10 @@ export class FormCursoComponent implements OnInit {
   get nombre() {
     return this.formGroup.get('nombre');
   }
-  get maxEst() {
-    return this.formGroup.get('maxEst');
+  get maxEstudiantes() {
+    return this.formGroup.get('maxEstudiantes');
   }
-  get idDocente() {
-    return this.formGroup.get('idDocente');
+  get idDirectorDocente() {
+    return this.formGroup.get('idDirectorDocente');
   }
 }
