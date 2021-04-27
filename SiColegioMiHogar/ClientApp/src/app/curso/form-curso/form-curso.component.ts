@@ -21,7 +21,7 @@ export class FormCursoComponent implements OnInit {
   formGroup = this.fb.group({
     nombre: ['', [Validators.required]],
     maxEst: [1, [Validators.required]],
-    idDocente: [1, [Validators.required]],
+    idDocente: [4, [Validators.required]],
   });
   
   ngOnInit(): void {
