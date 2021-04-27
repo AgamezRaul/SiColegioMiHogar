@@ -3,6 +3,7 @@ using BackEnd.Base;
 using BackEnd.Docente.Aplicacion.Request;
 using BackEnd.Docente.Aplicacion.Service.Actualizar;
 using BackEnd.Docente.Aplicacion.Service.Crear;
+using BackEnd.Docente.Aplicacion.Service.Eliminar;
 using BackEnd.Docente.Dominio;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,7 @@ namespace SiColegioMiHogar.Controllers
         private readonly MiHogarContext _context;
         private CrearDocenteService _service;
         private ActualizarDocenteService _actualizarService;
+        private EliminarDocenteService _eliminarService;
         private UnitOfWork _unitOfWork;
 
         public DocenteController(MiHogarContext context)
@@ -79,6 +81,23 @@ namespace SiColegioMiHogar.Controllers
             }
             return BadRequest(rta.Message);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteDocente([FromRoute] int id)
+        {
+            _eliminarService = new EliminarDocenteService(_unitOfWork);
+            EliminarDocenteRequest request = new EliminarDocenteRequest();
+            request.IdDocente = id;
+            var rta = _eliminarService.Ejecutar(request);
+            if (rta.isOk())
+            {
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetDocente", new { id = request.IdDocente }, request);
+            }
+            return BadRequest(rta.Message);
+        }
+
+
         /*[HttpPut("{id}")]
         public async Task<IActionResult> PutCurso([FromRoute] int id, [FromBody] ActualizarCursoRequest curso)
         {
