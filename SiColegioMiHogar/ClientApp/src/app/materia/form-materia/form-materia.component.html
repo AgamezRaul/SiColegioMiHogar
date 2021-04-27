@@ -18,28 +18,45 @@
       </div>
     </div>
 
+    <div class="form-row" *ngIf="modoEdicion">
+      <div class="form-group col-md-6">
+        <label for="idCurso">Curso</label>
+        <input type="text" class="form-control" formControlName="idCurso" id="idCurso" placeholder="Ej: 5.1">
+      </div>
+    </div>
 
-    <div class="form-row">
+    <div class="form-row" *ngIf="modoEdicion">
+      <div class="form-group col-md-6">
+        <label for="idDocente">Docente</label>
+        <input type="text" class="form-control" formControlName="idDocente" id="idDocente" placeholder="Ej: 5.1">
+      </div>
+    </div>
+
+    <div class="form-row" *ngIf="!modoEdicion">
       <div class="form-group col-md-12">
-        <label for="IdDocente">Codigo del docente</label>
-        <select formControlName="IdDocente" ng-options="" ng-model="" class="form-control" id="IdDocente">
-          <option value="">Seleccione un codigo de curso</option>
-          <option value="{{prueba}}" *ngFor="">
+        <label for="idCurso">Curso</label>
+        <select formControlName="idCurso" ng-options="ICurso.nombreCurso for id in Listacurso" ng-model="idCurso" class="form-control" id="idCurso">
+          <option value="">Seleccione un curso</option>
+          <option value="{{datox.id}}" *ngFor="let datox of Listacurso">
+            {{datox.nombreCurso}}
           </option>
         </select>
       </div>
     </div>
 
-    <div class="form-row">
+    <div class="form-row" *ngIf="!modoEdicion">
       <div class="form-group col-md-12">
-        <label for="IdCurso">Codigo del curso</label>
-        <select formControlName="IdCurso" ng-options="" ng-model="" class="form-control" id="IdCurso">
-          <option value="">Seleccione un codigo de curso</option>
-          <option value="{{prueba}}" *ngFor="">
+        <label for="idDocente">Docente</label>
+        <select formControlName="idDocente" ng-options="IDocente.nomEstudiante for id in Listadocente" ng-model="IDocente" class="form-control" id="idDocente">
+          <option value="">Seleccione un docente</option>
+          <option value="{{dato.id}}" *ngFor="let dato of Listadocente">
+            {{dato.nombreCompleto}}
           </option>
         </select>
       </div>
     </div>
+
+
 
     <button type="submit" mat-raised-button color="primary">
       Guardar materia

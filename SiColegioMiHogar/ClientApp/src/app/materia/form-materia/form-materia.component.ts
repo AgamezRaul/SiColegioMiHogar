@@ -4,6 +4,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
 import { ICurso2 } from '../../curso/curso.component';
 import { CursoService } from '../../curso/curso.service';
+import { IDocente, IDocente2 } from '../../Docente/docente.component';
+import { DocenteService } from '../../Docente/docente.service';
 import { AlertService } from '../../notifications/_services';
 import { IMateria } from '../materia.component';
 import { MateriaService } from '../materia.service';
@@ -17,13 +19,16 @@ export class FormMateriaComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private materiaservice: MateriaService,
     private router: Router, private activatedRoute: ActivatedRoute,
-    private alertService: AlertService, private cursoservice: CursoService  ) { }
+    private alertService: AlertService, private cursoservice: CursoService,
+    private docenteService: DocenteService) { }
 
   modoEdicion: boolean = false;
   id: number;
+
   // cambios
-  curso!: ICurso2[];
-  dataSource = new MatTableDataSource<ICurso2>(this.curso);
+  Listacurso: ICurso2[];
+  Listadocente: IDocente[];
+
 
   formGroup = this.fb.group({
     idMateria: ['', [Validators.required]],
@@ -33,6 +38,12 @@ export class FormMateriaComponent implements OnInit {
   });
 
   ngOnInit(): void {
+
+    this.docenteService.getDocentes()
+      .subscribe(docentes => this.llenarDocente(docentes),
+      error => this.alertService.error(error.error));
+    
+
     this.activatedRoute.params.subscribe(params => {
       if (params["id"] == undefined) {
         return;
@@ -46,6 +57,7 @@ export class FormMateriaComponent implements OnInit {
         .subscribe(materia => this.cargarFormulario(materia)),
         error => this.alertService.error(error);
     });
+
   }
 
 
@@ -58,7 +70,13 @@ export class FormMateriaComponent implements OnInit {
     });
   }
 
+  llenarDocente(docentes: IDocente[]) {
+    this.Listadocente = docentes;
+  }
 
+  llenarCurso(cursos: ICurso2[]) {
+    this.Listacurso = cursos;
+  }
 
   save() {
     let materia: IMateria = Object.assign({}, this.formGroup.value);
@@ -88,11 +106,6 @@ export class FormMateriaComponent implements OnInit {
   }
 
 
-  //cambio
-  preuba() {
-    this.cursoservice.getCursos()
-      .subscribe(cursos => { console.log(cursos), this.dataSource.data = cursos },
-    error => this.alertService.error(error.error));
-  }
+
 
   }
