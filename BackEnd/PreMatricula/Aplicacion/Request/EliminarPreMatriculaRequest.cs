@@ -10,6 +10,11 @@ namespace BackEnd.PreMatricula.Aplicacion.Request
     }
     public class EliminarPreMatriculaResponse
     {
+        public EliminarPreMatriculaResponse(string message)
+        {
+            Message = message;
+        }
+
         public string Message { get; set; }
         public bool isOk()
         {
