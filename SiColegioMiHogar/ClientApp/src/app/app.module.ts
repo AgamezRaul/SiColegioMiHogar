@@ -124,6 +124,9 @@ import { ConsultarNotaComponent } from './nota/consultar-nota/consultar-nota.com
       { path: 'editar-mensualidad/:idMensualidad', component: FormMensualidadComponent, canActivate: [CheckNotloginGuard] },
       { path: 'consultar-mensualidad/:id', component: MensualidadComponent, canActivate: [CheckNotloginGuard] },
 
+      { path: 'cursos', component: CursoComponent },
+      { path: 'registrar-curso', component: FormCursoComponent },
+      { path: 'editar-curso/:idCurso', component: FormCursoComponent },
       { path: 'cursos', component: CursoComponent, canActivate: [CheckNotloginGuard] },
       { path: 'registrar-curso', component: FormCursoComponent, canActivate: [CheckNotloginGuard] },
 

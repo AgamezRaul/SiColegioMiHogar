@@ -15,6 +15,7 @@ export class CursoComponent implements OnInit {
 }
 
 export interface ICurso {
+  id: number,
   nombre: string,
   maxEstudiantes: number,
   idDirectorDocente: number
