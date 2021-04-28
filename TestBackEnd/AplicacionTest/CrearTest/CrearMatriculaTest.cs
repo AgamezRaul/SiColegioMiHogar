@@ -29,7 +29,7 @@ namespace TestBackEnd.AplicacionTest.CrearTest
         public void CrearCurso(CrearMatriculaRequest request, string expected)
         {
             _service = new CrearMatriculaService(_unitOfWork);
-            var response = _service.Ejecutar(request);
+            var response = _service.EjecutarCrearMatricula(request);
             Assert.AreEqual(expected, response.Message);
         }
         private static IEnumerable<TestCaseData> CreationsCurso()

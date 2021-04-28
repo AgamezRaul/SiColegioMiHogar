@@ -23,14 +23,16 @@ namespace SiColegioMiHogar.Controllers
     public class PreMatriculaController : ControllerBase
     {
         private readonly MiHogarContext _context;
-        private CrearPreMatriculaService _service;
-        private ActualizarPreMatriculaAllService _actualizarService;
-        private EliminarPreMatriculaService _eliminarService;
-        private UnitOfWork _unitOfWork;
+        private readonly CrearPreMatriculaService _service;
+        private readonly ActualizarPreMatriculaAllService _actualizarService;
+        private readonly EliminarPreMatriculaService _eliminarService;
         public PreMatriculaController(MiHogarContext context)
         {
             this._context = context;
-            _unitOfWork = new UnitOfWork(_context);
+            UnitOfWork _unitOfWork = new UnitOfWork(_context);
+            _service = new CrearPreMatriculaService(_unitOfWork);
+            _actualizarService = new ActualizarPreMatriculaAllService(_unitOfWork);
+            _eliminarService = new EliminarPreMatriculaService(_unitOfWork);
         }
 
 
@@ -95,7 +97,6 @@ namespace SiColegioMiHogar.Controllers
         [HttpPost]
         public async Task<IActionResult> CreatePrematricula([FromBody] CrearPreMatriculaRequest request)
         {
-            _service = new CrearPreMatriculaService(_unitOfWork);
             var rta = _service.Ejecutar(request);
             if (rta.isOk())
             {
@@ -108,7 +109,6 @@ namespace SiColegioMiHogar.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPreMatricula([FromRoute] string id, [FromBody] ActualizarPreMatriculaAllRequest request)
         {
-            _actualizarService = new ActualizarPreMatriculaAllService(_unitOfWork);
             var rta = _actualizarService.Ejecutar(request);
             if (rta.isOk())
             {
@@ -121,9 +121,10 @@ namespace SiColegioMiHogar.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePreMatricula([FromRoute] int id)
         {
-            EliminarPreMatriculaRequest request = new EliminarPreMatriculaRequest();
-            request.UsuarioId = id;
-            _eliminarService = new EliminarPreMatriculaService(_unitOfWork);
+            EliminarPreMatriculaRequest request = new EliminarPreMatriculaRequest
+            {
+                UsuarioId = id
+            };
             var rta = _eliminarService.Ejecutar(request);
             if (rta.isOk())
             {

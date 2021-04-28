@@ -1,8 +1,5 @@
 ﻿using BackEnd.Base;
 using BackEnd.PreMatricula.Aplicacion.Request;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BackEnd.PreMatricula.Aplicacion.Service.Actualizar
 {
@@ -13,21 +10,16 @@ namespace BackEnd.PreMatricula.Aplicacion.Service.Actualizar
         {
             _unitOfWork = unitOfWork;
         }
-        public ActualizarPreMatriculaResponse Ejecutar(ActualizarPreMatriculaRequest request)
+        public ActualizarPreMatriculaResponse EjecutarActualizarPrematricula(ActualizarPreMatriculaRequest request)
         {
             Dominio.PreMatricula prematricula = _unitOfWork.PreMatriculaServiceRepository.FindFirstOrDefault(t => t.Id == request.id);
             if (prematricula == null)
             {
-                return new ActualizarPreMatriculaResponse() { Message = $"PreMatricula no existe" };
+                return new ActualizarPreMatriculaResponse($"PreMatricula no existe");
             }
-            else
-            {
-                prematricula.Estado = request.Estado;
-                _unitOfWork.PreMatriculaServiceRepository.Edit(prematricula);
-                _unitOfWork.Commit();
-                return new ActualizarPreMatriculaResponse() { Message = $"PreMatricula Actualizada Exitosamente" };
-
-            }
+            prematricula.Estado = request.Estado;
+            _unitOfWork.PreMatriculaServiceRepository.Edit(prematricula);
+            return new ActualizarPreMatriculaResponse($"PreMatricula Actualizada Exitosamente");
         }
     }
 }
