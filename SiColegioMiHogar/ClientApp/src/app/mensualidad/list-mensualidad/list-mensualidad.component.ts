@@ -64,7 +64,6 @@ export class ListMensualidadComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.suscription.unsubscribe();
-    this.alertService.info('observable cerrado');
   }
   Registrar() {
     this.router.navigate(["/registrar-mensualidad/" + this.id]);

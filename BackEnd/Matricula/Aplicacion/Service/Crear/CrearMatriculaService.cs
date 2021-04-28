@@ -2,54 +2,48 @@
 using BackEnd.Matricula.Aplicacion.Request;
 using BackEnd.PreMatricula.Aplicacion.Request;
 using BackEnd.PreMatricula.Aplicacion.Service.Actualizar;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace BackEnd.Matricula.Aplicacion.Service.Crear
 {
-   public class CrearMatriculaService
+    public class CrearMatriculaService
     {
         readonly IUnitOfWork _unitOfWork;
-        public ActualizarPreMatriculaService preMatriculaService;
-        public ActualizarPreMatriculaRequest preMatriculaRequest;
+        private readonly ActualizarPreMatriculaService preMatriculaService;
 
         public CrearMatriculaService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
             preMatriculaService = new ActualizarPreMatriculaService(_unitOfWork);
         }
-        public CrearMatriculaResponse Ejecutar(CrearMatriculaRequest request)
+        public CrearMatriculaResponse EjecutarCrearMatricula(CrearMatriculaRequest request)
         {
             var matricula = _unitOfWork.MatriculaServiceRepository.FindFirstOrDefault(t => t.IdePreMatricula == request.IdPreMatricula);
-            if (matricula == null)
+            if (matricula != null)
             {
-                Dominio.Matricula newMatricula = new Dominio.Matricula(request.FecConfirmacion, request.IdPreMatricula);
-                preMatriculaRequest = new ActualizarPreMatriculaRequest();
-                preMatriculaRequest.id = request.IdPreMatricula;
-                var respuestaP = preMatriculaService.Ejecutar(preMatriculaRequest);
-                IReadOnlyList<string> errors = newMatricula.CanCrear(newMatricula);
-                if (errors.Any())
-                {
-                    string listaErrors = "Errores:";
-                    foreach (var item in errors)
-                    {
-                        listaErrors += item.ToString();
-                    }
-                    return new CrearMatriculaResponse() { Message = listaErrors };
-                }
-                else
-                {
-                    _unitOfWork.MatriculaServiceRepository.Add(newMatricula);
-                    _unitOfWork.Commit();
-                    return new CrearMatriculaResponse() { Message = $"Matricula Creada Exitosamente" };
-                }
+                return new CrearMatriculaResponse($"Matricula ya existe");
             }
-            else
+            IReadOnlyList<string> errors = request.CanCrear(request);
+            if (errors.Any())
             {
-                return new CrearMatriculaResponse() { Message = $"Matricula ya existe" };
+                string listaErrors = "Errores: " + string.Join(".", errors);
+                return new CrearMatriculaResponse(listaErrors);
             }
+            Dominio.Matricula newMatricula = new Dominio.Matricula(request.FecConfirmacion, request.IdPreMatricula);
+            ActualizarPreMatriculaRequest preMatriculaRequest = new ActualizarPreMatriculaRequest
+            {
+                id = request.IdPreMatricula,
+                Estado = "Confirmado"
+            };
+            var respuestaPrematricula = preMatriculaService.EjecutarActualizarPrematricula(preMatriculaRequest);
+            if (respuestaPrematricula.isOk())
+            {
+                _unitOfWork.MatriculaServiceRepository.Add(newMatricula);
+                _unitOfWork.Commit();
+                return new CrearMatriculaResponse($"Matricula Creada Exitosamente");
+            }
+            return new CrearMatriculaResponse($"No se logró crear la matricula");
         }
     }
 }

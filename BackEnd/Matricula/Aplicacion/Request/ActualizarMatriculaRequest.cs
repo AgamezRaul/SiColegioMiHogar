@@ -13,6 +13,11 @@ namespace BackEnd.Matricula.Aplicacion.Request
     }
     public class ActualizarMatriculaResponse
     {
+        public ActualizarMatriculaResponse(string message)
+        {
+            Message = message;
+        }
+
         public string Message { get; set; }
         public bool isOk()
         {
