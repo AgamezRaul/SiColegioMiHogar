@@ -126,7 +126,7 @@ import { ConsultarNotaComponent } from './nota/consultar-nota/consultar-nota.com
 
       { path: 'cursos', component: CursoComponent },
       { path: 'registrar-curso', component: FormCursoComponent },
-
+      { path: 'editar-curso/:idCurso', component: FormCursoComponent },
       
       { path: 'materias', component: ListMateriaComponent },
       { path: 'registrar-materia', component: FormMateriaComponent },
