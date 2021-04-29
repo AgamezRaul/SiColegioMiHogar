@@ -5,12 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="NewFolder\**" />
-    <EmbeddedResource Remove="NewFolder\**" />
-    <None Remove="NewFolder\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.2.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.5">
@@ -29,6 +23,10 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
+    <Folder Include="UsarioDocente\Aplicacion\Service\" />
+    <Folder Include="UsarioDocente\Aplicacion\Request\" />
+    <Folder Include="UsarioDocente\Dominio\Entidades\" />
+    <Folder Include="UsarioDocente\Dominio\Repositories\" />
   </ItemGroup>
 
 </Project>
