@@ -5,7 +5,7 @@ import { AlertService } from '../../notifications/_services';
 import { ICurso } from '../curso.component';
 import { CursoService } from '../curso.service';
 import { DocenteService } from 'src/app/docente/docente.service';
-import { IDocente2, IDocente } from '../../Docente/docente.component';
+import { IDocente } from '../../Docente/docente.component';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({

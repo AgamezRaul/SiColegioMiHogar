@@ -3,11 +3,11 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { UrlSegment } from '@angular/router';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService } from '../../notifications/_services';
-import { IDocente } from '../docente.component';
 import { DocenteService } from '../docente.service';
 import { Location } from '@angular/common';
 import { error } from 'protractor';
 import { equal } from 'assert';
+import { IDocente } from '../docente.component';
 
 
 @Component({

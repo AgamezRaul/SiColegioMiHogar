@@ -32,7 +32,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MensualidadComponent } from './mensualidad/mensualidad.component';
 import { FormMensualidadComponent } from './mensualidad/form-mensualidad/form-mensualidad.component';
 import { ListMensualidadComponent } from './mensualidad/list-mensualidad/list-mensualidad.component';
-import { FormDocenteComponent } from './Docente/form-docente/form-docente.component';
+import { FormDocenteComponent } from './docente/form-docente/form-docente.component';
 import { UsuarioService } from './login/usuario/usuario.service';
 import { PreMatriculaService } from './pre-matricula/pre-matricula.service';
 import { TablePrematriculaComponent } from './pre-matricula/table-prematricula/table-prematricula.component';
@@ -47,8 +47,7 @@ import { DocenteComponent } from './docente/docente.component';
 import { PeriodoComponent } from './periodo/periodo.component';
 import { FormPeriodoComponent } from './periodo/form-periodo/form-periodo.component';
 import { TablePeriodoComponent } from './periodo/table-periodo/table-periodo.component';
-import { ListDocenteComponent } from './Docente/list-docente/list-docente.component';
-import { EditDocenteComponent } from './Docente/edit-docente/edit-docente.component';
+import { ListDocenteComponent } from './docente/list-docente/list-docente.component';
 import { NotaComponent } from './nota/nota.component';
 import { FormNotaComponent } from './nota/form-nota/form-nota.component';
 import { TableNotaComponent } from './nota/table-nota/table-nota.component';
@@ -57,6 +56,12 @@ import { FormMateriaComponent } from './materia/form-materia/form-materia.compon
 import { ListMateriaComponent } from './materia/list-materia/list-materia.component';
 import { MateriaService } from './materia/materia.service';
 import { ConsultarNotaComponent } from './nota/consultar-nota/consultar-nota.component';
+import { DocenteService } from './docente/docente.service';
+import { CursoService } from './curso/curso.service';
+import { MensualidadService } from './mensualidad/mensualidad.service';
+import { MatriculaService } from './matricula/matricula.service';
+import { NotaService } from './nota/nota.service';
+import { PeriodoService } from './periodo/periodo.service';
 
 @NgModule({
   declarations: [
@@ -92,7 +97,6 @@ import { ConsultarNotaComponent } from './nota/consultar-nota/consultar-nota.com
     FormPeriodoComponent,
     TablePeriodoComponent,
     ListDocenteComponent,
-    EditDocenteComponent,
     NotaComponent,
     FormNotaComponent,
     TableNotaComponent,
@@ -147,7 +151,8 @@ import { ConsultarNotaComponent } from './nota/consultar-nota/consultar-nota.com
 ], { relativeLinkResolution: 'legacy' })
   ],
   //Aquí en providers se agregan todos los services de angular
-  providers: [UsuarioService, PreMatriculaService, CdkColumnDef, MateriaService, AlertService],
+  providers: [UsuarioService, PreMatriculaService, CdkColumnDef, MateriaService, AlertService, DocenteService, CursoService,
+    MensualidadService, MatriculaService, NotaService, PeriodoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -37,6 +37,6 @@ export class TableMatriculaComponent implements OnInit {
   ngOnInit() {
     this.matriculaService.getMatriculas()
       .subscribe(matriculas => this.dataSource.data = matriculas,
-        error => this.alertService.error(error));
+        error => this.alertService.error(error.error));
   }
 }
