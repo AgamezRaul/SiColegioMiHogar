@@ -7,6 +7,7 @@ import { CursoService } from '../curso.service';
 import { DocenteService } from 'src/app/docente/docente.service';
 import { IDocente } from '../../Docente/docente.component';
 import { MatTableDataSource } from '@angular/material/table';
+import { UrlSegment } from '@angular/router';
 
 @Component({
   selector: 'app-form-curso',
@@ -18,6 +19,9 @@ export class FormCursoComponent implements OnInit {
   ListaDocentes: IDocente[] = [];
   constructor(private fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute,
     private docenteService: DocenteService, private cursoService: CursoService, private alertService: AlertService) { }
+  modoEdicion: boolean = false;
+  id: number;
+  idCurso: number;
   formGroup = this.fb.group({
     nombre: ['', [Validators.required]],
     maxEstudiantes: [10, [Validators.required]],
@@ -25,21 +29,70 @@ export class FormCursoComponent implements OnInit {
   });
   
   ngOnInit(): void {
+
     this.docenteService.getDocentes().subscribe(docentes => this.LlenarDocentes(docentes),
       error => this.alertService.error(error.error));
+    //con esto se el url utilizo el primer semento para saber que url esta activa
+    const segments: UrlSegment[] = this.activatedRoute.snapshot.url;
+    console.log(segments[0].toString());
+    if (segments[0].toString() == 'registrar-curso') {
+      this.modoEdicion = false;
+      console.log("Registando Curso");
+      this.activatedRoute.params.subscribe(params => {
+        if (params["id"] == undefined) {
+          return;
+        }
+        this.id = parseInt(params["id"]);
+      });
+    } else {
+      this.modoEdicion = true;
+      console.log("editando")
+      this.activatedRoute.params.subscribe(params => {
+
+        if (params["idCurso"] == undefined) {
+          return;
+        }
+        this.idCurso = parseInt(params["idCurso"]);
+        this.cursoService.getCurso(this.idCurso)
+          .subscribe(curso => this.cargarFormulario(curso),
+            error => this.alertService.error(error.error));
+        //validar cuando es repetida para avisarle al usuario
+      });
+    }
+  }
+  cargarFormulario(curso: ICurso) {
+    this.formGroup.patchValue({
+      nombre: curso.nombre,
+      maxEstudiantes: curso.maxEstudiantes,
+      idDirectorDocente: curso.idDirectorDocente
+    });
   }
   LlenarDocentes(docentes: IDocente[]) {
     this.ListaDocentes = docentes;
   }
   save() {
     let curso: ICurso = Object.assign({}, this.formGroup.value);
-    
-    console.table(curso); //ver mensualidad por consola
+    console.table(curso);
     curso.idDirectorDocente = +curso.idDirectorDocente;
     console.table(curso);
-    this.cursoService.createCurso(curso)
-      .subscribe(curso => this.onSaveSuccess(),
-        error => this.alertService.error(error));
+    if (this.modoEdicion) {//editar el regist
+      curso.id = this.idCurso;
+      if (this.formGroup.valid) {
+        this.cursoService.updateCurso(curso)
+          .subscribe(curso => this.onSaveSuccess(),
+            error => this.alertService.error(error));
+      } else { console.log('No valido') }
+    } else {
+
+      console.table(curso); //ver curso por consola
+      if (this.formGroup.valid) {
+        this.cursoService.createCurso(curso)
+          .subscribe(curso => this.onSaveSuccess(),
+            error => this.alertService.error(error));
+      } else {
+        console.log('No valido')
+      }
+    }
   }
   onSaveSuccess() {
     this.router.navigate(["/cursos"]);

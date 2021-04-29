@@ -3,6 +3,7 @@ using BackEnd.Base;
 using BackEnd.Estudiante.Dominio;
 using BackEnd.Matricula.Aplicacion.Request;
 using BackEnd.Matricula.Aplicacion.Service.Crear;
+using BackEnd.Matricula.Aplicacion.Service.Eliminar;
 using BackEnd.Matricula.Dominio;
 using BackEnd.PreMatricula.Dominio;
 using BackEnd.Usuario.Dominio;
@@ -21,13 +22,14 @@ namespace SiColegioMiHogar.Controllers
     public class MatriculaController : ControllerBase
     {
         private readonly MiHogarContext _context;
-        private CrearMatriculaService _service;
-        private CrearMatriculaRequest request;
-        private UnitOfWork _unitOfWork;
+        private readonly CrearMatriculaService _crearService;
+        private readonly EliminarMatriculaService _eliminarService;
         public MatriculaController(MiHogarContext context)
         {
             this._context = context;
-            _unitOfWork = new UnitOfWork(_context);
+            UnitOfWork _unitOfWork = new UnitOfWork(_context);
+            _crearService = new CrearMatriculaService(_unitOfWork);
+            _eliminarService = new EliminarMatriculaService(_unitOfWork);
         }
 
         [HttpGet]
@@ -62,14 +64,31 @@ namespace SiColegioMiHogar.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateMatricula([FromBody] int idPreMatricula)
         {
-            _service = new CrearMatriculaService(_unitOfWork);
-            request = new CrearMatriculaRequest();
-            request.IdPreMatricula = idPreMatricula;
-            var rta = _service.Ejecutar(request);
+            CrearMatriculaRequest request = new CrearMatriculaRequest
+            {
+                IdPreMatricula = idPreMatricula
+            };
+            var rta = _crearService.EjecutarCrearMatricula(request);
             if (rta.isOk())
             {
                 await _context.SaveChangesAsync();
                 return CreatedAtAction("GetUsuario", new { IdPrematricula = request.IdPreMatricula }, request);
+            }
+            return BadRequest(rta.Message);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteMatricula([FromRoute] int id)
+        {
+            EliminarMatriculaRequest request = new EliminarMatriculaRequest
+            {
+                Id = id
+            };
+            var rta = _eliminarService.EjecutarEliminarMatricula(request);
+            if (rta.isOk())
+            {
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetPrematricula", new { id = request.Id }, request);
             }
             return BadRequest(rta.Message);
         }
