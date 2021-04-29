@@ -24,9 +24,6 @@
   <ItemGroup>
     <Folder Include="Migrations\" />
     <Folder Include="UsarioDocente\Aplicacion\Service\" />
-    <Folder Include="UsarioDocente\Aplicacion\Request\" />
-    <Folder Include="UsarioDocente\Dominio\Entidades\" />
-    <Folder Include="UsarioDocente\Dominio\Repositories\" />
   </ItemGroup>
 
 </Project>
