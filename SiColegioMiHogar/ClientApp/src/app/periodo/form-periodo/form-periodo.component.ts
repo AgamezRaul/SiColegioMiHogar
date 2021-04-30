@@ -31,14 +31,52 @@ export class FormPeriodoComponent implements OnInit {
   });
   
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe(params => {
+      if (params["id"] == undefined) {
+        return;
+      } else {
+        this.modoEdicion = true;
+      }
+      this.id = params["id"];
+
+      this.periodoservice.getPeriodo(this.id)
+        .subscribe(periodo => this.cargarFormulario(periodo),
+          error => this.alertService.error(error));
+    });
+  }
+
+  cargarFormulario(periodo: IPeriodo) {
+    console.table(periodo);
+    this.formGroup.patchValue({
+      nombrePeriodo: periodo.nombrePeriodo,
+      numeroPeriodo: periodo.numeroPeriodo,
+      fechaInicio: periodo.fechaInicio,
+      fechaFin:  periodo.fechaFin,
+    });
   }
 
   save(){
     let periodo: IPeriodo = Object.assign({}, this.formGroup.value);
-    this.periodoservice.createPeriodo(periodo)
-      .subscribe(response => this.onSaveSuccess()),
-      error => this.alertService.error(error);
+    periodo.id = this.id;
+    periodo.id = parseInt(periodo.id.toString());
+    periodo.numeroPeriodo = parseInt(periodo.numeroPeriodo.toString());
 
+    if (this.modoEdicion) {
+      //editar registro
+      this.periodoservice.updatePeriodo(periodo)
+        .subscribe(response => this.onSaveSuccess()),
+        error => console.error(error);
+        console.table(periodo);
+    } else {
+      //agregar registro
+      if (this.formGroup.valid) {
+        this.periodoservice.createPeriodo(periodo)
+        .subscribe(response => this.onSaveSuccess()),
+        error => this.alertService.error(error);
+      } else {
+        this.alertService.info('No valido')
+      }
+    }
   }
 
   onSaveSuccess() {

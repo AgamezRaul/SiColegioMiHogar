@@ -49,5 +49,30 @@ namespace SiColegioMiHogar.Controllers
         }
 
         
+        [HttpGet("[action]")]
+        public Periodo GetPeriodo(int id)
+        {
+            ConsultarPeriodoService service = new ConsultarPeriodoService(_unitOfWork);
+            return service.GetPeriodo(id);
+        }
+
+        
+        [HttpDelete("[action]")]
+        public ActionResult<EliminarPeriodoResponse> DeletePeriodo(int id)
+        {
+            EliminarPeriodoService service = new EliminarPeriodoService(_unitOfWork);
+            EliminarPeriodoResponse response = service.DeletePeridodo(id);
+            return Ok(response);
+        }
+       
+        
+        [HttpPut("[action]")]
+        public ActionResult<ActualizarPeriodoResponse> ActualizarPeriodo([FromBody] CrearPeriodoRequest request)
+        {
+            ActualizarPeriodoService service = new ActualizarPeriodoService(_unitOfWork);
+            ActualizarPeriodoResponse response = service.ActualizarPeriodo(request);
+            return Ok(response);
+        }
+        
     }
 }
