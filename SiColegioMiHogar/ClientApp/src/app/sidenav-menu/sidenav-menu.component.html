@@ -32,8 +32,8 @@
               {{nav.name}}
             </a>
           </div>
-          <div *ngIf="isRole=='Profesor'">
-            <a mat-list-item [routerLink]="nav.route" *ngFor="let nav of fillerNavProfesor">
+          <div *ngIf="isRole=='Docente'">
+            <a mat-list-item [routerLink]="nav.route" *ngFor="let nav of fillerNavDocente">
               <mat-icon class="icono">{{nav.icon}}</mat-icon>
               {{nav.name}}
             </a>
