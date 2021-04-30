@@ -14,7 +14,7 @@ export class UsuarioService {
   getUsuarios(): Observable<IUsuario[]> {
     return this.http.get<IUsuario[]>(this.apiURL);
   }
-
+  
   getUsuario(correo: number): Observable<IUsuario> {
     return this.http.get<IUsuario>(this.apiURL + '/' + correo);
   }

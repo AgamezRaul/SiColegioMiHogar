@@ -5,6 +5,7 @@ using BackEnd.Docente.Aplicacion.Service.Actualizar;
 using BackEnd.Docente.Aplicacion.Service.Crear;
 using BackEnd.Docente.Aplicacion.Service.Eliminar;
 using BackEnd.Docente.Dominio;
+using BackEnd.Usuario.Dominio;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -43,6 +44,27 @@ namespace SiColegioMiHogar.Controllers
                               Celular=c.Celular,
                               Correo = c.Correo,
                               Direccion=c.Direccion
+                          }).ToList();
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
+            return result;
+        }
+
+        [HttpGet("GetDocenteUsuarios")]
+        public Object GetDocenteUsuarios()
+        {
+            var result = (from c in _context.Set<Docente>() 
+                          where!(
+                          from u in _context.Set<Usuario>()
+                          select u.Correo).Contains(c.Correo) 
+                          select new
+                          {
+                              Id = c.Id,
+                              NombreCompleto = c.NombreCompleto,
+                              NumTarjetaProf = c.NumTarjetaProf,
+                              Cedula = c.Cedula,
+                              Celular = c.Celular,
+                              Correo = c.Correo,
+                              Direccion = c.Direccion
                           }).ToList();
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
             return result;

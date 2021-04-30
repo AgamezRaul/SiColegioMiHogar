@@ -27,7 +27,7 @@ export class FormUsuarioDocenteComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.docenteService.getDocentes().subscribe(docente => this.LLenarDocentes(docente),
+    this.docenteService.getDocenteUsuarios().subscribe(docente => this.LLenarDocentes(docente),
       error => this.alertService.error(error));
    
   }

@@ -29,9 +29,16 @@ namespace SiColegioMiHogar.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Usuario> GetUsuarios()
+        public object GetUsuarios()
         {
-            return _context.Usuario;
+            var result = (from u in _context.Set<Usuario>()
+                          select new
+                          {
+                              correo= u.Correo,
+                              tipoUsuario= u.TipoUsuario
+                          }).ToList();
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
+            return result;
         }
 
         [HttpGet("{id}")]

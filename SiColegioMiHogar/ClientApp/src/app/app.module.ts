@@ -58,6 +58,7 @@ import { ListMateriaComponent } from './materia/list-materia/list-materia.compon
 import { MateriaService } from './materia/materia.service';
 import { ConsultarNotaComponent } from './nota/consultar-nota/consultar-nota.component';
 import { FormUsuarioDocenteComponent } from './login/usuario/form-usuario-docente/form-usuario-docente.component';
+import { ListUsuarioComponent } from './login/usuario/list-usuario/list-usuario.component';
 
 @NgModule({
   declarations: [
@@ -101,7 +102,8 @@ import { FormUsuarioDocenteComponent } from './login/usuario/form-usuario-docent
     FormMateriaComponent,
     ListMateriaComponent,
     ConsultarNotaComponent,
-    FormUsuarioDocenteComponent
+    FormUsuarioDocenteComponent,
+    ListUsuarioComponent
 
   ],
   imports: [
@@ -150,6 +152,7 @@ import { FormUsuarioDocenteComponent } from './login/usuario/form-usuario-docent
       { path: 'editar-nota/:id', component: FormNotaComponent, canActivate: [CheckNotloginGuard] },
       { path: 'consultar-nota/:id', component: ConsultarNotaComponent, canActivate: [CheckNotloginGuard] },
       { path: 'registrousuarioDocente', component: FormUsuarioDocenteComponent, canActivate: [CheckNotloginGuard] },
+      { path: 'lista-usuario', component: UsuarioComponent, canActivate: [CheckNotloginGuard] },
 ], { relativeLinkResolution: 'legacy' })
   ],
   //Aquí en providers se agregan todos los services de angular

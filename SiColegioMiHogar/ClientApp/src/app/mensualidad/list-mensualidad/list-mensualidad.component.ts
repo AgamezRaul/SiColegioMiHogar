@@ -52,14 +52,10 @@ export class ListMensualidadComponent implements OnInit, OnDestroy {
       }
       this.id = parseInt(params["id"]);
     })
-    this.mensualidadservice.getMensualidadesMatricula(this.id)
-      .subscribe(mensualidades => this.dataSource.data = mensualidades,
-        error => this.alertService.error(error));
-
+    this.ConsultarMensualidad(this.id);
+    
     this.suscription = this.mensualidadservice.refresh$.subscribe(() => {
-      this.mensualidadservice.getMensualidadesMatricula(this.id)
-        .subscribe(mensualidades => this.dataSource.data = mensualidades,
-          error => this.alertService.error(error));
+      this.ConsultarMensualidad(this.id);
     });
   }
   ngOnDestroy(): void {
@@ -82,6 +78,11 @@ export class ListMensualidadComponent implements OnInit, OnDestroy {
   onSaveSuccess() {
     this.router.navigate(["/consultar-mensualidad/" + this.id]);
     this.alertService.success("Correo Enviado");
+  }
+  ConsultarMensualidad(idt: number) {
+    this.mensualidadservice.getMensualidadesMatricula(idt)
+      .subscribe(mensualidades => this.dataSource.data = mensualidades,
+        error => this.alertService.error(error));
   }
   EnviarMail(mensualidad: IMensualidad2, correo:string) {
         this.mensualidadservice.EnviarEmail(mensualidad,correo)
