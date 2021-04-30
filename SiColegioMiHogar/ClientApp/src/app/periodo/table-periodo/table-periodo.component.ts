@@ -57,5 +57,15 @@ export class TablePeriodoComponent  implements OnInit {
     this.alertService.success("Guardado exitoso");
   }
 
+  Eliminar (id){
+    this.suscription = this.periodoservice.deletePeriodo(id)
+      .subscribe(notas => this.onDeleteSuccess(),
+        error => this.alertService.error(error));
+  }
+
+  onDeleteSuccess() {
+    this.router.navigate(["/periodos"]);
+    this.alertService.success("Eliminado exitoso");
+  }
 
 }

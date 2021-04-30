@@ -147,6 +147,7 @@ import { ListUsuarioComponent } from './login/usuario/list-usuario/list-usuario.
 
       { path: 'periodos', component: TablePeriodoComponent, canActivate: [CheckNotloginGuard] },
       { path: 'registrar-periodo', component: FormPeriodoComponent, canActivate: [CheckNotloginGuard] },
+      { path: 'editar-periodo/:id', component: FormPeriodoComponent, canActivate: [CheckNotloginGuard] },
 
       { path: 'Docente', component: DocenteComponent, canActivate: [CheckNotloginGuard] },
       { path: 'lista-docente', component: ListDocenteComponent, canActivate: [CheckNotloginGuard] },
