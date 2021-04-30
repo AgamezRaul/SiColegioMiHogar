@@ -19,7 +19,7 @@ export class FormUsuarioComponent implements OnInit {
   formGroup = this.fb.group({
     correo: ['', [Validators.required]],
     password: ['', [Validators.required]],
-    tipoUsuario: ['', [Validators.required]]
+    tipoUsuario: ['Responsable', [Validators.required]]
   });
 
   ngOnInit(): void {

@@ -63,6 +63,8 @@ import { MatriculaService } from './matricula/matricula.service';
 import { NotaService } from './nota/nota.service';
 import { PeriodoService } from './periodo/periodo.service';
 import { EstudiantePrematriculaComponent } from './pre-matricula/estudiante-prematricula/estudiante-prematricula.component';
+import { FormUsuarioDocenteComponent } from './login/usuario/form-usuario-docente/form-usuario-docente.component';
+import { ListUsuarioComponent } from './login/usuario/list-usuario/list-usuario.component';
 
 @NgModule({
   declarations: [
@@ -106,6 +108,8 @@ import { EstudiantePrematriculaComponent } from './pre-matricula/estudiante-prem
     ListMateriaComponent,
     ConsultarNotaComponent,
     EstudiantePrematriculaComponent
+    FormUsuarioDocenteComponent,
+    ListUsuarioComponent
 
   ],
   imports: [
@@ -153,6 +157,8 @@ import { EstudiantePrematriculaComponent } from './pre-matricula/estudiante-prem
       { path: 'registrar-nota', component: FormNotaComponent, canActivate: [CheckNotloginGuard] },
       { path: 'editar-nota/:id', component: FormNotaComponent, canActivate: [CheckNotloginGuard] },
       { path: 'consultar-nota/:id', component: ConsultarNotaComponent, canActivate: [CheckNotloginGuard] },
+      { path: 'registrousuarioDocente', component: FormUsuarioDocenteComponent, canActivate: [CheckNotloginGuard] },
+      { path: 'lista-usuario', component: UsuarioComponent, canActivate: [CheckNotloginGuard] },
 ], { relativeLinkResolution: 'legacy' })
   ],
   //Aquí en providers se agregan todos los services de angular

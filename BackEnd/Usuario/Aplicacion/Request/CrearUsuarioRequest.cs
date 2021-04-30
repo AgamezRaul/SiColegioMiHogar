@@ -9,7 +9,7 @@ namespace BackEnd.Usuario.Aplicacion.Request
         public int id { get; set; }
         public string Correo { get; set; }
         public string Password { get; set; }
-        public string TipoUsuario { get => "Responsable"; }
+        public string TipoUsuario { get; set; }
     }
     public class CrearUsuarioResponse
     {

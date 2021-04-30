@@ -24,6 +24,9 @@ export class SidenavMenuComponent implements OnInit {
     { name: "Docente", route:"Docente",icon:""},
     { name: "Materias", route: "materias", icon: "" },
     { name: "Notas", route: "listar-notas", icon: "" },
+    { name: "Usuarios", route: "lista-usuario", icon: "" },
+    
+    
   ]
 
   fillerNavDocente = [
