@@ -225,6 +225,22 @@ namespace BackEnd.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "NotaPeriodo",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nota = table.Column<double>(type: "float", nullable: false),
+                    Observacion = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IdPeriodo = table.Column<int>(type: "int", nullable: true),
+                    IdMateria = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_NotaPeriodo", x => x.Id);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_PreMatricula_estudianteId",
                 table: "PreMatricula",
@@ -270,6 +286,9 @@ namespace BackEnd.Migrations
 
             migrationBuilder.DropTable(
                 name: "Estudiante");
+
+            migrationBuilder.DropTable(
+                name: "NotaPeriodo");
         }
     }
 }

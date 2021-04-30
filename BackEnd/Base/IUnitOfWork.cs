@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using BackEnd.Materia.Dominio.Repositories;
+using BackEnd.NotaPeriodo.Dominio.Repositories;
 
 namespace BackEnd.Base
 {
@@ -28,6 +29,7 @@ namespace BackEnd.Base
         IDocenteServiceRepository DocenteServiceRepository { get;  }
         INotaServiceRepository NotaServiceRepository { get; }
         IPeriodoServiceRepository PeriodoServiceRepository { get; }
+        INotaPeriodoServiceRepository NotaPeriodoServiceRepository { get; }
 
         int Commit();
     }

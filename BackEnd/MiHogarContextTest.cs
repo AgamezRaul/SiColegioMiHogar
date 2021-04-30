@@ -25,5 +25,6 @@ namespace BackEnd
         public DbSet<Curso.Dominio.Curso> Curso { get; set; }
         public DbSet<Materia.Dominio.Entidades.Materias> Materia { get; set; }
         public DbSet<Docente.Dominio.Docente> Docente { get; set; }
+        public DbSet<NotaPeriodo.Dominio.NotaPeriodo> NotaPeriodo { get; set; }
     }
 }

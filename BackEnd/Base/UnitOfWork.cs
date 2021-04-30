@@ -24,6 +24,8 @@ using System.Collections.Generic;
 using System.Text;
 using BackEnd.Materia.Dominio.Repositories;
 using BackEnd.Materia.Infra;
+using BackEnd.NotaPeriodo.Dominio.Repositories;
+using BackEnd.NotaPeriodo.Infra;
 
 
 namespace BackEnd.Base
@@ -128,6 +130,15 @@ namespace BackEnd.Base
             get
             {
                 return _periodoServiceRepository ?? (_periodoServiceRepository = new PeriodoServiceRepository(_dbContext));
+            }
+        }
+
+        private INotaPeriodoServiceRepository _notaPeriodoServiceRepository;
+        public INotaPeriodoServiceRepository NotaPeriodoServiceRepository
+        {
+            get
+            {
+                return _notaPeriodoServiceRepository ?? (_notaPeriodoServiceRepository = new NotaPeriodoServiceRepository(_dbContext));
             }
         }
 

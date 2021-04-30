@@ -374,6 +374,30 @@ namespace BackEnd.Migrations
                     b.ToTable("Materia");
                 });
 
+            modelBuilder.Entity("BackEnd.NotaPeriodo.Dominio.NotaPeriodo", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                b.Property<double>("Nota")
+                    .HasColumnType("float");
+
+                b.Property<string>("Observacion")
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<int>("IdPeriodo")
+                    .HasColumnType("int");
+
+                b.Property<int>("IdMateria")
+                    .HasColumnType("int");
+
+                b.HasKey("Id");
+
+                b.ToTable("NotaPeriodo");
+            });
+
             modelBuilder.Entity("BackEnd.PreMatricula.Dominio.PreMatricula", b =>
                 {
                     b.HasOne("BackEnd.Estudiante.Dominio.Estudiante", "estudiante")
