@@ -8,6 +8,7 @@ import { Roles, User, UserResponse } from "src/app/login/user-interface";
 import { BehaviorSubject, throwError } from "rxjs";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { Router } from "@angular/router";
+import { AlertService } from "../notifications/_services";
 
 const helper = new JwtHelperService();
 @Injectable({
@@ -27,7 +28,7 @@ export class LoginService {
   get isRole(): Observable<string> {
     return this.role.asObservable();
   }
-  constructor(private htttp: HttpClient, private router: Router,
+  constructor(private htttp: HttpClient, private router: Router, private alertService: AlertService,
     @Inject('BASE_URL') private baseUrl: string) { this.checkToken(); }
 
   login(authData: User): Observable<UserResponse | void> {
@@ -84,10 +85,8 @@ export class LoginService {
   private handlerError(err): Observable<never> {
     let errorMessage = 'An errror occured retrienving data';
     if (err) {
-      console.log("err=>", err);
-      errorMessage = `Error: code ${err.message}`;
+      this.alertService.error(err.error)
     }
-    //window.alert(errorMessage);
     return throwError(errorMessage);
   }
 }

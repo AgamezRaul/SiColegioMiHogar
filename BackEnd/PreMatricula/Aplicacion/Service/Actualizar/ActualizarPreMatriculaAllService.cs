@@ -26,7 +26,7 @@ namespace BackEnd.PreMatricula.Aplicacion.Service.Actualizar
         }
         public ActualizarPreMatriculaAllResponse Ejecutar(ActualizarPreMatriculaAllRequest request)
         {
-            Dominio.PreMatricula prematricula = _unitOfWork.PreMatriculaServiceRepository.FindFirstOrDefault(t => t.Id == request.id);
+            Dominio.PreMatricula prematricula = _unitOfWork.PreMatriculaServiceRepository.FindFirstOrDefault(t => t.IdUsuario == request.IdUsuario);
             if (prematricula == null)
             {
                 return new ActualizarPreMatriculaAllResponse() { Message = $"PreMatricula no existe" };

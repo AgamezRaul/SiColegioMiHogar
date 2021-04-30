@@ -24,7 +24,7 @@ export class FormPreMatriculaComponent implements OnInit {
   prematricula: IPrematricula;
   prematricula1: IPrematricula;
   modoEdicion: boolean = false;
-  prematriculaId: number;
+  idUsuario: number;
 
   formGroupP = this.fb.group({
     ideResponsable: ['1998001', [Validators.required]],
@@ -99,16 +99,16 @@ export class FormPreMatriculaComponent implements OnInit {
         return;
       }
       this.modoEdicion = true;
-      this.prematriculaId = parseInt(params["id"]);
+      this.idUsuario = parseInt(params["id"]);
       //console.log(this.prematriculaId);
-      this.servicePrematricula.getPrematricula(this.prematriculaId)
+      this.servicePrematricula.getPrematricula(this.idUsuario)
         .subscribe(prematricula => this.cargarFormulario(prematricula),
           error => this.alertService.error(error.error)); 
     });
   }
 
   save() {
-    var idUsuario = this.serviceUser.getIdUser();
+    var idUsuario = this.idUsuario;
     let responsablePadre: IResponsable = Object.assign({}, this.formGroupP.value);
     let responsableMadre: IResponsable = Object.assign({}, this.formGroupM.value);
     let responsableAcudiente: IResponsable = Object.assign({}, this.formGroupA.value);
@@ -118,7 +118,7 @@ export class FormPreMatriculaComponent implements OnInit {
     this.responsables.push(responsablePadre, responsableMadre, responsableAcudiente);
     let estudiante: IEstudiante = Object.assign({}, this.formGroupE.value);
     estudiante.idUsuario = idUsuario;
-    this.prematricula = { id: this.prematriculaId, idUsuario: idUsuario, responsables: this.responsables, estudiante: estudiante }
+    this.prematricula = { idUsuario: idUsuario, responsables: this.responsables, estudiante: estudiante }
     if (this.modoEdicion) {
       //edita
       this.servicePrematricula.updatePreMatricula(this.prematricula)

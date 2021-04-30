@@ -10,12 +10,12 @@ import { LoginService } from '../login/login.service';
 })
 export class SidenavMenuComponent implements OnInit {
   mobileQuery: MediaQueryList;
-  isAdmin = null;
+  isRole = null;
   isLogged = false;
 
   private subscription: Subscription;
 
-  fillerNav = [
+  fillerNavAdmin = [
     { name: "home", route: "", icon: "home" },
     { name: "Prematricula", route: "prematricula", icon: "" },
     { name: "Matriculas", route: "matricula", icon: "" },
@@ -28,6 +28,17 @@ export class SidenavMenuComponent implements OnInit {
     
     
   ]
+
+  fillerNavDocente = [
+    { name: "home", route: "", icon: "home" },
+    { name: "Notas", route: "listar-notas", icon: "" }
+  ]
+
+  fillerNavResponsable = [
+    { name: "home", route: "", icon: "home" },
+    { name: "Prematricula", route: "prematricula", icon: "" }
+  ]
+
   private _mobileQueryListener: () => void;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
@@ -39,18 +50,17 @@ export class SidenavMenuComponent implements OnInit {
   }
   ngOnInit() {
     this.subscription.add(
-      this.loginService.isAdmin$.subscribe((res) => (this.isAdmin = res))
+      this.loginService.isRole.subscribe((res) => (this.isRole = res))
     );
+    console.log(this.isRole);
     //this.subscription.add(
     this.loginService.isLogged.subscribe((res) => (this.isLogged = res));
     //);
+    console.log(this.isLogged);
   }
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
     this.subscription.unsubscribe();
-  }
-  changeRole(): void {
-    this.isAdmin = !this.isAdmin;
   }
   shouldRun = true;
 }

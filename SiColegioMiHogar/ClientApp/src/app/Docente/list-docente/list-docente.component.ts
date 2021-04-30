@@ -3,11 +3,11 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IDocente, IDocente2 } from '../docente.component';
 import { DocenteService } from '../docente.service';
 import { Location } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { AlertService } from '../../notifications/_services';
+import { IDocente } from '../docente.component';
 @Component({
   selector: 'app-list-docente',
   templateUrl: './list-docente.component.html',
@@ -25,7 +25,7 @@ export class ListDocenteComponent implements OnInit, OnDestroy {
     'correo',
     'direccion',
     'options'  ];
-  dataSource = new MatTableDataSource<IDocente2>(this.docente);
+  dataSource = new MatTableDataSource<IDocente>(this.docente);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   constructor(private docenteservice: DocenteService, private router: Router,

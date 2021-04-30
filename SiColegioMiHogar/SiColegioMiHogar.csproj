@@ -26,8 +26,12 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="ClientApp\src\app\docente\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="ClientApp\src\app\docente\**" />
+    <EmbeddedResource Remove="ClientApp\src\app\docente\**" />
     <None Remove="$(SpaRoot)**" />
+    <None Remove="ClientApp\src\app\docente\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
@@ -38,7 +42,6 @@
   <ItemGroup>
     <Folder Include="ClientApp\src\app\curso\form-curso\" />
     <Folder Include="ClientApp\src\app\curso\table-curso\" />
-    <Folder Include="ClientApp\src\app\docente\form-docente\" />
     <Folder Include="ClientApp\src\app\notifications\" />
   </ItemGroup>
 
