@@ -62,7 +62,7 @@ namespace SiColegioMiHogar.Controllers
                               on p.IdUsuario equals u.Id
                               join e in _context.Set<Estudiante>()
                               on u.Id equals e.IdUsuario
-                              where p.Id == id
+                              where u.Id == id
                               select new
                               {
                                   e
@@ -73,14 +73,16 @@ namespace SiColegioMiHogar.Controllers
                                 on p.IdUsuario equals u.Id
                                 join r in _context.Set<Responsable>()
                                 on u.Id equals r.IdUsuario
-                                where p.Id == id
+                                where u.Id == id
                                 select new
                                 {
                                     r
                                 }).ToList();
 
             var preMatricula = (from p in _context.Set<PreMatricula>()
-                                where p.Id == id
+                                join u in _context.Set<Usuario>()
+                                on p.IdUsuario equals u.Id
+                                where u.Id == id
                                 select new
                                 {
                                     IdPrematricula = p.Id,
@@ -97,7 +99,7 @@ namespace SiColegioMiHogar.Controllers
         [HttpPost]
         public async Task<IActionResult> CreatePrematricula([FromBody] CrearPreMatriculaRequest request)
         {
-            var rta = _service.Ejecutar(request);
+            var rta = _service.EjecutarCrearPreMatricula(request);
             if (rta.isOk())
             {
                 await _context.SaveChangesAsync();
@@ -107,7 +109,7 @@ namespace SiColegioMiHogar.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPreMatricula([FromRoute] string id, [FromBody] ActualizarPreMatriculaAllRequest request)
+        public async Task<IActionResult> PutPreMatricula([FromRoute] int id, [FromBody] ActualizarPreMatriculaAllRequest request)
         {
             var rta = _actualizarService.Ejecutar(request);
             if (rta.isOk())

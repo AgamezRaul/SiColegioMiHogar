@@ -29,7 +29,7 @@ export class PreMatriculaService {
   }
 
   updatePreMatricula(prematricula: IPrematricula): Observable<IPrematricula> {
-    return this.http.put<IPrematricula>(this.apiURL + "/" + prematricula.id.toString(), prematricula);
+    return this.http.put<IPrematricula>(this.apiURL + "/" + prematricula.idUsuario.toString(), prematricula);
   }
 
   deletePreMatricula(idUsuario: number): Observable<number> {

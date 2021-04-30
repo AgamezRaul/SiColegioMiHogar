@@ -62,6 +62,7 @@ import { MensualidadService } from './mensualidad/mensualidad.service';
 import { MatriculaService } from './matricula/matricula.service';
 import { NotaService } from './nota/nota.service';
 import { PeriodoService } from './periodo/periodo.service';
+import { EstudiantePrematriculaComponent } from './pre-matricula/estudiante-prematricula/estudiante-prematricula.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +104,8 @@ import { PeriodoService } from './periodo/periodo.service';
     MateriaComponent,
     FormMateriaComponent,
     ListMateriaComponent,
-    ConsultarNotaComponent
+    ConsultarNotaComponent,
+    EstudiantePrematriculaComponent
 
   ],
   imports: [

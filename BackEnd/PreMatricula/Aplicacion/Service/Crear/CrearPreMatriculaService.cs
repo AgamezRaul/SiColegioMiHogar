@@ -21,7 +21,7 @@ namespace BackEnd.PreMatricula.Aplicacion.Service.Crear
             _crearEstudianteService = new CrearEstudianteService(_unitOfWork);
             responsableService = new CrearResponsableService(_unitOfWork);
         }
-        public CrearPreMatriculaResponse Ejecutar(CrearPreMatriculaRequest request)
+        public CrearPreMatriculaResponse EjecutarCrearPreMatricula(CrearPreMatriculaRequest request)
         {
             var prematricula = _unitOfWork.PreMatriculaServiceRepository.FindFirstOrDefault(t => t.Id == request.id || t.IdUsuario == request.IdUsuario);
             if (prematricula != null)

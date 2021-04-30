@@ -1,0 +1,12 @@
+<mat-card class="example-card">
+  <h3>Inscripción de matrícula</h3>
+  <div flex="100">
+    <button mat-button [routerLink]='["/registrar-prematricula"]'>Realizar solicitud de matricula</button>
+  </div>
+  <div flex="100">
+    <button mat-button [routerLink]='["/editar-prematricula/" + idUsuario]'>Actualizar la solicitud</button>
+  </div>
+  <div flex="100">
+    <button mat-button>Consultar estado de la solicitud</button>
+  </div>
+</mat-card>

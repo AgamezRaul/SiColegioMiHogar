@@ -31,7 +31,7 @@ namespace TestBackEnd.AplicacionTest.CrearTest
         public void CrearPreMatricula(CrearPreMatriculaRequest preMatriculaRequest, string expected)
         {
             _crearPreMatriculaService = new CrearPreMatriculaService(_unitOfWork);
-            var response = _crearPreMatriculaService.Ejecutar(preMatriculaRequest);
+            var response = _crearPreMatriculaService.EjecutarCrearPreMatricula(preMatriculaRequest);
 
             Assert.AreEqual(expected, response.Message);
         }
