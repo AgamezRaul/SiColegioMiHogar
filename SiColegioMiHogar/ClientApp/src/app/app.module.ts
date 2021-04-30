@@ -107,7 +107,7 @@ import { ListUsuarioComponent } from './login/usuario/list-usuario/list-usuario.
     FormMateriaComponent,
     ListMateriaComponent,
     ConsultarNotaComponent,
-    EstudiantePrematriculaComponent
+    EstudiantePrematriculaComponent,
     FormUsuarioDocenteComponent,
     ListUsuarioComponent
 
