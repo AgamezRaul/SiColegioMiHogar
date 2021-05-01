@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { Observable,Subject } from 'rxjs';
-import { IDocente, IDocente2 } from './docente.component';
+import { Observable, Subject } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { IDocente } from './docente.component';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +15,8 @@ export class DocenteService {
   get refresh$() {
     return this._refresh$;
   }
-  getDocentes(): Observable<IDocente2[]> {
-    return this.http.get<IDocente2[]>(this.apiURL);
+  getDocentes(): Observable<IDocente[]> {
+    return this.http.get<IDocente[]>(this.apiURL);
   }
 
   getDocente(idDocente: number): Observable<IDocente> {
@@ -43,6 +43,4 @@ export class DocenteService {
         })
       );
   }
-
-
 }

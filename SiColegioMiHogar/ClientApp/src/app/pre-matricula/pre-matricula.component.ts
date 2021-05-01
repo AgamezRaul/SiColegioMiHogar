@@ -1,6 +1,9 @@
+import { error } from '@angular/compiler/src/util';
 import { Component, Input, OnInit } from '@angular/core';
 import {  FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IEstudiante } from '../estudiante/estudiante.component';
+import { LoginService } from '../login/login.service';
+import { AlertService } from '../notifications/_services';
 import { IResponsable } from '../responsable/responsable.component';
 
 @Component({
@@ -9,12 +12,14 @@ import { IResponsable } from '../responsable/responsable.component';
   styleUrls: ['./pre-matricula.component.css']
 })
 export class PreMatriculaComponent implements OnInit {
-
-  constructor(private fb: FormBuilder) { }
+  role = null;
+  constructor(private fb: FormBuilder, private loginService: LoginService,
+    private alertService: AlertService  ) { }
   ngOnInit() {
-
+    this.loginService.isRole.subscribe(role => this.role = role);
   }
 }
+
 export interface IPrematricula2 {
   idusuario: number,
   idPrematricula: number,
@@ -22,9 +27,7 @@ export interface IPrematricula2 {
   fecPrematricula: Date,
   estado: string,
 }
-
 export interface IPrematricula {
-  id: number,
   idUsuario: number,
   responsables: IResponsable[],
   estudiante: IEstudiante

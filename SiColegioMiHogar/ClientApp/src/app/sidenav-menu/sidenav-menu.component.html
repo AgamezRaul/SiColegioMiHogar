@@ -20,10 +20,24 @@
           <img style="width: 100%;" src="#" alt="Logo Colegio" />
         </div>
         <mat-nav-list>
-          <a mat-list-item [routerLink]="nav.route" *ngFor="let nav of fillerNav">
-            <mat-icon class="icono">{{nav.icon}}</mat-icon>
-            {{nav.name}}
-          </a>
+          <div *ngIf="isRole=='Admin'">
+            <a mat-list-item [routerLink]="nav.route" *ngFor="let nav of fillerNavAdmin">
+              <mat-icon class="icono">{{nav.icon}}</mat-icon>
+              {{nav.name}}
+            </a>
+          </div>
+          <div *ngIf="isRole=='Responsable'">
+            <a mat-list-item [routerLink]="nav.route" *ngFor="let nav of fillerNavResponsable">
+              <mat-icon class="icono">{{nav.icon}}</mat-icon>
+              {{nav.name}}
+            </a>
+          </div>
+          <div *ngIf="isRole=='Docente'">
+            <a mat-list-item [routerLink]="nav.route" *ngFor="let nav of fillerNavDocente">
+              <mat-icon class="icono">{{nav.icon}}</mat-icon>
+              {{nav.name}}
+            </a>
+          </div>          
         </mat-nav-list>
       </ng-container>
     </mat-sidenav>
