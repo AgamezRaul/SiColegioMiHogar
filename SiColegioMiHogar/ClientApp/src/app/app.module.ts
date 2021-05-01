@@ -59,6 +59,10 @@ import { MateriaService } from './materia/materia.service';
 import { ConsultarNotaComponent } from './nota/consultar-nota/consultar-nota.component';
 import { FormUsuarioDocenteComponent } from './login/usuario/form-usuario-docente/form-usuario-docente.component';
 import { ListUsuarioComponent } from './login/usuario/list-usuario/list-usuario.component';
+import { FormNotaPeriodoComponent } from './nota-periodo/form-nota-periodo/form-nota-periodo.component';
+import { NotaPeriodoComponent } from './nota-periodo/nota-periodo.component';
+import { TableNotaPeriodoComponent } from './nota-periodo/table-nota-periodo/table-nota-periodo.component';
+
 
 @NgModule({
   declarations: [
@@ -103,7 +107,10 @@ import { ListUsuarioComponent } from './login/usuario/list-usuario/list-usuario.
     ListMateriaComponent,
     ConsultarNotaComponent,
     FormUsuarioDocenteComponent,
-    ListUsuarioComponent
+    ListUsuarioComponent,
+    FormNotaPeriodoComponent,
+    NotaPeriodoComponent,
+    TableNotaPeriodoComponent
 
   ],
   imports: [
@@ -128,9 +135,9 @@ import { ListUsuarioComponent } from './login/usuario/list-usuario/list-usuario.
       { path: 'editar-mensualidad/:idMensualidad', component: FormMensualidadComponent, canActivate: [CheckNotloginGuard] },
       { path: 'consultar-mensualidad/:id', component: MensualidadComponent, canActivate: [CheckNotloginGuard] },
 
-      { path: 'cursos', component: CursoComponent },
-      { path: 'registrar-curso', component: FormCursoComponent },
-      { path: 'editar-curso/:idCurso', component: FormCursoComponent },
+      { path: 'cursos', component: CursoComponent, canActivate: [CheckNotloginGuard] },
+      { path: 'registrar-curso', component: FormCursoComponent, canActivate: [CheckNotloginGuard]  },
+      { path: 'editar-curso/:idCurso', component: FormCursoComponent, canActivate: [CheckNotloginGuard]  },
       { path: 'cursos', component: CursoComponent, canActivate: [CheckNotloginGuard] },
       { path: 'registrar-curso', component: FormCursoComponent, canActivate: [CheckNotloginGuard] },
 
@@ -153,6 +160,10 @@ import { ListUsuarioComponent } from './login/usuario/list-usuario/list-usuario.
       { path: 'consultar-nota/:id', component: ConsultarNotaComponent, canActivate: [CheckNotloginGuard] },
       { path: 'registrousuarioDocente', component: FormUsuarioDocenteComponent, canActivate: [CheckNotloginGuard] },
       { path: 'lista-usuario', component: UsuarioComponent, canActivate: [CheckNotloginGuard] },
+
+      { path: 'registrar-notaPeriodo', component: FormNotaPeriodoComponent, canActivate: [CheckNotloginGuard]  },
+      { path: 'nota-periodo', component: NotaPeriodoComponent, canActivate: [CheckNotloginGuard] },
+      { path: 'lista-nota-periodo', component: TableNotaPeriodoComponent, canActivate: [CheckNotloginGuard] },
 ], { relativeLinkResolution: 'legacy' })
   ],
   //Aquí en providers se agregan todos los services de angular

@@ -25,6 +25,7 @@ export class SidenavMenuComponent implements OnInit {
     { name: "Materias", route: "materias", icon: "" },
     { name: "Notas", route: "listar-notas", icon: "" },
     { name: "Usuarios", route: "lista-usuario", icon: "" },
+    { name: "NotaPeriodo", route: "lista-nota-periodo", icon: "" },
     
     
   ]
