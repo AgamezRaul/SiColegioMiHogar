@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Text;
 using BackEnd.Materia.Dominio.Repositories;
 using BackEnd.NotaPeriodo.Dominio.Repositories;
+using BackEnd.Contrato.Dominio;
 
 namespace BackEnd.Base
 {
@@ -30,6 +31,7 @@ namespace BackEnd.Base
         INotaServiceRepository NotaServiceRepository { get; }
         IPeriodoServiceRepository PeriodoServiceRepository { get; }
         INotaPeriodoServiceRepository NotaPeriodoServiceRepository { get; }
+        IContratoServiceRepository ContratoServiceRepository { get; }
 
         int Commit();
     }

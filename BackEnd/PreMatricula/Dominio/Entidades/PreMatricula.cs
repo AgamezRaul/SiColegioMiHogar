@@ -6,8 +6,6 @@ namespace BackEnd.PreMatricula.Dominio
 {
     public class PreMatricula : Entity<int>
     {
-       
-
         public DateTime FecPrematricula { get; set; }
         public int IdUsuario { get; set; }
         public string Estado { get; set; }

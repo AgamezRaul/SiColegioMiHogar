@@ -26,7 +26,8 @@ using BackEnd.Materia.Dominio.Repositories;
 using BackEnd.Materia.Infra;
 using BackEnd.NotaPeriodo.Dominio.Repositories;
 using BackEnd.NotaPeriodo.Infra;
-
+using BackEnd.Contrato.Dominio;
+using BackEnd.Contrato.Infra;
 
 namespace BackEnd.Base
 {
@@ -142,6 +143,14 @@ namespace BackEnd.Base
             }
         }
 
+        private IContratoServiceRepository _contratoServiceRepository;
+        public IContratoServiceRepository ContratoServiceRepository
+        {
+            get
+            {
+                return _contratoServiceRepository ?? (_contratoServiceRepository = new ContratoServiceRepository(_dbContext));
+            }
+        }
         public int Commit()
         {
             return _dbContext.SaveChanges();

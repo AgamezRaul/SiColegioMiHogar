@@ -68,6 +68,9 @@ import { ListUsuarioComponent } from './login/usuario/list-usuario/list-usuario.
 import { FormNotaPeriodoComponent } from './nota-periodo/form-nota-periodo/form-nota-periodo.component';
 import { NotaPeriodoComponent } from './nota-periodo/nota-periodo.component';
 import { TableNotaPeriodoComponent } from './nota-periodo/table-nota-periodo/table-nota-periodo.component';
+import { ContratoComponent } from './contrato/contrato.component';
+import { FormContratoComponent } from './contrato/form-contrato/form-contrato.component';
+import { TableContratoComponent } from './contrato/table-contrato/table-contrato.component';
 
 
 @NgModule({
@@ -116,7 +119,10 @@ import { TableNotaPeriodoComponent } from './nota-periodo/table-nota-periodo/tab
     ListUsuarioComponent,
     FormNotaPeriodoComponent,
     NotaPeriodoComponent,
-    TableNotaPeriodoComponent
+    TableNotaPeriodoComponent,
+    ContratoComponent,
+    FormContratoComponent,
+    TableContratoComponent
 
   ],
   imports: [

@@ -32,5 +32,6 @@ namespace BackEnd
         public DbSet<Nota.Dominio.Entidades.Nota> Nota { get; set; }
         public DbSet<Periodo.Dominio.Periodo> Periodo { get; set; }
         public DbSet<NotaPeriodo.Dominio.NotaPeriodo> NotaPeriodo { get; set; }
+        public DbSet<Contrato.Dominio.Contrato> Contrato { get; set; }
     }
 }

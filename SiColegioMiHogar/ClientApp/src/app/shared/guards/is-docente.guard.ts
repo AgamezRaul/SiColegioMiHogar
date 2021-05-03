@@ -6,7 +6,7 @@ import { LoginService } from '../../login/login.service';
 @Injectable({
   providedIn: 'root'
 })
-export class IsProfesorGuard implements CanActivate {
+export class IsDocenteGuard implements CanActivate {
   constructor(private authService: LoginService, private router: Router) { }
   roleUser: string;
   canActivate(): boolean {
@@ -14,7 +14,7 @@ export class IsProfesorGuard implements CanActivate {
       rol => this.roleUser = rol,
       error => console.log(error));
 
-    if (this.roleUser == "Profesor") {
+    if (this.roleUser == "Docente") {
       return true;
     } else {
       this.router.navigate(['/']);
