@@ -3,6 +3,7 @@ using BackEnd.Base;
 using BackEnd.Usuario.Aplicacion.Request;
 using BackEnd.Usuario.Aplicacion.Services.Actualizar;
 using BackEnd.Usuario.Aplicacion.Services.Crear;
+using BackEnd.Usuario.Aplicacion.Services.Eliminar;
 using BackEnd.Usuario.Dominio;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +22,7 @@ namespace SiColegioMiHogar.Controllers
         private readonly MiHogarContext _context;
         private CrearUsuarioService _service;
         private ActualizarUsuarioService _actualizarService;
+        private EliminarUsuarioService _eliminarService;
         private UnitOfWork _unitOfWork;
         public UsuarioController(MiHogarContext context)
         {
@@ -62,17 +64,23 @@ namespace SiColegioMiHogar.Controllers
             }
             return BadRequest(rta.Message);
         }
-        /*
-        [HttpDelete("{id}")]
-        public object DeleteUsuario([FromRoute] int id)
+
+
+        [HttpDelete("{correo}")]
+        public async Task<IActionResult> DeleteUsuario([FromRoute] string correo)
         {
             _eliminarService = new EliminarUsuarioService(_unitOfWork);
             EliminarUsuarioRequest request = new EliminarUsuarioRequest();
-            request.EmpleadoId = id;
+            request.Correo = correo;
             var rta = _eliminarService.Ejecutar(request);
+            if (rta.isOk())
+            {
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetUsuario", new { correo = request.Correo }, request);
+            }
             return Ok(rta);
         }
-        */
+
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUsuario([FromRoute] int id, [FromBody] ActualizarUsuarioRequest usuario)
         {

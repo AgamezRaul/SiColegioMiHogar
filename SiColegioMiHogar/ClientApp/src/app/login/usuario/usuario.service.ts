@@ -27,4 +27,7 @@ export class UsuarioService {
     return this.http.put<IUsuario>(this.apiURL + "/" + usuario.correo.toString(), usuario);
   }
 
+  deleteUsuario(correo: string): Observable<IUsuario> {
+    return this.http.delete<IUsuario>(this.apiURL + "/" + correo.toString());
+  }
 }

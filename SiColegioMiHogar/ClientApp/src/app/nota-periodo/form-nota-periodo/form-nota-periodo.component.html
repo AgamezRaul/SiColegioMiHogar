@@ -1,0 +1,48 @@
+<h1 *ngIf="modoEdicion">Actualizar Nota Periodo</h1>
+<h1 *ngIf="!modoEdicion">Registrar Nota Periodo</h1>
+
+<div class="container" align="center">
+  <h1>Formulario de Notas de Periodos</h1>
+  <form [formGroup]="formGroup" (ngSubmit)="save()">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="nota">Nota del periodo</label>
+        <input type="number" class="form-control" formControlName="nota" id="nota" placeholder="Ej: 5">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="observacion">Observacion</label>
+        <input type="text" class="form-control" formControlName="observacion" id="observacion" placeholder="Ej: Buen estudiante">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label for="idPeriodo">Periodo</label>
+        <select formControlName="idPeriodo" ng-options="IPeriodo.nombrePeriodo for IPeriodo in ListaPeriodos" ng-model="IdPeriodo" class="form-control" id="idPeriodo">
+          <option value="">Seleccione un periodo</option>
+          <option value="{{dato.id}}" *ngFor="let dato of ListaPeriodos">
+            {{dato.nombrePeriodo}}
+          </option>
+        </select>
+        <!--><div class="alert-danger" *ngIf="IdDocente.invalid">
+      <div class="container-error-message" *ngIf="IdDocente.errors.required">
+        El docente director es requerido
+      </div>
+    </div>-->
+      </div>
+      <div class="form-group col-md-12">
+        <label for="idMateria">Materia</label>
+        <select formControlName="idMateria" ng-options="IMateria.nombreMateria for IMateria in ListaMaterias" ng-model="IdMateria" class="form-control" id="idMateria">
+          <option value="">Seleccione una materia</option>
+          <option value="{{dato.id}}" *ngFor="let dato of ListaMaterias">
+            {{dato.nombreMateria}}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <button type="submit" mat-raised-button color="primary">
+      Registrar Nota Periodo
+    </button>
+  </form>
+</div>
