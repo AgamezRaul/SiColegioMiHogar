@@ -58,7 +58,6 @@ export class FormPeriodoComponent implements OnInit {
   save(){
     let periodo: IPeriodo = Object.assign({}, this.formGroup.value);
     periodo.id = this.id;
-    periodo.id = parseInt(periodo.id.toString());
     periodo.numeroPeriodo = parseInt(periodo.numeroPeriodo.toString());
 
     if (this.modoEdicion) {
