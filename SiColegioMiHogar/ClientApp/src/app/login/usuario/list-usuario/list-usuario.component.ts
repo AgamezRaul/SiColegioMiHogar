@@ -42,4 +42,13 @@ export class ListUsuarioComponent implements OnInit {
         error => this.alertService.error(error.error));
   }
 
+  delete(usuario: IUsuario) {
+    this.usuarioService.deleteUsuario(usuario.correo)
+      .subscribe(usuario => this.ConsultarUsuarios()),
+      error => this.alertService.error(error);
+
+    console.table(usuario);
+  }
+
+
 }
