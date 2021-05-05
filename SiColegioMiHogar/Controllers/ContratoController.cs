@@ -16,11 +16,12 @@ namespace SiColegioMiHogar.Controllers
     {
         private readonly MiHogarContext _context;
         private readonly CrearContratoService _crearService;
-
+        private ActualizarContratoService _actualizarService;
+        private UnitOfWork _unitOfWork;
         public ContratoController(MiHogarContext context)
         {
             this._context = context;
-            UnitOfWork _unitOfWork = new UnitOfWork(_context);
+            _unitOfWork = new UnitOfWork(_context);
             _crearService = new CrearContratoService(_unitOfWork);
         }
 
@@ -32,6 +33,18 @@ namespace SiColegioMiHogar.Controllers
             {
                 await _context.SaveChangesAsync();
                 return CreatedAtAction("GetPreMatricula", new { Id = request.IdDocente }, request);
+            }
+            return BadRequest(rta.Message);
+        }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutContrato([FromRoute] int id, [FromBody] ActualizarContratoRequest contrato)
+        {
+            _actualizarService = new ActualizarContratoService(_unitOfWork);
+            var rta = _actualizarService.EjecutarActualizarContrato(contrato);
+            if (rta.IsOk())
+            {
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetContrato", new { id = contrato.IdDocente }, contrato);
             }
             return BadRequest(rta.Message);
         }

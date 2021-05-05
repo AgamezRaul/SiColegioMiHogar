@@ -144,7 +144,7 @@ namespace SiColegioMiHogar.Controllers
             }
             return BadRequest(rta.Message);
         }
-        //enviar email prueba
+        
         [HttpPut("PutEmail/{correo}")]
         public async Task<IActionResult> EnviarEmail([FromRoute] string correo, [FromBody] CrearMensualidadRequest mensualidad)
         {

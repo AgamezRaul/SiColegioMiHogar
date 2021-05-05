@@ -11,5 +11,12 @@ export class ContratoComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+ 
+}
+export interface IContrato {
+  id: number,
+  fechaInicio: Date,
+  fechaFin: Date,
+  sueldo: number,
+  idDocente: number
 }
