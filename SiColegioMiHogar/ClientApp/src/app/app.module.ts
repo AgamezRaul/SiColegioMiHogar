@@ -71,6 +71,7 @@ import { TableNotaPeriodoComponent } from './nota-periodo/table-nota-periodo/tab
 import { ContratoComponent } from './contrato/contrato.component';
 import { FormContratoComponent } from './contrato/form-contrato/form-contrato.component';
 import { TableContratoComponent } from './contrato/table-contrato/table-contrato.component';
+import { FormUsuarioAdminComponent } from './login/usuario/form-usuario-admin/form-usuario-admin.component';
 
 
 @NgModule({
@@ -122,7 +123,8 @@ import { TableContratoComponent } from './contrato/table-contrato/table-contrato
     TableNotaPeriodoComponent,
     ContratoComponent,
     FormContratoComponent,
-    TableContratoComponent
+    TableContratoComponent,
+    FormUsuarioAdminComponent
 
   ],
   imports: [
@@ -173,6 +175,7 @@ import { TableContratoComponent } from './contrato/table-contrato/table-contrato
       { path: 'consultar-nota/:id', component: ConsultarNotaComponent, canActivate: [CheckNotloginGuard] },
       { path: 'registrousuarioDocente', component: FormUsuarioDocenteComponent, canActivate: [CheckNotloginGuard] },
       { path: 'lista-usuario', component: UsuarioComponent, canActivate: [CheckNotloginGuard] },
+      { path: 'registrousuarioAdmin', component: FormUsuarioAdminComponent, canActivate: [CheckNotloginGuard] },
 
       { path: 'registrar-notaPeriodo', component: FormNotaPeriodoComponent, canActivate: [CheckNotloginGuard]  },
       { path: 'nota-periodo', component: NotaPeriodoComponent, canActivate: [CheckNotloginGuard] },
