@@ -13,4 +13,8 @@ export class ContratoService {
   updateContrato(contrato: IContrato): Observable<IContrato> {
     return this.http.put<IContrato>(this.apiURL + "/" + contrato.idDocente, contrato);
   }
+
+  getContrato(idDocente: number): Observable<IContrato> {
+    return this.http.get<IContrato>(this.apiURL + '/' + idDocente);
+  }
 }

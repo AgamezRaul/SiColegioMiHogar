@@ -2,7 +2,9 @@
 using BackEnd.Base;
 using BackEnd.Contrato.Aplicacion.Request;
 using BackEnd.Contrato.Aplicacion.Service;
+using BackEnd.Contrato.Dominio;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,6 +49,14 @@ namespace SiColegioMiHogar.Controllers
                 return CreatedAtAction("GetContrato", new { id = contrato.IdDocente }, contrato);
             }
             return BadRequest(rta.Message);
+        }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetContrato([FromRoute] int id)
+        {
+            Contrato contrato = await _context.Contrato.SingleOrDefaultAsync(t => t.IdDocente == id);
+            if (contrato == null)
+                return NotFound();
+            return Ok(contrato);
         }
     }
 }
