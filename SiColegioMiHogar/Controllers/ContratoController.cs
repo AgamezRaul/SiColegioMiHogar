@@ -50,6 +50,7 @@ namespace SiColegioMiHogar.Controllers
             }
             return BadRequest(rta.Message);
         }
+        /*
         [HttpGet("{id}")]
         public async Task<IActionResult> GetContrato([FromRoute] int id)
         {
@@ -57,6 +58,14 @@ namespace SiColegioMiHogar.Controllers
             if (contrato == null)
                 return NotFound();
             return Ok(contrato);
+        }
+        */
+
+        [HttpGet("[action]")]
+        public Contrato GetContrato(int id)
+        {
+            ConsultarContratoService service = new ConsultarContratoService(_unitOfWork);
+            return service.GetContrato(id);
         }
     }
 }
