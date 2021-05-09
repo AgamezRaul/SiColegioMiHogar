@@ -72,6 +72,7 @@ import { ContratoComponent } from './contrato/contrato.component';
 import { FormContratoComponent } from './contrato/form-contrato/form-contrato.component';
 import { TableContratoComponent } from './contrato/table-contrato/table-contrato.component';
 import { FormUsuarioAdminComponent } from './login/usuario/form-usuario-admin/form-usuario-admin.component';
+import { ConsultarContratoComponent } from './contrato/consultar-contrato/consultar-contrato.component';
 
 
 @NgModule({
@@ -124,7 +125,8 @@ import { FormUsuarioAdminComponent } from './login/usuario/form-usuario-admin/fo
     ContratoComponent,
     FormContratoComponent,
     TableContratoComponent,
-    FormUsuarioAdminComponent
+    FormUsuarioAdminComponent,
+    ConsultarContratoComponent
 
   ],
   imports: [
@@ -154,6 +156,10 @@ import { FormUsuarioAdminComponent } from './login/usuario/form-usuario-admin/fo
       { path: 'editar-curso/:idCurso', component: FormCursoComponent, canActivate: [CheckNotloginGuard]  },
       { path: 'cursos', component: CursoComponent, canActivate: [CheckNotloginGuard] },
       { path: 'registrar-curso', component: FormCursoComponent, canActivate: [CheckNotloginGuard] },
+
+     
+      { path: 'listar-contratos', component: TableContratoComponent, canActivate: [CheckNotloginGuard]  },
+      { path: 'consultar-contrato/:id', component: ConsultarContratoComponent, canActivate: [CheckNotloginGuard]  },
 
       
       { path: 'materias', component: ListMateriaComponent, canActivate: [CheckNotloginGuard] },

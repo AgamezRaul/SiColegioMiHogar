@@ -1,0 +1,34 @@
+<div class="container">
+    <h1>Informaciòn del contrato: {{id}}</h1>
+    <form [formGroup]="formGroup">
+      <div class="form-row">
+          <div class="form-group col-md-6">
+              <label for="Descripcion">Fecha de inicio</label>
+              <input type="text" class="form-control" disabled formControlName="fechaInicio" id="fechaInicio" placeholder="Ej: 04">
+          </div>
+          <div class="form-group col-md-6">
+              <label for="NotaAlumno">Fecha de finalizacion</label>
+              <input type="text" class="form-control" disabled formControlName="fechaFin" id="fechaFin" placeholder="Ej: 04">
+          </div>
+      </div>
+      <div class="form-row">
+              <div class="form-group col-md-12">
+              <label for="IdEstudiante">Sueldo</label>
+              <input type="text" formControlName="sueldo" disabled class="form-control">
+              </div>
+      </div>
+      <div class="form-row">
+          <div class="form-group col-md-12">
+          <label for="IdPeriodo">Docente</label>
+          <input type="text" formControlName="idDocente" disabled class="form-control">
+          </div>
+      </div>
+     <hr>
+     <div class="text-center">
+      <a type="submit" [routerLink]="['/listar-contratos']"  mat-raised-button color="primary">
+          <mat-icon>keyboard_return</mat-icon>  Regresar
+      </a>
+     </div>
+    </form>
+  </div>
+  

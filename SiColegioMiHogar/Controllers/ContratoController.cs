@@ -67,5 +67,12 @@ namespace SiColegioMiHogar.Controllers
             ConsultarContratoService service = new ConsultarContratoService(_unitOfWork);
             return service.GetContrato(id);
         }
+
+	[HttpGet("[action]")]
+        public IEnumerable<Contrato> getContratos()
+        {
+            return _context.Contrato;
+        }
+
     }
 }

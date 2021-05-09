@@ -27,7 +27,6 @@ export class SidenavMenuComponent implements OnInit {
     { name: "Usuarios", route: "lista-usuario", icon: "" },
     { name: "NotaPeriodo", route: "lista-nota-periodo", icon: "" },
     { name: "UsuarioAdmin", route: "registrousuarioAdmin", icon: "" }
-    
   ]
 
   fillerNavDocente = [
@@ -37,9 +36,8 @@ export class SidenavMenuComponent implements OnInit {
 
   fillerNavResponsable = [
     { name: "home", route: "", icon: "home" },
-    { name: "Prematricula", route: "prematricula", icon: "" }
-    
-
+    { name: "Prematricula", route: "prematricula", icon: "" },
+    { name: "Contratos", route: "listar-contratos", icon: "" }
   ]
 
   private _mobileQueryListener: () => void;
