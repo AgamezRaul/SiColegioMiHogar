@@ -36,6 +36,7 @@ namespace SiColegioMiHogar.Controllers
             var result = (from u in _context.Set<Usuario>()
                           select new
                           {
+                              id=u.Id,
                               correo= u.Correo,
                               tipoUsuario= u.TipoUsuario
                           }).ToList();
@@ -43,7 +44,7 @@ namespace SiColegioMiHogar.Controllers
             return result;
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{correo}")]
         public async Task<IActionResult> GetUsuario([FromRoute] string correo)
         {
             Usuario usuario = await _context.Usuario.SingleOrDefaultAsync(t => t.Correo == correo);

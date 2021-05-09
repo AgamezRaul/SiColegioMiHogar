@@ -20,7 +20,7 @@ namespace BackEnd.Usuario.Dominio
         {
             Correo = correo;
             Crypto = new Crypto();
-            if (!string.IsNullOrEmpty(password) && !(password.Length < 5))
+            if (!string.IsNullOrEmpty(password) && (password.Length >= 5))
             {
                 Password = Encriptar(password);
             }

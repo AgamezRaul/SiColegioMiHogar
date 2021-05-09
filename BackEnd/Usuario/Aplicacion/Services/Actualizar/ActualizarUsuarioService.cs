@@ -15,7 +15,7 @@ namespace BackEnd.Usuario.Aplicacion.Services.Actualizar
         }
         public ActualizarUsuarioResponse Ejecutar(ActualizarUsuarioRequest request)
         {
-            Dominio.Usuario usuario = _unitOfWork.UsuarioServiceRepository.FindFirstOrDefault(t => t.Correo == request.Correo);
+            Dominio.Usuario usuario = _unitOfWork.UsuarioServiceRepository.FindFirstOrDefault(t => t.Id == request.id);
             if (usuario == null)
             {
                 return new ActualizarUsuarioResponse() { Message = $"Usuario no existe" };
@@ -23,7 +23,7 @@ namespace BackEnd.Usuario.Aplicacion.Services.Actualizar
             else
             {
                 usuario.Correo = request.Correo;
-                usuario.Password = request.Password;
+                usuario.Password = usuario.Encriptar(request.Password);
                 usuario.TipoUsuario =request.TipoUsuario;
      
                 _unitOfWork.UsuarioServiceRepository.Edit(usuario);

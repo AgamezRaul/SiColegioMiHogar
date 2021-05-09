@@ -17,6 +17,7 @@ export class ListUsuarioComponent implements OnInit {
   usuario!: IUsuario[];
   
   displayedColumns: string[] = [
+    'id',
     'correo',
     'tipoUsuario',
     'options'];
