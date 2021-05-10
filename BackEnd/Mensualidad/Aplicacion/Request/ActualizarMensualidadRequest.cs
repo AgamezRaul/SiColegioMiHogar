@@ -7,7 +7,6 @@ namespace BackEnd.Mensualidad.Aplicacion.Request
    public class ActualizarMensualidadRequest
     {
         public int id { get; set; }
-        //public int Mes { get; set; }
         public int DiaPago { get; set; }
         public DateTime FechaPago { get; set; }
         public double ValorMensualidad { get; set; }
@@ -25,6 +24,11 @@ namespace BackEnd.Mensualidad.Aplicacion.Request
 
     public class ActualizarMensualidadResponse
     {
+        public ActualizarMensualidadResponse(string message)
+        {
+            Message = message;
+        }
+
         public string Message { get; set; }
         public bool isOk()
         {
