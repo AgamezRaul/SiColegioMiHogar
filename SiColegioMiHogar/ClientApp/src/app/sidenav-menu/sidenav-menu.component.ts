@@ -10,7 +10,8 @@ import { LoginService } from '../login/login.service';
 })
 export class SidenavMenuComponent implements OnInit {
   mobileQuery: MediaQueryList;
-  isRole = null;
+  isRole: string;
+  roleAdmin: string;
   isLogged = false;
 
   private subscription: Subscription;
@@ -26,7 +27,8 @@ export class SidenavMenuComponent implements OnInit {
     { name: "Notas", route: "listar-notas", icon: "" },
     { name: "Usuarios", route: "lista-usuario", icon: "" },
     { name: "NotaPeriodo", route: "lista-nota-periodo", icon: "" },
-    { name: "UsuarioAdmin", route: "registrousuarioAdmin", icon: "" }
+    { name: "UsuarioAdmin", route: "registrousuarioAdmin", icon: "" },
+    { name: "Contratos", route: "contrato", icon: "" },
     
   ]
 
@@ -52,15 +54,21 @@ export class SidenavMenuComponent implements OnInit {
     this.subscription = new Subscription();
   }
   ngOnInit() {
-    this.subscription.add(
-      this.loginService.isRole.subscribe((res) => (this.isRole = res))
-    );
-    console.log(this.isRole);
-    //this.subscription.add(
     this.loginService.isLogged.subscribe((res) => (this.isLogged = res));
-    //);
-    console.log(this.isLogged);
+    if (this.isLogged) {
+      this.loginService.isRole.subscribe((res) => { this.isRole = res; console.log("isRole: " + res); })
+      this.loginService.isAdmin$.subscribe(res => { this.roleAdmin = res; console.log("isAdmin: "+ res) })
+      if (this.isRole == "Admin") {
+
+      } else if (this.isRole == "Docente") {
+
+      } else if (this.isRole == "Estudiante") {
+
+      }
+
+    }    
   }
+
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
     this.subscription.unsubscribe();

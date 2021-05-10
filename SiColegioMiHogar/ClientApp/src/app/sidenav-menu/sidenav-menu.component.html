@@ -20,7 +20,7 @@
           <img style="width: 100%;" src="#" alt="Logo Colegio" />
         </div>
         <mat-nav-list>
-          <div *ngIf="isRole=='Admin'">
+          <div *ngIf="isRole=='Admin' ">
             <a mat-list-item [routerLink]="nav.route" *ngFor="let nav of fillerNavAdmin">
               <mat-icon class="icono">{{nav.icon}}</mat-icon>
               {{nav.name}}
@@ -37,7 +37,7 @@
               <mat-icon class="icono">{{nav.icon}}</mat-icon>
               {{nav.name}}
             </a>
-          </div>          
+          </div>
         </mat-nav-list>
       </ng-container>
     </mat-sidenav>

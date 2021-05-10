@@ -154,7 +154,6 @@ import { FormUsuarioAdminComponent } from './login/usuario/form-usuario-admin/fo
       { path: 'editar-curso/:idCurso', component: FormCursoComponent, canActivate: [CheckNotloginGuard]  },
       { path: 'cursos', component: CursoComponent, canActivate: [CheckNotloginGuard] },
       { path: 'registrar-curso', component: FormCursoComponent, canActivate: [CheckNotloginGuard] },
-
       
       { path: 'materias', component: ListMateriaComponent, canActivate: [CheckNotloginGuard] },
       { path: 'registrar-materia', component: FormMateriaComponent, canActivate: [CheckNotloginGuard] },
@@ -173,6 +172,7 @@ import { FormUsuarioAdminComponent } from './login/usuario/form-usuario-admin/fo
       { path: 'registrar-nota', component: FormNotaComponent, canActivate: [CheckNotloginGuard] },
       { path: 'editar-nota/:id', component: FormNotaComponent, canActivate: [CheckNotloginGuard] },
       { path: 'consultar-nota/:id', component: ConsultarNotaComponent, canActivate: [CheckNotloginGuard] },
+
       { path: 'registrousuarioDocente', component: FormUsuarioDocenteComponent, canActivate: [CheckNotloginGuard] },
       { path: 'lista-usuario', component: UsuarioComponent, canActivate: [CheckNotloginGuard] },
       { path: 'registrousuarioAdmin', component: FormUsuarioAdminComponent, canActivate: [CheckNotloginGuard] },
@@ -180,6 +180,9 @@ import { FormUsuarioAdminComponent } from './login/usuario/form-usuario-admin/fo
       { path: 'registrar-notaPeriodo', component: FormNotaPeriodoComponent, canActivate: [CheckNotloginGuard]  },
       { path: 'nota-periodo', component: NotaPeriodoComponent, canActivate: [CheckNotloginGuard] },
       { path: 'lista-nota-periodo', component: TableNotaPeriodoComponent, canActivate: [CheckNotloginGuard] },
+
+      { path: 'contrato', component: ContratoComponent, canActivate: [CheckNotloginGuard] },
+      { path: 'registrar-contrato', component: FormContratoComponent, canActivate: [CheckNotloginGuard] },
 ], { relativeLinkResolution: 'legacy' })
   ],
   //Aquí en providers se agregan todos los services de angular

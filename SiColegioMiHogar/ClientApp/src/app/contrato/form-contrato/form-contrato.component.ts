@@ -5,6 +5,8 @@ import { Location } from '@angular/common';
 import { AlertService } from '../../notifications/_services';
 import { IContrato } from '../contrato.component';
 import { ContratoService } from '../contrato.service';
+import { DocenteService } from '../../docente/docente.service';
+import { IDocente } from '../../docente/docente.component';
 
 @Component({
   selector: 'app-form-contrato',
@@ -13,16 +15,24 @@ import { ContratoService } from '../contrato.service';
 })
 export class FormContratoComponent implements OnInit {
 
+  listaDocentes: IDocente[];
+
   constructor(private fb: FormBuilder, private contratoService: ContratoService,
-    private router: Router, private activatedRoute: ActivatedRoute, private location: Location, private alertService: AlertService) { }
+    private router: Router, private activatedRoute: ActivatedRoute, private location: Location,
+    private alertService: AlertService, private docenteService: DocenteService) { }
   modoEdicion: boolean = false;
   idDocente: number;
   formGroup = this.fb.group({
     fechaInicio: ['', [Validators.required]],
     fechaFin: ['', [Validators.required]],
-    sueldo: ['', [Validators.required]]
+    sueldo: ['', [Validators.required]],
+    idDocente: ['', [Validators.required]]
   });
   ngOnInit(): void {
+    this.docenteService.getDocentesEstado()
+      .subscribe(docentes => this.llenarDocentes(docentes),
+        error => this.alertService.error(error));
+
     this.activatedRoute.params.subscribe(params => {
       if (params["idDocente"] == undefined) {
         return;
@@ -34,6 +44,9 @@ export class FormContratoComponent implements OnInit {
         error => this.alertService.error(error);
     });
   }
+  llenarDocentes(docentes: IDocente[]) {
+    this.listaDocentes = docentes;
+  }
   cargarFormulario(contrato: IContrato) {
     this.formGroup.patchValue({
       fechaInicio: contrato.fechaInicio,
@@ -42,18 +55,28 @@ export class FormContratoComponent implements OnInit {
     });
   }
    save() {
-    let contrato: IContrato = Object.assign({}, this.formGroup.value);
- 
+     let contrato: IContrato = Object.assign({}, this.formGroup.value);
+     contrato.idDocente = parseInt(contrato.idDocente.toString());
+     console.log(contrato.idDocente);
      if (this.modoEdicion) {//editar el registro
-       contrato.idDocente = this.idDocente;
-       if (this.formGroup.valid) {
-         this.contratoService.updateContrato(contrato)
-          .subscribe(mensualidad => this.goBack(),
-            error => this.alertService.error(error));
-      } else { console.log('No valido') }
-      
+      if (this.formGroup.valid) {
+        this.contratoService.updateContrato(contrato)
+        .subscribe(mensualidad => this.goBack(),
+          error => this.alertService.error(error));
+      }
+     } else {//crea
+       console.log(contrato);
+       this.contratoService.createContrato(contrato).subscribe(
+         contrato => this.onSaveSuccess(),
+         error => this.alertService.error(error.error));
     }
   }
+
+  onSaveSuccess() {
+    this.router.navigate(["/contrato"]);
+    this.alertService.success("Guardado exitoso");
+  }
+
   goBack(): void {
     this.location.back();
   }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BackEnd.Docente.Aplicacion.Request
+﻿namespace BackEnd.Docente.Aplicacion.Request
 {
     public class CrearDocenteRequest
     {
@@ -13,6 +9,7 @@ namespace BackEnd.Docente.Aplicacion.Request
         public string Celular { get; set; }
         public string Correo { get; set; }
         public string Direccion { get; set; }
+        public string Estado { get => "Sin contrato"; }
     }
     public class CrearDocenteResponse
     {
