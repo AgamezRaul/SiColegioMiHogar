@@ -22,7 +22,7 @@ namespace BackEnd.Contrato.Aplicacion.Request
         public string Message { get; set; }
         public bool IsOk()
         {
-            return this.Message.Equals("Contrato Actualizado Exitosamente");
+            return this.Message.Equals("El  contrato del docente  ha  sido actualizado exitosamente");
         }
     }
 }

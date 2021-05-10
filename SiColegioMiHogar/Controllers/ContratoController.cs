@@ -37,7 +37,7 @@ namespace SiColegioMiHogar.Controllers
                           on c.IdDocente equals d.Id
                           select new
                           {
-                              c.Id,
+                              id=d.Id,
                               NombreDocente = d.NombreCompleto,
                               c.Sueldo,
                               c.FechaInicio,

@@ -51,7 +51,8 @@ export class FormContratoComponent implements OnInit {
     this.formGroup.patchValue({
       fechaInicio: contrato.fechaInicio,
       fechaFin: contrato.fechaFin,
-      sueldo: contrato.sueldo
+      sueldo: contrato.sueldo,
+      idDocente:this.idDocente
     });
   }
    save() {
@@ -61,8 +62,8 @@ export class FormContratoComponent implements OnInit {
      if (this.modoEdicion) {//editar el registro
       if (this.formGroup.valid) {
         this.contratoService.updateContrato(contrato)
-        .subscribe(mensualidad => this.goBack(),
-          error => this.alertService.error(error));
+        .subscribe(contrato => this.goBack(),
+          error => this.alertService.error(error.error));
       }
      } else {//crea
        console.log(contrato);
@@ -77,8 +78,9 @@ export class FormContratoComponent implements OnInit {
     this.alertService.success("Guardado exitoso");
   }
 
-  goBack(): void {
-    this.location.back();
+  goBack(){
+    this.router.navigate(["/contrato"]);
+    this.alertService.success("Actualizado exitoso");
   }
   get fechaInicio() {
     return this.formGroup.get('fechaInicio');

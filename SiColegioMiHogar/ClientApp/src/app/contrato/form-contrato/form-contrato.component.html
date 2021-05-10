@@ -1,8 +1,8 @@
-<h1 *ngIf="modoEdicion">Actualizar Nota</h1>
-<h1 *ngIf="!modoEdicion">Registrar Nota</h1>
+<h1 *ngIf="modoEdicion">Actualizar Contrato</h1>
+<h1 *ngIf="!modoEdicion">Registrar Contrato</h1>
 
 <div class="container">
-  <h1>Formulario de Notas</h1>
+  <h1>Formulario de Contrato docente</h1>
   <form [formGroup]="formGroup" (ngSubmit)="save()">
     <div class="form-group"
          [ngClass]="{'has-error': ((fechaInicio.touched || fechaInicio.dirty) && fechaInicio.invalid)}">
