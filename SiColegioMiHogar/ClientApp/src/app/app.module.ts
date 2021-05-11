@@ -25,7 +25,7 @@ import { LoginComponent } from './login/login.component';
 import { UsuarioComponent } from './login/usuario/usuario.component';
 import { FormUsuarioComponent } from './login/usuario/form-usuario/form-usuario.component';
 import { PerfilComponent } from './login/perfil/perfil.component';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDatepicker, MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -72,7 +72,8 @@ import { ContratoComponent } from './contrato/contrato.component';
 import { FormContratoComponent } from './contrato/form-contrato/form-contrato.component';
 import { TableContratoComponent } from './contrato/table-contrato/table-contrato.component';
 import { FormUsuarioAdminComponent } from './login/usuario/form-usuario-admin/form-usuario-admin.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 @NgModule({
   declarations: [
@@ -184,7 +185,8 @@ import { FormUsuarioAdminComponent } from './login/usuario/form-usuario-admin/fo
       { path: 'contrato', component: ContratoComponent, canActivate: [CheckNotloginGuard] },
       { path: 'registrar-contrato', component: FormContratoComponent, canActivate: [CheckNotloginGuard] },
       { path: 'editar-contrato/:idDocente', component: FormContratoComponent, canActivate: [CheckNotloginGuard] },
-], { relativeLinkResolution: 'legacy' })
+], { relativeLinkResolution: 'legacy' }),
+    BrowserAnimationsModule
   ],
   //Aquí en providers se agregan todos los services de angular
   providers: [UsuarioService, PreMatriculaService, CdkColumnDef, MateriaService, AlertService, DocenteService, CursoService,
