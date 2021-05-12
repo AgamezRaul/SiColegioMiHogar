@@ -8,6 +8,7 @@ import { MensualidadService } from '../mensualidad.service';
 import { Location } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { AlertService } from '../../notifications/_services';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list-mensualidad',
@@ -28,7 +29,7 @@ export class ListMensualidadComponent implements OnInit, OnDestroy {
     'estado',
     'totalMensualidad',
     'correo',
-    'options'  ];
+    'options'];
   dataSource = new MatTableDataSource<IMensualidad2>(this.mensualidad);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -53,7 +54,7 @@ export class ListMensualidadComponent implements OnInit, OnDestroy {
       this.id = parseInt(params["id"]);
     })
     this.ConsultarMensualidad(this.id);
-    
+
     this.suscription = this.mensualidadservice.refresh$.subscribe(() => {
       this.ConsultarMensualidad(this.id);
     });
@@ -68,27 +69,40 @@ export class ListMensualidadComponent implements OnInit, OnDestroy {
   Eliminar(idMensualidad: number) {
     this.mensualidadservice.deleteMensualidad(idMensualidad).
       subscribe(nit => this.onDeleteSuccess(),
-        error => this.alertService.error(error))
+        error => this.mensajeAlertaError('Error', error.error.toString()));
   }
- 
+
   onDeleteSuccess() {
     this.router.navigate(["/consultar-mensualidad/" + this.id]);
-    this.alertService.success("Eliminado exitoso");
+    this.mensajeAlertaCorrecto('¡Exitoso!','Mensualidad elimindad correctamente');
   }
   onSaveSuccess() {
     this.router.navigate(["/consultar-mensualidad/" + this.id]);
-    this.alertService.success("Correo Enviado");
+    this.mensajeAlertaCorrecto('¡Exitoso!', 'Correo eviado correctamente');
   }
   ConsultarMensualidad(idt: number) {
     this.mensualidadservice.getMensualidadesMatricula(idt)
       .subscribe(mensualidades => this.dataSource.data = mensualidades,
-        error => this.alertService.error(error));
+        error => this.mensajeAlertaError('Error', error.error.toString()));
   }
-  EnviarMail(mensualidad: IMensualidad2, correo:string) {
-        this.mensualidadservice.EnviarEmail(mensualidad,correo)
+  EnviarMail(mensualidad: IMensualidad2, correo: string) {
+    this.mensualidadservice.EnviarEmail(mensualidad, correo)
       .subscribe(mensualidad => this.onSaveSuccess()),
-      error => this.alertService.error(error);
-   
+      error => this.mensajeAlertaError('Error', error.error.toString());
+
+  }
+  mensajeAlertaCorrecto(titulo: string, texto: string) {
+    Swal.fire({
+      icon: 'success',
+      title: titulo,
+      text: texto,
+    });
+  }
+  mensajeAlertaError(titulo: string, texto: string) {
+    Swal.fire({
+      icon: 'error',
+      title: titulo,
+      text: texto,
+    });
   }
 }
-

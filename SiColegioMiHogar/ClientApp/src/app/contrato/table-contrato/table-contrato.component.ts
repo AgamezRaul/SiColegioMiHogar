@@ -9,6 +9,7 @@ import { Location } from '@angular/common';
 import { IContratos } from '../contrato.component';
 import { ContratoService } from '../contrato.service';
 import { error } from '@angular/compiler/src/util';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-table-contrato',
@@ -41,6 +42,20 @@ export class TableContratoComponent implements OnInit {
   ngOnInit(): void {
     this.contratoService.getContratos()
       .subscribe(contratos => this.dataSource.data = contratos,
-        error => this.alertService.error(error));
+        error => this.mensajeAlertaError('Error', error.error.toString()));
+  }
+  mensajeAlertaCorrecto(titulo: string, texto: string) {
+    Swal.fire({
+      icon: 'success',
+      title: titulo,
+      text: texto,
+    });
+  }
+  mensajeAlertaError(titulo: string, texto: string) {
+    Swal.fire({
+      icon: 'error',
+      title: titulo,
+      text: texto,
+    });
   }
 }

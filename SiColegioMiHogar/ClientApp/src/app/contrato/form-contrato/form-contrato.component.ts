@@ -7,6 +7,7 @@ import { IContrato } from '../contrato.component';
 import { ContratoService } from '../contrato.service';
 import { DocenteService } from '../../docente/docente.service';
 import { IDocente } from '../../docente/docente.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form-contrato',
@@ -31,7 +32,7 @@ export class FormContratoComponent implements OnInit {
   ngOnInit(): void {
     this.docenteService.getDocentesEstado()
       .subscribe(docentes => this.llenarDocentes(docentes),
-        error => this.alertService.error(error));
+        error => this.mensajeAlertaError('Error', error.error.toString()));
 
     this.activatedRoute.params.subscribe(params => {
       if (params["idDocente"] == undefined) {
@@ -41,7 +42,7 @@ export class FormContratoComponent implements OnInit {
       this.idDocente = params["idDocente"];
       this.contratoService.getContrato(this.idDocente)
         .subscribe(contrato => this.cargarFormulario(contrato)),
-        error => this.alertService.error(error);
+        error => this.mensajeAlertaError('Error', error.error.toString());
     });
   }
   llenarDocentes(docentes: IDocente[]) {
@@ -60,27 +61,27 @@ export class FormContratoComponent implements OnInit {
      contrato.idDocente = parseInt(contrato.idDocente.toString());
      console.log(contrato.idDocente);
      if (this.modoEdicion) {//editar el registro
-      if (this.formGroup.valid) {
-        this.contratoService.updateContrato(contrato)
-        .subscribe(contrato => this.goBack(),
-          error => this.alertService.error(error.error));
-      }
+           if (this.formGroup.valid) {
+              this.contratoService.updateContrato(contrato)
+              .subscribe(contrato => this.goBack(),
+             error => this.mensajeAlertaError('Error', error.error.toString()));
+            }
      } else {//crea
        console.log(contrato);
        this.contratoService.createContrato(contrato).subscribe(
          contrato => this.onSaveSuccess(),
-         error => this.alertService.error(error.error));
+         error => this.mensajeAlertaError('Error', error.error.toString()));
     }
   }
 
   onSaveSuccess() {
     this.router.navigate(["/contrato"]);
-    this.alertService.success("Guardado exitoso");
+    this.mensajeAlertaCorrecto('¡Exito!', 'Contrato guardado exitosamente');
   }
 
   goBack(){
     this.router.navigate(["/contrato"]);
-    this.alertService.success("Actualizado exitoso");
+    this.mensajeAlertaCorrecto('¡Exito!', 'Contrato actualizado exitosamente');
   }
   get fechaInicio() {
     return this.formGroup.get('fechaInicio');
@@ -90,6 +91,20 @@ export class FormContratoComponent implements OnInit {
   }
   get sueldo() {
     return this.formGroup.get('sueldo');
+  }
+  mensajeAlertaCorrecto(titulo: string, texto: string) {
+    Swal.fire({
+      icon: 'success',
+      title: titulo,
+      text: texto,
+    });
+  }
+  mensajeAlertaError(titulo: string, texto: string) {
+    Swal.fire({
+      icon: 'error',
+      title: titulo,
+      text: texto,
+    });
   }
 
 }
