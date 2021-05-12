@@ -8,6 +8,7 @@ import { Location } from '@angular/common';
 import { error } from 'protractor';
 import { equal } from 'assert';
 import { AlertService } from '../../notifications/_services';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-form-mensualidad',
   templateUrl: './form-mensualidad.component.html',
@@ -18,7 +19,7 @@ export class FormMensualidadComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private mensualidadService: MensualidadService,
     private router: Router, private activatedRoute: ActivatedRoute,
-    private location: Location, private alertService: AlertService) { }
+    private location: Location, private alertService: AlertService,private matDialogo:MatDialog) { }
   modoEdicion: boolean = false;
   id: number;
   idMensu: number;
@@ -86,7 +87,7 @@ export class FormMensualidadComponent implements OnInit {
       if (this.formGroup.valid) {
         this.mensualidadService.updateMensualidad(mensualidad)
           .subscribe(mensualidad => this.goBack(),
-            error => this.alertService.error(error));
+            error => this.alertService.error(error.error));
       } else { console.log('No valido') }
       
     }
@@ -97,7 +98,7 @@ export class FormMensualidadComponent implements OnInit {
       if (this.formGroup.valid) {
         this.mensualidadService.createMensualidad(mensualidad)
           .subscribe(mensualidad => this.onSaveSuccess()),
-          error => this.alertService.error(error);
+          error => this.alertService.error(error.error);
       } else { console.log('No valido') }
          }
     

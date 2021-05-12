@@ -5,7 +5,7 @@
   <h1>Formulario de Mensualidad</h1>
   <form [formGroup]="formGroup" (ngSubmit)="save()">
     <div class="form-row">
-      <div class="form-group col-md-6">
+      <div class="form-group col-md-6" *ngIf="!modoEdicion">
         <label for="mes">Mes en el que se registra el pago</label>
         <input type="number" class="form-control" formControlName="mes" id="mes" placeholder="Ej: 05">
         <div class="alert-danger" *ngIf="mes.invalid && (mes.dirty || mes.touched)">
