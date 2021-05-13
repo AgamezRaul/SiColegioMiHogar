@@ -187,7 +187,7 @@ import { FormUsuarioActualizarComponent } from './login/usuario/form-usuario-act
       { path: 'contrato', component: ContratoComponent, canActivate: [CheckNotloginGuard] },
       { path: 'registrar-contrato', component: FormContratoComponent, canActivate: [CheckNotloginGuard] },
       { path: 'editar-contrato/:idDocente', component: FormContratoComponent, canActivate: [CheckNotloginGuard] },
-      { path: 'editar-Usuario', component: FormUsuarioActualizarComponent, canActivate: [CheckNotloginGuard] },
+      { path: 'editar-Usuario/:idUsuario', component: FormUsuarioActualizarComponent, canActivate: [CheckNotloginGuard] },
       
 ], { relativeLinkResolution: 'legacy' }),
     BrowserAnimationsModule
