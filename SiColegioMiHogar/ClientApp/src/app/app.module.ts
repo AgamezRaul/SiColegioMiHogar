@@ -74,6 +74,7 @@ import { TableContratoComponent } from './contrato/table-contrato/table-contrato
 import { FormUsuarioAdminComponent } from './login/usuario/form-usuario-admin/form-usuario-admin.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { FormUsuarioActualizarComponent } from './login/usuario/form-usuario-actualizar/form-usuario-actualizar.component';
 
 @NgModule({
   declarations: [
@@ -125,7 +126,8 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
     ContratoComponent,
     FormContratoComponent,
     TableContratoComponent,
-    FormUsuarioAdminComponent
+    FormUsuarioAdminComponent,
+    FormUsuarioActualizarComponent
 
   ],
   imports: [
@@ -185,6 +187,8 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
       { path: 'contrato', component: ContratoComponent, canActivate: [CheckNotloginGuard] },
       { path: 'registrar-contrato', component: FormContratoComponent, canActivate: [CheckNotloginGuard] },
       { path: 'editar-contrato/:idDocente', component: FormContratoComponent, canActivate: [CheckNotloginGuard] },
+      { path: 'editar-Usuario', component: FormUsuarioActualizarComponent, canActivate: [CheckNotloginGuard] },
+      
 ], { relativeLinkResolution: 'legacy' }),
     BrowserAnimationsModule
   ],
