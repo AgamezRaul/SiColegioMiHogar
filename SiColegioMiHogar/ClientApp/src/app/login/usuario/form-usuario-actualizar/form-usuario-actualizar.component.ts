@@ -30,7 +30,7 @@ export class FormUsuarioActualizarComponent implements OnInit {
   cargarFormulario(usuario: IUsuario2) {
     this.formGroup.patchValue({
       correo: usuario.correo,
-      password: '******',
+      password: '123456',
       tipoUsuario: usuario.tipoUsuario
     });
   }
