@@ -8,29 +8,27 @@ import { Location } from '@angular/common';
 import { error } from 'protractor';
 import { equal } from 'assert';
 import { AlertService } from '../../notifications/_services';
+import { MatDialog } from '@angular/material/dialog';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-form-mensualidad',
   templateUrl: './form-mensualidad.component.html',
   styleUrls: ['./form-mensualidad.component.css']
 })
 export class FormMensualidadComponent implements OnInit {
-
-
   constructor(private fb: FormBuilder, private mensualidadService: MensualidadService,
     private router: Router, private activatedRoute: ActivatedRoute,
     private location: Location, private alertService: AlertService) { }
   modoEdicion: boolean = false;
   id: number;
   idMensu: number;
-
   formGroup = this.fb.group({
     mes: ['', [Validators.required, Validators.min(1), Validators.max(12)]],
     diaPago: ['', [Validators.required, Validators.min(1), Validators.max(31)]],
     fechaPago: ['', [Validators.required]],
     valorMensualidad:  ['', [Validators.required]],
     descuentoMensualidad: ['', [Validators.required]],
-    abono: ['', [Validators.required]]
-    
+    abono: ['', [Validators.required]] 
   });
 
   ngOnInit(): void {
@@ -60,7 +58,7 @@ export class FormMensualidadComponent implements OnInit {
         this.idMensu = parseInt(params["idMensualidad"]);
         this.mensualidadService.getMensualidad(this.idMensu)
           .subscribe(mensualidad => this.cargarFormulario(mensualidad),
-            error => this.alertService.error(error));
+            error => this.mensajeAlertaError('Error', error.error.toString()));
         //validar cuando es repetida para avisarle al usuario
       });
     }
@@ -81,13 +79,15 @@ export class FormMensualidadComponent implements OnInit {
     let mensualidad: IMensualidad = Object.assign({}, this.formGroup.value);
   
 
-    if (this.modoEdicion) {//editar el registro
+    if (this.modoEdicion) {
       mensualidad.id = this.idMensu;
       if (this.formGroup.valid) {
         this.mensualidadService.updateMensualidad(mensualidad)
           .subscribe(mensualidad => this.goBack(),
-            error => this.alertService.error(error));
-      } else { console.log('No valido') }
+            error => this.mensajeAlertaError('Error', error.error.toString()));
+      } else {
+        this.mensajeAlertaError('¡Error!', 'Edicion no valida');
+      }
       
     }
     else {
@@ -97,21 +97,38 @@ export class FormMensualidadComponent implements OnInit {
       if (this.formGroup.valid) {
         this.mensualidadService.createMensualidad(mensualidad)
           .subscribe(mensualidad => this.onSaveSuccess()),
-          error => this.alertService.error(error);
-      } else { console.log('No valido') }
+          error => this.mensajeAlertaError('Error', error.error.toString());
+      } else {
+        this.mensajeAlertaError('¡Error!','Registro no valido');
+      }
          }
     
 
   }
  onSaveSuccess() {
    this.router.navigate(["/consultar-mensualidad/" + this.id]);
-   this.alertService.success("Guardado exitoso");
+   this.mensajeAlertaCorrecto('Exitoso!','Mensualidad guardada correctamente');
   }
  
   goBack(): void{
     this.location.back();
+    this.mensajeAlertaCorrecto('Exitoso!', 'Mensualidad editada correctamente');
   }
 
+  mensajeAlertaCorrecto( titulo: string, texto: string) {
+    Swal.fire({
+      icon: 'success',
+      title: titulo,
+      text: texto,
+    });
+  }
+  mensajeAlertaError(titulo: string, texto: string) {
+    Swal.fire({
+      icon: 'error',
+      title: titulo,
+      text: texto,
+    });
+  }
   get mes() {
     return this.formGroup.get('mes');
   }

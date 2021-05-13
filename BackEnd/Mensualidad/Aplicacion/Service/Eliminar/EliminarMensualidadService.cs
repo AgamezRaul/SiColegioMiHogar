@@ -18,13 +18,13 @@ namespace BackEnd.Mensualidad.Aplicacion.Service.Eliminar
             Dominio.Mensualidad mensualidad = _unitOfWork.MensualidadServiceRepository.FindFirstOrDefault(t => t.Id == request.IdMensualidad);
             if (mensualidad == null)
             {
-                return new EliminarMensualidadResponse() { Message = $"Mensualidad no existe" };
+                return new EliminarMensualidadResponse($"Mensualidad no existe");
             }
             else
             {
                 _unitOfWork.MensualidadServiceRepository.Delete(mensualidad);
                 _unitOfWork.Commit();
-                return new EliminarMensualidadResponse() { Message = $"Mensualidad Eliminada Exitosamente" };
+                return new EliminarMensualidadResponse($"Mensualidad Eliminada Exitosamente") ;
             }
         }
     }

@@ -10,7 +10,7 @@ namespace BackEnd.Mensualidad.Aplicacion.Service.Crear
    public class CrearMensualidadService
     {
         readonly IUnitOfWork _unitOfWork;
-
+      
         public CrearMensualidadService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -18,33 +18,21 @@ namespace BackEnd.Mensualidad.Aplicacion.Service.Crear
         public CrearMensualidadResponse Ejecutar(CrearMensualidadRequest request)
         {
             var mensualidad = _unitOfWork.MensualidadServiceRepository.FindFirstOrDefault(t => t.Id == request.id || t.Mes==request.Mes && t.IdMatricula==request.IdMatricula);
-            if (mensualidad == null)
+            if (mensualidad != null)
             {
-                Dominio.Mensualidad newMensualidad = new Dominio.Mensualidad(request.Mes, request.DiaPago,request.FechaPago,request.ValorMensualidad,
-                    request.DescuentoMensualidad,request.Abono,request.Deuda,request.Estado,request.IdMatricula,request.TotalMensualidad);
-            
-                IReadOnlyList<string> errors = newMensualidad.CanCrear(newMensualidad);
-                if (errors.Any())
-                {
-                    string listaErrors = "Errores:";
-                    foreach (var item in errors)
-                    {
-                        listaErrors += item.ToString();
-                    }
-                    return new CrearMensualidadResponse() { Message = listaErrors };
-                }
-                else
-                {
-                    
-                    _unitOfWork.MensualidadServiceRepository.Add(newMensualidad);
-                    _unitOfWork.Commit();
-                    return new CrearMensualidadResponse() { Message = $"Mensualidad Creada Exitosamente" };
-                }
+                return new CrearMensualidadResponse($"Mensualidad ya existe");
             }
-            else
+            IReadOnlyList<string> errors = request.CanCrear(request);
+            if (errors.Any())
             {
-                return new CrearMensualidadResponse() { Message = $"Mensualidad ya existe" };
-            }
+                string ListaErrors = "Errores: " + string.Join(",", errors);
+                return new CrearMensualidadResponse(ListaErrors);
+            }        
+            Dominio.Mensualidad newMensualidad = new Dominio.Mensualidad(request.Mes, request.DiaPago,request.FechaPago,request.ValorMensualidad,
+            request.DescuentoMensualidad,request.Abono,request.Deuda,request.Estado,request.IdMatricula,request.TotalMensualidad);
+            _unitOfWork.MensualidadServiceRepository.Add(newMensualidad);
+            _unitOfWork.Commit();
+            return new CrearMensualidadResponse($"Mensualidad Creada Exitosamente");
         }
     }
 }

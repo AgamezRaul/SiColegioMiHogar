@@ -37,15 +37,34 @@ namespace SiColegioMiHogar.Controllers
             var result = (from c in _context.Set<Docente>()
                           select new
                           {
-                              Id = c.Id,
-                              NombreCompleto = c.NombreCompleto,
-                              NumTarjetaProf = c.NumTarjetaProf,
-                              Cedula= c.Cedula,
-                              Celular=c.Celular,
-                              Correo = c.Correo,
-                              Direccion=c.Direccion
+                              c.Id,
+                              c.NombreCompleto,
+                              c.NumTarjetaProf,
+                              c.Cedula,
+                              c.Celular,
+                              c.Correo,
+                              c.Direccion,
+                              c.Estado
                           }).ToList();
-            string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
+            return result;
+        }
+
+        [HttpGet("GetDocentesEstado")]
+        public Object GetDocentesEstado()
+        {
+            var result = (from c in _context.Set<Docente>()
+                          where c.Estado == "Sin Contrato"
+                          select new
+                          {
+                              c.Id,
+                              c.NombreCompleto,
+                              c.NumTarjetaProf,
+                              c.Cedula,
+                              c.Celular,
+                              c.Correo,
+                              c.Direccion,
+                              c.Estado
+                          }).ToList();
             return result;
         }
 
@@ -58,13 +77,13 @@ namespace SiColegioMiHogar.Controllers
                           select u.Correo).Contains(c.Correo) 
                           select new
                           {
-                              Id = c.Id,
-                              NombreCompleto = c.NombreCompleto,
-                              NumTarjetaProf = c.NumTarjetaProf,
-                              Cedula = c.Cedula,
-                              Celular = c.Celular,
-                              Correo = c.Correo,
-                              Direccion = c.Direccion
+                              c.Id,
+                              c.NombreCompleto,
+                              c.NumTarjetaProf,
+                              c.Cedula,
+                              c.Celular,
+                              c.Correo,
+                              c.Direccion
                           }).ToList();
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
             return result;

@@ -25,8 +25,9 @@ export class DocenteService {
   getDocenteUsuarios(): Observable<IDocente[]> {
     return this.http.get<IDocente[]>(this.apiURL + '/GetDocenteUsuarios');
   }
-
-
+  getDocentesEstado(): Observable<IDocente[]> {
+    return this.http.get<IDocente[]>(this.apiURL + '/GetDocentesEstado');
+  }
   createDocente(docente: IDocente): Observable<IDocente> {
     return this.http.post<IDocente>(this.apiURL, docente);
   }

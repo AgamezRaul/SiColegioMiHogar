@@ -20,3 +20,11 @@ export interface IContrato {
   sueldo: number,
   idDocente: number
 }
+
+export interface IContratos {
+  id: number,
+  nombreDocente: string,
+  sueldo: number,
+  fechaInicio: Date,
+  fechaFin: Date
+}

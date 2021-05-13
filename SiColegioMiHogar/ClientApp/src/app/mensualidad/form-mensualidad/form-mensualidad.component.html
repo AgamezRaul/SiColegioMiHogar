@@ -5,7 +5,7 @@
   <h1>Formulario de Mensualidad</h1>
   <form [formGroup]="formGroup" (ngSubmit)="save()">
     <div class="form-row">
-      <div class="form-group col-md-6">
+      <div class="form-group col-md-6" *ngIf="!modoEdicion">
         <label for="mes">Mes en el que se registra el pago</label>
         <input type="number" class="form-control" formControlName="mes" id="mes" placeholder="Ej: 05">
         <div class="alert-danger" *ngIf="mes.invalid && (mes.dirty || mes.touched)">
@@ -42,11 +42,13 @@
 
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="fechaPago">Fecha del pago</label>
-        <input type="date" formControlName="fechaPago" class="form-control" id="date">
+        <label for="fechaPago" style="display:block;">Fecha del pago</label>
+        <input [matDatepicker]="fechaPagoId" class=" form-control" formControlName="fechaPago" id="date" style="display:inline;width:300px;"placeholder="mm/dd/aaaa">
+        <mat-datepicker-toggle [for]="fechaPagoId"></mat-datepicker-toggle>
+        <mat-datepicker #fechaPagoId></mat-datepicker>
         <div class="alert-danger" *ngIf="fechaPago.invalid && (fechaPago.dirty || fechaPago.touched)">
           <div class="container-error-message" *ngIf="fechaPago.errors.required">
-            La fecha de Pago es requerida
+            La fecha es requeridad
           </div>
         </div>
       </div>
@@ -81,7 +83,7 @@
       </div>
     </div>
     <button type="submit" mat-raised-button color="primary" [disabled]="!formGroup.valid">
-     Salvar Mensualidad
+      Salvar Mensualidad
     </button>
   </form>
 </div>

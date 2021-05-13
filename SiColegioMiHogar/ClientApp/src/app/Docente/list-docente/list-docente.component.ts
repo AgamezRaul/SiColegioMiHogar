@@ -8,6 +8,7 @@ import { Location } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { AlertService } from '../../notifications/_services';
 import { IDocente } from '../docente.component';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-list-docente',
   templateUrl: './list-docente.component.html',
@@ -69,12 +70,18 @@ export class ListDocenteComponent implements OnInit, OnDestroy {
   Eliminar(idDocente: number) {
     this.docenteservice.deleteDocente(idDocente).
       subscribe(nit => this.onDeleteSuccess(),
-        error => this.alertService.error(error.error));
+        error => this.mensajeAlertaError('Error!', error.error.toString()));
   }
   onDeleteSuccess() {
     this.router.navigate(["/Docente"]);
     this.alertService.success("Eliminado exitoso");
   }
-  
+  mensajeAlertaError(titulo: string, texto: string) {
+    Swal.fire({
+      icon: 'error',
+      title: titulo,
+      text: texto,
+    });
+  }
 
 }

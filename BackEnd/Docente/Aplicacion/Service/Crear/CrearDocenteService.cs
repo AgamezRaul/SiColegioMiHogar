@@ -21,7 +21,7 @@ namespace BackEnd.Docente.Aplicacion.Service.Crear
             var docente = _unitOfWork.DocenteServiceRepository.FindFirstOrDefault(t => t.Id == request.id);
             if (docente == null)
             {
-                Dominio.Docente newDocente = new Dominio.Docente(request.NombreCompleto, request.NumTarjetaProf, request.Cedula, request.Celular, request.Correo, request.Direccion);
+                Dominio.Docente newDocente = new Dominio.Docente(request.NombreCompleto, request.NumTarjetaProf, request.Cedula, request.Celular, request.Correo, request.Direccion, request.Estado);
 
                 IReadOnlyList<string> errors = newDocente.CanCrear(newDocente);
                 if (errors.Any())

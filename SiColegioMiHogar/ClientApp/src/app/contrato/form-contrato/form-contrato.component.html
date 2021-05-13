@@ -1,1 +1,70 @@
-<p>form-contrato works!</p>
+<h1 *ngIf="modoEdicion">Actualizar Contrato</h1>
+<h1 *ngIf="!modoEdicion">Registrar Contrato</h1>
+
+<div class="container">
+  <h1>Formulario de Contrato docente</h1>
+  <form [formGroup]="formGroup" (ngSubmit)="save()">
+    <div class="form-group"
+         [ngClass]="{'has-error': ((fechaInicio.touched || fechaInicio.dirty) && fechaInicio.invalid)}">
+      <label class="control-label"
+             for="fechaInicio" style="display:block;">Fecha Inicio </label>
+      <input [matDatepicker]="fechaInicioId" class="form-control" id="fechaInicio" formControlName="fechaInicio" style="display:inline;width:800px;"placeholder="mm/dd/aaaa"/>
+      <mat-datepicker-toggle [for]="fechaInicioId"></mat-datepicker-toggle>
+      <mat-datepicker #fechaInicioId></mat-datepicker>
+      <div class="alert alert-danger" *ngIf="((fechaInicio.touched || fechaInicio.dirty )&& fechaInicio.invalid)">
+        <span *ngIf="fechaInicio.errors.required">
+          El campo fecha Inicio es requerido
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group"
+         [ngClass]="{'has-error': ((fechaFin.touched || fechaFin.dirty) && fechaFin.invalid)}">
+      <label class="control-label"
+             for="fechaFin" style="display:block;">Fecha Fin </label>
+      <input [matDatepicker]="fechaFinId" class=" form-control" formControlName="fechaFin" style="display:inline;width:800px;" id="fechaFin"placeholder="mm/dd/aaaa">
+      <mat-datepicker-toggle [for]="fechaFinId"></mat-datepicker-toggle>
+      <mat-datepicker #fechaFinId></mat-datepicker>
+      <div class="alert alert-danger" *ngIf="((fechaFin.touched || fechaFin.dirty )&& fechaFin.invalid)">
+        <span *ngIf="fechaFin.errors.required">
+          El campo Fecha Fin es requerido
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group"
+         [ngClass]="{'has-error': ((sueldo.touched || sueldo.dirty) && sueldo.invalid)}">
+      <label class="control-label"
+             for="sueldoId"> Sueldo </label>
+      <input class="form-control" id="sueldoId"
+             type="number" formControlName="sueldo" />
+      <div class="alert alert-danger" *ngIf="((sueldo.touched || sueldo.dirty )&& sueldo.invalid)">
+        <span *ngIf="sueldo.errors.required">
+          El campo Sueldo es requerido
+        </span>
+      </div>
+    </div>
+
+    <div class="form-row" *ngIf="!modoEdicion" >
+      <div class="form-group col-md-12">
+        <label for="idDocente">Docente</label>
+        <select formControlName="idDocente" ng-options="IDocente.nombreCompleto for IDocente in listaDicebtes" ng-model="IDocente" class="form-control" id="idDocente">
+          <option value="">Seleccione un docente</option>
+          <option [value]=dato.id *ngFor="let dato of listaDocentes">
+            {{dato.nombreCompleto }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <hr>
+    <div class="text-center">
+      <button type="submit" mat-raised-button color="primary" [disabled]="!formGroup.valid">
+        Salvar Contrato
+      </button>
+
+    </div>
+  </form>
+</div>
+
+

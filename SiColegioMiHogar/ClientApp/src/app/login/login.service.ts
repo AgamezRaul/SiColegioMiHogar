@@ -38,7 +38,7 @@ export class LoginService {
         map((user: UserResponse) => {
           this.saveLocalStorage(user);
           this.loggedIn.next(true);
-          this.role.next(user.tipoUsuario)
+          this.role.next(user.tipoUsuario);
           return user;
 
         }),

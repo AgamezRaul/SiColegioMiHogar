@@ -14,9 +14,9 @@ namespace BackEnd.Docente.Dominio
         public string Celular { get; set; }
         public string Correo { get; set; }
         public string Direccion { get; set; }
+        public string Estado { get; set; }
 
-
-        public Docente(string nombreCompleto, string numTarjetaProf, string cedula, string celular, string correo, string direccion)
+        public Docente(string nombreCompleto, string numTarjetaProf, string cedula, string celular, string correo, string direccion, string estado)
         {
             NombreCompleto = nombreCompleto;
             NumTarjetaProf = numTarjetaProf;
@@ -24,7 +24,9 @@ namespace BackEnd.Docente.Dominio
             Celular = celular;
             Correo = correo;
             Direccion = direccion;
+            Estado = estado;
         }
+
         public IReadOnlyList<string> CanCrear(Docente docente)
         {
             var errors = new List<string>();

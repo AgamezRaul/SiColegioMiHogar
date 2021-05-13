@@ -18,11 +18,10 @@ namespace BackEnd.Mensualidad.Aplicacion.Service.Actualizar
             Dominio.Mensualidad mensualidad = _unitOfWork.MensualidadServiceRepository.FindFirstOrDefault(t => t.Id == request.id);
             if (mensualidad == null)
             {
-                return new ActualizarMensualidadResponse() { Message = $"Mensualidad no existe" };
+                return new ActualizarMensualidadResponse($"Mensualidad no existe");
             }
             else
             {
-                //mensualidad.Mes = request.Mes;
                 mensualidad.DiaPago = request.DiaPago;
                 mensualidad.FechaPago = request.FechaPago;
                 mensualidad.ValorMensualidad = request.ValorMensualidad;
@@ -31,10 +30,9 @@ namespace BackEnd.Mensualidad.Aplicacion.Service.Actualizar
                 mensualidad.Deuda = request.Deuda;
                 mensualidad.Estado = request.Estado;
                 mensualidad.TotalMensualidad = request.TotalMensualidad;
-                
                 _unitOfWork.MensualidadServiceRepository.Edit(mensualidad);
                 _unitOfWork.Commit();
-                return new ActualizarMensualidadResponse() { Message = $"Mensualidad Actualizada Exitosamente" };
+                return new ActualizarMensualidadResponse($"Mensualidad Actualizada Exitosamente");
 
             }
         }
