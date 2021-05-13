@@ -53,6 +53,16 @@ namespace SiColegioMiHogar.Controllers
             return Ok(usuario);
         }
 
+      
+        [HttpGet("GetUsuario2/{id}")]
+        public async Task<IActionResult> GetUsuario2([FromRoute] int id)
+        {
+            Usuario usuario = await _context.Usuario.SingleOrDefaultAsync(t => t.Id == id);
+            if (usuario == null)
+                return NotFound();
+            return Ok(usuario);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateUsuario([FromBody] CrearUsuarioRequest usuario)
         {
@@ -80,6 +90,20 @@ namespace SiColegioMiHogar.Controllers
                 return CreatedAtAction("GetUsuario", new { correo = request.Correo }, request);
             }
             return Ok(rta);
+        }
+
+
+        [HttpPut("2/{id}")]
+        public async Task<IActionResult> PutUsuario2([FromRoute] int id, [FromBody] ActualizarUsuarioRequest usuario)
+        {
+            _actualizarService = new ActualizarUsuarioService(_unitOfWork);
+            var rta = _actualizarService.Ejecutar(usuario);
+            if (rta.isOk())
+            {
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetUsuario", new { correo = usuario.Correo }, usuario);
+            }
+            return BadRequest(rta.Message);
         }
 
         [HttpPut("{id}")]

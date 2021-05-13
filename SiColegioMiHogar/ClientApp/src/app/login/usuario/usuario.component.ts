@@ -30,3 +30,9 @@ export interface IUsuario {
   password: string,
   tipoUsuario: string
 }
+export interface IUsuario2 {
+  id: number,
+  correo: string,
+  password: string,
+  tipoUsuario: string
+}
