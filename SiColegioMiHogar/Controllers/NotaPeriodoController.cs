@@ -99,14 +99,14 @@ namespace SiColegioMiHogar.Controllers
             return BadRequest(rta.Message);
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutNotaPeriodo([FromRoute] int id, [FromBody] ActualizarNotaPeriodoRequest notaPeriodo)
+        public async Task<IActionResult> PutNotaPeriodo([FromRoute] int id, [FromBody] ActualizarNotaPeriodoRequest request)
         {
             _actualizarService = new ActualizarNotaPeriodoService(_unitOfWork);
-            var rta = _actualizarService.Ejecutar(notaPeriodo);
+            var rta = _actualizarService.Ejecutar(request);
             if (rta.isOk())
             {
                 await _context.SaveChangesAsync();
-                return CreatedAtAction("GetNotaPeriodo", new { id = notaPeriodo.id }, notaPeriodo);
+                return CreatedAtAction("GetNotaPeriodo", new { id = request.id }, request);
             }
             return BadRequest(rta.Message);
         }

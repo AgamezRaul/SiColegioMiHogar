@@ -183,6 +183,7 @@ import { FormUsuarioActualizarComponent } from './login/usuario/form-usuario-act
       { path: 'registrar-notaPeriodo', component: FormNotaPeriodoComponent, canActivate: [CheckNotloginGuard]  },
       { path: 'nota-periodo', component: NotaPeriodoComponent, canActivate: [CheckNotloginGuard] },
       { path: 'lista-nota-periodo', component: TableNotaPeriodoComponent, canActivate: [CheckNotloginGuard] },
+      { path: 'editar-nota-Periodo/:id', component: FormNotaPeriodoComponent, canActivate: [CheckNotloginGuard] },
 
       { path: 'contrato', component: ContratoComponent, canActivate: [CheckNotloginGuard] },
       { path: 'registrar-contrato', component: FormContratoComponent, canActivate: [CheckNotloginGuard] },
