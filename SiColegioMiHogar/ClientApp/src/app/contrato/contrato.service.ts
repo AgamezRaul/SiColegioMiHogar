@@ -24,5 +24,10 @@ export class ContratoService {
 
   getContrato(idDocente: number): Observable<IContrato> {
     return this.http.get<IContrato>(this.apiURL + '/' + idDocente);
-  }
+    }
+
+    deleteContrato(idDocente: number): Observable<IContrato> {
+        return this.http.delete<IContrato>(this.apiURL + '/' + idDocente);
+    }
+
 }

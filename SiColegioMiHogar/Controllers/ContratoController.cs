@@ -2,6 +2,7 @@
 using BackEnd.Base;
 using BackEnd.Contrato.Aplicacion.Request;
 using BackEnd.Contrato.Aplicacion.Service;
+using BackEnd.Contrato.Aplicacion.Service.Eliminar;
 using BackEnd.Contrato.Dominio;
 using BackEnd.Docente.Dominio;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,7 @@ namespace SiColegioMiHogar.Controllers
         private readonly MiHogarContext _context;
         private readonly CrearContratoService _crearService;
         private readonly ActualizarContratoService _actualizarService;
+        private EliminarContratoService _eliminarService;
         private UnitOfWork _unitOfWork;
         public ContratoController(MiHogarContext context)
         {
@@ -37,7 +39,7 @@ namespace SiColegioMiHogar.Controllers
                           on c.IdDocente equals d.Id
                           select new
                           {
-                              id=d.Id,
+                              id = d.Id,
                               NombreDocente = d.NombreCompleto,
                               c.Sueldo,
                               c.FechaInicio,
@@ -60,7 +62,7 @@ namespace SiColegioMiHogar.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutContrato([FromRoute] int id, [FromBody] ActualizarContratoRequest contrato)
         {
-            
+
             var rta = _actualizarService.EjecutarActualizarContrato(contrato);
             if (rta.IsOk())
             {
@@ -76,6 +78,22 @@ namespace SiColegioMiHogar.Controllers
             if (contrato == null)
                 return NotFound();
             return Ok(contrato);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteContrato([FromRoute] int id)
+        {
+            _eliminarService = new EliminarContratoService(_unitOfWork);
+            EliminarContratoRequest request = new EliminarContratoRequest();
+            request.IdDocente = id;
+
+            var rta = _eliminarService.Ejecutar(request);
+            if (rta.isOk())
+            {
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetContrato", new { id = request.IdDocente }, request);
+            }
+            return BadRequest(rta.Message);
         }
     }
 }

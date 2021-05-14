@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AlertService } from '../../notifications/_services';
 import { Location } from '@angular/common';
-import { IContratos } from '../contrato.component';
+import { IContrato, IContratos } from '../contrato.component';
 import { ContratoService } from '../contrato.service';
 import { error } from '@angular/compiler/src/util';
 import Swal from 'sweetalert2';
@@ -19,6 +19,8 @@ import Swal from 'sweetalert2';
 export class TableContratoComponent implements OnInit {
   suscription: Subscription;
   contratos!: IContratos[];
+
+  contrato!: IContrato[];
   displayedColumns: string[] = [
     'id',
     'nombreDocente',
@@ -40,9 +42,7 @@ export class TableContratoComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
   ngOnInit(): void {
-    this.contratoService.getContratos()
-      .subscribe(contratos => this.dataSource.data = contratos,
-        error => this.mensajeAlertaError('Error', error.error.toString()));
+    this.cargarData();
   }
   mensajeAlertaCorrecto(titulo: string, texto: string) {
     Swal.fire({
@@ -57,5 +57,19 @@ export class TableContratoComponent implements OnInit {
       title: titulo,
       text: texto,
     });
+  }
+
+  delete(contrato: IContrato) {
+    this.contratoService.deleteContrato(contrato.idDocente)
+      .subscribe(materia => this.cargarData()),
+      error => this.alertService.error(error);
+
+
+  }
+
+  cargarData() {
+    this.contratoService.getContratos()
+      .subscribe(contratos => this.dataSource.data = contratos,
+        error => this.mensajeAlertaError('Error', error.error.toString()));
   }
 }
