@@ -23,7 +23,7 @@ export class FormUsuarioActualizarComponent implements OnInit {
     idUsuario: number;
   formGroup = this.fb.group({
     correo: ['', [Validators.required]],
-    password: ['', [Validators.required]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
     tipoUsuario: ['Responsable', [Validators.required]]
   });
 

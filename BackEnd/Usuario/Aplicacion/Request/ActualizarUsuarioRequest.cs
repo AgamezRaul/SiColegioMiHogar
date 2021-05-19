@@ -13,6 +13,10 @@ namespace BackEnd.Usuario.Aplicacion.Request
     }
     public class ActualizarUsuarioResponse
     {
+        public ActualizarUsuarioResponse(string message)
+        {
+            Message = message;
+        }
         public string Message { get; set; }
         public bool isOk()
         {

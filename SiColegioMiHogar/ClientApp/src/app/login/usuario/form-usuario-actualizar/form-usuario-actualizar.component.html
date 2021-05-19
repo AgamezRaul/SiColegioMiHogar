@@ -17,9 +17,9 @@
                  formControlName="password"
                  matInput
                  placeholder="Password"
-                 required />
+                 required minLength="Minimo 6 carateres" />
         </mat-form-field>
-        <button type="submit" mat-raised-button color="primary">
+        <button type="submit" mat-raised-button color="primary" [disabled]="!formGroup.valid">
           Actualizar Usuario
         </button>
 

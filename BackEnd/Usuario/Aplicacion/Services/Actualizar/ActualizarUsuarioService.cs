@@ -18,17 +18,15 @@ namespace BackEnd.Usuario.Aplicacion.Services.Actualizar
             Dominio.Usuario usuario = _unitOfWork.UsuarioServiceRepository.FindFirstOrDefault(t => t.Id == request.id);
             if (usuario == null)
             {
-                return new ActualizarUsuarioResponse() { Message = $"Usuario no existe" };
+                return new ActualizarUsuarioResponse($"Usuario no existe") ;     
             }
             else
             {
-                usuario.Correo = request.Correo;
                 usuario.Password = usuario.Encriptar(request.Password);
-                usuario.TipoUsuario =request.TipoUsuario;
-     
+                usuario.TipoUsuario = request.TipoUsuario;
                 _unitOfWork.UsuarioServiceRepository.Edit(usuario);
                 _unitOfWork.Commit();
-                return new ActualizarUsuarioResponse() { Message = $"Usuario Actualizado Exitosamente" };
+                return new ActualizarUsuarioResponse($"Usuario Actualizado Exitosamente");
 
             }
         }
