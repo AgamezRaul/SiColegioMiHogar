@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LoginService } from '../login.service';
 
@@ -10,10 +11,13 @@ import { LoginService } from '../login.service';
 export class PerfilComponent implements OnInit {
   isLogged = false;
   isAdmin = null;
+  id: number;
+  usuario: any;
+
   //Cancelar subscripciones para ahorrar memoria 
   private subscription: Subscription;
 
-  constructor(private loginService: LoginService) {
+  constructor(private loginService: LoginService, private router: Router) {
     this.subscription = new Subscription();
   }
 
@@ -31,6 +35,11 @@ export class PerfilComponent implements OnInit {
   }
   public Logout() {
     this.loginService.logout();
+  }
+  Actualizar() {
+    this.usuario = JSON.parse(localStorage.getItem("user"));
+    this.id = this.usuario["id"];
+    this.router.navigate(["/editar-Usuario/" + this.id]);
   }
 
 }
