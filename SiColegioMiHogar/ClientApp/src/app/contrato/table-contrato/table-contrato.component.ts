@@ -4,12 +4,12 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AlertService } from '../../notifications/_services';
 import { Location } from '@angular/common';
 import { IContrato, IContratos } from '../contrato.component';
 import { ContratoService } from '../contrato.service';
 import { error } from '@angular/compiler/src/util';
 import Swal from 'sweetalert2';
+import { MensajesModule } from '../../mensajes/mensajes.module';
 
 @Component({
   selector: 'app-table-contrato',
@@ -32,7 +32,7 @@ export class TableContratoComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   constructor(private contratoService: ContratoService, private router: Router,
-    private activatedRoute: ActivatedRoute, private location: Location, private alertService: AlertService) { }
+    private activatedRoute: ActivatedRoute, private location: Location,  private mensaje: MensajesModule) { }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -44,25 +44,11 @@ export class TableContratoComponent implements OnInit {
   ngOnInit(): void {
     this.cargarData();
   }
-  mensajeAlertaCorrecto(titulo: string, texto: string) {
-    Swal.fire({
-      icon: 'success',
-      title: titulo,
-      text: texto,
-    });
-  }
-  mensajeAlertaError(titulo: string, texto: string) {
-    Swal.fire({
-      icon: 'error',
-      title: titulo,
-      text: texto,
-    });
-  }
 
   delete(contrato: IContrato) {
     this.contratoService.deleteContrato(contrato.idDocente)
       .subscribe(materia => this.cargarData()),
-      error => this.alertService.error(error);
+      error => this.mensaje.mensajeAlertaError('¡Error!', error.error.toString());
 
 
   }
@@ -70,6 +56,6 @@ export class TableContratoComponent implements OnInit {
   cargarData() {
     this.contratoService.getContratos()
       .subscribe(contratos => this.dataSource.data = contratos,
-        error => this.mensajeAlertaError('Error', error.error.toString()));
+        error => this.mensaje.mensajeAlertaError('¡Error!', error.error.toString()));
   }
 }

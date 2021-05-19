@@ -112,7 +112,6 @@ namespace SiColegioMiHogar.Controllers
             if (rta.isOk())
             {
                 await _context.SaveChangesAsync();
-                //preguntar por lo que esta denteo del new
                 return CreatedAtAction("GetMensualidad", new { Id = mensualidad.id }, mensualidad);
             }
             return BadRequest(rta.Message);

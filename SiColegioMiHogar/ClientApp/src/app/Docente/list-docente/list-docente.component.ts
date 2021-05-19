@@ -6,9 +6,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DocenteService } from '../docente.service';
 import { Location } from '@angular/common';
 import { Subscription } from 'rxjs';
-import { AlertService } from '../../notifications/_services';
 import { IDocente } from '../docente.component';
 import Swal from 'sweetalert2';
+import { MensajesModule } from '../../mensajes/mensajes.module';
 @Component({
   selector: 'app-list-docente',
   templateUrl: './list-docente.component.html',
@@ -31,7 +31,7 @@ export class ListDocenteComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   constructor(private docenteservice: DocenteService, private router: Router,
     private activatedRoute: ActivatedRoute, private location: Location,
-    private alertService: AlertService) { }
+    private mensaje: MensajesModule) { }
   id: number;
 
   applyFilter(event: Event) {
@@ -51,18 +51,18 @@ export class ListDocenteComponent implements OnInit, OnDestroy {
     })
     this.docenteservice.getDocentes()
       .subscribe(docentes => this.dataSource.data = docentes,
-        error => this.alertService.error(error));
+        error => this.mensaje.mensajeAlertaError('¡Error!', error.error.toString()));
 
     this.suscription = this.docenteservice.refresh$.subscribe(() => {
       this.docenteservice.getDocentes()
         .subscribe(docente => this.dataSource.data = this.docente,
-          error => this.alertService.error(error));
+          error => this.mensaje.mensajeAlertaError('¡Error!', error.error.toString()));
     });
   }
 
   ngOnDestroy(): void {
     this.suscription.unsubscribe();
-    console.log('observable cerrado');
+    console.log('Observable cerrado');
   }
   Registrar() {
     this.router.navigate(["/registrar-docente/"]);
@@ -70,18 +70,12 @@ export class ListDocenteComponent implements OnInit, OnDestroy {
   Eliminar(idDocente: number) {
     this.docenteservice.deleteDocente(idDocente).
       subscribe(nit => this.onDeleteSuccess(),
-        error => this.mensajeAlertaError('Error!', error.error.toString()));
+        error => this.mensaje.mensajeAlertaError('¡Error!', error.error.toString()));
   }
   onDeleteSuccess() {
     this.router.navigate(["/Docente"]);
-    this.alertService.success("Eliminado exitoso");
+    this.mensaje.mensajeAlertaCorrecto('¡Exitoso!', 'Eliminado exitoso');
   }
-  mensajeAlertaError(titulo: string, texto: string) {
-    Swal.fire({
-      icon: 'error',
-      title: titulo,
-      text: texto,
-    });
-  }
+  
 
 }

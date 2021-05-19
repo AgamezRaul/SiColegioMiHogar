@@ -23,6 +23,15 @@
           </div>
         </div>
       </div>
+      <div class="form-group col-md-6" *ngIf="modoEdicion">
+        <label for="mes">Mes en el que se registra el pago</label>
+        <input type="number" class="form-control" formControlName="mes" id="mes"  readonly>
+        <div class="alert-danger" *ngIf="mes.invalid && (mes.dirty || mes.touched)">
+          <div class="container-error-message" *ngIf="modoEdicion">
+            No puede actulizar el Mes
+          </div>
+        </div>
+      </div>
       <div class="form-group col-md-6">
         <label for="diaPago">Dia acordado para pago</label>
         <input type="number" class="form-control" formControlName="diaPago" id="diaPago" placeholder="Ej: 04">

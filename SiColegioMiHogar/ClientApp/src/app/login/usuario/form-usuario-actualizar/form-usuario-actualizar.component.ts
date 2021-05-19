@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UrlSegment } from '@angular/router';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertService } from '../../../notifications/_services';
 import { UsuarioService } from '../usuario.service';
 import { Location } from '@angular/common';
 import { error } from 'protractor';
 import { equal } from 'assert';
 import { IUsuario2 } from '../usuario.component';
+import { MensajesModule } from '../../../mensajes/mensajes.module';
 
 @Component({
   selector: 'app-form-usuario-actualizar',
@@ -18,7 +18,7 @@ export class FormUsuarioActualizarComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private usuarioService: UsuarioService,
     private router: Router, private activatedRoute: ActivatedRoute,
-    private location: Location, private alertService: AlertService) { }
+    private location: Location, private mensaje: MensajesModule) { }
     id: number;
     idUsuario: number;
   formGroup = this.fb.group({
@@ -46,7 +46,7 @@ export class FormUsuarioActualizarComponent implements OnInit {
       this.idUsuario = parseInt(params["idUsuario"]);
       this.usuarioService.getUsuario2(this.idUsuario)
         .subscribe(usuario => this.cargarFormulario(usuario),
-          error => this.alertService.error(error.error));
+          error => this.mensaje.mensajeAlertaError('¡Error!', error.error.toString()));
       //validar cuando es repetida para avisarle al usuario
     });
   }
@@ -56,14 +56,14 @@ export class FormUsuarioActualizarComponent implements OnInit {
     if (this.formGroup.valid) {
       this.usuarioService.updateUsuario2(usuario)
         .subscribe(docente => this.onSaveSuccess(),
-          error => this.alertService.error(error));
+          error => this.mensaje.mensajeAlertaError('¡Error!', error.error.toString()));
     } else {
-      console.log('No valido')
+      this.mensaje.mensajeAlertaError('¡Error!', 'No valido');
     }
   }
   onSaveSuccess() {
     this.router.navigate(["/lista-usuario"]);
-    this.alertService.success("Actualización exitosa");
+    this.mensaje.mensajeAlertaCorrecto('¡Exitoso!', 'Actualización exitosa');
   }
 
   get correo() {

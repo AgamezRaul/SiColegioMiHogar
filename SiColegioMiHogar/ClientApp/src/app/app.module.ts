@@ -75,6 +75,7 @@ import { FormUsuarioAdminComponent } from './login/usuario/form-usuario-admin/fo
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { FormUsuarioActualizarComponent } from './login/usuario/form-usuario-actualizar/form-usuario-actualizar.component';
+import { MensajesModule } from './mensajes/mensajes.module';
 
 @NgModule({
   declarations: [
@@ -191,7 +192,8 @@ import { FormUsuarioActualizarComponent } from './login/usuario/form-usuario-act
       { path: 'editar-Usuario/:idUsuario', component: FormUsuarioActualizarComponent, canActivate: [CheckNotloginGuard] },
       
 ], { relativeLinkResolution: 'legacy' }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MensajesModule
   ],
   //Aquí en providers se agregan todos los services de angular
   providers: [UsuarioService, PreMatriculaService, CdkColumnDef, MateriaService, AlertService, DocenteService, CursoService,
