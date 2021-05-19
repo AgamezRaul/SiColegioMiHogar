@@ -76,6 +76,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { FormUsuarioActualizarComponent } from './login/usuario/form-usuario-actualizar/form-usuario-actualizar.component';
 import { MensajesModule } from './mensajes/mensajes.module';
+import { FormUsuarioEstudianteComponent } from './login/usuario/form-usuario-estudiante/form-usuario-estudiante.component';
 
 @NgModule({
   declarations: [
@@ -128,7 +129,8 @@ import { MensajesModule } from './mensajes/mensajes.module';
     FormContratoComponent,
     TableContratoComponent,
     FormUsuarioAdminComponent,
-    FormUsuarioActualizarComponent
+    FormUsuarioActualizarComponent,
+    FormUsuarioEstudianteComponent
 
   ],
   imports: [
@@ -180,6 +182,7 @@ import { MensajesModule } from './mensajes/mensajes.module';
       { path: 'registrousuarioDocente', component: FormUsuarioDocenteComponent, canActivate: [CheckNotloginGuard] },
       { path: 'lista-usuario', component: UsuarioComponent, canActivate: [CheckNotloginGuard] },
       { path: 'registrousuarioAdmin', component: FormUsuarioAdminComponent, canActivate: [CheckNotloginGuard] },
+      { path: 'registrar-usuario-estudiante', component: FormUsuarioEstudianteComponent, canActivate: [CheckNotloginGuard] },
 
       { path: 'registrar-notaPeriodo', component: FormNotaPeriodoComponent, canActivate: [CheckNotloginGuard]  },
       { path: 'nota-periodo', component: NotaPeriodoComponent, canActivate: [CheckNotloginGuard] },
@@ -190,6 +193,8 @@ import { MensajesModule } from './mensajes/mensajes.module';
       { path: 'registrar-contrato', component: FormContratoComponent, canActivate: [CheckNotloginGuard] },
       { path: 'editar-contrato/:idDocente', component: FormContratoComponent, canActivate: [CheckNotloginGuard] },
       { path: 'editar-Usuario/:idUsuario', component: FormUsuarioActualizarComponent, canActivate: [CheckNotloginGuard] },
+      
+
       
 ], { relativeLinkResolution: 'legacy' }),
     BrowserAnimationsModule,
