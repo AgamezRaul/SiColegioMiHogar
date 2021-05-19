@@ -8,42 +8,36 @@ import { LoginService } from '../login/login.service';
   templateUrl: './sidenav-menu.component.html',
   styleUrls: ['./sidenav-menu.component.css']
 })
-export class SidenavMenuComponent implements OnInit {
+export class SidenavMenuComponent implements OnInit, OnDestroy {
   mobileQuery: MediaQueryList;
-  isRole: string;
-  roleAdmin: string;
+  role: string;
   isLogged = false;
-
-  private subscription: Subscription;
-
   fillerNavAdmin = [
     { name: "home", route: "", icon: "home" },
     { name: "Prematricula", route: "prematricula", icon: "" },
     { name: "Matriculas", route: "matricula", icon: "" },
     { name: "Cursos", route: "cursos", icon: "" },
     { name: "Periodos", route: "periodos", icon: "" },
-    { name: "Docente", route:"Docente",icon:""},
+    { name: "Docente", route: "Docente", icon: "" },
     { name: "Materias", route: "materias", icon: "" },
     { name: "Notas", route: "listar-notas", icon: "" },
     { name: "Usuarios", route: "lista-usuario", icon: "" },
     { name: "NotaPeriodo", route: "lista-nota-periodo", icon: "" },
     { name: "UsuarioAdmin", route: "registrousuarioAdmin", icon: "" },
     { name: "Contratos", route: "contrato", icon: "" },
-    
-  ]
-
+  ];
   fillerNavDocente = [
     { name: "home", route: "", icon: "home" },
     { name: "Notas", route: "listar-notas", icon: "" }
-  ]
-
-  fillerNavResponsable = [
+  ];
+  fillerNavEstudiante = [
     { name: "home", route: "", icon: "home" },
     { name: "Prematricula", route: "prematricula", icon: "" }
-    
-
-  ]
-
+  ];
+  fillerNavResponsable = [
+    { name: "home", route: "", icon: "home" }
+  ];
+  private subscription: Subscription;
   private _mobileQueryListener: () => void;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
@@ -54,19 +48,18 @@ export class SidenavMenuComponent implements OnInit {
     this.subscription = new Subscription();
   }
   ngOnInit() {
-    this.loginService.isLogged.subscribe((res) => (this.isLogged = res));
-    if (this.isLogged) {
-      this.loginService.isRole.subscribe((res) => { this.isRole = res; console.log("isRole: " + res); })
-      this.loginService.isAdmin$.subscribe(res => { this.roleAdmin = res; console.log("isAdmin: "+ res) })
-      if (this.isRole == "Admin") {
+    this.loginService.isLogged.subscribe(res => this.isLogged = res);    
+    if (this.isLogged == true) {
+      const usuario = JSON.parse(localStorage.getItem('user'));
+      this.role = usuario["tipoUsuario"];
+    } else {
+      this.loginService.isRole.subscribe(res => {this.role = res; console.log(res) });
+    }
+  }
 
-      } else if (this.isRole == "Docente") {
-
-      } else if (this.isRole == "Estudiante") {
-
-      }
-
-    }    
+  consultaRol() {
+    
+    
   }
 
   ngOnDestroy(): void {

@@ -9,6 +9,7 @@ import { BehaviorSubject, throwError } from "rxjs";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { Router } from "@angular/router";
 import { AlertService } from "../notifications/_services";
+import { SidenavMenuComponent } from "../sidenav-menu/sidenav-menu.component";
 
 const helper = new JwtHelperService();
 @Injectable({
@@ -18,7 +19,6 @@ export class LoginService {
   apiURL = this.baseUrl + "api/Login";
   private loggedIn = new BehaviorSubject<boolean>(false);
   private role = new BehaviorSubject<Roles>(null);
-
   get isLogged(): Observable<boolean> {
     return this.loggedIn.asObservable();
   }
@@ -26,7 +26,7 @@ export class LoginService {
     return this.role.asObservable();
   }
   get isRole(): Observable<string> {
-    return this.role.asObservable();
+    return this.role;
   }
   constructor(private htttp: HttpClient, private router: Router, private alertService: AlertService,
     @Inject('BASE_URL') private baseUrl: string) { this.checkToken(); }
@@ -54,7 +54,7 @@ export class LoginService {
     else {
       return 0;
     }
-  }
+  }z
 
   logout(): void {
     localStorage.removeItem('user');
