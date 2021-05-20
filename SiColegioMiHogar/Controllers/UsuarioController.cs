@@ -54,10 +54,11 @@ namespace SiColegioMiHogar.Controllers
         }
 
       
-        [HttpGet("GetUsuario2/{id}")]
-        public async Task<IActionResult> GetUsuario2([FromRoute] int id)
+        [HttpGet("GetUsuarioId/{id}")]
+        public async Task<IActionResult> GetUsuarioId([FromRoute] int id)
         {
             Usuario usuario = await _context.Usuario.SingleOrDefaultAsync(t => t.Id == id);
+            usuario.Password = usuario.Desencriptar(usuario.Password);
             if (usuario == null)
                 return NotFound();
             return Ok(usuario);
@@ -93,19 +94,7 @@ namespace SiColegioMiHogar.Controllers
         }
 
 
-        [HttpPut("2/{id}")]
-        public async Task<IActionResult> PutUsuario2([FromRoute] int id, [FromBody] ActualizarUsuarioRequest usuario)
-        {
-            _actualizarService = new ActualizarUsuarioService(_unitOfWork);
-            var rta = _actualizarService.Ejecutar(usuario);
-            if (rta.isOk())
-            {
-                await _context.SaveChangesAsync();
-                return CreatedAtAction("GetUsuario", new { correo = usuario.Correo }, usuario);
-            }
-            return BadRequest(rta.Message);
-        }
-
+       
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUsuario([FromRoute] int id, [FromBody] ActualizarUsuarioRequest usuario)
         {

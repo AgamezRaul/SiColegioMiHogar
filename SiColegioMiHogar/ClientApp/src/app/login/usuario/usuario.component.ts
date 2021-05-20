@@ -9,9 +9,7 @@ import { UsuarioService } from './usuario.service';
   styleUrls: ['./usuario.component.css']
 })
 export class UsuarioComponent implements OnInit {
-
   usuarios: IUsuario[];
-
   constructor(private fb: FormBuilder, private usuarioService: UsuarioService,
     private router: Router, private activatedRoute: ActivatedRoute) { }
 
@@ -22,17 +20,11 @@ export class UsuarioComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
-
 export interface IUsuario {
-  correo: string,
-  password: string,
-  tipoUsuario: string
-}
-export interface IUsuario2 {
   id: number,
   correo: string,
   password: string,
   tipoUsuario: string
 }
+

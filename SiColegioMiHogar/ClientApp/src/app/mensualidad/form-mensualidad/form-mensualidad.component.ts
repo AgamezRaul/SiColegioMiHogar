@@ -96,8 +96,8 @@ export class FormMensualidadComponent implements OnInit {
       console.table(mensualidad); //ver mensualidad por consola
       if (this.formGroup.valid) {
         this.mensualidadService.createMensualidad(mensualidad)
-          .subscribe(mensualidad => this.onSaveSuccess()),
-          error => this.mensaje.mensajeAlertaError('Error', error.error.toString());
+          .subscribe(mensualidad => this.onSaveSuccess(),
+          error => this.mensaje.mensajeAlertaError('Error', error.error.toString()));
       } else {
         this.mensaje.mensajeAlertaError('¡Error!','Registro no valido');
       }

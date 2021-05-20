@@ -16,7 +16,7 @@ export class PreMatriculaComponent implements OnInit {
   constructor(private fb: FormBuilder, private loginService: LoginService,
     private alertService: AlertService  ) { }
   ngOnInit() {
-    this.loginService.isRole.subscribe(role => this.role = role);
+    this.role = this.loginService.isRole;
   }
 }
 

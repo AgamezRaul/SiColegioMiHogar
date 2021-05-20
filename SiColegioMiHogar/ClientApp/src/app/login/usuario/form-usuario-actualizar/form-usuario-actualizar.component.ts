@@ -6,7 +6,7 @@ import { UsuarioService } from '../usuario.service';
 import { Location } from '@angular/common';
 import { error } from 'protractor';
 import { equal } from 'assert';
-import { IUsuario2 } from '../usuario.component';
+import { IUsuario } from '../usuario.component';
 import { MensajesModule } from '../../../mensajes/mensajes.module';
 
 @Component({
@@ -27,10 +27,10 @@ export class FormUsuarioActualizarComponent implements OnInit {
     tipoUsuario: ['Responsable', [Validators.required]]
   });
 
-  cargarFormulario(usuario: IUsuario2) {
+  cargarFormulario(usuario: IUsuario) {
     this.formGroup.patchValue({
       correo: usuario.correo,
-      password: '123456',
+      password: usuario.password,
       tipoUsuario: usuario.tipoUsuario
     });
   }
@@ -44,17 +44,16 @@ export class FormUsuarioActualizarComponent implements OnInit {
         return;
       }
       this.idUsuario = parseInt(params["idUsuario"]);
-      this.usuarioService.getUsuario2(this.idUsuario)
+      this.usuarioService.getUsuarioId(this.idUsuario)
         .subscribe(usuario => this.cargarFormulario(usuario),
           error => this.mensaje.mensajeAlertaError('¡Error!', error.error.toString()));
-      //validar cuando es repetida para avisarle al usuario
     });
   }
   save() {
-    let usuario: IUsuario2 = Object.assign({}, this.formGroup.value);
+    let usuario: IUsuario = Object.assign({}, this.formGroup.value);
     usuario.id = this.idUsuario;
     if (this.formGroup.valid) {
-      this.usuarioService.updateUsuario2(usuario)
+      this.usuarioService.updateUsuario(usuario)
         .subscribe(docente => this.onSaveSuccess(),
           error => this.mensaje.mensajeAlertaError('¡Error!', error.error.toString()));
     } else {
@@ -62,7 +61,7 @@ export class FormUsuarioActualizarComponent implements OnInit {
     }
   }
   onSaveSuccess() {
-    this.router.navigate(["/lista-usuario"]);
+    this.location.back();
     this.mensaje.mensajeAlertaCorrecto('¡Exitoso!', 'Actualización exitosa');
   }
 

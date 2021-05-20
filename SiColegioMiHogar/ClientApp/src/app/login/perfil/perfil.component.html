@@ -11,6 +11,10 @@
     <span>Iniciar Sesion</span>
   </button>
   <ng-template #viewLogout>
+    <button mat-menu-item (click)="Actualizar()">
+      <mat-icon>border_color</mat-icon>
+      <span>Actualizar</span>
+    </button>
     <button mat-menu-item (click)="Logout()">
       <mat-icon>exit_to_app</mat-icon>
       <span>Cerrar Sesion</span>
