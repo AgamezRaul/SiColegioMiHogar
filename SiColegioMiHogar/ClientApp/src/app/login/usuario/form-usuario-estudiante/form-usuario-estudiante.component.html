@@ -6,13 +6,13 @@
 
 
         <div class="form-group col-md-5">
-          <label for="correo">Docente</label>
+          <label for="correo">Estudiante</label>
           <select formControlName="correo" class="form-control" id="correo">
-            <option value="">Seleccione un Docente</option>
-            <option value="{{dato.correo}}" *ngFor="let dato of ListaDocentes">
-              {{dato.nombreCompleto}}
+            <option value="">Seleccione un Estudiante</option>
+            <option value="{{dato.correo}}" *ngFor="let dato of ListaEstudiantes">
+              {{dato.nomEstudiante}}
               {{','}}
-              {{dato.cedula}}
+              {{dato.ideEstudiante}}
             </option>
           </select>
           <div class="alert-danger" *ngIf="correo.invalid && (correo.dirty || correo.touched)">

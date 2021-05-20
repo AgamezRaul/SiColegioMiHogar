@@ -14,6 +14,14 @@ export class EstudianteComponent implements OnInit {
 
 }
 
+export interface IEstudiante2 {
+  id: number,
+  ideEstudiante: string,
+  nomEstudiante: string,
+  correo: string,
+  idUsuario: number
+}
+
 export interface IEstudiante {
   id: number,
   ideEstudiante: string,

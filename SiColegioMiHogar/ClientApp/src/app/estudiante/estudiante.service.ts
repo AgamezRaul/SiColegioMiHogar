@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IEstudiante } from './estudiante.component';
+import { IEstudiante, IEstudiante2 } from './estudiante.component';
 
 @Injectable({
   providedIn: 'root'
@@ -12,5 +12,8 @@ export class EstudianteService {
 
   getEstudiantes(): Observable<IEstudiante[]> {
     return this.http.get<IEstudiante[]>(this.apiURL);
+  }
+  getEstudiantesUsuarios(): Observable<IEstudiante2[]> {
+    return this.http.get<IEstudiante2[]>(this.apiURL + '/GetEstudianteUsuarios');
   }
 }
