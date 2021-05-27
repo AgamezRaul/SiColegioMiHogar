@@ -23,11 +23,7 @@ namespace BackEnd.Nota.Aplicacion.Services
             var Buscar = _unitOfWork.NotaServiceRepository.FindFirstOrDefault(P => P.Id == request.Id);
             if (Buscar != null)
             {
-                Buscar.IdEstudiante = request.IdEstudiante;
-                Buscar.IdMateria = request.IdMateria;
-                Buscar.IdPeriodo = request.IdPeriodo;
                 Buscar.FechaNota = request.FechaNota;
-                Buscar.Descripcion = request.Descripcion;
                 Buscar.NotaAlumno = request.NotaAlumno;
 
                 _unitOfWork.NotaServiceRepository.Edit(Buscar);

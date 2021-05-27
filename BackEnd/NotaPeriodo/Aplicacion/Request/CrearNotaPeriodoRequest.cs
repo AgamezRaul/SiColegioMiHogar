@@ -6,11 +6,11 @@ namespace BackEnd.NotaPeriodo.Aplicacion.Request
 {
     public class CrearNotaPeriodoRequest
     {
-        public int id { get; set; }
-        public double nota { get; set; }
-        public string observacion { get; set; }
-        public int idPeriodo { get; set; }
-        public int idMateria { get; set; }
+        public int Id { get; set; }
+        public double Nota { get; set; }
+        public string Observacion { get; set; }
+        public int IdPeriodo { get; set; }
+        public int IdMateria { get; set; }
     }
     public class CrearNotaPeriodoResponse
     {

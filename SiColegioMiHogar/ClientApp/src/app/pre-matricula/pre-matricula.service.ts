@@ -25,7 +25,10 @@ export class PreMatriculaService {
   }
 
   createPrematricula(prematricula: IPrematricula): Observable<IPrematricula> {
-    return this.http.post<IPrematricula>(this.apiURL, prematricula);
+    return this.http.post<IPrematricula>(this.apiURL, prematricula).
+      pipe(tap(() => {
+        this._refresh$.next();
+      }));
   }
 
   updatePreMatricula(prematricula: IPrematricula): Observable<IPrematricula> {

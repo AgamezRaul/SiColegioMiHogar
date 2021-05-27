@@ -37,10 +37,10 @@ namespace TestBackEnd.AplicacionTest.CrearTest
             yield return new TestCaseData(
                 new CrearNotaPeriodoRequest
                 {
-                    nota = 5.0,
-                    observacion = "Muy buen estudiante",
-                    idPeriodo = 1,
-                    idMateria = 1
+                    Nota = 5.0,
+                    Observacion = "Muy buen estudiante",
+                    IdPeriodo = 1,
+                    IdMateria = 1
                 },
                 "Nota Periodo Creado Exitosamente"
                 ).SetName("Crear Nota Periodo Correctamente");

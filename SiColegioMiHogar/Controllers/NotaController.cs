@@ -42,7 +42,7 @@ namespace SiColegioMiHogar.Controllers
             if (rta.isOk())
             {
                 await _context.SaveChangesAsync();
-                return CreatedAtAction("GetUsuario", new { Descripcion = nota.Descripcion }, nota);
+                return CreatedAtAction("GetNota", new { nota.Id }, nota);
             }
             return BadRequest(rta.Message);
         }
@@ -56,10 +56,10 @@ namespace SiColegioMiHogar.Controllers
         }
 
         [HttpDelete("[action]")]
-        public ActionResult<EliminarResponse> DeleteNota(int id)
+        public ActionResult<EliminarNotaResponse> DeleteNota(int id)
         {
             EliminarNotaService service = new EliminarNotaService(_unitOfWork);
-            EliminarResponse response = service.DeleteNota(id);
+            EliminarNotaResponse response = service.EjecutarEliminarNota(id);
             return Ok(response);
         }
 

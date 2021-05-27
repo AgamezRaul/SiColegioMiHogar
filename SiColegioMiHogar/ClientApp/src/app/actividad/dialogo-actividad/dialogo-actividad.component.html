@@ -1,0 +1,51 @@
+<div class="container">
+  <mat-dialog-content>
+    <form class="form-horizontal" novalidate autocomplete="off"
+          (ngSubmit)="save()" [formGroup]="formGroup">
+      <fieldset>
+        <div class="row">
+          <div class="form-group"
+               [ngClass]="{'has-error': ((descripcion.touched || descripcion.dirty) && descripcion.invalid)}">
+            <label class="col-md-auto control-label" for="descripcionId">Descripcion</label>
+            <div class="col-md-auto">
+              <input class="form-control" id="descripcionId" type="text" formControlName="descripcion" />
+              <div class="alert alert-danger" *ngIf="((descripcion.touched || descripcion.dirty )&& descripcion.invalid)">
+                <span *ngIf="descripcion.errors.required">
+                  El campo Descripción es requerido
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group"
+               [ngClass]="{'has-error': ((porcentaje.touched || porcentaje.dirty) && porcentaje.invalid)}">
+            <label class="col-md-auto control-label" for="porcentajeId">Porcentaje actividad</label>
+            <div class="col-md-auto">
+              <input class="form-control" id="porcentajeId" type="number" formControlName="porcentaje" />
+              <div class="alert alert-danger" *ngIf="((porcentaje.touched || porcentaje.dirty )&& porcentaje.invalid)">
+                <span *ngIf="porcentaje.errors.required">
+                  El campo Porcentaje es requerido
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-auto col-md-offset-2">
+            <span>
+              <button class="btn btn-success"
+                      type="submit"
+                      [disabled]="!formGroup.valid">
+                Guardar Actividad
+              </button>
+            </span>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cerrar</button>
+  </mat-dialog-actions>
+</div>

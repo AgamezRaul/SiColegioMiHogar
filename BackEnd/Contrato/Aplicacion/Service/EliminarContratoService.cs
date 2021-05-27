@@ -1,8 +1,5 @@
 ﻿using BackEnd.Base;
 using BackEnd.Contrato.Aplicacion.Request;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BackEnd.Contrato.Aplicacion.Service.Eliminar
 {
@@ -20,12 +17,9 @@ namespace BackEnd.Contrato.Aplicacion.Service.Eliminar
             {
                 return new EliminarContratoResponse() { Message = $"El contrato no existe" };
             }
-            else
-            {
-                _unitOfWork.ContratoServiceRepository.Delete(contrato);
-                _unitOfWork.Commit();
-                return new EliminarContratoResponse() { Message = $"Contrato eliminado exitosamente" };
-            }
+            _unitOfWork.ContratoServiceRepository.Delete(contrato);
+            _unitOfWork.Commit();
+            return new EliminarContratoResponse() { Message = $"Contrato eliminado exitosamente" };
         }
     }
 }

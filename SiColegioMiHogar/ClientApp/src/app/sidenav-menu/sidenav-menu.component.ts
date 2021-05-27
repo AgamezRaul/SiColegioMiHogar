@@ -28,7 +28,8 @@ export class SidenavMenuComponent implements OnInit, OnDestroy {
   ];
   fillerNavDocente = [
     { name: "home", route: "", icon: "home" },
-    { name: "Notas", route: "listar-notas", icon: "" }
+    { name: "Notas", route: "listar-notas", icon: "" },
+    { name: "Materias", route: "Docente", icon: "" },
   ];
   fillerNavEstudiante = [
     { name: "home", route: "", icon: "home" },
@@ -53,7 +54,7 @@ export class SidenavMenuComponent implements OnInit, OnDestroy {
       const usuario = JSON.parse(localStorage.getItem('user'));
       this.role = usuario["tipoUsuario"];
     } else {
-      this.loginService.isRole.subscribe(res => {this.role = res; console.log(res) });
+      this.loginService.isRole.subscribe(res => this.role = res);
     }
   }
 

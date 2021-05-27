@@ -8,40 +8,30 @@ namespace BackEnd.Nota.Dominio.Entidades
 {
     public class Nota : Entity<int>
     {
-        public string Descripcion { get; set; }
         public double NotaAlumno { get; set; }
         public DateTime FechaNota { get; set; }
+        public int IdActividad { get; set; }
         public int IdEstudiante { get; set; }
-        public int IdMateria { get; set; }
-        public int IdPeriodo { get; set; }
-        
 
-        public Nota(string Descripcion, DateTime fechaNota, double NotaAlumno, int IdEstudiante, int IdMateria, int IdPeriodo)
+        public Nota(double notaAlumno, DateTime fechaNota, int idActividad, int idEstudiante)
         {
-            this.Descripcion = Descripcion;
-            this.FechaNota = fechaNota;
-            this.IdEstudiante = IdEstudiante;
-            this.IdMateria = IdMateria;
-            this.NotaAlumno = NotaAlumno;
-            this.IdPeriodo = IdPeriodo;
+            NotaAlumno = notaAlumno;
+            FechaNota = fechaNota;
+            IdActividad = idActividad;
+            IdEstudiante = idEstudiante;
         }
 
         public IReadOnlyList<string> CanCrear(Nota nota)
         {
             var errors = new List<string>();
-
-            if (string.IsNullOrEmpty(nota.Descripcion))
-                errors.Add("Campo Descripcion  vacio");
-            if (nota.IdEstudiante == 0)
-                errors.Add("Campo IdEstudiante  vacio");
             if (string.IsNullOrEmpty(nota.FechaNota.ToString()))
-                errors.Add("Campo Fecha de Pago vacio");
-            if (nota.IdMateria == 0)
-                errors.Add("Campo  IdMateria vacio");
-            if (nota.IdPeriodo == 0)
-                errors.Add("Campo IdPeriodo vacio");
+                errors.Add("Campo Fecha Nota vacio");
             if (nota.NotaAlumno == 0)
-                errors.Add("Campo Nota del Alumno vacio");
+                errors.Add("Campo Nota alumno vacio");
+            if (nota.IdActividad == 0)
+                errors.Add("Campo Id Actividad vacio");
+            if (nota.IdEstudiante == 0)
+                errors.Add("Campo Id Actividad vacio");
             return errors;
         }
     }

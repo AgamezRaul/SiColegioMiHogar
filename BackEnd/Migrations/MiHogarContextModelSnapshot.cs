@@ -19,6 +19,30 @@ namespace BackEnd.Migrations
                 .HasAnnotation("ProductVersion", "5.0.5")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("BackEnd.Actividad.Actividad", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Descripcion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("IdMateria")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdPeriodo")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Porcentaje")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Actividad");
+                });
+
             modelBuilder.Entity("BackEnd.Contrato.Dominio.Contrato", b =>
                 {
                     b.Property<int>("Id")
@@ -245,19 +269,13 @@ namespace BackEnd.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Descripcion")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("FechaNota")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("IdActividad")
+                        .HasColumnType("int");
+
                     b.Property<int>("IdEstudiante")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdMateria")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdPeriodo")
                         .HasColumnType("int");
 
                     b.Property<double>("NotaAlumno")
@@ -314,6 +332,40 @@ namespace BackEnd.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Periodo");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            FechaFin = new DateTime(2021, 5, 31, 0, 0, 0, 0, DateTimeKind.Local),
+                            FechaInicio = new DateTime(2021, 5, 21, 0, 0, 0, 0, DateTimeKind.Local),
+                            NombrePeriodo = "Primer Periodo",
+                            NumeroPeriodo = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            FechaFin = new DateTime(2021, 6, 11, 0, 0, 0, 0, DateTimeKind.Local),
+                            FechaInicio = new DateTime(2021, 6, 1, 0, 0, 0, 0, DateTimeKind.Local),
+                            NombrePeriodo = "Segundo Periodo",
+                            NumeroPeriodo = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            FechaFin = new DateTime(2021, 6, 22, 0, 0, 0, 0, DateTimeKind.Local),
+                            FechaInicio = new DateTime(2021, 6, 12, 0, 0, 0, 0, DateTimeKind.Local),
+                            NombrePeriodo = "Tercer Periodo",
+                            NumeroPeriodo = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            FechaFin = new DateTime(2021, 7, 3, 0, 0, 0, 0, DateTimeKind.Local),
+                            FechaInicio = new DateTime(2021, 6, 23, 0, 0, 0, 0, DateTimeKind.Local),
+                            NombrePeriodo = "Cuarto Periodo",
+                            NumeroPeriodo = 4
+                        });
                 });
 
             modelBuilder.Entity("BackEnd.PreMatricula.Dominio.PreMatricula", b =>

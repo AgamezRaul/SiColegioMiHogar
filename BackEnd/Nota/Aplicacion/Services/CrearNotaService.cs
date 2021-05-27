@@ -1,9 +1,7 @@
 ﻿using BackEnd.Base;
 using BackEnd.Nota.Aplicacion.Request;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace BackEnd.Nota.Aplicacion.Services
 {
@@ -17,32 +15,21 @@ namespace BackEnd.Nota.Aplicacion.Services
         }
         public CrearNotaResponse Ejecutar(CrearNotaRequest request)
         {
-            var nota  = _unitOfWork.NotaServiceRepository.FindFirstOrDefault(t => t.IdMateria == request.IdMateria && t.IdEstudiante == request.IdEstudiante && t.IdPeriodo == request.IdPeriodo);
-            if (nota == null)
+            var nota = _unitOfWork.NotaServiceRepository.FindFirstOrDefault(t => t.IdActividad == request.IdActividad);
+            if (nota != null)
             {
-                Dominio.Entidades.Nota newNota = new Dominio.Entidades.Nota(request.Descripcion, request.FechaNota, request.NotaAlumno, request.IdEstudiante, request.IdMateria, request.IdPeriodo);
-
-                IReadOnlyList<string> errors = newNota.CanCrear(newNota);
-                if (errors.Any())
-                {
-                    string listaErrors = "Errores:";
-                    foreach (var item in errors)
-                    {
-                        listaErrors += item.ToString();
-                    }
-                    return new CrearNotaResponse() { Message = listaErrors };
-                }
-                else
-                {
-                    _unitOfWork.NotaServiceRepository.Add(newNota);
-                    _unitOfWork.Commit();
-                    return new CrearNotaResponse() { Message = $"Nota Registrada Exitosamente" };
-                }
+                return new CrearNotaResponse($"Nota ya registrada");
             }
-            else
+            Dominio.Entidades.Nota newNota = new Dominio.Entidades.Nota(request.NotaAlumno, request.FechaNota, request.IdActividad, request.IdEstudiante);
+            IReadOnlyList<string> errors = newNota.CanCrear(newNota);
+            if (errors.Any())
             {
-                return new CrearNotaResponse() { Message = $"Nota ya registrada" };
+                string ListaErrors = "Errores: " + string.Join(",", errors);
+                return new CrearNotaResponse(ListaErrors);
             }
+            _unitOfWork.NotaServiceRepository.Add(newNota);
+            _unitOfWork.Commit();
+            return new CrearNotaResponse($"Nota Registrada Exitosamente");
         }
     }
 }

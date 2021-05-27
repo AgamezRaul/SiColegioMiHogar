@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -73,9 +73,12 @@ import { FormContratoComponent } from './contrato/form-contrato/form-contrato.co
 import { TableContratoComponent } from './contrato/table-contrato/table-contrato.component';
 import { FormUsuarioAdminComponent } from './login/usuario/form-usuario-admin/form-usuario-admin.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { FormUsuarioActualizarComponent } from './login/usuario/form-usuario-actualizar/form-usuario-actualizar.component';
 import { MensajesModule } from './mensajes/mensajes.module';
+import { ActividadComponent } from './actividad/actividad.component';
+import { TableActividadComponent } from './actividad/table-actividad/table-actividad.component';
+import { MateriaDocenteComponent } from './docente/materia-docente/materia-docente.component';
+import { DialogoActividadComponent } from './actividad/dialogo-actividad/dialogo-actividad.component';
 
 @NgModule({
   declarations: [
@@ -128,7 +131,11 @@ import { MensajesModule } from './mensajes/mensajes.module';
     FormContratoComponent,
     TableContratoComponent,
     FormUsuarioAdminComponent,
-    FormUsuarioActualizarComponent
+    FormUsuarioActualizarComponent,
+    ActividadComponent,
+    TableActividadComponent,
+    MateriaDocenteComponent,
+    DialogoActividadComponent
 
   ],
   imports: [
@@ -190,6 +197,8 @@ import { MensajesModule } from './mensajes/mensajes.module';
       { path: 'registrar-contrato', component: FormContratoComponent, canActivate: [CheckNotloginGuard] },
       { path: 'editar-contrato/:idDocente', component: FormContratoComponent, canActivate: [CheckNotloginGuard] },
       { path: 'editar-Usuario/:idUsuario', component: FormUsuarioActualizarComponent, canActivate: [CheckNotloginGuard] },
+
+      { path: 'actividad/:idPeriodo/:idMateria', component: ActividadComponent, canActivate: [CheckNotloginGuard] },
       
 ], { relativeLinkResolution: 'legacy' }),
     BrowserAnimationsModule,
@@ -198,7 +207,9 @@ import { MensajesModule } from './mensajes/mensajes.module';
   //Aquí en providers se agregan todos los services de angular
   providers: [UsuarioService, PreMatriculaService, CdkColumnDef, MateriaService, AlertService, DocenteService, CursoService,
     MensualidadService, MatriculaService, NotaService, PeriodoService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogoActividadComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
 

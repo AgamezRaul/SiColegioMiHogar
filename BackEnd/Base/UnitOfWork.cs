@@ -28,6 +28,7 @@ using BackEnd.NotaPeriodo.Dominio.Repositories;
 using BackEnd.NotaPeriodo.Infra;
 using BackEnd.Contrato.Dominio;
 using BackEnd.Contrato.Infra;
+using BackEnd.Actividad;
 
 namespace BackEnd.Base
 {
@@ -149,6 +150,14 @@ namespace BackEnd.Base
             get
             {
                 return _contratoServiceRepository ?? (_contratoServiceRepository = new ContratoServiceRepository(_dbContext));
+            }
+        }
+        private IActividadServiceRepository _actividadServiceRepository;
+        public IActividadServiceRepository ActividadServiceRepository
+        {
+            get
+            {
+                return _actividadServiceRepository ?? (_actividadServiceRepository = new ActividadServiceRepository(_dbContext));
             }
         }
         public int Commit()

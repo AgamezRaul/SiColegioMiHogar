@@ -17,10 +17,10 @@ namespace BackEnd.NotaPeriodo.Aplicacion.Service.Crear
         }
         public CrearNotaPeriodoResponse Ejecutar(CrearNotaPeriodoRequest request)
         {
-            var notaPeriodo = _unitOfWork.NotaPeriodoServiceRepository.FindFirstOrDefault(t => t.Id == request.id);
+            var notaPeriodo = _unitOfWork.NotaPeriodoServiceRepository.FindFirstOrDefault(t => t.Id == request.Id);
             if (notaPeriodo == null)
             {
-                Dominio.NotaPeriodo newNotaPeriodo = new Dominio.NotaPeriodo(request.nota, request.observacion, request.idPeriodo, request.idMateria);
+                Dominio.NotaPeriodo newNotaPeriodo = new Dominio.NotaPeriodo(request.Nota, request.Observacion, request.IdPeriodo, request.IdMateria);
 
                 IReadOnlyList<string> errors = newNotaPeriodo.CanCrear(newNotaPeriodo);
                 if (errors.Any())

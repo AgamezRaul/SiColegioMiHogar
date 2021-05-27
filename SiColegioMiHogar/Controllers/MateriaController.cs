@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
+using BackEnd.Docente.Dominio;
 
 namespace SiColegioMiHogar.Controllers
 {
@@ -24,7 +26,7 @@ namespace SiColegioMiHogar.Controllers
 
         public MateriaController(MiHogarContext context)
         {
-            this._context = context;
+            _context = context;
             _unitOfWork = new UnitOfWork(_context);
         }
 
@@ -41,6 +43,23 @@ namespace SiColegioMiHogar.Controllers
             if (materias == null)
                 return NotFound();
             return Ok(materias);
+        }
+
+        [HttpGet("materiaDocente/{correo}")]
+        public object GetMateriaDocente([FromRoute] string correo)
+        {
+            var result = (from m in _context.Set<Materias>()
+                          join d in _context.Set<Docente>()
+                          on m.IdDocente equals d.Id
+                          where d.Correo == correo
+                          select new
+                          {
+                              m.Id,
+                              m.NombreMateria,
+                              m.IdCurso,
+                              m.IdDocente
+                          }).ToList();
+            return result;
         }
 
         [HttpPost]

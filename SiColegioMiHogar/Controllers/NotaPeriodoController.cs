@@ -94,7 +94,7 @@ namespace SiColegioMiHogar.Controllers
             {
                 await _context.SaveChangesAsync();
                 //busaca en la base de datos para guardar
-                return CreatedAtAction("GetNotaPeriodo", new { id = notaPeriodo.id }, notaPeriodo);
+                return CreatedAtAction("GetNotaPeriodo", new { notaPeriodo.Id }, notaPeriodo);
             }
             return BadRequest(rta.Message);
         }
@@ -106,7 +106,7 @@ namespace SiColegioMiHogar.Controllers
             if (rta.isOk())
             {
                 await _context.SaveChangesAsync();
-                return CreatedAtAction("GetNotaPeriodo", new { id = request.id }, request);
+                return CreatedAtAction("GetNotaPeriodo", new { request.id }, request);
             }
             return BadRequest(rta.Message);
         }
@@ -121,7 +121,7 @@ namespace SiColegioMiHogar.Controllers
             if (rta.isOk())
             {
                 await _context.SaveChangesAsync();
-                return CreatedAtAction("GetNotaPeriodo", new { id = request.IdNotaPeriodo }, request);
+                return CreatedAtAction("GetNotaPeriodo", new { request.IdNotaPeriodo }, request);
 
             }
             return BadRequest(rta.Message);

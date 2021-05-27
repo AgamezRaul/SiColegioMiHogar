@@ -1,2 +1,11 @@
-<h1>Docentes</h1>
-<app-list-docente></app-list-docente>
+<div *ngIf="role=='Admin'">
+  <h1>Docentes</h1>
+  <app-list-docente></app-list-docente>
+</div>
+<div *ngIf="role=='Docente'">
+  <h1>Materias que dicto</h1>
+  <app-materia-docente></app-materia-docente>
+</div>
+
+
+

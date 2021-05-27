@@ -19,6 +19,10 @@ export class MateriaService {
     return this.http.get<IMateria>(this.apiURL + '/' + id);
   }
 
+  GetMateriaDocente(correo: string): Observable<IMateria[]> {
+    return this.http.get<IMateria[]>(this.apiURL + '/materiaDocente/' + correo);
+  }
+
   createMateria(materia: IMateria): Observable<IMateria> {
     return this.http.post<IMateria>(this.apiURL, materia);
   }
