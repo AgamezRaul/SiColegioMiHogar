@@ -75,6 +75,7 @@ import { FormUsuarioAdminComponent } from './login/usuario/form-usuario-admin/fo
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormUsuarioActualizarComponent } from './login/usuario/form-usuario-actualizar/form-usuario-actualizar.component';
 import { MensajesModule } from './mensajes/mensajes.module';
+import { FormUsuarioEstudianteComponent } from './login/usuario/form-usuario-estudiante/form-usuario-estudiante.component';
 import { ActividadComponent } from './actividad/actividad.component';
 import { TableActividadComponent } from './actividad/table-actividad/table-actividad.component';
 import { MateriaDocenteComponent } from './docente/materia-docente/materia-docente.component';
@@ -132,6 +133,8 @@ import { DialogoActividadComponent } from './actividad/dialogo-actividad/dialogo
     TableContratoComponent,
     FormUsuarioAdminComponent,
     FormUsuarioActualizarComponent,
+    FormUsuarioEstudianteComponent
+    FormUsuarioActualizarComponent,
     ActividadComponent,
     TableActividadComponent,
     MateriaDocenteComponent,
@@ -187,6 +190,7 @@ import { DialogoActividadComponent } from './actividad/dialogo-actividad/dialogo
       { path: 'registrousuarioDocente', component: FormUsuarioDocenteComponent, canActivate: [CheckNotloginGuard] },
       { path: 'lista-usuario', component: UsuarioComponent, canActivate: [CheckNotloginGuard] },
       { path: 'registrousuarioAdmin', component: FormUsuarioAdminComponent, canActivate: [CheckNotloginGuard] },
+      { path: 'registrar-usuario-estudiante', component: FormUsuarioEstudianteComponent, canActivate: [CheckNotloginGuard] },
 
       { path: 'registrar-notaPeriodo', component: FormNotaPeriodoComponent, canActivate: [CheckNotloginGuard]  },
       { path: 'nota-periodo', component: NotaPeriodoComponent, canActivate: [CheckNotloginGuard] },
@@ -197,6 +201,9 @@ import { DialogoActividadComponent } from './actividad/dialogo-actividad/dialogo
       { path: 'registrar-contrato', component: FormContratoComponent, canActivate: [CheckNotloginGuard] },
       { path: 'editar-contrato/:idDocente', component: FormContratoComponent, canActivate: [CheckNotloginGuard] },
       { path: 'editar-Usuario/:idUsuario', component: FormUsuarioActualizarComponent, canActivate: [CheckNotloginGuard] },
+      
+
+      
 
       { path: 'actividad/:idPeriodo/:idMateria', component: ActividadComponent, canActivate: [CheckNotloginGuard] },
       
