@@ -14,6 +14,7 @@ export class SidenavMenuComponent implements OnInit, OnDestroy {
   isLogged = false;
   fillerNavAdmin = [
     { name: "home", route: "", icon: "home" },
+    { name: "actividades", route: "actividades"},
     { name: "Prematricula", route: "prematricula", icon: "" },
     { name: "Matriculas", route: "matricula", icon: "" },
     { name: "Cursos", route: "cursos", icon: "" },

@@ -8,6 +8,9 @@ import { MensajesModule } from '../../mensajes/mensajes.module';
 import { IActividad } from '../actividad.component';
 import { ActividadService } from '../actividad.service';
 import { DialogoActividadComponent } from '../dialogo-actividad/dialogo-actividad.component';
+import { Location } from '@angular/common';
+import { AlertService } from '../../notifications/_services';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-table-actividad',
@@ -28,8 +31,9 @@ export class TableActividadComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  constructor(private actividadService: ActividadService, private dialog: MatDialog,
-    private mensaje: MensajesModule) { }
+  constructor(private actividadService: ActividadService, private dialog: MatDialog, private mensaje: MensajesModule,  private router: Router,
+    private activatedRoute: ActivatedRoute, private location: Location,
+    private alertService: AlertService  ) { }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -52,6 +56,7 @@ export class TableActividadComponent implements OnInit {
     });
   }
 
+ 
   openDialog(id: number) {
     const detallesVista = this.dialog.open(DialogoActividadComponent, {
       disableClose: false,
@@ -59,5 +64,16 @@ export class TableActividadComponent implements OnInit {
       width: 'auto'
     });
     detallesVista.componentInstance.idActividad = id;
+  }
+
+  Eliminar (id){
+    this.suscription = this.actividadService.deleteActividad(id)
+      .subscribe(actividad => this.onDeleteSuccess(),
+        error => this.alertService.error(error));
+  }
+
+  onDeleteSuccess() {
+     this.router.navigate(["/actividades"]);
+     this.alertService.success("Eliminado exitoso");
   }
 }

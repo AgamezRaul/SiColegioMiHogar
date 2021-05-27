@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DialogoActividadComponent } from './dialogo-actividad/dialogo-actividad.component';
 
+
 @Component({
   selector: 'app-actividad',
   templateUrl: './actividad.component.html',

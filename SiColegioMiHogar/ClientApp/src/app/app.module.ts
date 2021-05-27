@@ -9,6 +9,7 @@ import { CheckNotloginGuard } from './shared/guards/check-notlogin.guard';
 import { AlertComponent } from './notifications/_directives/index';
 import { AlertService } from './notifications/_services/index';
 
+
 //COMPONENTES
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -133,7 +134,7 @@ import { DialogoActividadComponent } from './actividad/dialogo-actividad/dialogo
     TableContratoComponent,
     FormUsuarioAdminComponent,
     FormUsuarioActualizarComponent,
-    FormUsuarioEstudianteComponent
+    FormUsuarioEstudianteComponent,
     FormUsuarioActualizarComponent,
     ActividadComponent,
     TableActividadComponent,
@@ -206,6 +207,8 @@ import { DialogoActividadComponent } from './actividad/dialogo-actividad/dialogo
       
 
       { path: 'actividad/:idPeriodo/:idMateria', component: ActividadComponent, canActivate: [CheckNotloginGuard] },
+
+      { path: 'actividades', component: TableActividadComponent, canActivate: [CheckNotloginGuard] },
       
 ], { relativeLinkResolution: 'legacy' }),
     BrowserAnimationsModule,

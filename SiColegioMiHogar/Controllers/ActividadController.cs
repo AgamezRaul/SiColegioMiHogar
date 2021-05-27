@@ -75,5 +75,12 @@ namespace SiColegioMiHogar.Controllers
             }
             return BadRequest(rta.Message);
         }
+
+        [HttpGet("[action]")]
+        public List<Actividad> GetActividadesMateria(int idMateria)
+        {
+            ConsultarActividadesMateriaService service = new ConsultarActividadesMateriaService(_unitOfWork);
+            return service.GetActividades(idMateria);
+        }
     }
 }
