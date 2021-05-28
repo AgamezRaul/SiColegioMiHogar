@@ -53,7 +53,7 @@ namespace SiColegioMiHogar.Controllers
             return BadRequest(rta.Message);
         }
         [HttpPut]
-        public async Task<IActionResult> PutContrato([FromBody] ActualizarActividadRequest request)
+        public async Task<IActionResult> PutActividad([FromBody] ActualizarActividadRequest request)
         {
 
             var rta = _actualizarService.EjecutarActualizarActividad(request);
@@ -65,7 +65,7 @@ namespace SiColegioMiHogar.Controllers
             return BadRequest(rta.Message);
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteContrato([FromRoute] int id)
+        public async Task<IActionResult> DeleteActividad([FromRoute] int id)
         {
             var rta = _eliminarService.EjecutarEliminar(id);
             if (rta.IsOk())

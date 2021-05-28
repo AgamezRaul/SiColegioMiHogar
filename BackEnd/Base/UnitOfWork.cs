@@ -29,6 +29,8 @@ using BackEnd.NotaPeriodo.Infra;
 using BackEnd.Contrato.Dominio;
 using BackEnd.Contrato.Infra;
 using BackEnd.Actividad;
+using BackEnd.EstudianteCurso.Dominio;
+using BackEnd.EstudianteCurso.Infra;
 
 namespace BackEnd.Base
 {
@@ -158,6 +160,14 @@ namespace BackEnd.Base
             get
             {
                 return _actividadServiceRepository ?? (_actividadServiceRepository = new ActividadServiceRepository(_dbContext));
+            }
+        }
+        private IEstudianteCursoServiceRepository _estudianteCursoServiceRepository;
+        public IEstudianteCursoServiceRepository EstudianteCursoServiceRepository
+        {
+            get
+            {
+                return _estudianteCursoServiceRepository ?? (_estudianteCursoServiceRepository = new EstudianteCursoServiceRepository(_dbContext));
             }
         }
         public int Commit()

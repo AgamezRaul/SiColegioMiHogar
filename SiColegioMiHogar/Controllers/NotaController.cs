@@ -3,14 +3,14 @@ using BackEnd.Base;
 using BackEnd.Nota.Aplicacion.Request;
 using BackEnd.Nota.Aplicacion.Services;
 using BackEnd.Nota.Dominio.Entidades;
-using BackEnd.Nota.Dominio;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BackEnd.Actividad;
+using BackEnd.Materia.Dominio.Entidades;
+using Microsoft.AspNetCore.Mvc;
+using BackEnd.Curso.Dominio;
 
 namespace SiColegioMiHogar.Controllers
 {
@@ -19,13 +19,14 @@ namespace SiColegioMiHogar.Controllers
     public class NotaController : ControllerBase
     {
         private readonly MiHogarContext _context;
-        private CrearNotaService _service;
-        private UnitOfWork _unitOfWork;
+        private readonly CrearNotaService _service;
+        private readonly UnitOfWork _unitOfWork;
 
         public NotaController(MiHogarContext context)
         {
             this._context = context;
             _unitOfWork = new UnitOfWork(_context);
+            _service = new CrearNotaService(_unitOfWork);
         }
 
         [HttpGet]
@@ -34,10 +35,24 @@ namespace SiColegioMiHogar.Controllers
             return _context.Nota;
         }
 
+        [HttpGet("GetEstudiantes/{idMateria}")]
+        public Object GetEstudiantes()
+        {
+            var result = (from a in _context.Set<Actividad>()
+                          join m in _context.Set<Materias>()
+                          on a.IdMateria equals m.Id
+                          join c in _context.Set<Curso>()
+                          on m.IdCurso equals c.Id
+                          select new
+                          {
+                          }).ToList();
+            return result;
+        }
+
+
         [HttpPost]
         public async Task<IActionResult> CreateNota([FromBody] CrearNotaRequest nota)
-        {
-            _service = new CrearNotaService(_unitOfWork);
+        {            
             var rta = _service.Ejecutar(nota);
             if (rta.isOk())
             {

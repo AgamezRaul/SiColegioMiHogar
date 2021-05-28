@@ -15,6 +15,7 @@ using BackEnd.Materia.Dominio.Repositories;
 using BackEnd.NotaPeriodo.Dominio.Repositories;
 using BackEnd.Contrato.Dominio;
 using BackEnd.Actividad;
+using BackEnd.EstudianteCurso.Dominio;
 
 namespace BackEnd.Base
 {
@@ -34,6 +35,7 @@ namespace BackEnd.Base
         INotaPeriodoServiceRepository NotaPeriodoServiceRepository { get; }
         IContratoServiceRepository ContratoServiceRepository { get; }
         IActividadServiceRepository ActividadServiceRepository { get; }
+        IEstudianteCursoServiceRepository EstudianteCursoServiceRepository { get; }
 
         int Commit();
     }
