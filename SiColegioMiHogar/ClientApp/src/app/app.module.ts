@@ -133,8 +133,7 @@ import { DialogoActividadComponent } from './actividad/dialogo-actividad/dialogo
     TableContratoComponent,
     FormUsuarioAdminComponent,
     FormUsuarioActualizarComponent,
-    FormUsuarioEstudianteComponent
-    FormUsuarioActualizarComponent,
+    FormUsuarioEstudianteComponent,
     ActividadComponent,
     TableActividadComponent,
     MateriaDocenteComponent,
