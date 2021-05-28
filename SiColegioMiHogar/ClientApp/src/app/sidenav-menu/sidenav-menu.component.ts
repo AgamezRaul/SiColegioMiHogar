@@ -34,10 +34,10 @@ export class SidenavMenuComponent implements OnInit, OnDestroy {
   ];
   fillerNavEstudiante = [
     { name: "home", route: "", icon: "home" },
-    { name: "Prematricula", route: "prematricula", icon: "" }
   ];
   fillerNavResponsable = [
-    { name: "home", route: "", icon: "home" }
+    { name: "home", route: "", icon: "home" },
+    { name: "Prematricula", route: "prematricula", icon: "" }
   ];
   private subscription: Subscription;
   private _mobileQueryListener: () => void;
@@ -58,12 +58,6 @@ export class SidenavMenuComponent implements OnInit, OnDestroy {
       this.loginService.isRole.subscribe(res => this.role = res);
     }
   }
-
-  consultaRol() {
-    
-    
-  }
-
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
     this.subscription.unsubscribe();

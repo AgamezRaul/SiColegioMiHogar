@@ -1,86 +1,103 @@
-<div class="container" align="center" [formGroup]="formGroupP">
+<div class="formulario" align="center" [formGroup]="formGroupP">
   <h1>Formulario del Padre</h1>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="nomResponsable">Nombre del padre</label>
-      <input type="text" class="form-control" formControlName="nomResponsable" id="nomResponsable" placeholder="Ej: Juan Perez">
-    </div>
-    <div class="form-group col-md-6">
-      <label for="celResponsable">Celular del Padre</label>
-      <input type="text" class="form-control" formControlName="celResponsable" id="celResponsable" placeholder="Ej: 3166873475">
-    </div>
+  <div>
+    <mat-form-field class="col-media" appearance="fill" [ngClass]="{'has-error': ((nomResponsable.touched || nomResponsable.dirty)&& nomResponsable.invalid)}">
+      <mat-label>Nombre del padre</mat-label>
+      <input matInput type="text" formControlName="nomResponsable" placeholder="Raúl Agámez" required>
+      <mat-error *ngIf="((nomResponsable.touched || nomResponsable.dirty)&& nomResponsable.invalid) && nomResponsable.errors.required">  Nombre del padre es<strong> requerido </strong></mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-media" appearance="fill" [ngClass]="{'has-error': ((celResponsable.touched || celResponsable.dirty)&& celResponsable.invalid)}">
+      <mat-label>Celular del Padre</mat-label>
+      <input matInput type="text" formControlName="celResponsable" placeholder="Valledupar" required>
+      <mat-error *ngIf="((celResponsable.touched || celResponsable.dirty)&& celResponsable.invalid) && celResponsable.errors.required">  Celular del Padre es<strong> requerido </strong></mat-error>
+    </mat-form-field>
   </div>
 
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="lugNacimiento">Lugar de nacimiento</label>
-      <input type="text" class="form-control" formControlName="lugNacimiento" id="lugNacimiento" placeholder="Ej: Valledupar/Cesar">
-    </div>
-    <div class="form-group col-md-6">
-      <label for="fecNacimiento">Fecha de nacimiento</label>
-      <input type="date" formControlName="fecNacimiento" class="form-control" id="fecNacimiento">
-    </div>
+  <div>
+    <mat-form-field class="col-media" appearance="fill" [ngClass]="{'has-error': ((lugNacimiento.touched || lugNacimiento.dirty)&& lugNacimiento.invalid)}">
+      <mat-label>Lugar de nacimiento</mat-label>
+      <input matInput type="text" formControlName="lugNacimiento" placeholder="Valledupar" required>
+      <mat-error *ngIf="((lugNacimiento.touched || lugNacimiento.dirty)&& lugNacimiento.invalid) && lugNacimiento.errors.required">  Lugar de nacimiento es<strong> requerido </strong></mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-media" appearance="fill" [ngClass]="{'has-error': ((fecNacimiento.touched || fecNacimiento.dirty)&& fecNacimiento.invalid)}">
+      <mat-label>Fecha de nacimiento</mat-label>
+      <input matInput type="date" formControlName="fecNacimiento" placeholder="Valledupar" required>
+      <mat-error *ngIf="((fecNacimiento.touched || fecNacimiento.dirty)&& fecNacimiento.invalid) && fecNacimiento.errors.required">  Fecha de nacimiento es<strong> requerido </strong></mat-error>
+    </mat-form-field>
   </div>
 
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="tipDocumento">Tipo de documento</label>
-      <select id="tipDocumento" formControlName="tipDocumento" class="form-control">
-        <option selected>Elija una opción</option>
-        <option>Cedula de ciudadania</option>
-        <option>Cédula de extranjero</option>
-        <option>Otro</option>
-      </select>
-    </div>
-    <div class="form-group col-md-6">
-      <label for="ideResponsable">Número de documento</label>
-      <input type="text" class="form-control" formControlName="ideResponsable" id="ideResponsable" placeholder="Ej: 1002456457">
-    </div>
+  <div>
+    <mat-form-field class="col-media" appearance="fill" [ngClass]="{'has-error': ((ideResponsable.touched || ideResponsable.dirty)&& ideResponsable.invalid)}">
+      <mat-label>Número de documento</mat-label>
+      <input matInput type="text" formControlName="ideResponsable" placeholder="Raúl Agámez" required>
+      <mat-error *ngIf="((ideResponsable.touched || ideResponsable.dirty)&& ideResponsable.invalid) && ideResponsable.errors.required">  Número de documento es<strong> requerido </strong></mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-media" appearance="fill" [ngClass]="{'has-error': ((tipDocumento.touched || tipDocumento.dirty)&& tipDocumento.invalid)}">
+      <mat-label>Tipo de documento</mat-label>
+      <mat-select formControlName="tipDocumento" placeholder="Elija una opción">
+        <mat-option value="Cedula de ciudadania">Cedula de ciudadania</mat-option>
+        <mat-option value="Cédula de extranjero">Cédula de extranjero</mat-option>
+        <mat-option value="Cedula de ciudadania">Cedula de ciudadania</mat-option>
+        <mat-option value="Otro">Otro</mat-option>
+      </mat-select>
+      <mat-error *ngIf="((tipDocumento.touched || tipDocumento.dirty)&& tipDocumento.invalid) && tipDocumento.errors.required">  Tipo de documento es<strong> requerido </strong></mat-error>
+    </mat-form-field>
   </div>
 
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="lugExpedicion">Lugar de expedición del documento</label>
-      <input type="text" class="form-control" formControlName="lugExpedicion" id="lugExpedicion">
-    </div>
-    <input hidden type="text" class="form-control" formControlName="tipoResponsable">
+  <div>
+    <mat-form-field class="col-media" appearance="fill" [ngClass]="{'has-error': ((lugExpedicion.touched || lugExpedicion.dirty)&& lugExpedicion.invalid)}">
+      <mat-label>Lugar de expedición del documento</mat-label>
+      <input matInput type="text" formControlName="lugExpedicion" placeholder="Valledupar" required>
+      <mat-error *ngIf="((lugExpedicion.touched || lugExpedicion.dirty)&& lugExpedicion.invalid) && lugExpedicion.errors.required">  Lugar de expedición es<strong> requerido </strong></mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-media" appearance="fill" [ngClass]="{'has-error': ((profResponsable.touched || profResponsable.dirty)&& profResponsable.invalid)}">
+      <mat-label>Profesión del Padre</mat-label>
+      <input matInput type="text" formControlName="profResponsable" placeholder="Docente" required>
+      <mat-error *ngIf="((profResponsable.touched || profResponsable.dirty)&& profResponsable.invalid) && profResponsable.errors.required">  Profesión es<strong> requerido </strong></mat-error>
+    </mat-form-field>
   </div>
 
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="profResponsable">Profesión del Padre</label>
-      <input type="text" class="form-control" formControlName="profResponsable" id="profResponsable" placeholder="Ej: Valledupar/Cesar">
-    </div>
-    <div class="form-group col-md-6">
-      <label for="ocuResponsable">Ocupación del Padre</label>
-      <input type="text" class="form-control" formControlName="ocuResponsable" id="ocuResponsable" placeholder="Ej: Mz 11 Cs 11 Caciques">
-    </div>
+  <div>
+    <mat-form-field class="col-media" appearance="fill" [ngClass]="{'has-error': ((ocuResponsable.touched || ocuResponsable.dirty)&& ocuResponsable.invalid)}">
+      <mat-label>Ocupación del Padre</mat-label>
+      <input matInput type="text" formControlName="ocuResponsable" placeholder="Docente" required>
+      <mat-error *ngIf="((ocuResponsable.touched || ocuResponsable.dirty)&& ocuResponsable.invalid) && ocuResponsable.errors.required">  Ocupación es<strong> requerido </strong></mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-media" appearance="fill" [ngClass]="{'has-error': ((entResponsable.touched || entResponsable.dirty)&& entResponsable.invalid)}">
+      <mat-label>Empresa donde trabaja</mat-label>
+      <input matInput type="text" formControlName="entResponsable" placeholder="Desconocido" required>
+      <mat-error *ngIf="((entResponsable.touched || entResponsable.dirty)&& entResponsable.invalid) && entResponsable.errors.required">  Empresa es<strong> requerido </strong></mat-error>
+    </mat-form-field>
   </div>
 
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="entResponsable">Empresa donde trabaja</label>
-      <input type="text" class="form-control" formControlName="entResponsable" id="entResponsable">
-    </div>
-    <div class="form-group col-md-6">
-      <label for="celEmpresa">Celular de la Empresa</label>
-      <input type="text" class="form-control" formControlName="celEmpresa" id="celEmpresa" placeholder="Ej: 3246543546">
-    </div>
+  <div>
+    <mat-form-field class="col-media" appearance="fill" [ngClass]="{'has-error': ((celEmpresa.touched || celEmpresa.dirty)&& celEmpresa.invalid)}">
+      <mat-label>Celular de la Empresa</mat-label>
+      <input matInput type="text" formControlName="celEmpresa" placeholder="1234567" required>
+      <mat-error *ngIf="((celEmpresa.touched || celEmpresa.dirty)&& celEmpresa.invalid) && celEmpresa.errors.required">  Celular es<strong> requerido </strong></mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-media" appearance="fill" [ngClass]="{'has-error': ((correo.touched || correo.dirty)&& correo.invalid)}">
+      <mat-label>Correo electrónico</mat-label>
+      <input matInput type="email" formControlName="correo" placeholder="ejemplo@ejemplo.com" required>
+      <mat-error *ngIf="((correo.touched || correo.dirty)&& correo.invalid) && correo.errors.required">  Correo electrónico es<strong> requerido </strong></mat-error>
+    </mat-form-field>
   </div>
 
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="correo">Correo electrónico</label>
-      <input type="email" class="form-control" formControlName="correo" id="correo" placeholder="Ej: ejemplo@gmail.com">
-    </div>
-    <div class="form-group col-md-6">
-      <label for="acudiente">Es usted el acudiente?</label>
-      <select id="acudiente" formControlName="acudiente" class="form-control">
-        <option selected>Elija una opción</option>
-        <option>Si</option>
-        <option>No</option>
-      </select>
-    </div>
+  <div>
+    <mat-form-field class="col-media" appearance="fill" [ngClass]="{'has-error': ((acudiente.touched || acudiente.dirty)&& acudiente.invalid)}">
+      <mat-label>Es usted el acudiente?</mat-label>
+      <mat-select formControlName="acudiente" placeholder="Elija una opción">
+        <mat-option value="Si">Si</mat-option>
+        <mat-option value="No">No</mat-option>
+      </mat-select>
+      <mat-error *ngIf="((acudiente.touched || acudiente.dirty)&& acudiente.invalid) && acudiente.errors.required">  Acudiente es<strong> requerido </strong></mat-error>
+    </mat-form-field>
   </div>
-
+  <input type="hidden" formControlName="tipoResponsable">
 </div>

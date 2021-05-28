@@ -1,0 +1,17 @@
+.mat-form-field + .mat-form-field {
+  margin-left: 5%;
+}
+
+.col-div{
+    width: 100%;
+}
+
+.col-media {
+    width: 45%;
+}
+
+.formulario{
+    width: 50%;
+    margin-top: 30px;
+    margin-left:15px
+}

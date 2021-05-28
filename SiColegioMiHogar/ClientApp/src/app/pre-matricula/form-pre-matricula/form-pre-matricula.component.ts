@@ -87,7 +87,7 @@ export class FormPreMatriculaComponent implements OnInit {
     tipSangre: ['Desconocido', [Validators.required]],
     gradoEstudiante: ['1', [Validators.required]],
     eps: ['Desconocido', [Validators.required]],
-    correo: ['raulagamez@gmail.com', [Validators.required]],
+    correo: ['raulagamez@gmail.com', [Validators.required, Validators.email]],
     sexo: ['', [Validators.required]],
     tipoDocumento: ['', [Validators.required]],
     telEstudiante: ['Desconocido', [Validators.required]]
@@ -100,7 +100,6 @@ export class FormPreMatriculaComponent implements OnInit {
       }
       this.modoEdicion = true;
       this.idUsuario = parseInt(params["id"]);
-      //console.log(this.prematriculaId);
       this.servicePrematricula.getPrematricula(this.idUsuario)
         .subscribe(prematricula => this.cargarFormulario(prematricula),
           error => this.alertService.error(error.error)); 

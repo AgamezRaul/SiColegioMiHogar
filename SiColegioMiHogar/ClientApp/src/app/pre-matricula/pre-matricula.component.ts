@@ -12,11 +12,12 @@ import { IResponsable } from '../responsable/responsable.component';
   styleUrls: ['./pre-matricula.component.css']
 })
 export class PreMatriculaComponent implements OnInit {
-  role = null;
+  role: string;
   constructor(private fb: FormBuilder, private loginService: LoginService,
     private alertService: AlertService  ) { }
   ngOnInit() {
-    this.role = this.loginService.isRole;
+    const usuario = JSON.parse(localStorage.getItem('user'));
+    this.role = usuario["tipoUsuario"];
   }
 }
 
