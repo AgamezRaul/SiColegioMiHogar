@@ -41,6 +41,23 @@ namespace BackEnd.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Boletin",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FechaGeneracion = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IdEstudiante = table.Column<int>(type: "int", nullable: false),
+                    IdPeriodo = table.Column<int>(type: "int", nullable: false)
+
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Boletin", x => x.Id);
+                });
+
+
+            migrationBuilder.CreateTable(
                 name: "Estudiante",
                 columns: table => new
                 {

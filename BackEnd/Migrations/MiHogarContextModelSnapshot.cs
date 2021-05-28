@@ -121,6 +121,27 @@ namespace BackEnd.Migrations
                     b.ToTable("Docente");
                 });
 
+            modelBuilder.Entity("BackEnd.Boletin.Dominio.Boletin", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                b.Property<DateTime>("FechaGeneracion")
+                        .HasColumnType("datetime2");
+
+                b.Property<int>("IdEstudiante")
+                        .HasColumnType("int");
+
+                b.Property<int>("IdPeriodo")
+                        .HasColumnType("int");
+
+                b.HasKey("Id");
+
+                b.ToTable("Boletin");
+            });
+
             modelBuilder.Entity("BackEnd.Estudiante.Dominio.Estudiante", b =>
                 {
                     b.Property<int>("Id")
