@@ -12,13 +12,19 @@
       <td mat-cell *matCellDef="let element"> {{element.nombreCurso}} </td>
     </ng-container>
 
+    <!-- letra Column -->
+    <ng-container matColumnDef="letra" hidden>
+      <th mat-header-cell *matHeaderCellDef> Letra </th>
+      <td mat-cell *matCellDef="let element"> {{element.letra}} </td>
+    </ng-container>
+
     <!-- nombre Column -->
     <ng-container matColumnDef="maximoEstudiantes" hidden>
       <th mat-header-cell *matHeaderCellDef> Maximo Estudiantes </th>
       <td mat-cell *matCellDef="let element"> {{element.maximoEstudiantes}} </td>
     </ng-container>
 
-    <!-- maxEstudiantes Column -->
+    <!-- docente Column -->
     <ng-container matColumnDef="nombreDirector">
       <th mat-header-cell *matHeaderCellDef> Nombre Director </th>
       <td mat-cell *matCellDef="let element"> {{element.docente}} </td>

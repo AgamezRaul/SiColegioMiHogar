@@ -26,6 +26,7 @@ export class FormCursoComponent implements OnInit {
     nombre: ['', [Validators.required]],
     maxEstudiantes: [10, [Validators.required]],
     idDirectorDocente: [4, [Validators.required]],
+    letra: ['', [Validators.required]]
   });
   
   ngOnInit(): void {
@@ -79,7 +80,7 @@ export class FormCursoComponent implements OnInit {
       curso.id = this.idCurso;
       if (this.formGroup.valid) {
         this.cursoService.updateCurso(curso)
-          .subscribe(curso => this.onSaveSuccess(),
+          .subscribe(() => this.onSaveSuccess(),
             error => this.alertService.error(error));
       } else { console.log('No valido') }
     } else {
@@ -87,7 +88,7 @@ export class FormCursoComponent implements OnInit {
       console.table(curso); //ver curso por consola
       if (this.formGroup.valid) {
         this.cursoService.createCurso(curso)
-          .subscribe(curso => this.onSaveSuccess(),
+          .subscribe(() => this.onSaveSuccess(),
             error => this.alertService.error(error));
       } else {
         console.log('No valido')
@@ -107,5 +108,8 @@ export class FormCursoComponent implements OnInit {
   }
   get idDirectorDocente() {
     return this.formGroup.get('idDirectorDocente');
+  }
+  get letra() {
+    return this.formGroup.get('letra');
   }
 }

@@ -18,12 +18,14 @@ export interface ICurso {
   id: number,
   nombre: string,
   maxEstudiantes: number,
-  idDirectorDocente: number
+  idDirectorDocente: number,
+  letra: string
 }
 
 export interface ICurso2 {
   id:number,
   nombreCurso: string,
   maximoEstudiantes: number,
-  docente: string
+  docente: string,
+  letra: string
 }

@@ -80,6 +80,7 @@ import { ActividadComponent } from './actividad/actividad.component';
 import { TableActividadComponent } from './actividad/table-actividad/table-actividad.component';
 import { MateriaDocenteComponent } from './docente/materia-docente/materia-docente.component';
 import { DialogoActividadComponent } from './actividad/dialogo-actividad/dialogo-actividad.component';
+import { EstudianteCursoComponent } from './estudiante-curso/estudiante-curso.component';
 
 @NgModule({
   declarations: [
@@ -137,7 +138,8 @@ import { DialogoActividadComponent } from './actividad/dialogo-actividad/dialogo
     ActividadComponent,
     TableActividadComponent,
     MateriaDocenteComponent,
-    DialogoActividadComponent
+    DialogoActividadComponent,
+    EstudianteCursoComponent
 
   ],
   imports: [
