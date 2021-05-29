@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IEstudiante } from '../../estudiante/estudiante.component';
 import { LoginService } from '../../login/login.service';
+import { MensajesModule } from '../../mensajes/mensajes.module';
 import { AlertService } from '../../notifications/_services';
 import { IResponsable } from '../../responsable/responsable.component';
 import { IPrematricula } from '../pre-matricula.component';
@@ -17,7 +18,8 @@ export class FormPreMatriculaComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private serviceUser: LoginService,
     private servicePrematricula: PreMatriculaService, private router: Router,
-    private activatedRoute: ActivatedRoute, private alertService: AlertService  ) { }
+    private activatedRoute: ActivatedRoute, private alertService: AlertService,
+    private mensaje: MensajesModule  ) { }
 
   responsables: IResponsable[] = [];
   responsable: IResponsable;
@@ -104,6 +106,8 @@ export class FormPreMatriculaComponent implements OnInit {
         .subscribe(prematricula => this.cargarFormulario(prematricula),
           error => this.alertService.error(error.error)); 
     });
+    const usuario = JSON.parse(localStorage.getItem('user'));
+    this.idUsuario = usuario["id"];
   }
 
   save() {
@@ -122,12 +126,13 @@ export class FormPreMatriculaComponent implements OnInit {
       //edita
       this.servicePrematricula.updatePreMatricula(this.prematricula)
         .subscribe(prematricula => this.onSaveSuccess(),
-          error => this.alertService.error(error.error));
+          error => this.mensaje.mensajeAlertaError('Error', error.error.text));
     } else {
       //crea
+      console.log(this.prematricula);
       this.servicePrematricula.createPrematricula(this.prematricula)
         .subscribe(prematricula => this.onSaveSuccess(),
-          error => this.alertService.error(error.error));
+          error => this.mensaje.mensajeAlertaError('Error', error.error.text));
     }
   }
 

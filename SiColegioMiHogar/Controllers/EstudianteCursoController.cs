@@ -1,5 +1,6 @@
 ﻿using BackEnd;
 using BackEnd.Base;
+using BackEnd.Estudiante.Dominio;
 using BackEnd.EstudianteCurso.Aplicacion;
 using BackEnd.EstudianteCurso.Dominio;
 using Microsoft.AspNetCore.Mvc;
@@ -40,6 +41,12 @@ namespace SiColegioMiHogar.Controllers
             if (estudianteCurso == null)
                 return NotFound();
             return Ok(estudianteCurso);
+        }
+        [HttpGet("EstudianteGrado/{grado}")]
+        public IQueryable<Estudiante> GetEstudianteGrado([FromRoute] string grado)
+        {
+            var estudiantes = _context.Estudiante.Where(t => t.GradoEstudiante == grado);
+            return estudiantes;
         }
         [HttpPost]
         public async Task<IActionResult> CreateEstudianteCurso([FromBody] EstudianteCursoRequest request)

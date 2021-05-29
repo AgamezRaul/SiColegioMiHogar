@@ -23,7 +23,9 @@
 
     <mat-form-field class="col-media" appearance="fill" [ngClass]="{'has-error': ((fecNacimiento.touched || fecNacimiento.dirty)&& fecNacimiento.invalid)}">
       <mat-label>Fecha de nacimiento</mat-label>
-      <input matInput type="date" formControlName="fecNacimiento" placeholder="Valledupar" required>
+      <input formControlName="fecNacimiento" placeholder="Valledupar" matInput [matDatepicker]="picker1" required>
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
       <mat-error *ngIf="((fecNacimiento.touched || fecNacimiento.dirty)&& fecNacimiento.invalid) && fecNacimiento.errors.required">  Fecha de nacimiento es<strong> requerido </strong></mat-error>
     </mat-form-field>
   </div>
