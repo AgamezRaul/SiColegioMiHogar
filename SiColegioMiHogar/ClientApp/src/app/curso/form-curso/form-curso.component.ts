@@ -35,10 +35,8 @@ export class FormCursoComponent implements OnInit {
       error => this.alertService.error(error.error));
     //con esto se el url utilizo el primer semento para saber que url esta activa
     const segments: UrlSegment[] = this.activatedRoute.snapshot.url;
-    console.log(segments[0].toString());
     if (segments[0].toString() == 'registrar-curso') {
       this.modoEdicion = false;
-      console.log("Registando Curso");
       this.activatedRoute.params.subscribe(params => {
         if (params["id"] == undefined) {
           return;
@@ -65,7 +63,8 @@ export class FormCursoComponent implements OnInit {
     this.formGroup.patchValue({
       nombre: curso.nombre,
       maxEstudiantes: curso.maxEstudiantes,
-      idDirectorDocente: curso.idDirectorDocente
+      idDirectorDocente: curso.idDirectorDocente,
+      letra: curso.letra
     });
   }
   LlenarDocentes(docentes: IDocente[]) {
@@ -81,7 +80,7 @@ export class FormCursoComponent implements OnInit {
       if (this.formGroup.valid) {
         this.cursoService.updateCurso(curso)
           .subscribe(() => this.onSaveSuccess(),
-            error => this.alertService.error(error));
+            error => console.log(error));
       } else { console.log('No valido') }
     } else {
 
@@ -89,7 +88,7 @@ export class FormCursoComponent implements OnInit {
       if (this.formGroup.valid) {
         this.cursoService.createCurso(curso)
           .subscribe(() => this.onSaveSuccess(),
-            error => this.alertService.error(error));
+            error => console.log(error));
       } else {
         console.log('No valido')
       }
