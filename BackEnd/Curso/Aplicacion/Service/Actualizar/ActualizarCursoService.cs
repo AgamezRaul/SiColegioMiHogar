@@ -25,6 +25,7 @@ namespace BackEnd.Curso.Aplicacion.Service.Actualizar
                 curso.Nombre = request.nombre;
                 curso.IdDirectorDocente = request.idDirectorDocente;
                 curso.MaxEstudiantes = request.maxEstudiantes;
+                curso.Letra = request.Letra;
 
                 _unitOfWork.CursoServiceRepository.Edit(curso);
                 _unitOfWork.Commit();

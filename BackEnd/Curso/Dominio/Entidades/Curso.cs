@@ -7,15 +7,19 @@ namespace BackEnd.Curso.Dominio
 {
     public class Curso : Entity<int>
     {
-        public string Nombre { get; set; }
+        public string Nombre { get; set; }        
         public int MaxEstudiantes { get; set; }
         public int IdDirectorDocente { get; set; }
-        public Curso(string nombre, int maxEstudiantes, int idDirectorDocente)
+        public string Letra { get; set; }
+
+        public Curso(string nombre, int maxEstudiantes, int idDirectorDocente, string letra)
         {
             Nombre = nombre;
             MaxEstudiantes = maxEstudiantes;
             IdDirectorDocente = idDirectorDocente;
+            Letra = letra;
         }
+
         public IReadOnlyList<string> CanCrear(Curso curso)
         {
             var errors = new List<string>();

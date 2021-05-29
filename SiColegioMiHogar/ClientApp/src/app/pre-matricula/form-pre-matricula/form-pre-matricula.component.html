@@ -3,34 +3,19 @@
 <form (submit)="save()" method="post">
   <mat-tab-group>
     <mat-tab label="Estudiante">
-      <mat-grid-list cols="2">
-        <mat-grid-tile>
-          <app-form-estudiante [formGroupE]="formGroupE"></app-form-estudiante>
-        </mat-grid-tile>
-      </mat-grid-list>
+      <app-form-estudiante [formGroupE]="formGroupE"></app-form-estudiante>
     </mat-tab>
     <mat-tab label="Padre">
-      <mat-grid-list cols="2">
-        <mat-grid-tile>
-          <app-form-responsable-padre [formGroupP]="formGroupP"></app-form-responsable-padre>
-        </mat-grid-tile>
-      </mat-grid-list>
+      <app-form-responsable-padre [formGroupP]="formGroupP"></app-form-responsable-padre>
     </mat-tab>
     <mat-tab label="Madre">
-      <mat-grid-list cols="2">
-        <mat-grid-tile>
-          <app-form-responsable-madre [formGroupM]="formGroupM"></app-form-responsable-madre>
-        </mat-grid-tile>
-      </mat-grid-list>
+      <app-form-responsable-madre [formGroupM]="formGroupM"></app-form-responsable-madre>
     </mat-tab>
     <mat-tab label="Acudiente">
-      <mat-grid-list cols="2">
-        <mat-grid-tile>
-          <app-form-responsable-acudiente [formGroupA]="formGroupA"></app-form-responsable-acudiente>
-        </mat-grid-tile>
-      </mat-grid-list>
+      <app-form-responsable-acudiente [formGroupA]="formGroupA"></app-form-responsable-acudiente>
     </mat-tab>
   </mat-tab-group>
+
   <div class="form-group">
     <div class="col-md-4 col-md-offset-2">
       <span>

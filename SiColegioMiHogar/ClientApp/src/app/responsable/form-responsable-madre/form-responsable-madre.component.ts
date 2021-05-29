@@ -17,16 +17,19 @@ export class FormResponsableMadreComponent implements OnInit {
   ngOnInit() {
   }
   get ideResponsable() {
-    return this.formGroupM.get('ideResponsableMadre');
+    return this.formGroupM.get('ideResponsable');
   }
   get nomResponsable() {
-    return this.formGroupM.get('nomResponsableMadre');
+    return this.formGroupM.get('nomResponsable');
   }
   get fecNacimiento() {
     return this.formGroupM.get('fecNacimiento');
   }
   get lugNacimiento() {
     return this.formGroupM.get('lugNacimiento');
+  }
+  get lugExpedicion() {
+    return this.formGroupM.get('lugExpedicion');
   }
   get tipDocumento() {
     return this.formGroupM.get('tipDocumento');

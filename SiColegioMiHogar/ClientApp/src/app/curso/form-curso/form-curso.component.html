@@ -1,35 +1,45 @@
 <h1 *ngIf="modoEdicion">Actualizar Curso</h1>
 <h1 *ngIf="!modoEdicion">Registrar Curso</h1>
 
-<div class="container" align="center">
+<div class="formulario" align="center">
   <h1>Formulario de Curso</h1>
   <form [formGroup]="formGroup" (ngSubmit)="save()">
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="nombre">Nombre del curso</label>
-        <input type="text" class="form-control" formControlName="nombre" id="nombre" placeholder="Ej: Grado 5A">
-      </div>
-      <div class="form-group col-md-6">
-        <label for="maxEstudiantes">Número máximo de estudiantes</label>
-        <input type="number" class="form-control" formControlName="maxEstudiantes" id="maxEstudiantes" placeholder="Ej: 30">
-      </div>
-    </div>
+    <div>
+      <mat-form-field class="col-media" appearance="fill" [ngClass]="{'has-error': ((nombre.touched || nombre.dirty)&& nombre.invalid)}">
+        <mat-label>Nombre</mat-label>
+        <mat-select formControlName="nombre" placeholder="Elija una opción">
+          <mat-option value="Pre-jardin">Pre-jardin</mat-option>
+          <mat-option value="Jardín">Jardín</mat-option>
+          <mat-option value="Transicion">Transicion</mat-option>
+          <mat-option value="Primero">Primero</mat-option>
+          <mat-option value="Segundo">Segundo</mat-option>
+          <mat-option value="Tercero">Tercero</mat-option>
+          <mat-option value="Cuarto">Cuarto</mat-option>
+          <mat-option value="Quinto">Quinto</mat-option>
+        </mat-select>
+        <mat-error *ngIf="((nombre.touched || nombre.dirty)&& nombre.invalid) && nombre.errors.required">  Grado es<strong> requerido </strong></mat-error>
+      </mat-form-field>
+      <mat-form-field class="col-media" appearance="fill" [ngClass]="{'has-error': ((letra.touched || letra.dirty)&& letra.invalid)}">
+        <mat-label>Letra</mat-label>
+        <input matInput type="text" formControlName="letra" placeholder="Raúl Agámez" required>
+        <mat-error *ngIf="((letra.touched || letra.dirty)&& letra.invalid) && letra.errors.required">  Letra es<strong> requerido </strong></mat-error>
+      </mat-form-field>
+    </div>    
 
-    <div class="form-row">
-      <div class="form-group col-md-12">
-        <label for="idDirectorDocente">Director docente</label>
-        <select formControlName="idDirectorDocente" ng-options="IDocente.nombreCompleto for IDocente in ListaDocentes" ng-model="IdDocente" class="form-control" id="idDirectorDocente">
-          <option value="">Seleccione un director</option>
-          <option value="{{dato.id}}" *ngFor="let dato of ListaDocentes">
-            {{dato.nombreCompleto}}
-          </option>
-        </select>
-        <!--><div class="alert-danger" *ngIf="IdDocente.invalid">
-          <div class="container-error-message" *ngIf="IdDocente.errors.required">
-            El docente director es requerido
-          </div>
-        </div>-->
-      </div>
+    <div>
+      <mat-form-field class="col-media" appearance="fill" [ngClass]="{'has-error': ((maxEstudiantes.touched || maxEstudiantes.dirty)&& maxEstudiantes.invalid)}">
+        <mat-label>Maximo de estudiantes</mat-label>
+        <input matInput type="text" formControlName="maxEstudiantes" placeholder="Raúl Agámez" required>
+        <mat-error *ngIf="((maxEstudiantes.touched || maxEstudiantes.dirty)&& maxEstudiantes.invalid) && maxEstudiantes.errors.required">  Maximos estudiantes es<strong> requerido </strong></mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="col-media" appearance="fill" [ngClass]="{'has-error': ((idDirectorDocente.touched || idDirectorDocente.dirty)&& idDirectorDocente.invalid)}">
+        <mat-label>Director Docente</mat-label>
+        <mat-select formControlName="idDirectorDocente" placeholder="Elija una opción">
+          <mat-option *ngFor="let tipo of ListaDocentes" [value]=tipo.id>{{tipo.nombreCompleto}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="((idDirectorDocente.touched || idDirectorDocente.dirty)&& idDirectorDocente.invalid) && idDirectorDocente.errors.required">  Director Docente es<strong> requerido </strong></mat-error>
+      </mat-form-field>
     </div>
 
     <button type="submit" mat-raised-button color="primary">

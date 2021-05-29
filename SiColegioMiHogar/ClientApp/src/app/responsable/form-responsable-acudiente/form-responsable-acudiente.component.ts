@@ -30,6 +30,9 @@ export class FormResponsableAcudienteComponent implements OnInit {
   }
   get tipDocumento() {
     return this.formGroupA.get('tipDocumento');
+  }  
+  get lugExpedicion() {
+    return this.formGroupA.get('lugExpedicion');
   }
   get celResponsable() {
     return this.formGroupA.get('celResponsable');

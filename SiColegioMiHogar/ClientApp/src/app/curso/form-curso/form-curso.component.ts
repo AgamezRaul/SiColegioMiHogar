@@ -26,6 +26,7 @@ export class FormCursoComponent implements OnInit {
     nombre: ['', [Validators.required]],
     maxEstudiantes: [10, [Validators.required]],
     idDirectorDocente: [4, [Validators.required]],
+    letra: ['', [Validators.required]]
   });
   
   ngOnInit(): void {
@@ -34,10 +35,8 @@ export class FormCursoComponent implements OnInit {
       error => this.alertService.error(error.error));
     //con esto se el url utilizo el primer semento para saber que url esta activa
     const segments: UrlSegment[] = this.activatedRoute.snapshot.url;
-    console.log(segments[0].toString());
     if (segments[0].toString() == 'registrar-curso') {
       this.modoEdicion = false;
-      console.log("Registando Curso");
       this.activatedRoute.params.subscribe(params => {
         if (params["id"] == undefined) {
           return;
@@ -64,7 +63,8 @@ export class FormCursoComponent implements OnInit {
     this.formGroup.patchValue({
       nombre: curso.nombre,
       maxEstudiantes: curso.maxEstudiantes,
-      idDirectorDocente: curso.idDirectorDocente
+      idDirectorDocente: curso.idDirectorDocente,
+      letra: curso.letra
     });
   }
   LlenarDocentes(docentes: IDocente[]) {
@@ -79,16 +79,16 @@ export class FormCursoComponent implements OnInit {
       curso.id = this.idCurso;
       if (this.formGroup.valid) {
         this.cursoService.updateCurso(curso)
-          .subscribe(curso => this.onSaveSuccess(),
-            error => this.alertService.error(error));
+          .subscribe(() => this.onSaveSuccess(),
+            error => console.log(error));
       } else { console.log('No valido') }
     } else {
 
       console.table(curso); //ver curso por consola
       if (this.formGroup.valid) {
         this.cursoService.createCurso(curso)
-          .subscribe(curso => this.onSaveSuccess(),
-            error => this.alertService.error(error));
+          .subscribe(() => this.onSaveSuccess(),
+            error => console.log(error));
       } else {
         console.log('No valido')
       }
@@ -107,5 +107,8 @@ export class FormCursoComponent implements OnInit {
   }
   get idDirectorDocente() {
     return this.formGroup.get('idDirectorDocente');
+  }
+  get letra() {
+    return this.formGroup.get('letra');
   }
 }

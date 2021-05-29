@@ -42,7 +42,8 @@ namespace SiColegioMiHogar.Controllers
                               Id = c.Id,
                               NombreCurso = c.Nombre,
                               MaximoEstudiantes = c.MaxEstudiantes,
-                              Docente = d.NombreCompleto
+                              Docente = d.NombreCompleto,
+                              Letra = c.Letra
                           }).ToList();
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
             return result;

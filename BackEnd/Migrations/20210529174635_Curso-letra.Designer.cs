@@ -4,14 +4,16 @@ using BackEnd;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BackEnd.Migrations
 {
     [DbContext(typeof(MiHogarContext))]
-    partial class MiHogarContextModelSnapshot : ModelSnapshot
+    [Migration("20210529174635_Curso-letra")]
+    partial class Cursoletra
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -123,27 +125,6 @@ namespace BackEnd.Migrations
 
                     b.ToTable("Docente");
                 });
-
-            modelBuilder.Entity("BackEnd.Boletin.Dominio.Boletin", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int")
-                    .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                b.Property<DateTime>("FechaGeneracion")
-                        .HasColumnType("datetime2");
-
-                b.Property<int>("IdEstudiante")
-                        .HasColumnType("int");
-
-                b.Property<int>("IdPeriodo")
-                        .HasColumnType("int");
-
-                b.HasKey("Id");
-
-                b.ToTable("Boletin");
-            });
 
             modelBuilder.Entity("BackEnd.Estudiante.Dominio.Estudiante", b =>
                 {

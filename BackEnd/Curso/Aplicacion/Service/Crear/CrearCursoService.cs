@@ -20,7 +20,7 @@ namespace BackEnd.Curso.Aplicacion.Service.Crear
             var curso = _unitOfWork.CursoServiceRepository.FindFirstOrDefault(t => t.Id == request.id);
             if (curso == null)
             {
-                Dominio.Curso newCurso = new Dominio.Curso(request.nombre, request.maxEstudiantes, request.idDirectorDocente);
+                Dominio.Curso newCurso = new Dominio.Curso(request.nombre, request.maxEstudiantes, request.idDirectorDocente, request.Letra);
 
                 IReadOnlyList<string> errors = newCurso.CanCrear(newCurso);
                 if (errors.Any())

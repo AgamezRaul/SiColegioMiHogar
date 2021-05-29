@@ -10,6 +10,7 @@ namespace BackEnd.Curso.Aplicacion.Request
         public string nombre { get; set; }
         public int maxEstudiantes { get; set; }
         public int idDirectorDocente { get; set; }
+        public string Letra { get; set; }
     }
     public class ActualizarCursoResponse
     {

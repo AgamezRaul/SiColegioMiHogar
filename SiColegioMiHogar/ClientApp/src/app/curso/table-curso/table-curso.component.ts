@@ -22,6 +22,7 @@ export class TableCursoComponent implements OnInit, OnDestroy {
     'nombreCurso',
     'maximoEstudiantes',
     'nombreDirector',
+    'letra',
     'options'];
   dataSource = new MatTableDataSource<ICurso2>(this.curso);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
