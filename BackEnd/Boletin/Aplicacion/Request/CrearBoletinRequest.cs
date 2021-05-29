@@ -6,7 +6,7 @@ namespace BackEnd.Boletin.Aplicacion.Request
 {
     public class CrearBoletinRequest
     {
-        public int Id { get; set; }
+        public int id { get; set; }
         public DateTime FechaGeneracion { get; set; }
         public int IdEstudiante { get; set; }
         public int IdPeriodo { get; set; }

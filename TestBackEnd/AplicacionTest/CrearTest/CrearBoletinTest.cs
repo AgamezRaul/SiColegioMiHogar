@@ -36,7 +36,7 @@ namespace TestBackEnd.AplicacionTest.CrearTest
             yield return new TestCaseData(
                 new CrearBoletinRequest
                 {
-                    Id = 1,
+                    id = 1,
                     FechaGeneracion =DateTime.Now ,
                     IdPeriodo = 1,
                     IdEstudiante = 1

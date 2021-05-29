@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BackEnd.Boletin.Aplicacion.Request;
 using BackEnd.Boletin.Aplicacion.Services.Crear;
 
 namespace SiColegioMiHogar.Controllers
@@ -26,7 +27,17 @@ namespace SiColegioMiHogar.Controllers
             this._context = context;
             _unitOfWork = new UnitOfWork(_context);
         }
-        
 
+        [HttpPost]
+        public async Task<IActionResult> CreateBoletin([FromBody] CrearBoletinRequest request)
+        {
+            var rta = _service.Ejecutar(request);
+            if (rta.isOk())
+            {
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetBoletin", new { Id = request.id }, request);
+            }
+            return BadRequest(rta.Message);
+        }
     }
 }

@@ -16,7 +16,7 @@ namespace BackEnd.Boletin.Aplicacion.Services.Crear
         }
         public CrearBoletinResponse Ejecutar(CrearBoletinRequest request)
         {
-            var boletin = _unitOfWork.BoletinServiceRepository.FindFirstOrDefault(t => t.Id == request.Id);
+            var boletin = _unitOfWork.BoletinServiceRepository.FindFirstOrDefault(t => t.Id == request.id);
             if (boletin == null)
             {
                 Dominio.Boletin newBoletin = new Dominio.Boletin(request.IdEstudiante, request.IdPeriodo, request.FechaGeneracion);
