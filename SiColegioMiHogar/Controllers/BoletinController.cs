@@ -39,5 +39,26 @@ namespace SiColegioMiHogar.Controllers
             }
             return BadRequest(rta.Message);
         }
+
+
+        [HttpGet]
+        public Object GetBoletin()
+        {
+            var result = (from b in _context.Set<Boletin>()
+                          join e in _context.Set<Estudiante>()
+                          on b.IdEstudiante equals e.Id
+                          select new
+                          {
+                              b.Id,
+                              b.IdEstudiante,
+                              b.FechaGeneracion,
+                              b.IdPeriodo,
+                              e.NomEstudiante,
+                              e.GradoEstudiante
+                          }).ToList();
+            return result;
+        }
+
+
     }
 }

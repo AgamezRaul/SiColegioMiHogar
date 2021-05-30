@@ -81,6 +81,7 @@ import { TableActividadComponent } from './actividad/table-actividad/table-activ
 import { MateriaDocenteComponent } from './docente/materia-docente/materia-docente.component';
 import { DialogoActividadComponent } from './actividad/dialogo-actividad/dialogo-actividad.component';
 import { EstudianteCursoComponent } from './estudiante-curso/estudiante-curso.component';
+import { BoletinComponent } from './boletin/boletin.component';
 
 @NgModule({
   declarations: [
@@ -139,7 +140,8 @@ import { EstudianteCursoComponent } from './estudiante-curso/estudiante-curso.co
     TableActividadComponent,
     MateriaDocenteComponent,
     DialogoActividadComponent,
-    EstudianteCursoComponent
+    EstudianteCursoComponent,
+    BoletinComponent
 
   ],
   imports: [

@@ -8,9 +8,9 @@ namespace BackEnd.Boletin.Dominio
     public class Boletin: Entity<int>
     {
         
-        DateTime FechaGeneracion { get; set; }
-        int IdEstudiante { get; set; }
-        int IdPeriodo { get; set; }
+        public DateTime FechaGeneracion { get; set; }
+        public int IdEstudiante { get; set; }
+        public int IdPeriodo { get; set; }
         public Boletin(int idEstudiante,int idPeriodo,DateTime fechaGeneracion)
         {
             FechaGeneracion = fechaGeneracion;
