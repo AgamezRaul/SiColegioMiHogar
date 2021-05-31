@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BackEnd.Boletin.Aplicacion.Request;
 using BackEnd.Boletin.Aplicacion.Services.Crear;
+using BackEnd.Boletin.Aplicacion.Services.Eliminar;
 
 namespace SiColegioMiHogar.Controllers
 {
@@ -21,7 +22,7 @@ namespace SiColegioMiHogar.Controllers
         private readonly MiHogarContext _context;
         private CrearBoletinService _service;
         private UnitOfWork _unitOfWork;
-
+        private EliminarBoletinService _eliminarService;
         public BoletinController(MiHogarContext context)
         {
             this._context = context;
@@ -58,7 +59,20 @@ namespace SiColegioMiHogar.Controllers
                           }).ToList();
             return result;
         }
-
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteBoletin([FromRoute] int id)
+        {
+            _eliminarService = new EliminarBoletinService(_unitOfWork);
+            EliminarBoletinRequest request = new EliminarBoletinRequest();
+            request.IdBoletin = id;
+            var rta = _eliminarService.Ejecutar(request);
+            if (rta.isOk())
+            {
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetBoletin", new { id = request.IdBoletin }, request);
+            }
+            return BadRequest(rta.Message);
+        }
 
     }
 }
