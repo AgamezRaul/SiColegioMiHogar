@@ -14,7 +14,7 @@ export class SidenavMenuComponent implements OnInit, OnDestroy {
   isLogged = false;
   fillerNavAdmin = [
     { name: "home", route: "", icon: "home" },
-    { name: "actividades", route: "actividades"},
+    { name: "Actividades", route: "actividades-admin"},
     { name: "Prematricula", route: "prematricula", icon: "" },
     { name: "Matriculas", route: "matricula", icon: "" },
     { name: "Cursos", route: "cursos", icon: "" },
@@ -35,7 +35,8 @@ export class SidenavMenuComponent implements OnInit, OnDestroy {
   ];
   fillerNavEstudiante = [
     { name: "home", route: "", icon: "home" },
-    { name: "Prematricula", route: "prematricula", icon: "" }
+    { name: "Prematricula", route: "prematricula", icon: "" },
+    { name: "Actividaes", route: "actividades-materia", icon: "" }
   ];
   fillerNavResponsable = [
     { name: "home", route: "", icon: "home" }

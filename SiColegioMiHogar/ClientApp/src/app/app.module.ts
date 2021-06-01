@@ -81,6 +81,8 @@ import { ActividadComponent } from './actividad/actividad.component';
 import { TableActividadComponent } from './actividad/table-actividad/table-actividad.component';
 import { MateriaDocenteComponent } from './docente/materia-docente/materia-docente.component';
 import { DialogoActividadComponent } from './actividad/dialogo-actividad/dialogo-actividad.component';
+import { ActividadesMateriaComponent } from './materia/actividades-materia/actividades-materia.component';
+import { ActividadesComponent } from './materia/actividades/actividades.component';
 
 @NgModule({
   declarations: [
@@ -139,7 +141,9 @@ import { DialogoActividadComponent } from './actividad/dialogo-actividad/dialogo
     ActividadComponent,
     TableActividadComponent,
     MateriaDocenteComponent,
-    DialogoActividadComponent
+    DialogoActividadComponent,
+    ActividadesMateriaComponent,
+    ActividadesComponent
 
   ],
   imports: [
@@ -208,7 +212,13 @@ import { DialogoActividadComponent } from './actividad/dialogo-actividad/dialogo
 
       { path: 'actividad/:idPeriodo/:idMateria', component: ActividadComponent, canActivate: [CheckNotloginGuard] },
 
+      { path: 'actividades-admin', component: ActividadComponent, canActivate: [CheckNotloginGuard] },
+
       { path: 'actividades', component: TableActividadComponent, canActivate: [CheckNotloginGuard] },
+
+      { path: 'actividades-materia', component: ActividadesMateriaComponent, canActivate: [CheckNotloginGuard] },
+
+      { path: 'actividades-materia/:idMateria', component: ActividadesComponent, canActivate: [CheckNotloginGuard] },
       
 ], { relativeLinkResolution: 'legacy' }),
     BrowserAnimationsModule,

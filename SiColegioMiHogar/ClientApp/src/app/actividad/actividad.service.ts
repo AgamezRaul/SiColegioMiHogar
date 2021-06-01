@@ -45,4 +45,9 @@ export class ActividadService {
         this._refresh$.next();
       }));
   }
+
+  getActividadMateria(id: number): Observable<IActividad[]> {
+    return this.http.get<IActividad[]>(this.apiURL + "/GetActividadesMateria?idMateria=" + id);
+  } 
+
 }
