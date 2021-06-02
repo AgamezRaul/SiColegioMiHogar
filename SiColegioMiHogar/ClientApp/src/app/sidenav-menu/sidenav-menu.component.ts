@@ -32,6 +32,7 @@ export class SidenavMenuComponent implements OnInit, OnDestroy {
     { name: "home", route: "", icon: "home" },
     { name: "Notas", route: "listar-notas", icon: "" },
     { name: "Materias", route: "Docente", icon: "" },
+    { name: "Actividaes", route: "actividades-materia", icon: "" }
   ];
   fillerNavEstudiante = [
     { name: "home", route: "", icon: "home" },
