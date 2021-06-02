@@ -81,6 +81,7 @@ import { TableActividadComponent } from './actividad/table-actividad/table-activ
 import { MateriaDocenteComponent } from './docente/materia-docente/materia-docente.component';
 import { DialogoActividadComponent } from './actividad/dialogo-actividad/dialogo-actividad.component';
 import { EstudianteCursoComponent } from './estudiante-curso/estudiante-curso.component';
+import { FormEstudianteCursoComponent } from './estudiante-curso/form-estudiante-curso/form-estudiante-curso.component';
 
 @NgModule({
   declarations: [
@@ -139,7 +140,8 @@ import { EstudianteCursoComponent } from './estudiante-curso/estudiante-curso.co
     TableActividadComponent,
     MateriaDocenteComponent,
     DialogoActividadComponent,
-    EstudianteCursoComponent
+    EstudianteCursoComponent,
+    FormEstudianteCursoComponent
 
   ],
   imports: [
@@ -184,7 +186,7 @@ import { EstudianteCursoComponent } from './estudiante-curso/estudiante-curso.co
       { path: 'registrar-docente', component: FormDocenteComponent, canActivate: [CheckNotloginGuard]},
 
       { path: 'listar-notas', component: TableNotaComponent, canActivate: [CheckNotloginGuard] },
-      { path: 'registrar-nota', component: FormNotaComponent, canActivate: [CheckNotloginGuard] },
+      { path: 'registrar-nota/:idMateria/:idActividad', component: FormNotaComponent, canActivate: [CheckNotloginGuard] },
       { path: 'editar-nota/:id', component: FormNotaComponent, canActivate: [CheckNotloginGuard] },
       { path: 'consultar-nota/:id', component: ConsultarNotaComponent, canActivate: [CheckNotloginGuard] },
 
@@ -201,12 +203,12 @@ import { EstudianteCursoComponent } from './estudiante-curso/estudiante-curso.co
       { path: 'contrato', component: ContratoComponent, canActivate: [CheckNotloginGuard] },
       { path: 'registrar-contrato', component: FormContratoComponent, canActivate: [CheckNotloginGuard] },
       { path: 'editar-contrato/:idDocente', component: FormContratoComponent, canActivate: [CheckNotloginGuard] },
-      { path: 'editar-Usuario/:idUsuario', component: FormUsuarioActualizarComponent, canActivate: [CheckNotloginGuard] },
-      
-
-      
+      { path: 'editar-Usuario/:idUsuario', component: FormUsuarioActualizarComponent, canActivate: [CheckNotloginGuard] },          
 
       { path: 'actividad/:idPeriodo/:idMateria', component: ActividadComponent, canActivate: [CheckNotloginGuard] },
+
+      { path: 'estudiante-curso', component: EstudianteCursoComponent, canActivate: [CheckNotloginGuard] },
+      { path: 'registrar-estudiante-curso', component: FormEstudianteCursoComponent, canActivate: [CheckNotloginGuard] },
       
 ], { relativeLinkResolution: 'legacy' }),
     BrowserAnimationsModule,

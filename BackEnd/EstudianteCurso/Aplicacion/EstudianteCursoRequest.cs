@@ -7,6 +7,7 @@ namespace BackEnd.EstudianteCurso.Aplicacion
     public class EstudianteCursoRequest
     {
         public int Id { get; set; }
+        public string Estudiante { get; set; }
         public int IdEstudiante { get; set; }
         public int IdCurso { get; set; }
         public IReadOnlyList<string> CanCrear(EstudianteCursoRequest request)
@@ -28,7 +29,7 @@ namespace BackEnd.EstudianteCurso.Aplicacion
         }        
         public bool IsOk()
         {
-            return this.Message.Equals("Estudiante se agrego al curso correctamente");
+            return this.Message.Equals("Estudiantes se agregaron al curso correctamente");
         }
     }
     public class ActualizarEstudianteCursoResponse

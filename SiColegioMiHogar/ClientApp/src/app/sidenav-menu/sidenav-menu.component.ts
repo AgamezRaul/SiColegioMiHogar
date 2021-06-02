@@ -20,12 +20,12 @@ export class SidenavMenuComponent implements OnInit, OnDestroy {
     { name: "Periodos", route: "periodos", icon: "" },
     { name: "Docente", route: "Docente", icon: "" },
     { name: "Materias", route: "materias", icon: "" },
-    { name: "Notas", route: "listar-notas", icon: "" },
     { name: "Usuarios", route: "lista-usuario", icon: "" },
     { name: "NotaPeriodo", route: "lista-nota-periodo", icon: "" },
     { name: "UsuarioAdmin", route: "registrousuarioAdmin", icon: "" },
     { name: "UsuarioEstudiante", route: "registrar-usuario-estudiante", icon: "" },
     { name: "Contratos", route: "contrato", icon: "" },
+    { name: "Estudiante Curso", route: "registrar-estudiante-curso", icon: "" },
   ];
   fillerNavDocente = [
     { name: "home", route: "", icon: "home" },

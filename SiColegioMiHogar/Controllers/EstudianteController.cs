@@ -2,6 +2,8 @@
 using BackEnd.Base;
 using BackEnd.Estudiante.Aplicacion.Request;
 using BackEnd.Estudiante.Dominio;
+using BackEnd.EstudianteCurso.Dominio;
+using BackEnd.Materia.Dominio.Entidades;
 using BackEnd.Usuario.Dominio;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
@@ -43,6 +45,38 @@ namespace SiColegioMiHogar.Controllers
                               c.IdUsuario
                           }).ToList();
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
+            return result;
+        }
+
+        [HttpGet("GetEstudianteCurso/{idMateria}")]
+        public object GetEstudianteCurso([FromRoute] int idMateria)
+        {
+            var result = (from e in _context.Set<Estudiante>()
+                          join ec in _context.Set<EstudianteCurso>()
+                          on e.Id equals ec.IdEstudiante
+                          join m in _context.Set<Materias>()
+                          on ec.IdCurso equals m.IdCurso
+                          where m.Id == idMateria
+                          select new
+                          {
+                              e.Id,
+                              e.IdeEstudiante,
+                              e.NomEstudiante,
+                              e.FecNacimiento,
+                              e.LugNacimiento,
+                              e.LugExpedicion,
+                              e.InsProcedencia,
+                              e.DirResidencia,
+                              e.CelEstudiante,
+                              e.TipSangre,
+                              e.GradoEstudiante,
+                              e.Eps,
+                              e.Correo,
+                              e.Sexo,
+                              e.TipoDocumento,
+                              e.TelEstudiante,
+                              e.IdUsuario
+                          }).ToList();
             return result;
         }
 

@@ -1,0 +1,46 @@
+<h1 *ngIf="modoEdicion">Actualizar Curso</h1>
+<h1 *ngIf="!modoEdicion">Registrar Curso</h1>
+
+<div class="formulario" align="center">
+  <h1>Formulario de Curso</h1>
+  <form [formGroup]="formGroup" (ngSubmit)="save()">
+    <div>
+      <mat-form-field class="col-media" appearance="fill">
+        <mat-label>Grados</mat-label>
+        <mat-select formControlName="curso" (selectionChange)="changedGrado($event.value)">
+          <mat-option value="Pre-jardin">Pre-jardin</mat-option>
+          <mat-option value="Jardín">Jardín</mat-option>
+          <mat-option value="Transicion">Transicion</mat-option>
+          <mat-option value="Primero">Primero</mat-option>
+          <mat-option value="Segundo">Segundo</mat-option>
+          <mat-option value="Tercero">Tercero</mat-option>
+          <mat-option value="Cuarto">Cuarto</mat-option>
+          <mat-option value="Quinto">Quinto</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div formArrayName="estudiantesCurso"
+         *ngFor="let estudianteCurso of estudiantesCurso.controls; let i=index">
+      <div [formGroupName]="i">
+        <mat-form-field class="col-media" appearance="fill">
+          <mat-label>Estudiante</mat-label>
+          <input matInput type="text" formControlName="Estudiante" readonly>
+          <input type="hidden" formControlName="idEstudiante">
+        </mat-form-field>
+
+        <mat-form-field class="col-media" appearance="fill" [ngClass]="{'has-error': ((idCurso.touched || idCurso.dirty)&& idCurso.invalid)}">
+          <mat-label>Curso</mat-label>
+          <mat-select formControlName="idCurso" placeholder="Elija una opción">
+            <mat-option *ngFor="let curso of cursos" [value]=curso.id>{{curso.letra}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="((idCurso.touched || idCurso.dirty)&& idCurso.invalid) && idCurso.errors.required">  Curso es<strong> requerido </strong></mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <button type="submit" mat-raised-button color="primary">
+      Registrar estudiantes a los cursos
+    </button>
+  </form>
+</div>

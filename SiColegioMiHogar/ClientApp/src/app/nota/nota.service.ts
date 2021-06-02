@@ -23,8 +23,8 @@ export class NotaService {
     return this.http.get<INotaConsult>(this.apiURL+'/GetNota?id='+id);
   }
 
-  createNota(nota: INota): Observable<INota> {
-    return this.http.post<INota>(this.apiURL, nota);
+  createNota(notas: INota[]): Observable<INota[]> {
+    return this.http.post<INota[]>(this.apiURL, notas);
   }
 
   deleteNota(id: number){

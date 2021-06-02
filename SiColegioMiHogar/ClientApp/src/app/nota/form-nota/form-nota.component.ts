@@ -1,19 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { UrlSegment } from '@angular/router';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { INota, INotaConsult,IEstudianteNota, IPeriodoNota, MateriaNota } from '../nota.component';
+import { INota, INotaConsult } from '../nota.component';
 import { NotaService } from '../nota.service';
-import { Location } from '@angular/common';
-import { error } from 'protractor';
-import { equal } from 'assert';
 import { EstudianteService } from '../../estudiante/estudiante.service';
-import { PeriodoService } from '../../periodo/periodo.service';
 import { IEstudiante } from '../../estudiante/estudiante.component';
-import { IPeriodo } from '../../periodo/periodo.component';
-import { MateriaService } from '../../materia/materia.service';
-import { IMateria } from 'src/app/materia/materia.component';
 import { AlertService } from '../../notifications/_services';
+import { MensajesModule } from '../../mensajes/mensajes.module';
 
 
 @Component({
@@ -23,99 +16,64 @@ import { AlertService } from '../../notifications/_services';
 })
 export class FormNotaComponent implements OnInit {
 
-  ListaEstudiantes: IEstudianteNota[] = [];
-  ListaPeriodos: IPeriodoNota[] = [];
-  ListaMaterias: IMateria[] = [];
-
   constructor(private fb: FormBuilder, private notaservice: NotaService,
-    private router: Router, private activatedRoute: ActivatedRoute, private location: Location,
-    private estudianteService: EstudianteService, private periodoService: PeriodoService, private materiaService: MateriaService,private alertService: AlertService  ) { }
+    private router: Router, private activatedRoute: ActivatedRoute,
+    private estudianteService: EstudianteService, private mensaje: MensajesModule,
+    private alertService: AlertService) { }
 
   modoEdicion: boolean = false;
-  id: number;
+  idActividad: number;
   idNota: number;
+  idMateria: number;
+  estudiantes: IEstudiante[];
+  notas: INota[];
+  notasEstudiantesFormGroup;
 
   formGroup = this.fb.group({
-    Descripcion: ['', [Validators.required]],
-    NotaAlumno: ['', [Validators.required]],
-    IdEstudiante: ['', [Validators.required]],
-    IdMateria:  ['', [Validators.required]],
-    IdPeriodo:  ['', [Validators.required]],
+    notasEstudiantes: this.fb.array([])
   });
 
   ngOnInit(): void {
-    this.estudianteService.getEstudiantes().subscribe(estudiantes => this.LLenarEstudiantes(estudiantes),
-      error => this.alertService.error(error));
-    this.periodoService.getPeriodos().subscribe(periodos => this.LLenarPeriodos(periodos),
-      error => this.alertService.error(error));
-    this.materiaService.getMaterias().subscribe(materia => this.LLenarMaterias(materia),
-      error => this.alertService.error(error));
 
     this.activatedRoute.params.subscribe(params => {
-      if (params["id"] == undefined) {
-        return;
-      } else {
+      if (params["idMateria"] != undefined) {
+        this.idMateria = parseInt(params["idMateria"]);
+        this.idActividad = parseInt(params["idActividad"]);
+        this.estudianteService.GetEstudianteCurso(this.idMateria).subscribe(
+          estudiantes => {
+            this.estudiantes = estudiantes;
+            this.estudiantes.forEach(estudiante => {
+              this.notasEstudiantesFormGroup = this.fb.group({
+                notaAlumno: [0, [Validators.required, Validators.min(1), Validators.max(100)]],
+                nomEstudiante: [estudiante.nomEstudiante],
+                idEstudiante: [estudiante.id],
+                idActividad: [this.idActividad]
+              });
+              this.notasEstudiantes.push(this.notasEstudiantesFormGroup);
+            });
+          }
+        );
+      } else{
         this.modoEdicion = true;
+        this.idActividad = params["idActividad"];
       }
-      this.id = params["id"];
-
-      this.notaservice.getNota(this.id)
-        .subscribe(nota => this.cargarFormulario(nota),
-          error => this.alertService.error(error));
     });
-  }
-
-  LLenarEstudiantes(estudantes: IEstudiante[]) {
-    this.ListaEstudiantes = estudantes;
-  }
-
-  LLenarPeriodos(periodos: IPeriodo[]) {
-    this.ListaPeriodos = periodos;
-  }
-
-  LLenarMaterias(materias: IMateria[]){
-    this.ListaMaterias = materias;
   }
 
   cargarFormulario(nota: INotaConsult) {
     console.table(nota);
-    this.formGroup.patchValue({
-      Descripcion:  nota.descripcion,
-      NotaAlumno: nota.notaAlumno,
-      IdEstudiante: nota.idEstudiante,
-      IdMateria:  nota.idMateria,
-      IdPeriodo:  nota.idPeriodo,
-    });
   }
 
   save() {
-    let nota: INota = Object.assign({}, this.formGroup.value);
-    nota.IdMateria = parseInt(nota.IdMateria.toString());
-    nota.IdEstudiante = parseInt(nota.IdEstudiante.toString());
-    nota.IdPeriodo = parseInt(nota.IdPeriodo.toString());
+    let notasEstudiantes = Object.assign({}, this.formGroup.value);
+    this.notas = notasEstudiantes['notasEstudiantes'];
     if (this.modoEdicion) {
-      //editar registro
-      nota.id = parseInt(this.id.toString());
-      nota.IdMateria = parseInt(nota.IdMateria.toString());
-      nota.IdEstudiante = parseInt(nota.IdEstudiante.toString());
-      nota.IdPeriodo = parseInt(nota.IdPeriodo.toString());
-
-      this.notaservice.updateNota(nota)
-        .subscribe(response => this.onSaveSuccess()),
-
-        error => console.error(error);
-      console.table(nota);
 
     } else {
-      //agregar registro
-      if (this.formGroup.valid) {
-        this.notaservice.createNota(nota)
-          .subscribe(response => this.onSaveSuccess()),
-          error => this.alertService.error(error);
-      } else {
-        this.alertService.info('No valido')
-      }
-    }
+      this.notaservice.createNota(this.notas)
+        .subscribe(() => this.onSaveSuccess(),
+          error => console.log(error));//this.mensaje.mensajeAlertaError('Error', error.error.message));
+    } 
   }
   
   onSaveSuccess() {
@@ -123,23 +81,19 @@ export class FormNotaComponent implements OnInit {
     this.alertService.success("Registrado exitoso");
   }
 
-  get IdPeriodo() {
-    return this.formGroup.get('IdPeriodo');
+  get notasEstudiantes() {
+    return this.formGroup.get('notasEstudiantes') as FormArray;
   }
-
-  get IdMateria() {
-    return this.formGroup.get('IdMateria');
+  get notaAlumno() {
+    return this.notasEstudiantesFormGroup.get('notaAlumno');
   }
-
+  get nomEstudiante() {
+    return this.notasEstudiantesFormGroup.get('nomEstudiante');
+  }
   get IdEstudiante() {
-    return this.formGroup.get('IdEstudiante');
+    return this.notasEstudiantesFormGroup.get('IdEstudiante');
   }
-
-  get NotaAlumno() {
-    return this.formGroup.get('NotaAlumno');
-  }
-
-  get Descripcion() {
-    return this.formGroup.get('Descripcion');
+  get IdActividad() {
+    return this.notasEstudiantesFormGroup.get('IdActividad');
   }
 }

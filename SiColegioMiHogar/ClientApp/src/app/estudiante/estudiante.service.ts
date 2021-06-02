@@ -16,4 +16,7 @@ export class EstudianteService {
   getEstudiantesUsuarios(): Observable<IEstudiante2[]> {
     return this.http.get<IEstudiante2[]>(this.apiURL + '/GetEstudianteUsuarios');
   }
+  GetEstudianteCurso(idMateria: number): Observable<IEstudiante[]> {
+    return this.http.get<IEstudiante[]>(this.apiURL + '/GetEstudianteCurso/' + idMateria);
+  }
 }

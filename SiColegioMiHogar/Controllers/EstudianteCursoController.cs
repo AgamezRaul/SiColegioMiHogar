@@ -1,5 +1,6 @@
 ﻿using BackEnd;
 using BackEnd.Base;
+using BackEnd.Curso.Dominio;
 using BackEnd.Estudiante.Dominio;
 using BackEnd.EstudianteCurso.Aplicacion;
 using BackEnd.EstudianteCurso.Dominio;
@@ -21,6 +22,9 @@ namespace SiColegioMiHogar.Controllers
         private readonly CrearEstudianteCursoService _crearService;
         private readonly ActualizarEstudianteCursoService _actualizarService;
         private readonly EliminarEstudianteCursoService _eliminarService;
+
+        public UnitOfWork UnitOfWork => _unitOfWork;
+
         public EstudianteCursoController(MiHogarContext context)
         {
             _context = context;
@@ -30,7 +34,7 @@ namespace SiColegioMiHogar.Controllers
             _eliminarService = new EliminarEstudianteCursoService(_unitOfWork);
         }
         [HttpGet]
-        public IEnumerable<EstudianteCurso> GetEstudianteCursos()
+        public IEnumerable<EstudianteCurso> GetEstudiantesCursos()
         {
             return _context.EstudianteCurso;
         }
@@ -43,19 +47,50 @@ namespace SiColegioMiHogar.Controllers
             return Ok(estudianteCurso);
         }
         [HttpGet("EstudianteGrado/{grado}")]
-        public IQueryable<Estudiante> GetEstudianteGrado([FromRoute] string grado)
+        public object GetEstudianteGrado([FromRoute] string grado)
         {
-            var estudiantes = _context.Estudiante.Where(t => t.GradoEstudiante == grado);
-            return estudiantes;
+            var result = (from e in _context.Set<Estudiante>()
+                          where !(
+                          from c in _context.Set<EstudianteCurso>()
+                          select c.IdEstudiante).Contains(e.Id)
+                          select new
+                          {
+                              e.Id,
+                              e.IdeEstudiante,
+                              e.NomEstudiante,
+                              e.FecNacimiento,
+                              e.LugNacimiento,
+                              e.LugExpedicion,
+                              e.InsProcedencia,
+                              e.DirResidencia,
+                              e.CelEstudiante,
+                              e.TipSangre,
+                              e.GradoEstudiante,
+                              e.Eps,
+                              e.Correo,
+                              e.Sexo,
+                              e.TipoDocumento,
+                              e.TelEstudiante,
+                              e.IdUsuario
+                          }).ToList();
+            return result;
         }
-        [HttpPost]
-        public async Task<IActionResult> CreateEstudianteCurso([FromBody] EstudianteCursoRequest request)
+
+        [HttpGet("CursoGrado/{grado}")]
+        public IQueryable<Curso> GetCursoGrado([FromRoute] string grado)
         {
-            var rta = _crearService.Ejecutar(request);
+            var cursos = _context.Curso.Where(t => t.Nombre == grado);
+            return cursos;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateEstudianteCurso([FromBody] List<EstudianteCursoRequest> requests)
+        {
+            var rta = _crearService.Ejecutar(requests);
             if (rta.IsOk())
             {
                 await _context.SaveChangesAsync();
-                return CreatedAtAction("GetEstudianteCurso", request);
+                return CreatedAtAction("GetEstudianteCurso", requests);
             }
             return BadRequest(rta.Message);
         }

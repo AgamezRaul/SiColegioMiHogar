@@ -51,7 +51,7 @@ export class ListMateriaComponent implements OnInit {
 
   delete(materia: IMateria) {
     this.materiaService.deleteMateria(materia.id)
-      .subscribe(materia => this.cargardata()),
+      .subscribe(() => this.cargardata()),
       error => this.alertService.error(error);
 
     console.table(materia);

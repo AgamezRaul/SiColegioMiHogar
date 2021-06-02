@@ -15,21 +15,21 @@ export class NotaComponent implements OnInit {
 }
 
 export interface INotaConsult{
-  descripcion: string;
-  notaAlumno: number;
-  fechaNota: string;
-  idEstudiante: string
-  idMateria: string;
-  idPeriodo: string;
+  descripcion: string,
+  notaAlumno: number,
+  fechaNota: string,
+  idEstudiante: string,
+  idMateria: string,
+  idPeriodo: string
 }
 
 export interface INota{
-  id: number
-  Descripcion: string 
-  NotaAlumno: number
-  IdEstudiante: number
-  IdMateria: number
-  IdPeriodo: number
+  id: number,
+  nomEstudiante: string,
+  notaAlumno: number,
+  fechaNota : Date,
+  idEstudiante: number,
+  idActividad: number
 }
 
 export interface IEstudianteNota {

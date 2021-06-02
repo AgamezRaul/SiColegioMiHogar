@@ -7,6 +7,7 @@ namespace BackEnd.Nota.Aplicacion.Request
     public class CrearNotaRequest
     {
         public int Id { get; set; }
+        public string NomEstudiante { get; set; }
         public double NotaAlumno{ get; set; }
         public DateTime FechaNota { get=>DateTime.Now.Date; }
         public int IdActividad { get; set; }
@@ -23,7 +24,7 @@ namespace BackEnd.Nota.Aplicacion.Request
 
         public bool isOk()
         {
-            return this.Message.Equals("Nota Registrada Exitosamente");
+            return this.Message.Equals("Notas Registradas Exitosamente");
         }
     }
 }

@@ -51,13 +51,13 @@ namespace SiColegioMiHogar.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> CreateNota([FromBody] CrearNotaRequest nota)
+        public async Task<IActionResult> CreateNota([FromBody] List<CrearNotaRequest> nota)
         {            
             var rta = _service.Ejecutar(nota);
             if (rta.isOk())
             {
                 await _context.SaveChangesAsync();
-                return CreatedAtAction("GetNota", new { nota.Id }, nota);
+                return CreatedAtAction("GetNota", nota);
             }
             return BadRequest(rta.Message);
         }
