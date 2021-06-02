@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Text;
 using BackEnd.Materia.Dominio.Repositories;
 using BackEnd.NotaPeriodo.Dominio.Repositories;
+using BackEnd.Boletin.Dominio.Repositories;
 using BackEnd.Contrato.Dominio;
 using BackEnd.Actividad;
 using BackEnd.EstudianteCurso.Dominio;
@@ -37,6 +38,7 @@ namespace BackEnd.Base
         IActividadServiceRepository ActividadServiceRepository { get; }
         IEstudianteCursoServiceRepository EstudianteCursoServiceRepository { get; }
 
+        IBoletinServiceRepository BoletinServiceRepository { get; }
         int Commit();
     }
 }

@@ -31,6 +31,8 @@ using BackEnd.Contrato.Infra;
 using BackEnd.Actividad;
 using BackEnd.EstudianteCurso.Dominio;
 using BackEnd.EstudianteCurso.Infra;
+using BackEnd.Boletin.Dominio.Repositories;
+using BackEnd.Boletin.Infra;
 
 namespace BackEnd.Base
 {
@@ -51,6 +53,17 @@ namespace BackEnd.Base
                 return _estudianteServiceRepository ?? (_estudianteServiceRepository = new EstudianteServiceRepository(_dbContext));
             }
         }
+
+        private IBoletinServiceRepository _boletinServiceRepository;
+        public IBoletinServiceRepository BoletinServiceRepository
+        {
+            get
+            {
+                return _boletinServiceRepository ?? (_boletinServiceRepository = new BoletinServiceRepository(_dbContext));
+            }
+        }
+
+
         private IResponsableServiceRepository _responsableServiceRepository;
         public IResponsableServiceRepository ResponsableServiceRepository
         {
