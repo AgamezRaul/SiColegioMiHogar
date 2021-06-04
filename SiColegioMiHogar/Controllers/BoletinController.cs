@@ -32,6 +32,7 @@ namespace SiColegioMiHogar.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateBoletin([FromBody] CrearBoletinRequest request)
         {
+            _service = new CrearBoletinService(_unitOfWork);
             var rta = _service.Ejecutar(request);
             if (rta.isOk())
             {
@@ -57,6 +58,7 @@ namespace SiColegioMiHogar.Controllers
                               e.NomEstudiante,
                               e.GradoEstudiante
                           }).ToList();
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
             return result;
         }
         [HttpDelete("{id}")]

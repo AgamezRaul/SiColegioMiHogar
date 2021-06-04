@@ -83,6 +83,7 @@ import { DialogoActividadComponent } from './actividad/dialogo-actividad/dialogo
 import { EstudianteCursoComponent } from './estudiante-curso/estudiante-curso.component';
 import { BoletinComponent } from './boletin/boletin.component';
 import { FormEstudianteCursoComponent } from './estudiante-curso/form-estudiante-curso/form-estudiante-curso.component';
+import { BoletinFormComponent } from './boletin/boletin-form/boletin-form.component';
 
 @NgModule({
   declarations: [
@@ -142,9 +143,10 @@ import { FormEstudianteCursoComponent } from './estudiante-curso/form-estudiante
     MateriaDocenteComponent,
     DialogoActividadComponent,
     EstudianteCursoComponent,
-    BoletinComponent
+    BoletinComponent,
     EstudianteCursoComponent,
-    FormEstudianteCursoComponent
+    FormEstudianteCursoComponent,
+    BoletinFormComponent
 
   ],
   imports: [
@@ -212,6 +214,9 @@ import { FormEstudianteCursoComponent } from './estudiante-curso/form-estudiante
 
       { path: 'estudiante-curso', component: EstudianteCursoComponent, canActivate: [CheckNotloginGuard] },
       { path: 'registrar-estudiante-curso', component: FormEstudianteCursoComponent, canActivate: [CheckNotloginGuard] },
+
+
+      { path: 'registrar-boletin', component: BoletinFormComponent, canActivate: [CheckNotloginGuard] },
       
 ], { relativeLinkResolution: 'legacy' }),
     BrowserAnimationsModule,
