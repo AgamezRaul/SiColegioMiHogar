@@ -12,13 +12,13 @@ export class DocenteService {
   private _refresh$ = new Subject<void>();
   apiURL = this.baseUrl + "api/Docente";
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
+
   get refresh$() {
     return this._refresh$;
   }
   getDocentes(): Observable<IDocente[]> {
     return this.http.get<IDocente[]>(this.apiURL);
   }
-
   getDocente(idDocente: number): Observable<IDocente> {
     return this.http.get<IDocente>(this.apiURL + '/' + idDocente);
   }
