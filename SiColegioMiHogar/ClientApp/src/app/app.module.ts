@@ -84,6 +84,7 @@ import { EstudianteCursoComponent } from './estudiante-curso/estudiante-curso.co
 import { BoletinComponent } from './boletin/boletin.component';
 import { FormEstudianteCursoComponent } from './estudiante-curso/form-estudiante-curso/form-estudiante-curso.component';
 import { BoletinFormComponent } from './boletin/boletin-form/boletin-form.component';
+import { ListBoletinComponent } from './boletin/list-boletin/list-boletin.component';
 
 @NgModule({
   declarations: [
@@ -147,6 +148,8 @@ import { BoletinFormComponent } from './boletin/boletin-form/boletin-form.compon
     EstudianteCursoComponent,
     FormEstudianteCursoComponent,
     BoletinFormComponent
+    FormEstudianteCursoComponent,
+    ListBoletinComponent
 
   ],
   imports: [
