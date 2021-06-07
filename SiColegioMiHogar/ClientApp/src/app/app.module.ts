@@ -147,7 +147,7 @@ import { ListBoletinComponent } from './boletin/list-boletin/list-boletin.compon
     BoletinComponent,
     EstudianteCursoComponent,
     FormEstudianteCursoComponent,
-    BoletinFormComponent
+    BoletinFormComponent,
     FormEstudianteCursoComponent,
     ListBoletinComponent
 
