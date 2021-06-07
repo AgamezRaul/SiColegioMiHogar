@@ -19,3 +19,9 @@ export interface IBoletin {
   fechaGeneracion: Date,
   idPeriodo: number
 }
+export interface IBoletin2 {
+  id: number,
+  nombreEstudiante: string,
+  fechaGeneracion: Date,
+  nombrePeriodo: string
+}

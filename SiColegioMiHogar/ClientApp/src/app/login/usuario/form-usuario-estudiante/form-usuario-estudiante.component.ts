@@ -39,7 +39,6 @@ export class FormUsuarioEstudianteComponent implements OnInit {
     this.usuarioService.createUsuario(usuario)
       .subscribe(usuario => this.onSaveSuccess(),
         error => this.alertService.error(error.error));
-
   }
   onSaveSuccess() {
     this.location.back();

@@ -1,0 +1,52 @@
+<div class="contenedor">
+  <mat-card class="tarjeta">
+    <mat-card-content class="text-center">
+      <h1>Generar Boletin</h1>
+      <form [formGroup]="formGroup" (ngSubmit)="save()">
+
+
+        <div class="form-group col-md-5">
+          <label for="idEstudiante">Estudiante</label>
+          <select formControlName="idEstudiante" class="form-control" id="idEstudiante">
+            <option value="">Seleccione un Estudiante</option>
+            <option value="{{dato.id}}" *ngFor="let dato of ListaEstudiantes">
+              {{dato.nomEstudiante}}
+              {{','}}
+              {{dato.ideEstudiante}}
+            </option>
+          </select>
+          <div class="alert-danger" *ngIf="idEstudiante.invalid && (idEstudiante.dirty || idEstudiante.touched)">
+            <div class="container-error-message" *ngIf="idEstudiante.errors.required">
+              El Estudiante es Requerido
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group col-md-5">
+          <label for="idPeriodo">Periodo</label>
+          <select formControlName="idPeriodo" class="form-control" id="idPeriodo">
+            <option value="">Seleccione el Periodo</option>
+            <option value="{{dato.id}}" *ngFor="let dato of ListaPeriodos">
+              {{dato.numeroPeriodo}}
+              {{','}}
+              {{dato.nombrePeriodo}}
+            </option>
+          </select>
+          <div class="alert-danger" *ngIf="idPeriodo.invalid && (idPeriodo.dirty || idPeriodo.touched)">
+            <div class="container-error-message" *ngIf="idPeriodo.errors.required">
+              El Periodo es Requerido
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" mat-raised-button color="primary" [disabled]="!formGroup.valid">
+            Salvar
+          </button>
+
+        </div>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

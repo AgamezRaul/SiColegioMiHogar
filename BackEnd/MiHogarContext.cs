@@ -54,7 +54,7 @@ namespace BackEnd
         {
         }
 
-       
+        public DbSet<Boletin.Dominio.Boletin> Boletin { get; set; }
         public DbSet<Estudiante.Dominio.Estudiante> Estudiante { get; set; }
         public DbSet<Matricula.Dominio.Matricula> Matricula { get; set; }
         public DbSet<PreMatricula.Dominio.PreMatricula> PreMatricula { get; set; }

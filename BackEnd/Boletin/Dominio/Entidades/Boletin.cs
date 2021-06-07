@@ -15,7 +15,7 @@ namespace BackEnd.Boletin.Dominio
         {
             FechaGeneracion = fechaGeneracion;
             IdEstudiante = idEstudiante;
-            IdPeriodo = idEstudiante;
+            IdPeriodo = idPeriodo;
         }
 
         public IReadOnlyList<string> CanCrear(Boletin boletin)

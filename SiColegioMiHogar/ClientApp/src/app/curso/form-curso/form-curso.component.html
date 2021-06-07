@@ -29,7 +29,7 @@
     <div>
       <mat-form-field class="col-media" appearance="fill" [ngClass]="{'has-error': ((maxEstudiantes.touched || maxEstudiantes.dirty)&& maxEstudiantes.invalid)}">
         <mat-label>Maximo de estudiantes</mat-label>
-        <input matInput type="text" formControlName="maxEstudiantes" placeholder="Raúl Agámez" required>
+        <input matInput type="text" formControlName="maxEstudiantes" placeholder="30" required>
         <mat-error *ngIf="((maxEstudiantes.touched || maxEstudiantes.dirty)&& maxEstudiantes.invalid) && maxEstudiantes.errors.required">  Maximos estudiantes es<strong> requerido </strong></mat-error>
       </mat-form-field>
 

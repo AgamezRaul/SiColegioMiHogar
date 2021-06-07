@@ -17,7 +17,7 @@ namespace SiColegioMiHogar.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BoletinController:ControllerBase
+    public class BoletinController: Controller
     {
         private readonly MiHogarContext _context;
         private CrearBoletinService _service;
@@ -27,23 +27,11 @@ namespace SiColegioMiHogar.Controllers
         {
             this._context = context;
             _unitOfWork = new UnitOfWork(_context);
+            
         }
-
-        [HttpPost]
-        public async Task<IActionResult> CreateBoletin([FromBody] CrearBoletinRequest request)
-        {
-            var rta = _service.Ejecutar(request);
-            if (rta.isOk())
-            {
-                await _context.SaveChangesAsync();
-                return CreatedAtAction("GetBoletin", new { Id = request.id }, request);
-            }
-            return BadRequest(rta.Message);
-        }
-
 
         [HttpGet]
-        public Object GetBoletin()
+        public Object GetBoletines()
         {
             var result = (from b in _context.Set<Boletin>()
                           join e in _context.Set<Estudiante>()
@@ -57,8 +45,22 @@ namespace SiColegioMiHogar.Controllers
                               e.NomEstudiante,
                               e.GradoEstudiante
                           }).ToList();
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
             return result;
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetBoletin([FromRoute] int id)
+        {
+            Boletin boletin = await _context.Boletin.SingleOrDefaultAsync(t => t.Id == id);
+            if (boletin == null)
+            {
+                return NotFound();
+            }
+            return Ok(boletin);
+        }
+
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBoletin([FromRoute] int id)
         {
@@ -73,6 +75,18 @@ namespace SiColegioMiHogar.Controllers
             }
             return BadRequest(rta.Message);
         }
-
+        
+        [HttpPost]
+        public async Task<IActionResult> CreateBoletin([FromBody] CrearBoletinRequest boletin)
+        {
+            _service = new CrearBoletinService(_unitOfWork);
+            var rta = _service.Ejecutar(boletin);
+            if (rta.isOk())
+            {
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetBoletin", new { id = boletin.id }, boletin);
+            }
+            return BadRequest(rta.Message);
+        }
     }
 }
