@@ -30,9 +30,6 @@ namespace SiColegioMiHogar.Controllers
             
         }
 
-        
-
-
         [HttpGet]
         public Object GetBoletines()
         {
@@ -78,15 +75,16 @@ namespace SiColegioMiHogar.Controllers
             }
             return BadRequest(rta.Message);
         }
+        
         [HttpPost]
-        public async Task<IActionResult> CreateBoletin([FromBody] CrearBoletinRequest request)
+        public async Task<IActionResult> CreateBoletin([FromBody] CrearBoletinRequest boletin)
         {
             _service = new CrearBoletinService(_unitOfWork);
-            var rta = _service.Ejecutar(request);
+            var rta = _service.Ejecutar(boletin);
             if (rta.isOk())
             {
                 await _context.SaveChangesAsync();
-                return CreatedAtAction("GetBoletin", new { id = request.id }, request);
+                return CreatedAtAction("GetBoletin", new { id = boletin.id }, boletin);
             }
             return BadRequest(rta.Message);
         }

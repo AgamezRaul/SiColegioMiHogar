@@ -23,6 +23,11 @@ export class BoletinService {
   createBoletin(boletin: IBoletin): Observable<IBoletin> {
     return this.http.post<IBoletin>(this.apiURL, boletin);
   }
+  createMensualidad(mensualidad: IBoletin): Observable<IBoletin> {
+    return this.http.post<IBoletin>(this.apiURL, mensualidad);
+  }
+
+
   updateBoletin(boletin: IBoletin): Observable<IBoletin> {
     return this.http.put<IBoletin>(this.apiURL + "/" + boletin.id, boletin);
   }

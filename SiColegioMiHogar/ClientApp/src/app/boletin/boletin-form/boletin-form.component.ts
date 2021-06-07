@@ -38,10 +38,12 @@ export class BoletinFormComponent implements OnInit {
   save() {
     let boletin: IBoletin = Object.assign({}, this.formGroup.value);
     boletin.fechaGeneracion = new Date();
+    boletin.idEstudiante = +boletin.idEstudiante;
+    boletin.idPeriodo = +boletin.idPeriodo;
     //boletin.fechaGeneracion = new Date("2021-06-04T07:06:19.857");
     console.table(boletin); //ver usuario por consola
     if (this.formGroup.valid) {
-      this.boletinService.createBoletin(boletin)
+      this.boletinService.createMensualidad(boletin)
       .subscribe(boletin => this.onSaveSuccess(),
       error => this.alertService.error(error));
     } else {
