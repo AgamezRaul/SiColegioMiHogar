@@ -142,7 +142,7 @@ import { FormEstudianteCursoComponent } from './estudiante-curso/form-estudiante
     MateriaDocenteComponent,
     DialogoActividadComponent,
     EstudianteCursoComponent,
-    BoletinComponent
+    BoletinComponent,
     EstudianteCursoComponent,
     FormEstudianteCursoComponent
 
@@ -212,6 +212,8 @@ import { FormEstudianteCursoComponent } from './estudiante-curso/form-estudiante
 
       { path: 'estudiante-curso', component: EstudianteCursoComponent, canActivate: [CheckNotloginGuard] },
       { path: 'registrar-estudiante-curso', component: FormEstudianteCursoComponent, canActivate: [CheckNotloginGuard] },
+
+      { path: 'materiasEstudiante', component: EstudianteComponent, canActivate: [CheckNotloginGuard] },
       
 ], { relativeLinkResolution: 'legacy' }),
     BrowserAnimationsModule,

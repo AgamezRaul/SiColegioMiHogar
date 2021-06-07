@@ -19,4 +19,7 @@ export class EstudianteService {
   GetEstudianteCurso(idMateria: number): Observable<IEstudiante[]> {
     return this.http.get<IEstudiante[]>(this.apiURL + '/GetEstudianteCurso/' + idMateria);
   }
+  getUsuarioEstudiante(correo: string): Observable<IEstudiante> {
+    return this.http.get<IEstudiante>(this.apiURL + '/UsuarioEstudiante/' + correo);
+  }
 }

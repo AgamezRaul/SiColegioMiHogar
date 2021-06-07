@@ -21,7 +21,7 @@ namespace SiColegioMiHogar.Controllers
     public class EstudianteController : ControllerBase
     {
         private readonly MiHogarContext _context;
-        private UnitOfWork _unitOfWork;
+        private readonly UnitOfWork _unitOfWork;
 
         public EstudianteController(MiHogarContext context)
         {
@@ -44,7 +44,6 @@ namespace SiColegioMiHogar.Controllers
                               c.Correo,
                               c.IdUsuario
                           }).ToList();
-            string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
             return result;
         }
 
@@ -80,11 +79,18 @@ namespace SiColegioMiHogar.Controllers
             return result;
         }
 
+        [HttpGet("UsuarioEstudiante/{correo}")]
+        public Estudiante GetUsuarioEstudiante(string correo)
+        {
+            return _context.Estudiante.FirstOrDefault(t => t.Correo == correo);
+        }
+
         [HttpGet]
         public IEnumerable<Estudiante> Estudiantes()
         {
             return _context.Estudiante;
 
         }
+        
     }
 }

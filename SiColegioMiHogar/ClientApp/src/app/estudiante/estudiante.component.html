@@ -1,1 +1,10 @@
+<h1>Materias del estudiante</h1>
 
+<div *ngFor="let materia of materiasEstudiante">
+  <mat-card class="example-card">
+    <h3>{{materia.nombreMateria}}</h3>
+    <!--<div flex="100">
+      <button mat-button [routerLink]='["/registrar-prematricula"]'>Realizar solicitud de matricula</button>
+    </div>-->
+  </mat-card>
+</div>

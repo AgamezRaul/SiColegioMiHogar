@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 using BackEnd.Docente.Dominio;
+using BackEnd.EstudianteCurso.Dominio;
 
 namespace SiColegioMiHogar.Controllers
 {
@@ -19,15 +20,35 @@ namespace SiColegioMiHogar.Controllers
     public class MateriaController : Controller
     {
         private readonly MiHogarContext _context;
-        private CrearMateriaService _service;
-        private ActualizarMateriaService _actualizarService;
-        private EliminarMateriaService _eliminarService;
-        private UnitOfWork _unitOfWork;
+        private readonly CrearMateriaService _service;
+        private readonly ActualizarMateriaService _actualizarService;
+        private readonly EliminarMateriaService _eliminarService;
+        private readonly UnitOfWork _unitOfWork;
 
         public MateriaController(MiHogarContext context)
         {
             _context = context;
             _unitOfWork = new UnitOfWork(_context);
+            _service = new CrearMateriaService(_unitOfWork);
+            _actualizarService = new ActualizarMateriaService(_unitOfWork);
+            _eliminarService = new EliminarMateriaService(_unitOfWork);
+        }
+
+        [HttpGet("materiasEstudiante/{idEstudiante}")]
+        public object GetMateriasEstudiante(int idEstudiante)
+        {
+            var result = (from m in _context.Set<Materias>()
+                          join ec in _context.Set<EstudianteCurso>()
+                          on m.IdCurso equals ec.IdCurso
+                          where ec.IdEstudiante == idEstudiante
+                          select new
+                          {
+                              m.Id,
+                              m.IdDocente,
+                              m.IdCurso,
+                              m.NombreMateria
+                          }).ToList();
+            return result;
         }
 
         [HttpGet]
@@ -65,7 +86,6 @@ namespace SiColegioMiHogar.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateMaterias([FromBody] CrearMateriaRequest request)
         {
-            _service = new CrearMateriaService(_unitOfWork);
             var rta = _service.Ejecutar(request);
             if (rta.isOk())
             {
@@ -78,7 +98,6 @@ namespace SiColegioMiHogar.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutMateria([FromRoute] int id, [FromBody] ActualizarMateriaRequest request)
         {
-            _actualizarService = new ActualizarMateriaService(_unitOfWork);
             var rta = _actualizarService.Ejecutar(request);
             if (rta.isOk())
             {
@@ -91,7 +110,6 @@ namespace SiColegioMiHogar.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePreMatricula([FromRoute] int id)
         {
-            _eliminarService = new EliminarMateriaService(_unitOfWork);
             EliminarMateriaRequest request = new EliminarMateriaRequest();
             request.Id = id;
             var rta = _eliminarService.Ejecutar(request);
