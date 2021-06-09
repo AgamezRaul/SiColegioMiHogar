@@ -21,7 +21,9 @@ export interface IBoletin {
 }
 export interface IBoletin2 {
   id: number,
-  nombreEstudiante: string,
-  fechaGeneracion: Date,
-  nombrePeriodo: string
+  nomEstudiante: string,
+  ideEstudiante: string,
+  gradoEstudiante: string,
+  nombrePeriodo: string,
+  fechaGeneracion: Date
 }

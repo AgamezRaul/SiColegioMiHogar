@@ -36,14 +36,19 @@ namespace SiColegioMiHogar.Controllers
             var result = (from b in _context.Set<Boletin>()
                           join e in _context.Set<Estudiante>()
                           on b.IdEstudiante equals e.Id
+                          join p in _context.Set<Periodo>()
+                          on b.IdPeriodo equals  p.Id
                           select new
                           {
                               b.Id,
-                              b.IdEstudiante,
                               b.FechaGeneracion,
                               b.IdPeriodo,
                               e.NomEstudiante,
-                              e.GradoEstudiante
+                              e.IdeEstudiante,
+                              e.GradoEstudiante,
+                              p.NombrePeriodo,
+                              p.NumeroPeriodo
+                              
                           }).ToList();
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
             return result;
