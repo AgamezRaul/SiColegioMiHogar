@@ -74,7 +74,7 @@ export class ListMensualidadComponent implements OnInit, OnDestroy {
 
   onDeleteSuccess() {
     this.router.navigate(["/consultar-mensualidad/" + this.id]);
-    this.mensaje.mensajeAlertaCorrecto('¡Exitoso!','Mensualidad eliminada correctamente');
+    this.mensaje.mensajeAlertaCorrecto('¡Exitoso!','Mensualidad elimindad correctamente');
   }
   onSaveSuccess() {
     this.router.navigate(["/consultar-mensualidad/" + this.id]);
