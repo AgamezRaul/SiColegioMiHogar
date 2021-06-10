@@ -184,8 +184,6 @@ import { ListBoletinComponent } from './boletin/list-boletin/list-boletin.compon
       { path: 'registrar-materia', component: FormMateriaComponent, canActivate: [CheckNotloginGuard] },
       { path: 'editar-materia/:id', component: FormMateriaComponent, canActivate: [CheckNotloginGuard] },
 
-      { path: 'boletines', component: ListBoletinComponent, canActivate: [CheckNotloginGuard] },
-
       { path: 'periodos', component: TablePeriodoComponent, canActivate: [CheckNotloginGuard] },
       { path: 'registrar-periodo', component: FormPeriodoComponent, canActivate: [CheckNotloginGuard] },
       { path: 'editar-periodo/:id', component: FormPeriodoComponent, canActivate: [CheckNotloginGuard] },
@@ -222,7 +220,7 @@ import { ListBoletinComponent } from './boletin/list-boletin/list-boletin.compon
 
 
       { path: 'registrar-boletin', component: BoletinFormComponent, canActivate: [CheckNotloginGuard] },
-      
+      { path: 'boletines', component: ListBoletinComponent, canActivate: [CheckNotloginGuard] },
 
       { path: 'materiasEstudiante', component: EstudianteComponent, canActivate: [CheckNotloginGuard] },
       
