@@ -70,6 +70,5 @@ namespace BackEnd
         public DbSet<Contrato.Dominio.Contrato> Contrato { get; set; }
         public DbSet<Actividad.Actividad> Actividad { get; set; }
         public DbSet<EstudianteCurso.Dominio.EstudianteCurso> EstudianteCurso { get; set; }
-        public DbSet<Boletin.Dominio.Boletin> boletin { get; set; }
     }
 }
