@@ -45,6 +45,7 @@
     <Folder Include="ClientApp\src\app\curso\form-curso\" />
     <Folder Include="ClientApp\src\app\curso\table-curso\" />
     <Folder Include="ClientApp\src\app\notifications\" />
+    <Folder Include="Views\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
