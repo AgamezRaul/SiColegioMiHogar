@@ -18,6 +18,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Rotativa" Version="1.7.3" />
+    <PackageReference Include="Rotativa.AspNetCore" Version="1.1.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.2" />
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.1.2" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.1.2" />
@@ -43,6 +45,7 @@
     <Folder Include="ClientApp\src\app\curso\form-curso\" />
     <Folder Include="ClientApp\src\app\curso\table-curso\" />
     <Folder Include="ClientApp\src\app\notifications\" />
+    <Folder Include="Views\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
