@@ -1,7 +1,7 @@
 node {
 
   stage('Checkout') {
-	   git url: 'https://github.com/AgamezRaul/SiColegioMiHogar.git',branch: 'Rama-Merge'
+	   git url: 'https://github.com/AgamezRaul/SiColegioMiHogar.git',branch: 'Master2'
   }
 
  stage ('Restore Nuget') {
