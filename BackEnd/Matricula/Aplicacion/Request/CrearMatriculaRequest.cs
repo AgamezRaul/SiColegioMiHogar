@@ -9,6 +9,7 @@ namespace BackEnd.Matricula.Aplicacion.Request
         public int id { get; set; }
         public DateTime FecConfirmacion { get => DateTime.Now.Date; }
         public int IdPreMatricula { get; set; }
+        public double ValorMatricula { get; set; }
 
         public IReadOnlyList<string> CanCrear(CrearMatriculaRequest matricula)
         {

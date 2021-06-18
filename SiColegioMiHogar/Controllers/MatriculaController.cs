@@ -46,9 +46,9 @@ namespace SiColegioMiHogar.Controllers
                           {
                               IdMatricula = m.Id,
                               NomEstudiante = e.NomEstudiante,
-                              FecMatricula = m.FecConfirmacion
+                              FecMatricula = m.FecConfirmacion,
+                              m.ValorMatricula
                           }).ToList();
-            string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
             return result;
         }
 
@@ -62,11 +62,12 @@ namespace SiColegioMiHogar.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateMatricula([FromBody] int idPreMatricula)
+        public async Task<IActionResult> CreateMatricula([FromBody] double valorMatricula, [FromRoute] int idPreMatricula)
         {
             CrearMatriculaRequest request = new CrearMatriculaRequest
             {
-                IdPreMatricula = idPreMatricula
+                IdPreMatricula = idPreMatricula,
+                ValorMatricula = valorMatricula
             };
             var rta = _crearService.EjecutarCrearMatricula(request);
             if (rta.isOk())

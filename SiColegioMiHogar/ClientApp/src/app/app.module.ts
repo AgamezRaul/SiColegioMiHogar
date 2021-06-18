@@ -85,6 +85,7 @@ import { BoletinComponent } from './boletin/boletin.component';
 import { FormEstudianteCursoComponent } from './estudiante-curso/form-estudiante-curso/form-estudiante-curso.component';
 import { BoletinFormComponent } from './boletin/boletin-form/boletin-form.component';
 import { ListBoletinComponent } from './boletin/list-boletin/list-boletin.component';
+import { DialogoPreMatriculaComponent } from './pre-matricula/dialogo-pre-matricula/dialogo-pre-matricula.component';
 
 @NgModule({
   declarations: [
@@ -149,7 +150,8 @@ import { ListBoletinComponent } from './boletin/list-boletin/list-boletin.compon
     FormEstudianteCursoComponent,
     BoletinFormComponent,
     FormEstudianteCursoComponent,
-    ListBoletinComponent
+    ListBoletinComponent,
+    DialogoPreMatriculaComponent
 
   ],
   imports: [
@@ -232,7 +234,7 @@ import { ListBoletinComponent } from './boletin/list-boletin/list-boletin.compon
   providers: [UsuarioService, PreMatriculaService, CdkColumnDef, MateriaService, AlertService, DocenteService, CursoService,
     MensualidadService, MatriculaService, NotaService, PeriodoService],
   bootstrap: [AppComponent],
-  entryComponents: [DialogoActividadComponent],
+  entryComponents: [DialogoActividadComponent, DialogoPreMatriculaComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
