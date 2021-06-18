@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using BackEnd.Boletin.Aplicacion.Request;
 using BackEnd.Boletin.Aplicacion.Services.Crear;
 using BackEnd.Boletin.Aplicacion.Services.Eliminar;
+using BackEnd.Boletin.Aplicacion.Services.GenerarBoletin;
 
 namespace SiColegioMiHogar.Controllers
 {
@@ -23,6 +24,7 @@ namespace SiColegioMiHogar.Controllers
         private CrearBoletinService _service;
         private UnitOfWork _unitOfWork;
         private EliminarBoletinService _eliminarService;
+        private GenerarBoletinService _generarBoletin;
         public BoletinController(MiHogarContext context)
         {
             this._context = context;
@@ -92,6 +94,19 @@ namespace SiColegioMiHogar.Controllers
                 return CreatedAtAction("GetBoletin", new { id = boletin.id }, boletin);
             }
             return BadRequest(rta.Message);
+        }
+        [HttpPut("PutPdf")]
+        public async Task<IActionResult> GenerarPdf([FromBody] CrearBoletinRequest boletin)
+        {
+            _generarBoletin = new GenerarBoletinService(_unitOfWork);
+            var rta = _generarBoletin.BoletinPDF(boletin);
+            if (rta != null)
+            {
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetBoletin", new { id = boletin.id }, boletin);
+            }
+            return BadRequest(rta);
+
         }
     }
 }
