@@ -41,7 +41,7 @@ namespace TestBackEnd.AplicacionTest.CrearTest
                     IdPeriodo = 1,
                     IdEstudiante = 1
                 },
-                "Nota Boletin Exitosamente"
+                "Boletin Creado Exitosamente"
                 ).SetName("Crear Boletin Correctamente");
         }
 

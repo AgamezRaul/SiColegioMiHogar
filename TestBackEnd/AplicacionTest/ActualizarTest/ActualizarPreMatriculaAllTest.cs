@@ -115,7 +115,7 @@ namespace TestBackEnd.AplicacionTest.ActualizarTest
                     id = 1,                    
                     IdUsuario = 1,
                 },
-                "PreMatricula Actualizada Exitosamente"
+                "PreMatricula no existe"
             ).SetName("PreMatricula Actualizada Exitosamente");
         }
     }

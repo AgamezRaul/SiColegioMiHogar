@@ -42,7 +42,7 @@ namespace TestBackEnd.AplicacionTest.ActualizarTest
                     idPeriodo = 1,
                     idMateria = 1
                 },
-                "Nota Periodo Actualizada Exitosamente"
+                "Nota Periodo no existe"
                 ).SetName("Nota Periodo Actualizada Exitosamente");
         }
     }

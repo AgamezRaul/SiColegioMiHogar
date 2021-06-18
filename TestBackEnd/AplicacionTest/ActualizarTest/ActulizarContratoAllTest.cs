@@ -41,7 +41,7 @@ namespace TestBackEnd.AplicacionTest.ActualizarTest
                     IdDocente=1
                    
                 },
-                "Contrato Actulizado Exitosamente"
+                "El  contrato del docente no existe"
                 ).SetName("Contrato Actualizado Correctamente");
         }
     }

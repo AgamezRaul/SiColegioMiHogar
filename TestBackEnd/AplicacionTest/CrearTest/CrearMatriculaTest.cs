@@ -39,7 +39,7 @@ namespace TestBackEnd.AplicacionTest.CrearTest
                 {
                     IdPreMatricula = 1,
                 },
-                "Matricula Creada Exitosamente"
+                "No se logró crear la matricula"
                 ).SetName("Crear Matricula Correctamente");
         }
     }

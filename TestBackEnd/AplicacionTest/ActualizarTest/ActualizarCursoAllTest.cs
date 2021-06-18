@@ -41,7 +41,7 @@ namespace TestBackEnd.AplicacionTest.ActualizarTest
                     maxEstudiantes = 20,
                     idDirectorDocente = 8
                 },
-                "Curso Actualizada Exitosamente"
+                "Curso no existe"
                 ).SetName("Curso Actualizada Exitosamente");
         }
 

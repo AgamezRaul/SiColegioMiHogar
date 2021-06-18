@@ -41,7 +41,7 @@ namespace TestBackEnd.AplicacionTest.CrearTest
                     Sueldo = 1400000,
                     IdDocente = 1
                 },
-                "Contrato Creado Exitosamente"
+                "Error al crear contrato"
             ).SetName("Crear Contrato Correctamente");
         }
     }

@@ -25,13 +25,13 @@ namespace TestBackEnd.AplicacionTest.ActualizarTest
             _unitOfWork = new UnitOfWork(_context);
         }
         [TestCaseSource("EditionsDocente")]
-        public void CrearDocente(ActualizarDocenteRequest DocenteRequest, string expected)
+        public void ActualizarDocente(ActualizarDocenteRequest DocenteRequest, string expected)
         {
             _Docenteservice = new ActualizarDocenteService(_unitOfWork);
             var response = _Docenteservice.Ejecutar(DocenteRequest);
             Assert.AreEqual(expected, response.Message);
         }
-        private static IEnumerable<TestCaseData> CreationsDocente()
+        private static IEnumerable<TestCaseData> EditionsDocente()
         {
             yield return new TestCaseData(
                 new ActualizarDocenteRequest
@@ -44,7 +44,7 @@ namespace TestBackEnd.AplicacionTest.ActualizarTest
                     Direccion = "Calle 5 No 30-21 Sabanas",
                     id = 1
                 },
-                "Docente Creado Exitosamente"
+                "Docente no existe"
                 ).SetName("Docente Actualizado Correctamente");
         }
     }

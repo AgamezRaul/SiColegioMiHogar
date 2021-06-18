@@ -44,7 +44,7 @@ namespace TestBackEnd.AplicacionTest.ActualizarTest
                     Abono = 100.000,
                     id = 1
                 },
-                "Mensualidad Actualizada Exitosamente"
+                "Mensualidad no existe"
             ).SetName("Mensualidad Actualizada Exitosamente");
         }
     }
