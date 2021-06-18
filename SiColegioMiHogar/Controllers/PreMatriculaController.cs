@@ -90,7 +90,6 @@ namespace SiColegioMiHogar.Controllers
                                     estudiante,
                                     responsables
                                 }).ToList();
-            string json = Newtonsoft.Json.JsonConvert.SerializeObject(preMatricula, Newtonsoft.Json.Formatting.Indented);
             if (preMatricula == null)
                 return NotFound();
             return Ok(preMatricula);

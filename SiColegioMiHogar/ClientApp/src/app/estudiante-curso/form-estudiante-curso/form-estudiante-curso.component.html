@@ -1,8 +1,9 @@
-<h1 *ngIf="modoEdicion">Actualizar Curso</h1>
-<h1 *ngIf="!modoEdicion">Registrar Curso</h1>
+<h1 *ngIf="modoEdicion">Actualizar estudiantes en Curso</h1>
+<h1 *ngIf="!modoEdicion">Registrar estudiantes en Curso</h1>
 
 <div class="formulario" align="center">
   <h1>Formulario de Curso</h1>
+  <p>Selecciona un curso, te mostrará los estudiantes sin curso</p>
   <form [formGroup]="formGroup" (ngSubmit)="save()">
     <div>
       <mat-form-field class="col-media" appearance="fill">

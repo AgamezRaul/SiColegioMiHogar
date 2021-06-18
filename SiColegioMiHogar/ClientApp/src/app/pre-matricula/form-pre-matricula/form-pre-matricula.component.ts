@@ -132,11 +132,15 @@ export class FormPreMatriculaComponent implements OnInit {
       console.log(this.prematricula);
       this.servicePrematricula.createPrematricula(this.prematricula)
         .subscribe(prematricula => this.onSaveSuccess(),
-          error => this.mensaje.mensajeAlertaError('Error', error.error.text));
+          error => {
+            this.mensaje.mensajeAlertaError('Error', error.error.text);
+            this.responsables.splice(0, this.responsables.length);
+            console.log(this.responsables);
+          });
     }
   }
 
-  cargarFormulario(prematricula: IPrematricula) {    
+  cargarFormulario(prematricula: IPrematricula) {
     this.formGroupE.patchValue({
       ideEstudiante: prematricula[0].estudiante[0].e['ideEstudiante'],
       nomEstudiante: prematricula[0].estudiante[0].e['nomEstudiante'],

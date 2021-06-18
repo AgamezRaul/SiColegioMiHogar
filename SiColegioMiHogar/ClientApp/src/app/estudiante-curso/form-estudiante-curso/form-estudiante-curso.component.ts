@@ -63,7 +63,7 @@ export class FormEstudianteCursoComponent implements OnInit {
   }
 
   onSaveSuccess() {
-    this.router.navigate(["/estudiante-curso"]);
+    this.router.navigate(["/"]);
     this.mensaje.mensajeAlertaCorrecto('Exitoso!', 'Se asignaron los estudiantes');
   }
   get curso() {
