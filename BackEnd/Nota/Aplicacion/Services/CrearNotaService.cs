@@ -15,7 +15,7 @@ namespace BackEnd.Nota.Aplicacion.Services
         }
         public CrearNotaResponse Ejecutar(CrearNotaRequest request)
         {
-            var nota = _unitOfWork.NotaServiceRepository.FindFirstOrDefault(t => t.IdActividad == request.IdActividad);
+            var nota = _unitOfWork.NotaServiceRepository.FindFirstOrDefault(t => t.IdActividad == request.IdActividad && t.IdEstudiante == request.IdEstudiante);
             if (nota != null)
             {
                 return new CrearNotaResponse($"Nota ya registrada");

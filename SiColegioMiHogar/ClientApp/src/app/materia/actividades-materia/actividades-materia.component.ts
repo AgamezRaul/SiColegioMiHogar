@@ -6,6 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService } from '../../notifications/_services';
 import { IMateria } from '../../materia/materia.component';
 import { MateriaService } from '../../materia/materia.service';
+import { IUsuario } from '../../login/usuario/usuario.component';
+import { UsuarioService } from '../../login/usuario/usuario.service';
 
 
 @Component({
@@ -15,8 +17,8 @@ import { MateriaService } from '../../materia/materia.service';
 })
 
 export class ActividadesMateriaComponent implements OnInit {
-	
-	materia!: IMateria[];
+  
+  materia!: IMateria[];
 
   displayedColumns: string[] = [
     'id',
@@ -27,7 +29,7 @@ export class ActividadesMateriaComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(private materiaService: MateriaService, private alertService: AlertService,
-    private router: Router, private activatedRoute: ActivatedRoute) {
+    private router: Router, private usuarioService: UsuarioService, private activatedRoute: ActivatedRoute) {
   }
 
   applyFilter(event: Event) {
@@ -44,11 +46,18 @@ export class ActividadesMateriaComponent implements OnInit {
     this.cargardata();
   }
 
+  idUsuario: number;
+  correo: string;
+  usuario: IUsuario;
 
   cargardata() {
-    this.materiaService.getMaterias()
-      .subscribe(materia => { console.log(materia), this.dataSource.data = materia },
-        error => this.alertService.error(error));
+
+    const usuario = JSON.parse(localStorage.getItem('user'));
+    this.idUsuario = usuario["id"];
+    this.usuarioService.getUsuarioId(this.idUsuario).subscribe(user => {
+      this.materiaService.GetMateriaDocente(user.correo).subscribe(materias => this.dataSource.data = materias);
+    });
+
   }
   
 }

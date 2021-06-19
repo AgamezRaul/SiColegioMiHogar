@@ -35,7 +35,7 @@
     <ng-container matColumnDef="nota">
       <th mat-header-cell *matHeaderCellDef>Nota</th>
       <td mat-cell *matCellDef="let element">
-       
+        <button mat-icon-button [routerLink]='["/notas-actividad/" + element.id]'><mat-icon>list</mat-icon> Ver notas</button>
       </td>
     </ng-container>
 

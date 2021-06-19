@@ -3,6 +3,8 @@ using BackEnd.Base;
 using BackEnd.Nota.Aplicacion.Request;
 using BackEnd.Nota.Aplicacion.Services;
 using BackEnd.Nota.Dominio.Entidades;
+using BackEnd.Actividad;
+using BackEnd.Estudiante.Dominio;
 using BackEnd.Nota.Dominio;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -69,6 +71,27 @@ namespace SiColegioMiHogar.Controllers
             ActualizarNotaService service = new ActualizarNotaService(_unitOfWork);
             ActualizarResponse response = service.ActualizarNota(request);
             return Ok(response);
+        }
+
+
+        [HttpGet("notas-actividad/{idActividad}")]
+        public object GetNotasActividad([FromRoute] int idActividad)
+        {
+            var result = (from n in _context.Set<Nota>()
+                          join a in _context.Set<Actividad>()
+                          on n.IdActividad equals a.Id
+                          //join es in _context.Set<Estudiante>()
+                          //on n.IdEstudiante equals es.Id
+                          where n.IdActividad == idActividad
+                          select new
+                          {
+                              n.Id,
+                              n.NotaAlumno,
+                              n.FechaNota,
+                              n.IdEstudiante,
+                              //es.NomEstudiante
+                          }).ToList();
+            return result;
         }
     }
 }
