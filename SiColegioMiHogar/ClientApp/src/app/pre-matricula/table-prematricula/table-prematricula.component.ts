@@ -62,9 +62,9 @@ export class TablePrematriculaComponent implements OnInit {
         error => this.alertService.error(error.error));
   }
 
-  CrearMatricula(idPreMatricula: number) {
-    this.matriculaService.createMatricula(idPreMatricula).
-      subscribe(empleadoId => this.onCrearMatriculaSuccess(),
+  CrearMatricula(valorMatricula: number, idPreMatricula: number) {
+    this.matriculaService.createMatricula(valorMatricula, idPreMatricula).
+      subscribe(() => this.onCrearMatriculaSuccess(),
         error => this.alertService.error(error.error))
   }
 
