@@ -10,10 +10,13 @@ namespace BackEnd.Matricula.Dominio
        
         public DateTime FecConfirmacion { get; set; }
         public int IdePreMatricula { get; set; }
-        public Matricula( DateTime fecConfirmacion, int idePreMatricula)
+        public double ValorMatricula { get; set; }
+
+        public Matricula(DateTime fecConfirmacion, int idePreMatricula, double valorMatricula)
         {
             FecConfirmacion = fecConfirmacion;
             IdePreMatricula = idePreMatricula;
+            ValorMatricula = valorMatricula;
         }
     }
 }

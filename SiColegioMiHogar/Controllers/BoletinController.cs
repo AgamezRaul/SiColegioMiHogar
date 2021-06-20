@@ -1,33 +1,35 @@
 ﻿using BackEnd;
 using BackEnd.Base;
-using BackEnd.Periodo.Dominio;
-using BackEnd.Estudiante.Dominio;
+using BackEnd.Boletin.Aplicacion.Request;
+using BackEnd.Boletin.Aplicacion.Services.Crear;
+using BackEnd.Boletin.Aplicacion.Services.Eliminar;
+using BackEnd.Boletin.Aplicacion.Services.GenerarBoletin;
 using BackEnd.Boletin.Dominio;
+using BackEnd.Estudiante.Dominio;
+using BackEnd.Periodo.Dominio;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BackEnd.Boletin.Aplicacion.Request;
-using BackEnd.Boletin.Aplicacion.Services.Crear;
-using BackEnd.Boletin.Aplicacion.Services.Eliminar;
 
 namespace SiColegioMiHogar.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BoletinController: Controller
+    public class BoletinController : Controller
     {
         private readonly MiHogarContext _context;
         private CrearBoletinService _service;
         private UnitOfWork _unitOfWork;
         private EliminarBoletinService _eliminarService;
+        private GenerarBoletinService _generarBoletin;
         public BoletinController(MiHogarContext context)
         {
             this._context = context;
             _unitOfWork = new UnitOfWork(_context);
-            
+
         }
 
         [HttpGet]
@@ -37,7 +39,7 @@ namespace SiColegioMiHogar.Controllers
                           join e in _context.Set<Estudiante>()
                           on b.IdEstudiante equals e.Id
                           join p in _context.Set<Periodo>()
-                          on b.IdPeriodo equals  p.Id
+                          on b.IdPeriodo equals p.Id
                           select new
                           {
                               b.Id,
@@ -48,7 +50,7 @@ namespace SiColegioMiHogar.Controllers
                               e.GradoEstudiante,
                               p.NombrePeriodo,
                               p.NumeroPeriodo
-                              
+
                           }).ToList();
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
             return result;
@@ -80,7 +82,7 @@ namespace SiColegioMiHogar.Controllers
             }
             return BadRequest(rta.Message);
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> CreateBoletin([FromBody] CrearBoletinRequest boletin)
         {
@@ -92,6 +94,18 @@ namespace SiColegioMiHogar.Controllers
                 return CreatedAtAction("GetBoletin", new { id = boletin.id }, boletin);
             }
             return BadRequest(rta.Message);
+        }
+        [HttpGet("GetPdf/{idEstudiante}")]
+        public object GenerarPdf([FromRoute] int idEstudiante)
+        {
+            _generarBoletin = new GenerarBoletinService(_unitOfWork);
+            var rta = _generarBoletin.BoletinPDF(idEstudiante);
+            if (rta != "Boletin Generado")
+            {
+                return BadRequest(rta);
+            }
+            return Ok(rta);
+
         }
     }
 }
