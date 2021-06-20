@@ -21,6 +21,8 @@ export class DialogoPreMatriculaComponent implements OnInit {
     console.log(this.idPreMatricula);
   }
 
+  save() { }
+
   get valorMatricula() {
     return this.formGroup.get('valorMatricula');
   }
