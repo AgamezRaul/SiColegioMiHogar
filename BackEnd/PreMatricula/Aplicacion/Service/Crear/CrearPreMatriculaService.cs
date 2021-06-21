@@ -23,7 +23,7 @@ namespace BackEnd.PreMatricula.Aplicacion.Service.Crear
         }
         public CrearPreMatriculaResponse EjecutarCrearPreMatricula(CrearPreMatriculaRequest request)
         {
-            var prematricula = _unitOfWork.PreMatriculaServiceRepository.FindFirstOrDefault(t => t.Id == request.id || t.IdUsuario == request.IdUsuario);
+            var prematricula = _unitOfWork.PreMatriculaServiceRepository.FindFirstOrDefault(t => t.Id == request.id);
             if (prematricula != null)
             {
                 return new CrearPreMatriculaResponse($"PreMatricula ya existe");
