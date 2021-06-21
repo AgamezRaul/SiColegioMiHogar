@@ -63,7 +63,8 @@
       </div>
       <div class="form-group col-md-6">
         <label for="valorMensualidad">Valor mensualidad</label>
-        <input type="number" class="form-control" formControlName="valorMensualidad" id="valorMensualidad" placeholder="Ej: 200.000">
+        <input [value]="ValorMensualidadChange" (change)="updateValueValorMensualidad($event.target.value)"
+               class="form-control" formControlName="valorMensualidad" id="valorMensualidad" placeholder="Ej: 200.000">
         <div class="alert-danger" *ngIf="valorMensualidad.invalid && (valorMensualidad.dirty || valorMensualidad.touched)">
           <div class="container-error-message" *ngIf="valorMensualidad.errors.required">
             El valor de Mensualidad es requerido

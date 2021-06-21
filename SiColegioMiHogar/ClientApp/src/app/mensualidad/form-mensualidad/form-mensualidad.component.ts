@@ -4,7 +4,7 @@ import { UrlSegment } from '@angular/router';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IMensualidad } from '../mensualidad.component';
 import { MensualidadService } from '../mensualidad.service';
-import { Location } from '@angular/common';
+import { formatCurrency, getCurrencySymbol, Location } from '@angular/common';
 import { error } from 'protractor';
 import { equal } from 'assert';
 import { MatDialog } from '@angular/material/dialog';
@@ -22,6 +22,7 @@ export class FormMensualidadComponent implements OnInit {
   modoEdicion: boolean = false;
   id: number;
   idMensu: number;
+  ValorMensualidadChange: string;
   formGroup = this.fb.group({
     mes: ['', [Validators.required, Validators.min(1), Validators.max(12)]],
     diaPago: ['', [Validators.required, Validators.min(1), Validators.max(31)]],
@@ -115,6 +116,14 @@ export class FormMensualidadComponent implements OnInit {
     this.mensaje.mensajeAlertaCorrecto('Exitoso!', 'Mensualidad editada correctamente');
   }
 
+  updateValueValorMensualidad(value: string) {
+    let val = parseInt(value, 10);
+    if (Number.isNaN(val)) {
+      val = 0;
+    }
+    this.ValorMensualidadChange = formatCurrency(val, 'en-US', getCurrencySymbol('USD', 'wide'));
+    console.log(this.ValorMensualidadChange);
+  }
 
   get mes() {
     return this.formGroup.get('mes');
