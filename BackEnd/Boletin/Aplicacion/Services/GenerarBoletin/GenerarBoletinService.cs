@@ -23,7 +23,7 @@ namespace BackEnd.Boletin.Aplicacion.Services.GenerarBoletin
 {
     public class GenerarBoletinService
     {
-        readonly IUnitOfWork _unitOfWork;
+        /*readonly IUnitOfWork _unitOfWork;
         readonly MiHogarContext _context;
         readonly BoletinPDFRequest _boletinPDFRequest;
         private static Guid FolderDownloads = new Guid("374DE290-123F-4565-9164-39C4925E467B");
@@ -92,7 +92,7 @@ namespace BackEnd.Boletin.Aplicacion.Services.GenerarBoletin
            /* document.Add(new Paragraph($"      Nombre del Periodo: {periodo.NombrePeriodo} \t  #: {periodo.NumeroPeriodo} \t Fecha de generacion: {boletin.FechaGeneracion}"));
             document.Add(new Paragraph("\n"));
             document.Add(new Paragraph($"      Curso: {curso.nombre} - {curso.Letra} \t  Estudiante: {estudiante.NomEstudiante} \t Identificacion: {estudiante.IdeEstudiante} \t Puesto: {puestos(curso)}" ));*/
-            document.Add(new Paragraph("\n"));
+           /*---- document.Add(new Paragraph("\n"));
             document.Add(new Paragraph("      ---------------------------------------------------------------------------------------------------------------"));
             document.Close();
         }
@@ -167,7 +167,7 @@ namespace BackEnd.Boletin.Aplicacion.Services.GenerarBoletin
             {
                 Marshal.FreeCoTaskMem(pathPtr);
             }
-        }
+        }*/
         
     }
 }

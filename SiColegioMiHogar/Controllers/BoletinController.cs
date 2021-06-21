@@ -95,7 +95,7 @@ namespace SiColegioMiHogar.Controllers
             }
             return BadRequest(rta.Message);
         }
-        [HttpGet("GetPdf/{idEstudiante}")]
+       /* [HttpGet("GetPdf/{idEstudiante}")]
         public object GenerarPdf([FromRoute] int idEstudiante)
         {
             _generarBoletin = new GenerarBoletinService(_unitOfWork);
@@ -106,6 +106,6 @@ namespace SiColegioMiHogar.Controllers
             }
             return Ok(rta);
 
-        }
+        }*/
     }
 }
