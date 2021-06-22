@@ -14,8 +14,23 @@ export class FormEstudianteComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private router: Router,
     private activatedRoute: ActivatedRoute, private alertService: AlertService) { }
+  modoPreJardin: boolean = false;
+  InstitucionProcedenciaChange: string='N/A';
+
   ngOnInit() {
+    
   }
+  updatePrejardin() {
+    this.modoPreJardin = true;
+   
+    console.log(this.modoPreJardin);
+    console.log(this.InstitucionProcedenciaChange);
+  }
+  noPreJardin() {
+    this.modoPreJardin = false;
+    console.log(this.modoPreJardin);
+  }
+  
   get ideEstudiante() {
     return this.formGroupE.get('ideEstudiante');
   }

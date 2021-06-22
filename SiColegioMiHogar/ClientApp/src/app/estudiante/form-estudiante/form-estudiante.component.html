@@ -10,15 +10,15 @@
 
     <mat-form-field class="col-media" appearance="fill" [ngClass]="{'has-error': ((gradoEstudiante.touched || gradoEstudiante.dirty)&& gradoEstudiante.invalid)}">
       <mat-label>Grado a cursar</mat-label>
-      <mat-select formControlName="gradoEstudiante" placeholder="Elija una opción">
-        <mat-option value="Pre-jardin">Pre-jardin</mat-option>
-        <mat-option value="Jardín">Jardín</mat-option>
-        <mat-option value="Transicion">Transicion</mat-option>
-        <mat-option value="Primero">Primero</mat-option>
-        <mat-option value="Segundo">Segundo</mat-option>
-        <mat-option value="Tercero">Tercero</mat-option>
-        <mat-option value="Cuarto">Cuarto</mat-option>
-        <mat-option value="Quinto">Quinto</mat-option>
+      <mat-select  formControlName="gradoEstudiante" placeholder="Elija una opción">
+        <mat-option value="Pre-jardin"(click)="updatePrejardin()">Pre-jardin </mat-option>
+        <mat-option value="Jardín" (click)="noPreJardin()">Jardín</mat-option>
+        <mat-option value="Transicion"(click)="noPreJardin()">Transicion</mat-option>
+        <mat-option value="Primero" (click)="noPreJardin()">Primero</mat-option>
+        <mat-option value="Segundo"(click)="noPreJardin()">Segundo</mat-option>
+        <mat-option value="Tercero"(click)="noPreJardin()">Tercero</mat-option>
+        <mat-option value="Cuarto"(click)="noPreJardin()">Cuarto</mat-option>
+        <mat-option value="Quinto"(click)="noPreJardin()">Quinto</mat-option>
       </mat-select>
       <mat-error *ngIf="((gradoEstudiante.touched || gradoEstudiante.dirty)&& gradoEstudiante.invalid) && gradoEstudiante.errors.required">  Grado es<strong> requerido </strong></mat-error>
     </mat-form-field>
@@ -127,10 +127,10 @@
     </mat-form-field>
   </div>
 
-  <div>
+  <div *ngIf="!modoPreJardin">
     <mat-form-field class="col-media" appearance="fill" [ngClass]="{'has-error': ((insProcedencia.touched || insProcedencia.dirty)&& insProcedencia.invalid)}">
-      <mat-label>Institución de procedencia</mat-label>
-      <input matInput type="text" formControlName="insProcedencia" placeholder="Institución educativa CASD" required>
+      <mat-label >Institución de procedencia</mat-label>
+      <input  matInput type="text" formControlName="insProcedencia" placeholder="Institución educativa CASD" required >
       <mat-error *ngIf="((insProcedencia.touched || insProcedencia.dirty)&& insProcedencia.invalid) && insProcedencia.errors.required">  Institución de procedencia es<strong> requerido </strong></mat-error>
     </mat-form-field>
   </div>
