@@ -17,7 +17,7 @@ import { MensajesModule } from '../../mensajes/mensajes.module';
 export class FormContratoComponent implements OnInit {
 
   listaDocentes: IDocente[];
-
+  SueldoChange: string;
   constructor(private fb: FormBuilder, private contratoService: ContratoService,
     private router: Router, private activatedRoute: ActivatedRoute, private location: Location,
     private docenteService: DocenteService, private mensaje: MensajesModule) { }
@@ -26,7 +26,7 @@ export class FormContratoComponent implements OnInit {
   formGroup = this.fb.group({
     fechaInicio: ['', [Validators.required]],
     fechaFin: ['', [Validators.required]],
-    sueldo: ['', [Validators.required]],
+    sueldo: ['', [Validators.required, Validators.pattern(/^[0-9]\d{0,20}$/)]],
     idDocente: ['', [Validators.required]]
   });
   ngOnInit(): void {
@@ -59,6 +59,7 @@ export class FormContratoComponent implements OnInit {
    save() {
      let contrato: IContrato = Object.assign({}, this.formGroup.value);
      contrato.idDocente = parseInt(contrato.idDocente.toString());
+     contrato.sueldo = parseInt(contrato.sueldo.toString());
      console.log(contrato.idDocente);
      if (this.modoEdicion) {//editar el registro
            if (this.formGroup.valid) {
@@ -82,6 +83,17 @@ export class FormContratoComponent implements OnInit {
   goBack(){
     this.router.navigate(["/contrato"]);
     this.mensaje.mensajeAlertaCorrecto('¡Exito!', 'Contrato actualizado exitosamente');
+  }
+  updateValueSueldo(value: string) {
+    let val = parseInt(value, 10);
+    if (Number.isNaN(val)) {
+      val = 0;
+    }
+    this.SueldoChange = new Intl.NumberFormat('en-US', {
+      currency: 'USD',
+      style: 'decimal',
+    }).format(val); // '100'
+    console.log(this.SueldoChange);
   }
   get fechaInicio() {
     return this.formGroup.get('fechaInicio');

@@ -23,13 +23,15 @@ export class FormMensualidadComponent implements OnInit {
   id: number;
   idMensu: number;
   ValorMensualidadChange: string;
+  AbonoChange: string;
+  DescuentoMensualidadChange: string;
   formGroup = this.fb.group({
     mes: ['', [Validators.required, Validators.min(1), Validators.max(12)]],
     diaPago: ['', [Validators.required, Validators.min(1), Validators.max(31)]],
     fechaPago: ['', [Validators.required]],
-    valorMensualidad:  ['', [Validators.required]],
-    descuentoMensualidad: ['', [Validators.required]],
-    abono: ['', [Validators.required]] 
+    valorMensualidad: ['', [Validators.required, Validators.pattern(/^[0-9]\d{0,20}$/)]],
+    descuentoMensualidad: ['', [Validators.required, Validators.pattern(/^[0-9]\d{0,20}$/)]],
+    abono: ['', [Validators.required, Validators.pattern(/^[0-9]\d{0,20}$/)]]
   });
 
   ngOnInit(): void {
@@ -78,7 +80,9 @@ export class FormMensualidadComponent implements OnInit {
   }
   save() {
     let mensualidad: IMensualidad = Object.assign({}, this.formGroup.value);
-  
+    mensualidad.valorMensualidad = parseInt(mensualidad.valorMensualidad.toString());
+    mensualidad.abono = parseInt(mensualidad.abono.toString());
+    mensualidad.descuentoMensualidad = parseInt(mensualidad.descuentoMensualidad.toString());
 
     if (this.modoEdicion) {
       mensualidad.id = this.idMensu;
@@ -121,9 +125,37 @@ export class FormMensualidadComponent implements OnInit {
     if (Number.isNaN(val)) {
       val = 0;
     }
-    this.ValorMensualidadChange = formatCurrency(val, 'en-US', getCurrencySymbol('USD', 'wide'));
+    //this.ValorMensualidadChange = formatCurrency(val, 'es-CO', getCurrencySymbol('COP', 'wide'));
+    this.ValorMensualidadChange = new Intl.NumberFormat('en-US', {
+      currency: 'USD',
+      style: 'decimal',
+    }).format(val); // '100'
     console.log(this.ValorMensualidadChange);
   }
+  updateValueAbonoMensualidad(value: string) {
+    let val = parseInt(value, 10);
+    if (Number.isNaN(val)) {
+      val = 0;
+    }
+    this.AbonoChange = new Intl.NumberFormat('en-US', {
+      currency: 'USD',
+      style: 'decimal',
+    }).format(val); // '100'
+    console.log(this.AbonoChange);
+  }
+  updateValueDescuentoMensualidad(value: string) {
+    let val = parseInt(value, 10);
+    if (Number.isNaN(val)) {
+      val = 0;
+    }
+    this.DescuentoMensualidadChange = new Intl.NumberFormat('en-US', {
+      currency: 'USD',
+      style: 'decimal',
+    }).format(val); // '100'
+    console.log(this.AbonoChange);
+  }
+  
+
 
   get mes() {
     return this.formGroup.get('mes');

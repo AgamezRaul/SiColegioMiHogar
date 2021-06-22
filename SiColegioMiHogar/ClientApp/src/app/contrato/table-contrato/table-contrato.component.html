@@ -21,7 +21,7 @@
     <!-- sueldo Column -->
     <ng-container matColumnDef="sueldo">
       <th mat-header-cell *matHeaderCellDef> Sueldo </th>
-      <td mat-cell *matCellDef="let element"> {{element.sueldo}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.sueldo| number: '3.0-2' }} </td>
     </ng-container>
     <!-- fechaInicio Column -->
     <ng-container matColumnDef="fechaInicio">
