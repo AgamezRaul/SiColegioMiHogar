@@ -9,7 +9,7 @@ import { Location } from '@angular/common';
 import { AlertService } from '../notifications/_services';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotasActividadService } from './notas-actividad.service';
-import { INota} from '../nota/nota.component';
+import { INotaConsult} from '../nota/nota.component';
 
 
 @Component({
@@ -19,16 +19,15 @@ import { INota} from '../nota/nota.component';
 })
 export class NotasActividadComponent implements OnInit {
 
-  nota!: INota[];
+  nota!: INotaConsult[];
   suscription: Subscription;
   displayedColumns: string[] = [
-    'id',
     'NotaAlumno',
+    'NombreEstudiante',
     'FechaNota',
-    'IdEstudiante'
   ];
 
-  dataSource = new MatTableDataSource<INota>(this.nota);
+  dataSource = new MatTableDataSource<INotaConsult>(this.nota);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
@@ -60,8 +59,13 @@ export class NotasActividadComponent implements OnInit {
     })
 
     this.notasActividadService.getNotasActividad(this.ida)
-      .subscribe(notas => this.dataSource.data = notas,
+      .subscribe(notas => this.formatoFecha(notas),
         error => this.mensaje.mensajeAlertaError('Error', error.error.toString()));
-  }
+  	}
 
+   formatoFecha(notasvariable: INotaConsult[]) {
+   		notasvariable.forEach(element => element.fechaNota = element.fechaNota.split('T')[0]);
+   		notasvariable.forEach(element => element.fechaNota = element.fechaNota.split('-').reverse().join('-'));
+   		this.dataSource.data = notasvariable
+   }
 }

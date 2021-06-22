@@ -21,6 +21,7 @@ export interface INotaConsult{
   idEstudiante: string
   idMateria: string;
   idPeriodo: string;
+  nombreEstudiante: string
 }
 
 export interface INota{

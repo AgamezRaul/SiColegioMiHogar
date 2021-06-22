@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { INota} from '../nota/nota.component';
+import { INotaConsult} from '../nota/nota.component';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +17,8 @@ export class NotasActividadService {
     return this._refresh$;
   }
 
-  getNotasActividad(id: number): Observable<INota[]> {
-    return this.http.get<INota[]>(this.apiURL+'/notas-actividad/'+id);
+  getNotasActividad(id: number): Observable<INotaConsult[]> {
+    return this.http.get<INotaConsult[]>(this.apiURL+'/notas-actividad/'+id);
   }
 
 }
