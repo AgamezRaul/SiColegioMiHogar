@@ -17,6 +17,9 @@ using BackEnd.Boletin.Dominio.Repositories;
 using BackEnd.Contrato.Dominio;
 using BackEnd.Actividad;
 using BackEnd.EstudianteCurso.Dominio;
+using BackEnd.Grado.Dominio.Repositories;
+using BackEnd.Abono.Dominio.Repositories;
+using BackEnd.ValorMensualidad.Dominio.Repositories;
 
 namespace BackEnd.Base
 {
@@ -39,6 +42,9 @@ namespace BackEnd.Base
         IEstudianteCursoServiceRepository EstudianteCursoServiceRepository { get; }
 
         IBoletinServiceRepository BoletinServiceRepository { get; }
+        IGradoServiceRepository GradoServiceRepository { get; }
+        IAbonoServiceRepository AbonoServiceRepository { get; }
+        IValorMensualidadServiceRepository ValorMensualidadServiceRepository { get; }
         int Commit();
     }
 }

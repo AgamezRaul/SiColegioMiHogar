@@ -33,6 +33,12 @@ using BackEnd.EstudianteCurso.Dominio;
 using BackEnd.EstudianteCurso.Infra;
 using BackEnd.Boletin.Dominio.Repositories;
 using BackEnd.Boletin.Infra;
+using BackEnd.Grado.Dominio.Repositories;
+using BackEnd.Grado.Infra;
+using BackEnd.Abono.Dominio.Repositories;
+using BackEnd.Abono.Infra;
+using BackEnd.ValorMensualidad.Dominio.Repositories;
+using BackEnd.ValorMensualidad.Infra;
 
 namespace BackEnd.Base
 {
@@ -181,6 +187,30 @@ namespace BackEnd.Base
             get
             {
                 return _estudianteCursoServiceRepository ?? (_estudianteCursoServiceRepository = new EstudianteCursoServiceRepository(_dbContext));
+            }
+        }
+        private IGradoServiceRepository _gradoServiceRepository;
+        public IGradoServiceRepository GradoServiceRepository
+        {
+            get
+            {
+                return _gradoServiceRepository ?? (_gradoServiceRepository = new GradoServiceRepository(_dbContext));
+            }
+        }
+        private IAbonoServiceRepository _abonoServiceRepository;
+        public IAbonoServiceRepository AbonoServiceRepository
+        {
+            get
+            {
+                return _abonoServiceRepository ?? (_abonoServiceRepository = new AbonoServiceRepository(_dbContext));
+            }
+        }
+        private IValorMensualidadServiceRepository _valorMensualidadServiceRepository;
+        public IValorMensualidadServiceRepository ValorMensualidadServiceRepository
+        {
+            get
+            {
+                return _valorMensualidadServiceRepository ?? (_valorMensualidadServiceRepository = new ValorMensualidadServiceRepository(_dbContext));
             }
         }
         public int Commit()

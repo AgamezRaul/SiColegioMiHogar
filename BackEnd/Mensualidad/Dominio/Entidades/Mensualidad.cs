@@ -7,8 +7,6 @@ namespace BackEnd.Mensualidad.Dominio
 {
     public class Mensualidad : Entity<int>
     {
-        
-
         public int Mes { get; set; }
         public int DiaPago { get; set; }
         public DateTime FechaPago { get; set; }
