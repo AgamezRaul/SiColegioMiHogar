@@ -55,7 +55,15 @@ export class TableContratoComponent implements OnInit {
 
   cargarData() {
     this.contratoService.getContratos()
-      .subscribe(contratos => this.dataSource.data = contratos,
+      .subscribe(contratos => this.formatoFecha(contratos),
         error => this.mensaje.mensajeAlertaError('¡Error!', error.error.toString()));
+  }
+
+  formatoFecha(contratos: IContratos[]) {
+      contratos.forEach(element => element.fechaInicio = element.fechaInicio.split('T')[0]);
+      contratos.forEach(element => element.fechaInicio = element.fechaInicio.split('-').reverse().join('-'));
+      contratos.forEach(element => element.fechaFin = element.fechaFin.split('T')[0]);
+      contratos.forEach(element => element.fechaFin = element.fechaFin.split('-').reverse().join('-'));
+      this.dataSource.data = contratos
   }
 }

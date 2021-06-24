@@ -24,6 +24,11 @@ export class UsuarioComponent implements OnInit {
 export interface IUsuario {
   id: number,
   correo: string,
+  primerNombre: string,
+  segundoNombre: string,
+  primerApellido: string,
+  segundoApellido: string,
+  identificacion: string,
   password: string,
   tipoUsuario: string
 }

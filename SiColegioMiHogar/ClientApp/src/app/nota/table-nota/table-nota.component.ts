@@ -50,16 +50,21 @@ export class TableNotaComponent implements OnInit {
 
   ngOnInit(): void {
     this.notaservice.getNotas()
-        .subscribe(notas => this.dataSource.data = notas,
+        .subscribe(notas => this.formatoFecha(notas),
           error => this.alertService.error(error));
 
     this.suscription = this.notaservice.refresh$.subscribe(() => {
       this.notaservice.getNotas()
-        .subscribe(notas => this.dataSource.data = notas,
+        .subscribe(notas => this.formatoFecha(notas),
           error => this.alertService.error(error));
     });
   }
 
+   formatoFecha(notasvariable: INotaConsult[]) {
+      notasvariable.forEach(element => element.fechaNota = element.fechaNota.split('T')[0]);
+      notasvariable.forEach(element => element.fechaNota = element.fechaNota.split('-').reverse().join('-'));
+      this.dataSource.data = notasvariable
+   }
 
   Registrar() {
     this.router.navigate(["/registrar-nota/"]);

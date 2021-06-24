@@ -84,6 +84,8 @@ import { DialogoActividadComponent } from './actividad/dialogo-actividad/dialogo
 import { ActividadesMateriaComponent } from './materia/actividades-materia/actividades-materia.component';
 import { ActividadesComponent } from './materia/actividades/actividades.component';
 import { NotasActividadComponent } from './notas-actividad/notas-actividad.component';
+   
+import { MomentDateModule } from '@angular/material-moment-adapter';
 
 @NgModule({
   declarations: [
@@ -146,7 +148,6 @@ import { NotasActividadComponent } from './notas-actividad/notas-actividad.compo
     ActividadesMateriaComponent,
     ActividadesComponent,
     NotasActividadComponent
-
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -157,6 +158,7 @@ import { NotasActividadComponent } from './notas-actividad/notas-actividad.compo
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
+    MomentDateModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'login', component: LoginComponent, canActivate: [CheckLoginGuard] },

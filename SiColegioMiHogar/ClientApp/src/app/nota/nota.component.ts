@@ -57,8 +57,8 @@ export interface IPeriodoNota {
   id: number,
   numeroPeriodo: number,
   nombrePeriodo: string,
-  fechaInicio: Date,
-  fechaFin: Date
+  fechaInicio: string,
+  fechaFin: string
 }
 
 export interface MateriaNota {

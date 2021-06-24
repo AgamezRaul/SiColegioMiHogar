@@ -18,6 +18,6 @@ export interface IPeriodo {
   id: number,
   numeroPeriodo: number,
   nombrePeriodo: string,
-  fechaInicio: Date,
-  fechaFin: Date
+  fechaInicio: string,
+  fechaFin: string
 }

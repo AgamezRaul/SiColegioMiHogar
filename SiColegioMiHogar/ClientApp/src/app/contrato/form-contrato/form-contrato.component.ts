@@ -9,11 +9,29 @@ import { IDocente } from '../../docente/docente.component';
 import Swal from 'sweetalert2';
 import { MensajesModule } from '../../mensajes/mensajes.module';
 
+import { MAT_DATE_FORMATS } from '@angular/material/core';
+
+export const MY_DATE_FORMATS = {
+    parse: {
+      dateInput: 'DD/MM/YYYY',
+    },
+    display: {
+      dateInput: 'DD/MM/YYYY',
+      monthYearLabel: 'MMMM YYYY',
+      dateA11yLabel: 'LL',
+      monthYearA11yLabel: 'MMMM YYYY'
+    },
+};
+
 @Component({
   selector: 'app-form-contrato',
   templateUrl: './form-contrato.component.html',
-  styleUrls: ['./form-contrato.component.css']
+  styleUrls: ['./form-contrato.component.css'],
+  providers: [
+    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS }
+  ]
 })
+
 export class FormContratoComponent implements OnInit {
 
   listaDocentes: IDocente[];

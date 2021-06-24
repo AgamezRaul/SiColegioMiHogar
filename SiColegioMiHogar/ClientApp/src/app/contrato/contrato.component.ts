@@ -25,6 +25,6 @@ export interface IContratos {
   id: number,
   nombreDocente: string,
   sueldo: number,
-  fechaInicio: Date,
-  fechaFin: Date
+  fechaInicio: string,
+  fechaFin: string
 }

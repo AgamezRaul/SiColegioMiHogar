@@ -8,7 +8,7 @@
          [ngClass]="{'has-error': ((fechaInicio.touched || fechaInicio.dirty) && fechaInicio.invalid)}">
       <label class="control-label"
              for="fechaInicio" style="display:block;">Fecha Inicio </label>
-      <input [matDatepicker]="fechaInicioId" class="form-control" id="fechaInicio" formControlName="fechaInicio" style="display:inline;width:800px;"placeholder="mm/dd/aaaa"/>
+      <input [matDatepicker]="fechaInicioId" class="form-control" id="fechaInicio" formControlName="fechaInicio" style="display:inline;width:800px;"placeholder="dd/mm/aaaa"/>
       <mat-datepicker-toggle [for]="fechaInicioId"></mat-datepicker-toggle>
       <mat-datepicker #fechaInicioId></mat-datepicker>
       <div class="alert alert-danger" *ngIf="((fechaInicio.touched || fechaInicio.dirty )&& fechaInicio.invalid)">
@@ -22,7 +22,7 @@
          [ngClass]="{'has-error': ((fechaFin.touched || fechaFin.dirty) && fechaFin.invalid)}">
       <label class="control-label"
              for="fechaFin" style="display:block;">Fecha Fin </label>
-      <input [matDatepicker]="fechaFinId" class=" form-control" formControlName="fechaFin" style="display:inline;width:800px;" id="fechaFin"placeholder="mm/dd/aaaa">
+      <input [matDatepicker]="fechaFinId" class=" form-control" formControlName="fechaFin" style="display:inline;width:800px;" id="fechaFin"placeholder="dd/mm/aaaa">
       <mat-datepicker-toggle [for]="fechaFinId"></mat-datepicker-toggle>
       <mat-datepicker #fechaFinId></mat-datepicker>
       <div class="alert alert-danger" *ngIf="((fechaFin.touched || fechaFin.dirty )&& fechaFin.invalid)">

@@ -1,12 +1,13 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IPeriodo } from '../periodo.component';
 import { PeriodoService } from '../periodo.service';
 import { Location } from '@angular/common';
-import { Subscription } from 'rxjs';
 import { AlertService } from '../../notifications/_services';
 
 @Component({
@@ -48,8 +49,16 @@ export class TablePeriodoComponent  implements OnInit {
 
   ngOnInit(): void {    
     this.periodoservice.getPeriodos().
-      subscribe(periodos =>  this.dataSource.data = periodos,
+      subscribe(periodos =>  this.formatoFecha(periodos),
         error => this.alertService.error(error));
+  }
+
+  formatoFecha(periodos: IPeriodo[]) {
+      periodos.forEach(element => element.fechaInicio = element.fechaInicio.split('T')[0]);
+      periodos.forEach(element => element.fechaInicio = element.fechaInicio.split('-').reverse().join('-'));
+      periodos.forEach(element => element.fechaFin = element.fechaFin.split('T')[0]);
+      periodos.forEach(element => element.fechaFin = element.fechaFin.split('-').reverse().join('-'));
+      this.dataSource.data = periodos
   }
 
   Registrar() {

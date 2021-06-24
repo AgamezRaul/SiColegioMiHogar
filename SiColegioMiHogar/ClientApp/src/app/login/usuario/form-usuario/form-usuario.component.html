@@ -4,6 +4,46 @@
       <h1>Registro Usuario</h1>
       <form [formGroup]="formGroup" (ngSubmit)="save()">
         <mat-form-field class="full-width-input">
+          <input text="Identificaciòn"
+                 type="text"
+                 formControlName="identificacion"
+                 matInput
+                 placeholder="Identificaciòn"
+                 required />
+        </mat-form-field>
+        <mat-form-field class="full-width-input">
+          <input text="Primer Nombre"
+                 type="text"
+                 formControlName="primerNombre"
+                 matInput
+                 placeholder="Primer Nombre"
+                 required />
+        </mat-form-field>
+        <mat-form-field class="full-width-input">
+          <input text="Segundo Nombre"
+                 type="text"
+                 formControlName="segundoNombre"
+                 matInput
+                 placeholder="Segundo Nombre"
+                 required />
+        </mat-form-field>
+        <mat-form-field class="full-width-input">
+          <input text="Primer Apellido"
+                 type="text"
+                 formControlName="primerApellido"
+                 matInput
+                 placeholder="Primer Apellido"
+                 required />
+        </mat-form-field>
+        <mat-form-field class="full-width-input">
+          <input text="Segundo Apellido"
+                 type="text"
+                 formControlName="segundoApellido"
+                 matInput
+                 placeholder="Segundo Apellido"
+                 required />
+        </mat-form-field>
+        <mat-form-field class="full-width-input">
           <input text="Correo"
                  type="email"
                  formControlName="correo"

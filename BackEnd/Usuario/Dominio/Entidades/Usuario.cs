@@ -10,13 +10,18 @@ namespace BackEnd.Usuario.Dominio
     {
         public string Correo { get; set; }
         public string Password { get; set; }
+        public string PrimerNombre { get; set; }
+        public string PrimerApellido { get; set; }
+        public string SegundoNombre { get; set; }
+        public string SegundoApellido { get; set; }
+        public string Identificacion { get; set; }
         public string TipoUsuario { get; set; }
 
         private const string SharedSecret = "MiHogarPass123";
         public Crypto Crypto;
 
         public Usuario() { }
-        public Usuario(string correo, string password, string tipoUsuario)
+        public Usuario(string correo, string password, string tipoUsuario, string primerNombre, string primerApellido, string segundoNombre, string segundoApellido, string identificacion)
         {
             Correo = correo;
             Crypto = new Crypto();
@@ -29,6 +34,11 @@ namespace BackEnd.Usuario.Dominio
                 Password = password;
             }
             TipoUsuario = tipoUsuario;
+            PrimerApellido = primerApellido;
+            PrimerNombre = primerNombre;
+            SegundoNombre = segundoNombre;
+            SegundoApellido = segundoApellido;
+            Identificacion = identificacion;
         }
         public Usuario(string correo, string password)
         {
@@ -48,6 +58,16 @@ namespace BackEnd.Usuario.Dominio
             var errors = new List<string>();
             if (string.IsNullOrEmpty(usuario.Correo))
                 errors.Add("Campo Correo vacio");
+            if (string.IsNullOrEmpty(usuario.PrimerApellido))
+                errors.Add("Campo primer apellido vacio");
+            if (string.IsNullOrEmpty(usuario.PrimerNombre))
+                errors.Add("Campo primer nombre vacio");
+            if (string.IsNullOrEmpty(usuario.SegundoApellido))
+                errors.Add("Campo segundo apellido vacio");
+            if (string.IsNullOrEmpty(usuario.SegundoNombre))
+                errors.Add("Campo segundo nombre vacio");
+            if (string.IsNullOrEmpty(usuario.Identificacion))
+                errors.Add("Campo identificaciòn vacio");
             if (string.IsNullOrEmpty(usuario.Password))
                 errors.Add("Campo Contraseña vacio");
             if (string.IsNullOrEmpty(usuario.TipoUsuario))

@@ -17,6 +17,11 @@ export class FormUsuarioComponent implements OnInit {
     private alertService: AlertService  ) { }
 
   formGroup = this.fb.group({
+    primerNombre: ['', [Validators.required]],
+    primerApellido: ['', [Validators.required]],
+    segundoNombre: ['', [Validators.required]],
+    segundoApellido: ['', [Validators.required]],
+    identificacion: ['', [Validators.required]],
     correo: ['', [Validators.required]],
     password: ['', [Validators.required]],
     tipoUsuario: ['Responsable', [Validators.required]]
