@@ -22,6 +22,7 @@ export class FormMensualidadComponent implements OnInit {
   modoEdicion: boolean = false;
   id: number;
   idMensu: number;
+  DeudaChange: string;
   ValorMensualidadChange: string;
   AbonoChange: string;
   DescuentoMensualidadChange: string;
@@ -70,19 +71,16 @@ export class FormMensualidadComponent implements OnInit {
   cargarFormulario(mensualiadad: IMensualidad) {
     this.formGroup.patchValue({
       mes: mensualiadad.mes,
-      diaPago: mensualiadad.diaPago,
-      fechaPago: mensualiadad.fechaPago,
-      valorMensualidad: mensualiadad.valorMensualidad,
-      descuentoMensualidad: mensualiadad.descuentoMensualidad,
-      abono: mensualiadad.abono,
+
+      deuda: mensualiadad.deuda,
      
     });
   }
   save() {
     let mensualidad: IMensualidad = Object.assign({}, this.formGroup.value);
-    mensualidad.valorMensualidad = parseInt(mensualidad.valorMensualidad.toString());
-    mensualidad.abono = parseInt(mensualidad.abono.toString());
-    mensualidad.descuentoMensualidad = parseInt(mensualidad.descuentoMensualidad.toString());
+
+    mensualidad.deuda = parseInt(mensualidad.deuda.toString());
+    
 
     if (this.modoEdicion) {
       mensualidad.id = this.idMensu;
@@ -131,6 +129,18 @@ export class FormMensualidadComponent implements OnInit {
       style: 'decimal',
     }).format(val); // '100'
     console.log(this.ValorMensualidadChange);
+  }
+  updateValueDeuda(value: string) {
+    let val = parseInt(value, 10);
+    if (Number.isNaN(val)) {
+      val = 0;
+    }
+    //this.ValorMensualidadChange = formatCurrency(val, 'es-CO', getCurrencySymbol('COP', 'wide'));
+    this.DeudaChange = new Intl.NumberFormat('en-US', {
+      currency: 'USD',
+      style: 'decimal',
+    }).format(val); // '100'
+    console.log(this.DeudaChange);
   }
   updateValueAbonoMensualidad(value: string) {
     let val = parseInt(value, 10);

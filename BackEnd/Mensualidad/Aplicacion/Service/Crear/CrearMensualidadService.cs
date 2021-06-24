@@ -28,8 +28,7 @@ namespace BackEnd.Mensualidad.Aplicacion.Service.Crear
                 string ListaErrors = "Errores: " + string.Join(",", errors);
                 return new CrearMensualidadResponse(ListaErrors);
             }        
-            Dominio.Mensualidad newMensualidad = new Dominio.Mensualidad(request.Mes, request.DiaPago,request.FechaPago,request.ValorMensualidad,
-            request.DescuentoMensualidad,request.Abono,request.Deuda,request.Estado,request.IdMatricula,request.TotalMensualidad);
+            Dominio.Mensualidad newMensualidad = new Dominio.Mensualidad(request.Mes,request.Deuda,request.Estado,request.Año,request.IdMatricula);
             _unitOfWork.MensualidadServiceRepository.Add(newMensualidad);
             _unitOfWork.Commit();
             return new CrearMensualidadResponse($"Mensualidad Creada Exitosamente");

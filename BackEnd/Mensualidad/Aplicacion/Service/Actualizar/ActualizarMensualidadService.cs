@@ -1,12 +1,9 @@
 ﻿using BackEnd.Base;
 using BackEnd.Mensualidad.Aplicacion.Request;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BackEnd.Mensualidad.Aplicacion.Service.Actualizar
 {
-   public class ActualizarMensualidadService
+    public class ActualizarMensualidadService
     {
         readonly IUnitOfWork _unitOfWork;
         public ActualizarMensualidadService(IUnitOfWork unitOfWork)
@@ -22,14 +19,8 @@ namespace BackEnd.Mensualidad.Aplicacion.Service.Actualizar
             }
             else
             {
-                mensualidad.DiaPago = request.DiaPago;
-                mensualidad.FechaPago = request.FechaPago;
-                mensualidad.ValorMensualidad = request.ValorMensualidad;
-                mensualidad.DescuentoMensualidad = request.DescuentoMensualidad;
-                mensualidad.Abono = request.Abono;
                 mensualidad.Deuda = request.Deuda;
                 mensualidad.Estado = request.Estado;
-                mensualidad.TotalMensualidad = request.TotalMensualidad;
                 _unitOfWork.MensualidadServiceRepository.Edit(mensualidad);
                 _unitOfWork.Commit();
                 return new ActualizarMensualidadResponse($"Mensualidad Actualizada Exitosamente");

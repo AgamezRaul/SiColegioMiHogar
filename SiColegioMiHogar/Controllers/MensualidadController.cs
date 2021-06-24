@@ -35,7 +35,7 @@ namespace SiColegioMiHogar.Controllers
             _unitOfWork = new UnitOfWork(_context);
         }
 
-        [HttpGet]
+       /* [HttpGet]
         public object GetMensualidades()
         {
             var result = (from m in _context.Set<Mensualidad>()
@@ -62,9 +62,9 @@ namespace SiColegioMiHogar.Controllers
                           }).ToList();
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
             return result;
-        }
+        }*/
 
-        [HttpGet("GetMensualidadesMatricula/{id}")]
+       /* [HttpGet("GetMensualidadesMatricula/{id}")]
         public object GetMensualidadesMatricula([FromRoute] int id)
         {
             var result = (from m in _context.Set<Mensualidad>()
@@ -92,7 +92,8 @@ namespace SiColegioMiHogar.Controllers
                           }).ToList();
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
             return result;
-        }
+        }*/
+
 
 
         [HttpGet("{id}")]
