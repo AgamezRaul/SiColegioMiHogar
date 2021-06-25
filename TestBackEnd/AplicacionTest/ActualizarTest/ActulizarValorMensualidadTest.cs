@@ -6,12 +6,11 @@ using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace TestBackEnd.AplicacionTest.ActualizarTest
 {
     [TestFixture]
-   public class ActulizarValorMensualidadTest
+    public class ActulizarValorMensualidadTest
     {
         MiHogarContextTest _context;
         UnitOfWork _unitOfWork;

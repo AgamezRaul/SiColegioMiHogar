@@ -4,14 +4,12 @@ using BackEnd.Abono.Aplicacion.Service.Crear;
 using BackEnd.Base;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace TestBackEnd.AplicacionTest.CrearTest
 {
     [TestFixture]
-    public  class CrearAbonoTest
+    public class CrearAbonoTest
     {
         MiHogarContextTest _context;
         UnitOfWork _unitOfWork;
@@ -36,7 +34,7 @@ namespace TestBackEnd.AplicacionTest.CrearTest
                 new CrearAbonoRequest
                 {
                     ValorAbono = 100000,
-                    IdMensualidad=001
+                    IdMensualidad = 001
                 },
                 "Abono Creado Exitosamente"
                 ).SetName("Crear Abono Correctamente");

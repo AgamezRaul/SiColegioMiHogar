@@ -1,9 +1,5 @@
 ﻿using BackEnd.Base;
 using BackEnd.Nota.Aplicacion.Request;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace BackEnd.Nota.Aplicacion.Services
 {
@@ -32,7 +28,8 @@ namespace BackEnd.Nota.Aplicacion.Services
                     return new ActualizarResponse() { Message = $"Los datos de la nota fueron actualizados correctamente." };
 
                 }
-                else{
+                else
+                {
                     return new ActualizarResponse() { Message = $"Ocurrio un error al tratar de actualizar la nota." };
 
                 }

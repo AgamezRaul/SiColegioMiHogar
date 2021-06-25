@@ -1,16 +1,16 @@
 ﻿using BackEnd;
+using BackEnd.Actividad;
 using BackEnd.Base;
+using BackEnd.Curso.Dominio;
+using BackEnd.Materia.Dominio.Entidades;
 using BackEnd.Nota.Aplicacion.Request;
 using BackEnd.Nota.Aplicacion.Services;
 using BackEnd.Nota.Dominio.Entidades;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BackEnd.Actividad;
-using BackEnd.Materia.Dominio.Entidades;
-using Microsoft.AspNetCore.Mvc;
-using BackEnd.Curso.Dominio;
 
 namespace SiColegioMiHogar.Controllers
 {
@@ -52,7 +52,7 @@ namespace SiColegioMiHogar.Controllers
 
         [HttpPost]
         public async Task<IActionResult> CreateNota([FromBody] List<CrearNotaRequest> nota)
-        {            
+        {
             var rta = _service.Ejecutar(nota);
             if (rta.isOk())
             {
@@ -62,7 +62,7 @@ namespace SiColegioMiHogar.Controllers
             return BadRequest(rta.Message);
         }
 
-        
+
         [HttpGet("[action]")]
         public Nota GetNota(int id)
         {

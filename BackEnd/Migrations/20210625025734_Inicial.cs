@@ -1,12 +1,59 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
 namespace BackEnd.Migrations
 {
-    public partial class Sprint3 : Migration
+    public partial class Inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Actividad",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Porcentaje = table.Column<double>(type: "float", nullable: false),
+                    IdMateria = table.Column<int>(type: "int", nullable: false),
+                    IdPeriodo = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Actividad", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Boletin",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FechaGeneracion = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IdEstudiante = table.Column<int>(type: "int", nullable: false),
+                    IdPeriodo = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Boletin", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Contrato",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FechaInicio = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FechaFin = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Sueldo = table.Column<double>(type: "float", nullable: false),
+                    IdDocente = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Contrato", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Curso",
                 columns: table => new
@@ -15,7 +62,8 @@ namespace BackEnd.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MaxEstudiantes = table.Column<int>(type: "int", nullable: false),
-                    IdDirectorDocente = table.Column<int>(type: "int", nullable: false)
+                    IdDirectorDocente = table.Column<int>(type: "int", nullable: false),
+                    Letra = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -33,29 +81,13 @@ namespace BackEnd.Migrations
                     Cedula = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Celular = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Correo = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Direccion = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Direccion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Estado = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Docente", x => x.Id);
                 });
-
-            migrationBuilder.CreateTable(
-                name: "Boletin",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FechaGeneracion = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IdEstudiante = table.Column<int>(type: "int", nullable: false),
-                    IdPeriodo = table.Column<int>(type: "int", nullable: false)
-
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Boletin", x => x.Id);
-                });
-
 
             migrationBuilder.CreateTable(
                 name: "Estudiante",
@@ -86,12 +118,25 @@ namespace BackEnd.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "EstudianteCurso",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdEstudiante = table.Column<int>(type: "int", nullable: false),
+                    IdCurso = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EstudianteCurso", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Materia",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    idMateria = table.Column<int>(type: "int", nullable: false),
                     NombreMateria = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IdDocente = table.Column<int>(type: "int", nullable: false),
                     IdCurso = table.Column<int>(type: "int", nullable: false)
@@ -108,7 +153,8 @@ namespace BackEnd.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FecConfirmacion = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IdePreMatricula = table.Column<int>(type: "int", nullable: false)
+                    IdePreMatricula = table.Column<int>(type: "int", nullable: false),
+                    ValorMatricula = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -121,16 +167,11 @@ namespace BackEnd.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Mes = table.Column<int>(type: "int", nullable: false),
-                    DiaPago = table.Column<int>(type: "int", nullable: false),
-                    FechaPago = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ValorMensualidad = table.Column<double>(type: "float", nullable: false),
-                    DescuentoMensualidad = table.Column<double>(type: "float", nullable: false),
-                    Abono = table.Column<double>(type: "float", nullable: false),
+                    Mes = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Deuda = table.Column<double>(type: "float", nullable: false),
                     Estado = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IdMatricula = table.Column<int>(type: "int", nullable: false),
-                    TotalMensualidad = table.Column<double>(type: "float", nullable: false)
+                    Año = table.Column<int>(type: "int", nullable: false),
+                    IdMatricula = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -143,16 +184,30 @@ namespace BackEnd.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NotaAlumno = table.Column<double>(type: "float", nullable: false),
                     FechaNota = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IdEstudiante = table.Column<int>(type: "int", nullable: false),
-                    IdMateria = table.Column<int>(type: "int", nullable: false),
-                    IdPeriodo = table.Column<int>(type: "int", nullable: false)
+                    IdActividad = table.Column<int>(type: "int", nullable: false),
+                    IdEstudiante = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Nota", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "NotaPeriodo",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nota = table.Column<double>(type: "float", nullable: false),
+                    Observacion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IdPeriodo = table.Column<int>(type: "int", nullable: false),
+                    IdMateria = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_NotaPeriodo", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -242,20 +297,15 @@ namespace BackEnd.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "NotaPeriodo",
-                columns: table => new
+            migrationBuilder.InsertData(
+                table: "Periodo",
+                columns: new[] { "Id", "FechaFin", "FechaInicio", "NombrePeriodo", "NumeroPeriodo" },
+                values: new object[,]
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nota = table.Column<double>(type: "float", nullable: false),
-                    Observacion = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IdPeriodo = table.Column<int>(type: "int", nullable: true),
-                    IdMateria = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_NotaPeriodo", x => x.Id);
+                    { 1, new DateTime(2021, 6, 29, 0, 0, 0, 0, DateTimeKind.Local), new DateTime(2021, 6, 19, 0, 0, 0, 0, DateTimeKind.Local), "Primer Periodo", 1 },
+                    { 2, new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Local), new DateTime(2021, 6, 30, 0, 0, 0, 0, DateTimeKind.Local), "Segundo Periodo", 2 },
+                    { 3, new DateTime(2021, 7, 21, 0, 0, 0, 0, DateTimeKind.Local), new DateTime(2021, 7, 11, 0, 0, 0, 0, DateTimeKind.Local), "Tercer Periodo", 3 },
+                    { 4, new DateTime(2021, 8, 1, 0, 0, 0, 0, DateTimeKind.Local), new DateTime(2021, 7, 22, 0, 0, 0, 0, DateTimeKind.Local), "Cuarto Periodo", 4 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -272,10 +322,22 @@ namespace BackEnd.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Actividad");
+
+            migrationBuilder.DropTable(
+                name: "Boletin");
+
+            migrationBuilder.DropTable(
+                name: "Contrato");
+
+            migrationBuilder.DropTable(
                 name: "Curso");
 
             migrationBuilder.DropTable(
                 name: "Docente");
+
+            migrationBuilder.DropTable(
+                name: "EstudianteCurso");
 
             migrationBuilder.DropTable(
                 name: "Materia");
@@ -288,6 +350,9 @@ namespace BackEnd.Migrations
 
             migrationBuilder.DropTable(
                 name: "Nota");
+
+            migrationBuilder.DropTable(
+                name: "NotaPeriodo");
 
             migrationBuilder.DropTable(
                 name: "Periodo");
@@ -303,9 +368,6 @@ namespace BackEnd.Migrations
 
             migrationBuilder.DropTable(
                 name: "Estudiante");
-
-            migrationBuilder.DropTable(
-                name: "NotaPeriodo");
         }
     }
 }

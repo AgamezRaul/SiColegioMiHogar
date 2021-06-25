@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BackEnd.Docente.Aplicacion.Request
+﻿namespace BackEnd.Docente.Aplicacion.Request
 {
     public class ActualizarDocenteRequest
     {

@@ -4,14 +4,12 @@ using BackEnd.Grado.Aplicacion.Request;
 using BackEnd.Grado.Aplicacion.Service.Actualizar;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace TestBackEnd.AplicacionTest.ActualizarTest
 {
     [TestFixture]
-    public  class ActualizarGrado
+    public class ActualizarGrado
     {
         MiHogarContextTest _context;
         UnitOfWork _unitOfWork;
@@ -37,7 +35,7 @@ namespace TestBackEnd.AplicacionTest.ActualizarTest
             yield return new TestCaseData(
                 new ActualizarGradoRequest
                 {
-                    Nombre="Pre-Jardin",
+                    Nombre = "Pre-Jardin",
                     id = 1
                 },
                 "Grado Actualizado Exitosamente"

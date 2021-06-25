@@ -1,8 +1,6 @@
 ﻿using BackEnd.Base;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using BackEnd.Estudiante.Dominio;
 
 namespace BackEnd.Nota.Dominio.Entidades
 {

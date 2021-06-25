@@ -1,14 +1,11 @@
 ﻿using BackEnd.Base;
-using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BackEnd.Responsable.Dominio
 {
-    public class Responsable: Entity<int>
+    public class Responsable : Entity<int>
     {
-      
+
         public string IdeResponsable { get; set; }
         public string NomResponsable { get; set; }
         public DateTime FecNacimiento { get; set; }
@@ -24,8 +21,8 @@ namespace BackEnd.Responsable.Dominio
         public string Correo { get; set; }
         public string Acudiente { get; set; }
         public int IdUsuario { get; set; }
-        public Responsable(string ideResponsable, string nomResponsable, DateTime fecNacimiento, string lugNacimiento, 
-            string lugExpedicion, string tipDocumento, string celResponsable, string profResponsable, string ocuResponsable, 
+        public Responsable(string ideResponsable, string nomResponsable, DateTime fecNacimiento, string lugNacimiento,
+            string lugExpedicion, string tipDocumento, string celResponsable, string profResponsable, string ocuResponsable,
             string entResponsable, string celEmpresa, string tipoResponsable, string correo, string acudiente, int idUsuario)
         {
             IdeResponsable = ideResponsable;

@@ -1,19 +1,18 @@
 ﻿using BackEnd;
 using BackEnd.Base;
-using BackEnd.Periodo.Dominio;
-using BackEnd.Materia.Dominio;
+using BackEnd.Materia.Dominio.Entidades;
 using BackEnd.NotaPeriodo.Aplicacion.Request;
-using BackEnd.NotaPeriodo.Aplicacion.Service.Crear;
 using BackEnd.NotaPeriodo.Aplicacion.Service.Actualizar;
+using BackEnd.NotaPeriodo.Aplicacion.Service.Crear;
 using BackEnd.NotaPeriodo.Aplicacion.Service.Eliminar;
 using BackEnd.NotaPeriodo.Dominio;
+using BackEnd.Periodo.Dominio;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BackEnd.Materia.Dominio.Entidades;
 
 namespace SiColegioMiHogar.Controllers
 {

@@ -1,9 +1,4 @@
 ﻿using BackEnd.Base;
-using BackEnd.Nota.Aplicacion.Request;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace BackEnd.Nota.Aplicacion.Services
 {
@@ -21,7 +16,7 @@ namespace BackEnd.Nota.Aplicacion.Services
 
         public Dominio.Entidades.Nota GetNota(int id)
         {
-            var  nota = _unitOfWork.NotaServiceRepository.Find(id);
+            var nota = _unitOfWork.NotaServiceRepository.Find(id);
             return nota;
         }
     }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using BackEnd.Base;
+﻿using BackEnd.Base;
 using BackEnd.Nota.Dominio.Repositories;
 
 namespace BackEnd.Nota.Infra

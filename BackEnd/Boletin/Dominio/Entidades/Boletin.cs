@@ -1,17 +1,16 @@
 ﻿using BackEnd.Base;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BackEnd.Boletin.Dominio
 {
-    public class Boletin: Entity<int>
+    public class Boletin : Entity<int>
     {
-        
+
         public DateTime FechaGeneracion { get; set; }
         public int IdEstudiante { get; set; }
         public int IdPeriodo { get; set; }
-        public Boletin(int idEstudiante,int idPeriodo,DateTime fechaGeneracion)
+        public Boletin(int idEstudiante, int idPeriodo, DateTime fechaGeneracion)
         {
             FechaGeneracion = fechaGeneracion;
             IdEstudiante = idEstudiante;

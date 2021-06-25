@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BackEnd.Mensualidad.Aplicacion.Request
+﻿namespace BackEnd.Mensualidad.Aplicacion.Request
 {
-   public class ActualizarMensualidadRequest
+    public class ActualizarMensualidadRequest
     {
 
         public int id { get; set; }

@@ -1,12 +1,9 @@
 ﻿using BackEnd.Base;
 using BackEnd.Mensualidad.Aplicacion.Request;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BackEnd.Mensualidad.Aplicacion.Service.Eliminar
 {
-   public  class EliminarMensualidadService
+    public class EliminarMensualidadService
     {
         readonly IUnitOfWork _unitOfWork;
         public EliminarMensualidadService(IUnitOfWork unitOfWork)
@@ -24,7 +21,7 @@ namespace BackEnd.Mensualidad.Aplicacion.Service.Eliminar
             {
                 _unitOfWork.MensualidadServiceRepository.Delete(mensualidad);
                 _unitOfWork.Commit();
-                return new EliminarMensualidadResponse($"Mensualidad Eliminada Exitosamente") ;
+                return new EliminarMensualidadResponse($"Mensualidad Eliminada Exitosamente");
             }
         }
     }

@@ -1,8 +1,5 @@
 ﻿using BackEnd.Abono.Aplicacion.Request;
 using BackEnd.Base;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BackEnd.Abono.Aplicacion.Service.Actualizar
 {
@@ -13,7 +10,7 @@ namespace BackEnd.Abono.Aplicacion.Service.Actualizar
         {
             _unitOfWork = unitOfWork;
         }
-        public ActualizarAbonoResponse Ejecutar(ActualizarAbonoRequest request)                                     
+        public ActualizarAbonoResponse Ejecutar(ActualizarAbonoRequest request)
         {
             Dominio.Abono abono = _unitOfWork.AbonoServiceRepository.FindFirstOrDefault(t => t.Id == request.id);
             if (abono == null)

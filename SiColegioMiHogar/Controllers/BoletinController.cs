@@ -95,17 +95,17 @@ namespace SiColegioMiHogar.Controllers
             }
             return BadRequest(rta.Message);
         }
-       /* [HttpGet("GetPdf/{idEstudiante}")]
-        public object GenerarPdf([FromRoute] int idEstudiante)
-        {
-            _generarBoletin = new GenerarBoletinService(_unitOfWork);
-            var rta = _generarBoletin.BoletinPDF(idEstudiante);
-            if (rta != "Boletin Generado")
-            {
-                return BadRequest(rta);
-            }
-            return Ok(rta);
+        /* [HttpGet("GetPdf/{idEstudiante}")]
+         public object GenerarPdf([FromRoute] int idEstudiante)
+         {
+             _generarBoletin = new GenerarBoletinService(_unitOfWork);
+             var rta = _generarBoletin.BoletinPDF(idEstudiante);
+             if (rta != "Boletin Generado")
+             {
+                 return BadRequest(rta);
+             }
+             return Ok(rta);
 
-        }*/
+         }*/
     }
 }

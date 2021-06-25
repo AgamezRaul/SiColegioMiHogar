@@ -1,8 +1,6 @@
 ﻿using BackEnd.Base;
-using BackEnd.Estudiante.Aplicacion.Request;
 using BackEnd.Estudiante.Aplicacion.Services.Crear;
 using BackEnd.PreMatricula.Aplicacion.Request;
-using BackEnd.Responsable.Aplicacion.Request;
 using BackEnd.Responsable.Aplicacion.Services.Crear;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,8 +1,5 @@
 ﻿using BackEnd.Base;
 using BackEnd.Materia.Aplicacion.Request;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BackEnd.Materia.Aplicacion.Services.Eliminar
 {

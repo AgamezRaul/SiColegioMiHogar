@@ -1,18 +1,17 @@
 ﻿using BackEnd.Base;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BackEnd.Periodo.Dominio
 {
     public class Periodo : Entity<int>
     {
-  
+
         public int NumeroPeriodo { get; set; }
         public string NombrePeriodo { get; set; }
         public DateTime FechaInicio { get; set; }
         public DateTime FechaFin { get; set; }
-       
+
         public Periodo()
         {
 
@@ -30,7 +29,7 @@ namespace BackEnd.Periodo.Dominio
         {
             var errors = new List<string>();
 
-            
+
             if (periodo.NumeroPeriodo == 0)
                 errors.Add("Campo Numero de Periodo vacio");
             if (string.IsNullOrEmpty(periodo.NombrePeriodo))
@@ -39,7 +38,7 @@ namespace BackEnd.Periodo.Dominio
                 errors.Add("Campo Fecha de Inicio vacio");
             if (string.IsNullOrEmpty(periodo.FechaFin.ToString()))
                 errors.Add("Campo Fecha de Inicio vacio");
-            
+
             return errors;
         }
 

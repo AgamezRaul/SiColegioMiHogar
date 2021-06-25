@@ -1,12 +1,9 @@
 ﻿using BackEnd.Base;
 using BackEnd.Grado.Aplicacion.Request;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BackEnd.Grado.Aplicacion.Service.Actualizar
 {
-   public  class ActualizarGradoService
+    public class ActualizarGradoService
     {
         readonly IUnitOfWork _unitOfWork;
         public ActualizarGradoService(IUnitOfWork unitOfWork)
@@ -23,7 +20,7 @@ namespace BackEnd.Grado.Aplicacion.Service.Actualizar
             else
             {
                 grado.Nombre = request.Nombre;
-               
+
                 _unitOfWork.GradoServiceRepository.Edit(grado);
                 _unitOfWork.Commit();
                 return new ActualizarGradoResponse($"Grado Actualizado Exitosamente");

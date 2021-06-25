@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BackEnd.Grado.Aplicacion.Request
+﻿namespace BackEnd.Grado.Aplicacion.Request
 {
     public class EliminarGradoRequest
     {

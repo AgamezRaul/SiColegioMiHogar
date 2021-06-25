@@ -1,15 +1,13 @@
 ﻿using BackEnd.Base;
 using BackEnd.Mensualidad.Aplicacion.Request;
 using System;
-using System.Collections.Generic;
 using System.Net.Mail;
-using System.Text;
 
 namespace BackEnd.Mensualidad.Aplicacion.Service
 {
     public class EviarEmailService
     {
-  
+
         readonly IUnitOfWork _unitOfWork;
         public EviarEmailService(IUnitOfWork unitOfWork)
         {
@@ -22,7 +20,7 @@ namespace BackEnd.Mensualidad.Aplicacion.Service
             email.From = new MailAddress("sicolegiomihogar@gmail.com");
             email.Subject = "Mesualidad en Mora, Notificado el dia: " + DateTime.Now.ToString("dd/ MMM / yyy hh:mm:ss");
             email.Body = $"Estimado  : Padre de Familia el Colegio MiHogar le comuica que se encunetra en {request.Estado}\n Por el mes: {request.Mes} " +
-            $"\n con una deuda de {request.Deuda} \n Por Favor acerquese a las intalaciones del colegio mi Hogar" ;
+            $"\n con una deuda de {request.Deuda} \n Por Favor acerquese a las intalaciones del colegio mi Hogar";
             email.IsBodyHtml = true;
             email.Priority = MailPriority.Normal;
             return email;
@@ -46,7 +44,7 @@ namespace BackEnd.Mensualidad.Aplicacion.Service
             try
             {
                 SmtpClient smtp = ConfigurarSMTP();
-                MailMessage email = CrearEmailMensualidad( request, correo);
+                MailMessage email = CrearEmailMensualidad(request, correo);
                 smtp.Send(email);
                 email.Dispose();
                 resultado = "Correo enviado";

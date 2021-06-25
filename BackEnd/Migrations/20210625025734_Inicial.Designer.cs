@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackEnd.Migrations
 {
     [DbContext(typeof(MiHogarContext))]
-    [Migration("20210416155000_Sprint3")]
-    partial class Sprint3
+    [Migration("20210625025734_Inicial")]
+    partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,75 @@ namespace BackEnd.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.5")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("BackEnd.Actividad.Actividad", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Descripcion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("IdMateria")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdPeriodo")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Porcentaje")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Actividad");
+                });
+
+            modelBuilder.Entity("BackEnd.Boletin.Dominio.Boletin", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("FechaGeneracion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IdEstudiante")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdPeriodo")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Boletin");
+                });
+
+            modelBuilder.Entity("BackEnd.Contrato.Dominio.Contrato", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("FechaFin")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("FechaInicio")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IdDocente")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Sueldo")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Contrato");
+                });
 
             modelBuilder.Entity("BackEnd.Curso.Dominio.Curso", b =>
                 {
@@ -30,6 +99,9 @@ namespace BackEnd.Migrations
 
                     b.Property<int>("IdDirectorDocente")
                         .HasColumnType("int");
+
+                    b.Property<string>("Letra")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("MaxEstudiantes")
                         .HasColumnType("int");
@@ -59,6 +131,9 @@ namespace BackEnd.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Direccion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Estado")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NombreCompleto")
@@ -132,6 +207,45 @@ namespace BackEnd.Migrations
                     b.ToTable("Estudiante");
                 });
 
+            modelBuilder.Entity("BackEnd.EstudianteCurso.Dominio.EstudianteCurso", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("IdCurso")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdEstudiante")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EstudianteCurso");
+                });
+
+            modelBuilder.Entity("BackEnd.Materia.Dominio.Entidades.Materias", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("IdCurso")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdDocente")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NombreMateria")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Materia");
+                });
+
             modelBuilder.Entity("BackEnd.Matricula.Dominio.Matricula", b =>
                 {
                     b.Property<int>("Id")
@@ -145,6 +259,9 @@ namespace BackEnd.Migrations
                     b.Property<int>("IdePreMatricula")
                         .HasColumnType("int");
 
+                    b.Property<double>("ValorMatricula")
+                        .HasColumnType("float");
+
                     b.HasKey("Id");
 
                     b.ToTable("Matricula");
@@ -157,35 +274,20 @@ namespace BackEnd.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<double>("Abono")
-                        .HasColumnType("float");
-
-                    b.Property<double>("DescuentoMensualidad")
-                        .HasColumnType("float");
+                    b.Property<int>("Año")
+                        .HasColumnType("int");
 
                     b.Property<double>("Deuda")
                         .HasColumnType("float");
 
-                    b.Property<int>("DiaPago")
-                        .HasColumnType("int");
-
                     b.Property<string>("Estado")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("FechaPago")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("IdMatricula")
                         .HasColumnType("int");
 
-                    b.Property<int>("Mes")
-                        .HasColumnType("int");
-
-                    b.Property<double>("TotalMensualidad")
-                        .HasColumnType("float");
-
-                    b.Property<double>("ValorMensualidad")
-                        .HasColumnType("float");
+                    b.Property<string>("Mes")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -199,19 +301,13 @@ namespace BackEnd.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Descripcion")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("FechaNota")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("IdActividad")
+                        .HasColumnType("int");
+
                     b.Property<int>("IdEstudiante")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdMateria")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdPeriodo")
                         .HasColumnType("int");
 
                     b.Property<double>("NotaAlumno")
@@ -220,6 +316,30 @@ namespace BackEnd.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Nota");
+                });
+
+            modelBuilder.Entity("BackEnd.NotaPeriodo.Dominio.NotaPeriodo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("IdMateria")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdPeriodo")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Nota")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Observacion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("NotaPeriodo");
                 });
 
             modelBuilder.Entity("BackEnd.Periodo.Dominio.Periodo", b =>
@@ -244,6 +364,40 @@ namespace BackEnd.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Periodo");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            FechaFin = new DateTime(2021, 6, 29, 0, 0, 0, 0, DateTimeKind.Local),
+                            FechaInicio = new DateTime(2021, 6, 19, 0, 0, 0, 0, DateTimeKind.Local),
+                            NombrePeriodo = "Primer Periodo",
+                            NumeroPeriodo = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            FechaFin = new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Local),
+                            FechaInicio = new DateTime(2021, 6, 30, 0, 0, 0, 0, DateTimeKind.Local),
+                            NombrePeriodo = "Segundo Periodo",
+                            NumeroPeriodo = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            FechaFin = new DateTime(2021, 7, 21, 0, 0, 0, 0, DateTimeKind.Local),
+                            FechaInicio = new DateTime(2021, 7, 11, 0, 0, 0, 0, DateTimeKind.Local),
+                            NombrePeriodo = "Tercer Periodo",
+                            NumeroPeriodo = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            FechaFin = new DateTime(2021, 8, 1, 0, 0, 0, 0, DateTimeKind.Local),
+                            FechaInicio = new DateTime(2021, 7, 22, 0, 0, 0, 0, DateTimeKind.Local),
+                            NombrePeriodo = "Cuarto Periodo",
+                            NumeroPeriodo = 4
+                        });
                 });
 
             modelBuilder.Entity("BackEnd.PreMatricula.Dominio.PreMatricula", b =>
@@ -353,30 +507,6 @@ namespace BackEnd.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Usuario");
-                });
-
-            modelBuilder.Entity("BackEnd.materias.Dominio.Entidades.Materias", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("IdCurso")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdDocente")
-                        .HasColumnType("int");
-
-                    b.Property<string>("NombreMateria")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("idMateria")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Materia");
                 });
 
             modelBuilder.Entity("BackEnd.PreMatricula.Dominio.PreMatricula", b =>

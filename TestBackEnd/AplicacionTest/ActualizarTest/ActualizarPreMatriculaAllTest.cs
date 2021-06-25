@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace TestBackEnd.AplicacionTest.ActualizarTest
 {
@@ -112,7 +111,7 @@ namespace TestBackEnd.AplicacionTest.ActualizarTest
                         TelEstudiante = "1234567",
                         IdUsuario = 1
                     },
-                    id = 1,                    
+                    id = 1,
                     IdUsuario = 1,
                 },
                 "PreMatricula Actualizada Exitosamente"

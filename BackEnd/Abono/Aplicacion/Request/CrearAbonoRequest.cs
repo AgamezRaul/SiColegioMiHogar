@@ -6,7 +6,7 @@ namespace BackEnd.Abono.Aplicacion.Request
     public class CrearAbonoRequest
     {
         public int id { get; set; }
-        public int Mes { get=>FechaPago.Month; }
+        public int Mes { get => FechaPago.Month; }
         public DateTime FechaPago { get => DateTime.Now; }
         public Double ValorAbono { get; set; }
         public String EstadoAbono { get => "Correcto"; }

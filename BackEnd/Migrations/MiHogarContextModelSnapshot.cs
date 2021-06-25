@@ -272,35 +272,20 @@ namespace BackEnd.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<double>("Abono")
-                        .HasColumnType("float");
-
-                    b.Property<double>("DescuentoMensualidad")
-                        .HasColumnType("float");
+                    b.Property<int>("Año")
+                        .HasColumnType("int");
 
                     b.Property<double>("Deuda")
                         .HasColumnType("float");
 
-                    b.Property<int>("DiaPago")
-                        .HasColumnType("int");
-
                     b.Property<string>("Estado")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("FechaPago")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("IdMatricula")
                         .HasColumnType("int");
 
-                    b.Property<int>("Mes")
-                        .HasColumnType("int");
-
-                    b.Property<double>("TotalMensualidad")
-                        .HasColumnType("float");
-
-                    b.Property<double>("ValorMensualidad")
-                        .HasColumnType("float");
+                    b.Property<string>("Mes")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -382,32 +367,32 @@ namespace BackEnd.Migrations
                         new
                         {
                             Id = 1,
-                            FechaFin = new DateTime(2021, 6, 22, 0, 0, 0, 0, DateTimeKind.Local),
-                            FechaInicio = new DateTime(2021, 6, 12, 0, 0, 0, 0, DateTimeKind.Local),
+                            FechaFin = new DateTime(2021, 6, 29, 0, 0, 0, 0, DateTimeKind.Local),
+                            FechaInicio = new DateTime(2021, 6, 19, 0, 0, 0, 0, DateTimeKind.Local),
                             NombrePeriodo = "Primer Periodo",
                             NumeroPeriodo = 1
                         },
                         new
                         {
                             Id = 2,
-                            FechaFin = new DateTime(2021, 7, 3, 0, 0, 0, 0, DateTimeKind.Local),
-                            FechaInicio = new DateTime(2021, 6, 23, 0, 0, 0, 0, DateTimeKind.Local),
+                            FechaFin = new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Local),
+                            FechaInicio = new DateTime(2021, 6, 30, 0, 0, 0, 0, DateTimeKind.Local),
                             NombrePeriodo = "Segundo Periodo",
                             NumeroPeriodo = 2
                         },
                         new
                         {
                             Id = 3,
-                            FechaFin = new DateTime(2021, 7, 14, 0, 0, 0, 0, DateTimeKind.Local),
-                            FechaInicio = new DateTime(2021, 7, 4, 0, 0, 0, 0, DateTimeKind.Local),
+                            FechaFin = new DateTime(2021, 7, 21, 0, 0, 0, 0, DateTimeKind.Local),
+                            FechaInicio = new DateTime(2021, 7, 11, 0, 0, 0, 0, DateTimeKind.Local),
                             NombrePeriodo = "Tercer Periodo",
                             NumeroPeriodo = 3
                         },
                         new
                         {
                             Id = 4,
-                            FechaFin = new DateTime(2021, 7, 25, 0, 0, 0, 0, DateTimeKind.Local),
-                            FechaInicio = new DateTime(2021, 7, 15, 0, 0, 0, 0, DateTimeKind.Local),
+                            FechaFin = new DateTime(2021, 8, 1, 0, 0, 0, 0, DateTimeKind.Local),
+                            FechaInicio = new DateTime(2021, 7, 22, 0, 0, 0, 0, DateTimeKind.Local),
                             NombrePeriodo = "Cuarto Periodo",
                             NumeroPeriodo = 4
                         });

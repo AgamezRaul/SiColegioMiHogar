@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace TestBackEnd.AplicacionTest.CrearTest
 {
@@ -37,7 +36,7 @@ namespace TestBackEnd.AplicacionTest.CrearTest
                 new CrearBoletinRequest
                 {
                     id = 1,
-                    FechaGeneracion =DateTime.Now ,
+                    FechaGeneracion = DateTime.Now,
                     IdPeriodo = 1,
                     IdEstudiante = 1
                 },

@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BackEnd.Abono.Aplicacion.Request
 {
-   public class ActualizarAbonoRequest
+    public class ActualizarAbonoRequest
     {
         public int id { get; set; }
         public Double ValorAbono { get; set; }
-       
+
     }
     public class ActualizarAbonoResponse
     {

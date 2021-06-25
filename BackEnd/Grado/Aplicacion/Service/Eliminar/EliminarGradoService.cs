@@ -1,12 +1,9 @@
 ﻿using BackEnd.Base;
 using BackEnd.Grado.Aplicacion.Request;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BackEnd.Grado.Aplicacion.Service.Eliminar
 {
-   public class EliminarGradoService
+    public class EliminarGradoService
     {
         readonly IUnitOfWork _unitOfWork;
         public EliminarGradoService(IUnitOfWork unitOfWork)

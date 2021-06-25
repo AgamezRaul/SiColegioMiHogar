@@ -15,7 +15,7 @@ namespace BackEnd.ValorMensualidad.Aplicacion.Service.Crear
         }
         public CrearValorMensualidadResponse Ejecutar(CrearValorMensualidadRequest request)
         {
-            var valorMensualidad = _unitOfWork.ValorMensualidadServiceRepository.FindFirstOrDefault(t => t.Id == request.id || t.IdGrado == request.IdGrado && t.Año==request.Año);
+            var valorMensualidad = _unitOfWork.ValorMensualidadServiceRepository.FindFirstOrDefault(t => t.Id == request.id || t.IdGrado == request.IdGrado && t.Año == request.Año);
             if (valorMensualidad != null)
             {
                 return new CrearValorMensualidadResponse($"Valor Mensualidad ya existe");

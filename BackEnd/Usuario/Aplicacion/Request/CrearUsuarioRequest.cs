@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BackEnd.Usuario.Aplicacion.Request
+﻿namespace BackEnd.Usuario.Aplicacion.Request
 {
     public class CrearUsuarioRequest
     {

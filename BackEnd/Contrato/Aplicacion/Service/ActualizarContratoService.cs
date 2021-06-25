@@ -1,12 +1,9 @@
 ﻿using BackEnd.Base;
 using BackEnd.Contrato.Aplicacion.Request;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BackEnd.Contrato.Aplicacion.Service
 {
-   public class ActualizarContratoService
+    public class ActualizarContratoService
     {
         private readonly IUnitOfWork _unitOfWork;
         public ActualizarContratoService(IUnitOfWork unitOfWork)
@@ -29,7 +26,7 @@ namespace BackEnd.Contrato.Aplicacion.Service
                 _unitOfWork.Commit();
                 return new ActualizarContratoResponse($"El  contrato del docente  ha  sido actualizado exitosamente");
             }
-           
+
         }
     }
 }

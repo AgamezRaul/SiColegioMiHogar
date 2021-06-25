@@ -4,9 +4,7 @@ using BackEnd.Mensualidad.Aplicacion.Request;
 using BackEnd.Mensualidad.Aplicacion.Service.Actualizar;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace TestBackEnd.AplicacionTest.ActualizarTest
 {
@@ -37,7 +35,7 @@ namespace TestBackEnd.AplicacionTest.ActualizarTest
             yield return new TestCaseData(
                 new ActualizarMensualidadRequest
                 {
-                    Deuda=2000,
+                    Deuda = 2000,
                     id = 1
                 },
                 "Mensualidad Actualizada Exitosamente"

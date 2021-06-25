@@ -30,7 +30,7 @@ namespace BackEnd.Nota.Aplicacion.Services
                     return new CrearNotaResponse(ListaErrors);
                 }
                 _unitOfWork.NotaServiceRepository.Add(newNota);
-            }            
+            }
             _unitOfWork.Commit();
             return new CrearNotaResponse($"Notas Registradas Exitosamente");
         }
