@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Sentry.AspNetCore;
 using System;
 
 namespace SiColegioMiHogar
@@ -61,6 +62,8 @@ namespace SiColegioMiHogar
             }
 
             app.UseRouting();
+
+            app.UseSentryTracing();
 
             app.UseEndpoints(endpoints =>
             {
