@@ -5,6 +5,7 @@ using BackEnd.ValorMensualidad.Aplicacion.Service.Actualizar;
 using BackEnd.ValorMensualidad.Aplicacion.Service.Crear;
 using BackEnd.ValorMensualidad.Dominio;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -40,7 +41,6 @@ namespace SiColegioMiHogar.Controllers
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
             return result;
         }
-        /*
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetValorMensualidad([FromRoute] int id)
@@ -49,7 +49,7 @@ namespace SiColegioMiHogar.Controllers
             if (valorMensualidad == null)
                 return NotFound();
             return Ok(valorMensualidad);
-        }*/
+        }
         [HttpPost]
         public async Task<IActionResult> CreateValorMensualidad([FromBody] CrearValorMensualidadRequest valorMensualidad)
         {

@@ -3,8 +3,10 @@ using BackEnd.Abono.Aplicacion.Request;
 using BackEnd.Abono.Aplicacion.Service.Actualizar;
 using BackEnd.Abono.Aplicacion.Service.Anular;
 using BackEnd.Abono.Aplicacion.Service.Crear;
+using BackEnd.Abono.Dominio;
 using BackEnd.Base;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
 namespace SiColegioMiHogar.Controllers
@@ -23,7 +25,7 @@ namespace SiColegioMiHogar.Controllers
             this._context = context;
             _unitOfWork = new UnitOfWork(_context);
         }
-        /*
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAbono([FromRoute] int id)
         {
@@ -31,7 +33,7 @@ namespace SiColegioMiHogar.Controllers
             if (abono == null)
                 return NotFound();
             return Ok(abono);
-        }*/
+        }
         [HttpPost]
         public async Task<IActionResult> CreateAbono([FromBody] CrearAbonoRequest abono)
         {

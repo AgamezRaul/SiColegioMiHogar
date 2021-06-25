@@ -5,105 +5,44 @@
   <h1>Formulario de Mensualidad</h1>
   <form [formGroup]="formGroup" (ngSubmit)="save()">
     <div class="form-row">
-      <div class="form-group col-md-6" *ngIf="!modoEdicion">
-        <label for="mes">Mes en el que se registra el pago</label>
-        <input type="number" class="form-control" formControlName="mes" id="mes" placeholder="Ej: 05">
-        <div class="alert-danger" *ngIf="mes.invalid && (mes.dirty || mes.touched)">
-          <div class="container-error-message" *ngIf="mes.errors.required">
-            Mes es requerido
-          </div>
-          <div class="container-error-message" *ngIf="mes.errors.min">
-            El valor minimo del mes es 1, que indica enero
-          </div>
-          <div class="container-error-message" *ngIf="mes.errors.max">
-            El valor maximo del mes es 12, que indica diciembre
-          </div>
-          <div class="container-error-message" *ngIf="modoEdicion">
-            No puede actulizar el Mes
-          </div>
-        </div>
+      <div>
+        <mat-form-field class="col-media" appearance="fill" [ngClass]="{'has-error': ((mes.touched || mes.dirty)&& mes.invalid)}">
+          <mat-label>Mes</mat-label>
+          <mat-select formControlName="mes" placeholder="Elija una opción">
+            <mat-option value="Enero">Enero</mat-option>
+            <mat-option value="Febrero">Febrero</mat-option>
+            <mat-option value="Marzo">Marzo</mat-option>
+            <mat-option value="Abril">Abril</mat-option>
+            <mat-option value="Mayo">Mayo</mat-option>
+            <mat-option value="Junio">Junio</mat-option>
+            <mat-option value="Julio">Julio</mat-option>
+            <mat-option value="Agosto">Agosto</mat-option>
+            <mat-option value="Septiembre">Septiembre</mat-option>
+            <mat-option value="Octubre">Octubre</mat-option>
+            <mat-option value="Noviembre">Noviembre</mat-option>
+            <mat-option value="Diciembre">Diciembre</mat-option>
+          </mat-select>
+          <mat-error *ngIf="((mes.touched || mes.dirty)&& mes.invalid) && mes.errors.required">  Mes es<strong> requerido </strong></mat-error>
+        </mat-form-field>
       </div>
-      <div class="form-group col-md-6" *ngIf="modoEdicion">
-        <label for="mes">Mes en el que se registra el pago</label>
-        <input type="number" class="form-control" formControlName="mes" id="mes"  readonly>
-        <div class="alert-danger" *ngIf="mes.invalid && (mes.dirty || mes.touched)">
-          <div class="container-error-message" *ngIf="modoEdicion">
-            No puede actulizar el Mes
-          </div>
-        </div>
-      </div>
-      <div class="form-group col-md-6">
-        <label for="diaPago">Dia acordado para pago</label>
-        <input type="number" class="form-control" formControlName="diaPago" id="diaPago" placeholder="Ej: 04">
-        <div class="alert-danger" *ngIf="diaPago.invalid && (diaPago.dirty || diaPago.touched)">
-          <div class="container-error-message" *ngIf="diaPago.errors.required">
-            El dia del pago es requerido
-          </div>
-          <div class="container-error-message" *ngIf="diaPago.errors.min">
-            Valor mimimo de dia de pago es 1
-          </div>
-          <div class="container-error-message" *ngIf="diaPago.errors.max">
-            Valor maximo de dia de pago es 31
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="fechaPago" style="display:block;">Fecha del pago</label>
-        <input [matDatepicker]="fechaPagoId" class=" form-control" formControlName="fechaPago" id="date" style="display:inline;width:300px;"placeholder="mm/dd/aaaa">
-        <mat-datepicker-toggle [for]="fechaPagoId"></mat-datepicker-toggle>
-        <mat-datepicker #fechaPagoId></mat-datepicker>
-        <div class="alert-danger" *ngIf="fechaPago.invalid && (fechaPago.dirty || fechaPago.touched)">
-          <div class="container-error-message" *ngIf="fechaPago.errors.required">
-            La fecha es requeridad
+        <label for="deuda">Deuda</label>
+        <input [value]="DeudaChange" (change)="updateValueDeuda($event.target.value)"
+               class="form-control" formControlName="deuda" id="deuda" placeholder="Ej: 20.000">
+        <div class="alert-danger" *ngIf="deuda.invalid && (deuda.dirty || deuda.touched)">
+          <div class="container-error-message" *ngIf="deuda.errors.required">
+            El Deuda es requerido
           </div>
-        </div>
-      </div>
-      <div class="form-group col-md-6">
-        <label for="valorMensualidad">Valor mensualidad</label>
-        <input  [value]="ValorMensualidadChange" (change)="updateValueValorMensualidad($event.target.value)"
-               class="form-control"  formControlName="valorMensualidad" id="valorMensualidad" placeholder="Ej: 200.000"  required="" >
-        <div class="alert-danger" *ngIf="valorMensualidad.invalid && (valorMensualidad.dirty || valorMensualidad.touched)">
-          <div class="container-error-message" *ngIf="valorMensualidad.errors.required">
-            El valor de Mensualidad es requerido
-          </div>
-          <div class="container-error-message" *ngIf="valorMensualidad.errors.pattern">
+          <div class="container-error-message" *ngIf="deuda.errors.pattern">
             Digite solo numeros por favor
           </div>
         </div>
       </div>
+     
+
     </div>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="descuentoMensualidad">Descuento a mensualidad</label>
-        <input [value]="DescuentoMensualidadChange" (change)="updateValueDescuentoMensualidad($event.target.value)"
-               class="form-control" formControlName="descuentoMensualidad" id="descuentoMensualidad" placeholder="Ej: 20.000">
-        <div class="alert-danger" *ngIf="descuentoMensualidad.invalid && (descuentoMensualidad.dirty || descuentoMensualidad.touched)">
-          <div class="container-error-message" *ngIf="descuentoMensualidad.errors.required">
-            El Descuento a mensualidad es requerido, Si no desea aplicar ninguno digite 0
-          </div>
-          <div class="container-error-message" *ngIf="descuentoMensualidad.errors.pattern">
-            Digite solo numeros por favor
-          </div>
-        </div>
-      </div>
-      <div class="form-group col-md-6">
-        <label for="abono">Abono que se recibe</label>
-        <input [value]="AbonoChange" (change)="updateValueAbonoMensualidad($event.target.value)"
-               class="form-control" formControlName="abono" id="abono" placeholder="Ej: 100.000">
-        <div class="alert-danger" *ngIf="abono.invalid && (abono.dirty || abono.touched)">
-          <div class="container-error-message" *ngIf="abono.errors.required">
-            El Abono que se recibe es requerido
-          </div>
-          <div class="container-error-message" *ngIf="abono.errors.pattern">
-            Digite solo numeros por favor
-          </div>
-        </div>
-      </div>
-    </div>
-    <button type="submit" mat-raised-button color="primary" [disabled]="!formGroup.valid">
+ <button type="submit" mat-raised-button color="primary" [disabled]="!formGroup.valid">
       Salvar Mensualidad
     </button>
   </form>

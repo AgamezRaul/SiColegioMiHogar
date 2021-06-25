@@ -4,7 +4,9 @@ using BackEnd.Grado.Aplicacion.Request;
 using BackEnd.Grado.Aplicacion.Service.Actualizar;
 using BackEnd.Grado.Aplicacion.Service.Crear;
 using BackEnd.Grado.Aplicacion.Service.Eliminar;
+using BackEnd.Grado.Dominio;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
 namespace SiColegioMiHogar.Controllers
@@ -24,14 +26,14 @@ namespace SiColegioMiHogar.Controllers
             _unitOfWork = new UnitOfWork(_context);
         }
 
-        /* [HttpGet("{id}")]
+        [HttpGet("{id}")]
          public async Task<IActionResult> GetGrado([FromRoute] int id)
          {
              Grado grado = await _context.Grado.SingleOrDefaultAsync(t => t.Id == id);
              if (grado == null)
                  return NotFound();
              return Ok(grado);
-         }*/
+         }
         [HttpPost]
         public async Task<IActionResult> CreateGrado([FromBody] CrearGradoRequest grado)
         {
