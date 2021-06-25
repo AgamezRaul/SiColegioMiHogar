@@ -53,6 +53,9 @@ namespace BackEnd
         {
         }
 
+        public DbSet<Abono.Dominio.Abono> Abono { get; set; }
+        public DbSet<Grado.Dominio.Grado> Grado { get; set; }
+        public DbSet<ValorMensualidad.Dominio.ValorMensualidad> ValorMensualidad { get; set; }
         public DbSet<Boletin.Dominio.Boletin> Boletin { get; set; }
         public DbSet<Estudiante.Dominio.Estudiante> Estudiante { get; set; }
         public DbSet<Matricula.Dominio.Matricula> Matricula { get; set; }

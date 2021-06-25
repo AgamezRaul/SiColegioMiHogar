@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BackEnd.Migrations
 {
@@ -7,6 +7,23 @@ namespace BackEnd.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Abono",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Mes = table.Column<int>(type: "int", nullable: false),
+                    FechaPago = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ValorAbono = table.Column<double>(type: "float", nullable: false),
+                    EstadoAbono = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IdMensualidad = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Abono", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Actividad",
                 columns: table => new
@@ -132,6 +149,19 @@ namespace BackEnd.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Grado",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Grado", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Materia",
                 columns: table => new
                 {
@@ -242,6 +272,22 @@ namespace BackEnd.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ValorMensualidad",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Fecha = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Año = table.Column<int>(type: "int", nullable: false),
+                    PrecioMensualidad = table.Column<double>(type: "float", nullable: false),
+                    IdGrado = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ValorMensualidad", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PreMatricula",
                 columns: table => new
                 {
@@ -322,6 +368,9 @@ namespace BackEnd.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Abono");
+
+            migrationBuilder.DropTable(
                 name: "Actividad");
 
             migrationBuilder.DropTable(
@@ -338,6 +387,9 @@ namespace BackEnd.Migrations
 
             migrationBuilder.DropTable(
                 name: "EstudianteCurso");
+
+            migrationBuilder.DropTable(
+                name: "Grado");
 
             migrationBuilder.DropTable(
                 name: "Materia");
@@ -362,6 +414,9 @@ namespace BackEnd.Migrations
 
             migrationBuilder.DropTable(
                 name: "Usuario");
+
+            migrationBuilder.DropTable(
+                name: "ValorMensualidad");
 
             migrationBuilder.DropTable(
                 name: "PreMatricula");
