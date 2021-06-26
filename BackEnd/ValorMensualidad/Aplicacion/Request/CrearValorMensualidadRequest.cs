@@ -13,7 +13,7 @@ namespace BackEnd.ValorMensualidad.Aplicacion.Request
         public IReadOnlyList<string> CanCrear(CrearValorMensualidadRequest valorMensulidad)
         {
             var errors = new List<string>();
-            if (string.IsNullOrEmpty(valorMensulidad.Fecha.ToString())) ;
+            if (string.IsNullOrEmpty(valorMensulidad.Fecha.ToString())) 
             errors.Add("Campo Fecha  vacio");
             if (valorMensulidad.PrecioMensualidad == 0)
                 errors.Add("Campo  Valor de la mensualidad vacio");

@@ -25,7 +25,7 @@ namespace BackEnd.Grado.Aplicacion.Service.Crear
                 string ListaErrors = "Errores: " + string.Join(",", errors);
                 return new CrearGradoResponse(ListaErrors);
             }
-            Dominio.Grado newGrado = new Dominio.Grado(request.Nombre);
+            Dominio.Grado newGrado = new Dominio.Grado(request.Nombre.ToUpper());
             _unitOfWork.GradoServiceRepository.Add(newGrado);
             _unitOfWork.Commit();
             return new CrearGradoResponse($"Grado Creado Exitosamente");

@@ -86,6 +86,17 @@ import { FormEstudianteCursoComponent } from './estudiante-curso/form-estudiante
 import { BoletinFormComponent } from './boletin/boletin-form/boletin-form.component';
 import { ListBoletinComponent } from './boletin/list-boletin/list-boletin.component';
 import { DialogoPreMatriculaComponent } from './pre-matricula/dialogo-pre-matricula/dialogo-pre-matricula.component';
+import { GradoComponent } from './grado/grado.component';
+import { FormGradoComponent } from './grado/form-grado/form-grado.component';
+import { ValorMensualidadComponent } from './valor-mensualidad/valor-mensualidad.component';
+import { FormValorMensualidadComponent } from './valor-mensualidad/form-valor-mensualidad/form-valor-mensualidad.component';
+import { ListValorMensualidadComponent } from './valor-mensualidad/list-valor-mensualidad/list-valor-mensualidad.component';
+import { AbonoComponent } from './abono/abono.component';
+import { FormAbonoComponent } from './abono/form-abono/form-abono.component';
+import { ListAbonoComponent } from './abono/list-abono/list-abono.component';
+import { GradoService } from './grado/grado.service';
+import { AbonoService } from './abono/abono.service';
+import { ValorMensualidadService } from './valor-mensualidad/valor-mensualidad.service';
 
 @NgModule({
   declarations: [
@@ -151,8 +162,17 @@ import { DialogoPreMatriculaComponent } from './pre-matricula/dialogo-pre-matric
     BoletinFormComponent,
     FormEstudianteCursoComponent,
     ListBoletinComponent,
-    DialogoPreMatriculaComponent
-
+    DialogoPreMatriculaComponent,
+    GradoComponent,
+    FormGradoComponent,
+    ValorMensualidadComponent,
+    FormValorMensualidadComponent,
+    ListValorMensualidadComponent,
+    AbonoComponent,
+    FormAbonoComponent,
+    ListAbonoComponent,
+   
+   
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -227,14 +247,22 @@ import { DialogoPreMatriculaComponent } from './pre-matricula/dialogo-pre-matric
       
 
       { path: 'materiasEstudiante', component: EstudianteComponent, canActivate: [CheckNotloginGuard] },
-      
+
+      { path: 'registrar-grado', component: FormGradoComponent, canActivate: [CheckNotloginGuard] },
+
+
+      { path: 'registrar-valorMensulidad', component: FormValorMensualidadComponent, canActivate: [CheckNotloginGuard] },
+      { path: 'editar-valorMensulidad/:id', component: FormValorMensualidadComponent, canActivate: [CheckNotloginGuard] },
+      { path: 'consultar-valorMensulidad', component: ValorMensualidadComponent, canActivate: [CheckNotloginGuard] },
+
+
 ], { relativeLinkResolution: 'legacy' }),
     BrowserAnimationsModule,
     MensajesModule
   ],
   //Aquí en providers se agregan todos los services de angular
   providers: [UsuarioService, PreMatriculaService, CdkColumnDef, MateriaService, AlertService, DocenteService, CursoService,
-    MensualidadService, MatriculaService, NotaService, PeriodoService],
+    MensualidadService, MatriculaService, NotaService, PeriodoService, GradoService, ValorMensualidadService, AbonoService],
   bootstrap: [AppComponent],
   entryComponents: [DialogoActividadComponent, DialogoPreMatriculaComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

@@ -1,13 +1,14 @@
-﻿using BackEnd;
+﻿using System.Linq;
+using System.Threading.Tasks;
+using BackEnd;
 using BackEnd.Base;
+using BackEnd.Grado.Dominio;
 using BackEnd.ValorMensualidad.Aplicacion.Request;
 using BackEnd.ValorMensualidad.Aplicacion.Service.Actualizar;
 using BackEnd.ValorMensualidad.Aplicacion.Service.Crear;
 using BackEnd.ValorMensualidad.Dominio;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SiColegioMiHogar.Controllers
 {
@@ -29,14 +30,14 @@ namespace SiColegioMiHogar.Controllers
         public object GetValorMensualidades()
         {
             var result = (from vm in _context.Set<ValorMensualidad>()
+                          join g in _context.Set<Grado>()
+                          on vm.IdGrado equals g.Id
                           select new
                           {
                               id = vm.Id,
-                              fecha = vm.Fecha,
-                              precioMensualida = vm.PrecioMensualidad,
-                              año = vm.Año,
-                              idGrado = vm.IdGrado
-
+                              precioMensualidad = vm.PrecioMensualidad,
+                              anio = vm.Año,
+                              grado = g.Nombre
                           }).ToList();
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
             return result;

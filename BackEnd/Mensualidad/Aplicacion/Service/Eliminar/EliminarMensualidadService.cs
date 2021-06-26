@@ -13,16 +13,20 @@ namespace BackEnd.Mensualidad.Aplicacion.Service.Eliminar
         public EliminarMensualidadResponse Ejecutar(EliminarMensualidadRequest request)
         {
             Dominio.Mensualidad mensualidad = _unitOfWork.MensualidadServiceRepository.FindFirstOrDefault(t => t.Id == request.IdMensualidad);
+
             if (mensualidad == null)
             {
                 return new EliminarMensualidadResponse($"Mensualidad no existe");
             }
-            else
+            Abono.Dominio.Abono abono = _unitOfWork.AbonoServiceRepository.FindFirstOrDefault(t => t.IdMensualidad == request.IdMensualidad);
+            if (abono!=null)
             {
-                _unitOfWork.MensualidadServiceRepository.Delete(mensualidad);
-                _unitOfWork.Commit();
-                return new EliminarMensualidadResponse($"Mensualidad Eliminada Exitosamente");
+                return new EliminarMensualidadResponse($"Mensualidad cuenta con abonos, No se puede eliminar");
             }
+            _unitOfWork.MensualidadServiceRepository.Delete(mensualidad);
+            _unitOfWork.Commit();
+            return new EliminarMensualidadResponse($"Mensualidad Eliminada Exitosamente");
+
         }
     }
 }

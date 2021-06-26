@@ -19,7 +19,7 @@ namespace BackEnd.Grado.Aplicacion.Service.Actualizar
             }
             else
             {
-                grado.Nombre = request.Nombre;
+                grado.Nombre = request.Nombre.ToUpper();
 
                 _unitOfWork.GradoServiceRepository.Edit(grado);
                 _unitOfWork.Commit();

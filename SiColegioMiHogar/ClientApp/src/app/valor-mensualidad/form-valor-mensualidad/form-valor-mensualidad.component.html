@@ -1,0 +1,53 @@
+<h1 *ngIf="modoEdicion">Actualizar Valor Mensualidad</h1>
+<h1 *ngIf="!modoEdicion">Registrar Registrar Mensualidad</h1>
+
+<div class="container">
+  <h1>Formulario de Valor Mensualidad</h1>
+  <form [formGroup]="formGroup" (ngSubmit)="save()">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="fecha" style="display:block;">Fecha de Creacion</label>
+        <input [matDatepicker]="fechaId" class=" form-control" formControlName="fecha" id="date" style="display:inline;width:300px;" placeholder="mm/dd/aaaa">
+        <mat-datepicker-toggle [for]="fechaId"></mat-datepicker-toggle>
+        <mat-datepicker #fechaId></mat-datepicker>
+        <div class="alert-danger" *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)">
+          <div class="container-error-message" *ngIf="fecha.errors.required">
+            La fecha es requeridad
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="precioMensualidad">Valor de Mensualidades</label>
+        <input [value]="PrecioValorMensualidadChange" (change)="updateValuePrecioValorMensualidad($event.target.value)"
+               class="form-control" formControlName="precioMensualidad" id="precioMensualidad" placeholder="Ej: 20 000">
+        <div class="alert-danger" *ngIf="precioMensualidad.invalid && (precioMensualidad.dirty || precioMensualidad.touched)">
+          <div class="container-error-message" *ngIf="precioMensualidad.errors.required">
+            El Precion de la mensulidad es requerido
+          </div>
+          <div class="container-error-message" *ngIf="precioMensualidad.errors.pattern">
+            Digite solo numeros por favor
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-5" *ngIf="!modoEdicion">
+        <label for="idGrado">Grado</label>
+        <select formControlName="idGrado" class="form-control" id="idGrado">
+          <option value="">Seleccione un Grado</option>
+          <option value="{{dato.id}}" *ngFor="let dato of ListaGrados">
+            {{dato.nombre}}
+          </option>
+        </select>
+        <div class="alert-danger" *ngIf="idGrado.invalid && (idGrado.dirty || idGrado.touched)">
+          <div class="container-error-message" *ngIf="idGrado.errors.required">
+            El Grado es Requerido
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="submit" mat-raised-button color="primary" [disabled]="!formGroup.valid">
+      Salvar Grado
+    </button>
+  </form>
+</div>

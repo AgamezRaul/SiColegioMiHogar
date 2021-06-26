@@ -15,7 +15,7 @@ namespace BackEnd.Mensualidad.Aplicacion.Service.Crear
         }
         public CrearMensualidadResponse Ejecutar(CrearMensualidadRequest request)
         {
-            var mensualidad = _unitOfWork.MensualidadServiceRepository.FindFirstOrDefault(t => t.Id == request.id || t.Mes == request.Mes && t.IdMatricula == request.IdMatricula);
+            var mensualidad = _unitOfWork.MensualidadServiceRepository.FindFirstOrDefault(t => t.Id == request.id || t.Mes == request.Mes && t.IdMatricula == request.IdMatricula && t.Año ==request.Año);
             if (mensualidad != null)
             {
                 return new CrearMensualidadResponse($"Mensualidad ya existe");

@@ -1,4 +1,6 @@
-﻿using BackEnd;
+﻿using System.Linq;
+using System.Threading.Tasks;
+using BackEnd;
 using BackEnd.Base;
 using BackEnd.Grado.Aplicacion.Request;
 using BackEnd.Grado.Aplicacion.Service.Actualizar;
@@ -7,7 +9,6 @@ using BackEnd.Grado.Aplicacion.Service.Eliminar;
 using BackEnd.Grado.Dominio;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
 
 namespace SiColegioMiHogar.Controllers
 {
@@ -27,13 +28,29 @@ namespace SiColegioMiHogar.Controllers
         }
 
         [HttpGet("{id}")]
-         public async Task<IActionResult> GetGrado([FromRoute] int id)
-         {
-             Grado grado = await _context.Grado.SingleOrDefaultAsync(t => t.Id == id);
-             if (grado == null)
-                 return NotFound();
-             return Ok(grado);
-         }
+        public async Task<IActionResult> GetGrado([FromRoute] int id)
+        {
+            Grado grado = await _context.Grado.SingleOrDefaultAsync(t => t.Id == id);
+            if (grado == null)
+                return NotFound();
+            return Ok(grado);
+        }
+        [HttpGet]
+        public object GetGrados()
+        {
+            var result = (from g in _context.Set<Grado>()
+                          select new
+                          {
+                              id = g.Id,
+                              nombre = g.Nombre
+                          }).ToList();
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
+            return result;
+        }
+
+
+
+
         [HttpPost]
         public async Task<IActionResult> CreateGrado([FromBody] CrearGradoRequest grado)
         {
