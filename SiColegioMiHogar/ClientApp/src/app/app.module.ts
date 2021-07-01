@@ -256,6 +256,11 @@ import { ValorMensualidadService } from './valor-mensualidad/valor-mensualidad.s
       { path: 'consultar-valorMensulidad', component: ValorMensualidadComponent, canActivate: [CheckNotloginGuard] },
 
 
+      { path: 'registrar-abono/:id', component: FormAbonoComponent, canActivate: [CheckNotloginGuard] },
+      { path: 'editar-abono/:idAbono', component: FormAbonoComponent, canActivate: [CheckNotloginGuard] },
+      { path: 'consultar-abono/:id', component: AbonoComponent, canActivate: [CheckNotloginGuard] },
+
+
 ], { relativeLinkResolution: 'legacy' }),
     BrowserAnimationsModule,
     MensajesModule
