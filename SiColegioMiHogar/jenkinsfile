@@ -22,7 +22,7 @@ node {
   }
 
   stage('Publish') {
-    bat 'dotnet publish SiColegioMiHogar/SiColegioMiHogar.csproj -c Release -o G:/ws/NetCore/Creditos'
+    bat 'dotnet publish SiColegioMiHogar/SiColegioMiHogar.csproj -c Release -o D:/Proyectos/Publish'
   }
   
   stage('Report Email') {
