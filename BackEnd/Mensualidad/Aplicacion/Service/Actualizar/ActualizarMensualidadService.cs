@@ -22,7 +22,6 @@ namespace BackEnd.Mensualidad.Aplicacion.Service.Actualizar
                 mensualidad.Deuda = request.Deuda;
                 mensualidad.Estado = request.Estado;
                 _unitOfWork.MensualidadServiceRepository.Edit(mensualidad);
-                _unitOfWork.Commit();
                 return new ActualizarMensualidadResponse($"Mensualidad Actualizada Exitosamente");
 
             }

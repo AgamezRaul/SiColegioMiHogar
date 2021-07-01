@@ -1,14 +1,20 @@
-﻿using BackEnd;
+﻿using System.Linq;
+using System.Threading.Tasks;
+using BackEnd;
 using BackEnd.Base;
+using BackEnd.Grado.Dominio;
+using BackEnd.Matricula.Dominio;
 using BackEnd.Mensualidad.Aplicacion.Request;
 using BackEnd.Mensualidad.Aplicacion.Service;
 using BackEnd.Mensualidad.Aplicacion.Service.Actualizar;
 using BackEnd.Mensualidad.Aplicacion.Service.Crear;
 using BackEnd.Mensualidad.Aplicacion.Service.Eliminar;
 using BackEnd.Mensualidad.Dominio;
+using BackEnd.PreMatricula.Dominio;
+using BackEnd.Usuario.Dominio;
+using BackEnd.ValorMensualidad.Dominio;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
 
 namespace SiColegioMiHogar.Controllers
 {
@@ -28,64 +34,70 @@ namespace SiColegioMiHogar.Controllers
             _unitOfWork = new UnitOfWork(_context);
         }
 
-        /* [HttpGet]
+         [HttpGet]
          public object GetMensualidades()
          {
              var result = (from m in _context.Set<Mensualidad>()
                            join ma in _context.Set<Matricula>()
                            on m.IdMatricula equals ma.Id
                            join p in _context.Set<PreMatricula>()
-                           on ma.IdePreMatricula equals p.Id
+                            on ma.IdePreMatricula equals p.Id
+                           join g in _context.Set<Grado>()
+                           on p.estudiante.GradoEstudiante equals g.Nombre
+                           join vm in _context.Set<ValorMensualidad>()
+                           on g.Id equals vm.IdGrado
                            join u in _context.Set<Usuario>()
-                           on p.IdUsuario equals u.Id
-                           join e in _context.Set<Estudiante>()
-                           on u.Id equals e.IdUsuario
-                           select new
-                           {
-                               Estudiante = e.NomEstudiante,
-                               Mes= m.Mes,
-                               DiaPago= m.DiaPago,
-                               FechaPago=m.FechaPago,
-                               ValorMensualidad=m.ValorMensualidad,
-                               DescuentoMensualidad=m.DescuentoMensualidad,
-                               Abono=m.Abono,
-                               Deuda=m.Deuda,
-                               Estado=m.Estado,
-                               TotalMensualidad =m.TotalMensualidad
-                           }).ToList();
-             string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
-             return result;
-         }*/
-
-        /* [HttpGet("GetMensualidadesMatricula/{id}")]
-         public object GetMensualidadesMatricula([FromRoute] int id)
-         {
-             var result = (from m in _context.Set<Mensualidad>()
-                           join ma in _context.Set<Matricula>()
-                           on m.IdMatricula equals ma.Id
-                           join p in _context.Set<PreMatricula>()
-                           on ma.IdePreMatricula equals p.Id
-                           join u in _context.Set<Usuario>()
-                           on p.IdUsuario equals u.Id
-                           join e in _context.Set<Estudiante>()
-                           on u.Id equals e.IdUsuario
-                           where ma.Id == id
+                            on p.IdUsuario equals u.Id
                            select new
                            {
                                Id = m.Id,
-                               Estudiante = e.NomEstudiante,
+                               Estudiante = p.estudiante.NomEstudiante,
                                Mes = m.Mes,
-                               ValorMensualidad = m.ValorMensualidad,
-                               DescuentoMensualidad = m.DescuentoMensualidad,
-                               Abono = m.Abono,
+                               Año = m.Año,
+                               ValorMensualidad = vm.PrecioMensualidad,
+                               //DescuentoMensualidad = m.DescuentoMensualidad,
+                               
                                Deuda = m.Deuda,
                                Estado = m.Estado,
-                               TotalMensualidad = m.TotalMensualidad,
-                               Correo =u.Correo
+                               //TotalMensualidad = m.TotalMensualidad,
+                               Correo = u.Correo
                            }).ToList();
              string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
              return result;
-         }*/
+         }
+
+        [HttpGet("GetMensualidadesMatricula/{id}")]
+        public object GetMensualidadesMatricula([FromRoute] int id)
+        {
+            var result = (from m in _context.Set<Mensualidad>()
+                          join ma in _context.Set<Matricula>()
+                          on m.IdMatricula equals ma.Id
+                          join p in _context.Set<PreMatricula>()
+                           on ma.IdePreMatricula equals p.Id
+                          join g in _context.Set<Grado>()
+                          on p.estudiante.GradoEstudiante equals g.Nombre
+                          join vm in _context.Set<ValorMensualidad>()
+                          on g.Id equals vm.IdGrado
+                          join u in _context.Set<Usuario>()
+                           on p.IdUsuario equals u.Id
+                          where ma.Id == id
+                          select new
+                          {
+                              Id = m.Id,
+                              Estudiante = p.estudiante.NomEstudiante,
+                              Mes = m.Mes,
+                              Año = m.Año,
+                              ValorMensualidad = vm.PrecioMensualidad,
+                              //DescuentoMensualidad = m.DescuentoMensualidad,
+                             
+                              Deuda = m.Deuda,
+                              Estado = m.Estado,
+                              //TotalMensualidad = m.TotalMensualidad,
+                              Correo = u.Correo
+                          }).ToList();
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
+            return result;
+        }
 
 
 

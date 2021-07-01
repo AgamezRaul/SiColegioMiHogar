@@ -1,19 +1,21 @@
-﻿using BackEnd;
+﻿using System.Linq;
+using System.Threading.Tasks;
+using BackEnd;
 using BackEnd.Abono.Aplicacion.Request;
 using BackEnd.Abono.Aplicacion.Service.Actualizar;
 using BackEnd.Abono.Aplicacion.Service.Anular;
 using BackEnd.Abono.Aplicacion.Service.Crear;
 using BackEnd.Abono.Dominio;
 using BackEnd.Base;
+using BackEnd.Estudiante.Dominio;
+using BackEnd.Grado.Dominio;
 using BackEnd.Matricula.Dominio;
 using BackEnd.Mensualidad.Dominio;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
-using System.Linq;
 using BackEnd.PreMatricula.Dominio;
 using BackEnd.Usuario.Dominio;
-using BackEnd.Estudiante.Dominio;
+using BackEnd.ValorMensualidad.Dominio;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace SiColegioMiHogar.Controllers
 {
@@ -41,19 +43,19 @@ namespace SiColegioMiHogar.Controllers
                           on m.IdMatricula equals ma.Id
                           join p in _context.Set<PreMatricula>()
                            on ma.IdePreMatricula equals p.Id
-                          join u in _context.Set<Usuario>()
-                          on p.IdUsuario equals u.Id
-                          join e in _context.Set<Estudiante>()
-                          on u.Id equals e.IdUsuario
+                          join g in _context.Set<Grado>()
+                          on p.estudiante.GradoEstudiante equals g.Nombre
+                          join vm in _context.Set<ValorMensualidad>()
+                          on g.Id equals vm.IdGrado
                           where m.Id == id
                           select new
                           {
-                              Id= a.Id,
-                              Estudiante= e.NomEstudiante,
-                              FechaPago= a.FechaPago,
+                              Id = a.Id,
+                              Estudiante = p.estudiante.NomEstudiante,
+                              FechaPago = a.FechaPago,
                               ValorAbono = a.ValorAbono,
                               EstadoAbono = a.EstadoAbono,
-                              ValorMatricula = ma.ValorMatricula,
+                              ValorMatricula = vm.PrecioMensualidad,
                               Deuda = m.Deuda
                           }).ToList();
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);

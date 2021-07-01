@@ -10,15 +10,11 @@
 
     <mat-form-field class="col-media" appearance="fill" [ngClass]="{'has-error': ((gradoEstudiante.touched || gradoEstudiante.dirty)&& gradoEstudiante.invalid)}">
       <mat-label>Grado a cursar</mat-label>
-      <mat-select  formControlName="gradoEstudiante" placeholder="Elija una opción">
-        <mat-option value="Pre-jardin"(click)="updatePrejardin()">Pre-jardin </mat-option>
-        <mat-option value="Jardín" (click)="noPreJardin()">Jardín</mat-option>
-        <mat-option value="Transicion"(click)="noPreJardin()">Transicion</mat-option>
-        <mat-option value="Primero" (click)="noPreJardin()">Primero</mat-option>
-        <mat-option value="Segundo"(click)="noPreJardin()">Segundo</mat-option>
-        <mat-option value="Tercero"(click)="noPreJardin()">Tercero</mat-option>
-        <mat-option value="Cuarto"(click)="noPreJardin()">Cuarto</mat-option>
-        <mat-option value="Quinto"(click)="noPreJardin()">Quinto</mat-option>
+      <mat-select formControlName="gradoEstudiante" placeholder="Elija una opción">
+        <mat-option value="" >Selecione un grado </mat-option>
+        <mat-option value="{{dato.nombre}}"  (click)="PreJardin(dato.nombre)" *ngFor="let dato of ListaGrados">
+          {{dato.nombre}}
+        </mat-option>
       </mat-select>
       <mat-error *ngIf="((gradoEstudiante.touched || gradoEstudiante.dirty)&& gradoEstudiante.invalid) && gradoEstudiante.errors.required">  Grado es<strong> requerido </strong></mat-error>
     </mat-form-field>

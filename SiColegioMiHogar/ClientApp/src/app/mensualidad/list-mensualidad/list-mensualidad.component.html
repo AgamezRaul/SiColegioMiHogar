@@ -23,6 +23,12 @@
       <th mat-header-cell *matHeaderCellDef> Mes </th>
       <td mat-cell *matCellDef="let element"> {{element.mes}} </td>
     </ng-container>
+
+    <!-- anio Column -->
+    <ng-container matColumnDef="anio">
+      <th mat-header-cell *matHeaderCellDef> Año </th>
+      <td mat-cell *matCellDef="let element"> {{element.anio}} </td>
+    </ng-container>
     <!-- deuda Column -->
     <ng-container matColumnDef="deuda">
       <th mat-header-cell *matHeaderCellDef> Deuda </th>
@@ -33,10 +39,10 @@
       <th mat-header-cell *matHeaderCellDef> Estado </th>
       <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
     </ng-container>
-    <!-- totalMensualidad Column -->
-    <ng-container matColumnDef="totalMensualidad">
-      <th mat-header-cell *matHeaderCellDef> Total Mensualidad </th>
-      <td mat-cell *matCellDef="let element"> {{element.totalMensualidad}} </td>
+    <!-- valorMensualidad Column -->
+    <ng-container matColumnDef="valorMensualidad">
+      <th mat-header-cell *matHeaderCellDef> Valor Mensualidad </th>
+      <td mat-cell *matCellDef="let element"> {{element.valorMensualidad}} </td>
     </ng-container>
     <!-- correo Column -->
     <ng-container matColumnDef="correo">
@@ -47,13 +53,12 @@
     <ng-container matColumnDef="options">
       <th mat-header-cell *matHeaderCellDef>Opciones</th>
       <td mat-cell *matCellDef="let element">
-        <button mat-icon-button color="warn" [routerLink]='["/editar-mensualidad/"+element.id]'><mat-icon> border_color</mat-icon></button>
         <button mat-icon-button color="warn" (click)="Eliminar(element.id)"><mat-icon>delete_outline</mat-icon></button>
-        <button mat-icon-button color="warn"  [routerLink]='["/consultar-abono/"+element.id]'><mat-icon>payment</mat-icon></button>
+        <button mat-icon-button color="warn" [routerLink]='["/consultar-abono/"+element.id]'><mat-icon>payment</mat-icon></button>
         <button mat-icon-button color="warn" (click)="EnviarMail(element,element.correo) "><mat-icon> email</mat-icon></button>
       </td>
     </ng-container>
-    
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>

@@ -26,9 +26,12 @@ export interface IMensualidadVista {
   id: number,
   estudiante: string,
   mes: string,
+  anio: number,
+  valorMensualidad: number,
+  //descuentoMensualidad: number,
   deuda: number,
   estado: string,
-  valorMensualidad:number,
+  //totalMensualidad:number,
   correo: string
 
 }

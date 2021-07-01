@@ -22,9 +22,12 @@ export class ListMensualidadComponent implements OnInit, OnDestroy {
     'id',
     'estudiante',
     'mes',
+    'anio',
+    'valorMensualidad',
+    //'descuentoMensualidad',
     'deuda',
     'estado',
-    'totalMensualidad',
+   // 'totalMensualidad',
     'correo',
     'options'];
   dataSource = new MatTableDataSource<IMensualidadVista>(this.mensualidad);

@@ -6,6 +6,8 @@ namespace BackEnd.Abono.Aplicacion.Request
     {
         public int id { get; set; }
         public String EstadoAbono { get => "Anulado"; }
+        public Double ValorAbono { get; set; }
+        public int idMesualidad { get; set; }
     }
     public class AnularAbonoResponse
     {
