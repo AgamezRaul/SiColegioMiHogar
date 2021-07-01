@@ -43,15 +43,19 @@ namespace SiColegioMiHogar.Controllers
                           on m.IdMatricula equals ma.Id
                           join p in _context.Set<PreMatricula>()
                            on ma.IdePreMatricula equals p.Id
+                          join u in _context.Set<Usuario>()
+                           on p.IdUsuario equals u.Id
+                          join e in _context.Set<Estudiante>()
+                          on p.IdUsuario equals e.IdUsuario
                           join g in _context.Set<Grado>()
-                          on p.estudiante.GradoEstudiante equals g.Nombre
+                          on e.GradoEstudiante equals g.Nombre
                           join vm in _context.Set<ValorMensualidad>()
                           on g.Id equals vm.IdGrado
                           where m.Id == id
                           select new
                           {
                               Id = a.Id,
-                              Estudiante = p.estudiante.NomEstudiante,
+                              Estudiante = e.NomEstudiante,
                               FechaPago = a.FechaPago,
                               ValorAbono = a.ValorAbono,
                               EstadoAbono = a.EstadoAbono,
@@ -84,16 +88,14 @@ namespace SiColegioMiHogar.Controllers
 
 
         [HttpPut("PutAnular/{id}")]
-        public async Task<IActionResult> PutAnular([FromRoute] int id)
+        public async Task<IActionResult> PutAnular([FromRoute] int id, [FromBody] AnularAbonoRequest abono)
         {
             _anularService = new AnularAbonoService(_unitOfWork);
-            AnularAbonoRequest request = new AnularAbonoRequest();
-            request.id = id;
-            var rta = _anularService.Ejecutar(request);
+            var rta = _anularService.Ejecutar(abono);
             if (rta.isOk())
             {
                 await _context.SaveChangesAsync();
-                return CreatedAtAction("GetAbono", new { id = request.id }, request);
+                return CreatedAtAction("GetAbono", new { id = abono.id }, abono);
             }
             return Ok(rta);
         }

@@ -42,12 +42,12 @@
     <!-- valorMensualidad Column -->
     <ng-container matColumnDef="valorMensualidad">
       <th mat-header-cell *matHeaderCellDef> Valor Mensualidad </th>
-      <td mat-cell *matCellDef="let element"> {{element.valorMensualidad}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.valorMensualidad | number: '3.0-2'}} </td>
     </ng-container>
     <!-- correo Column -->
-    <ng-container matColumnDef="correo">
-      <th mat-header-cell *matHeaderCellDef> Correo </th>
-      <td mat-cell *matCellDef="let element"> {{element.correo}} </td>
+    <ng-container matColumnDef="correo" style="display:none">
+      <th mat-header-cell *matHeaderCellDef style="display:none"> Correo </th>
+      <td mat-cell *matCellDef="let element" style="display:none"> {{element.correo}} </td>
     </ng-container>
     <!--Options-->
     <ng-container matColumnDef="options">

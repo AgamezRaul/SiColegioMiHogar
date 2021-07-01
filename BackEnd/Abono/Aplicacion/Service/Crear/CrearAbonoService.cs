@@ -38,6 +38,7 @@ namespace BackEnd.Abono.Aplicacion.Service.Crear
                 return new CrearAbonoResponse(ListaErrors);
             }
             actualizarMensualidadRequest.Deuda = mensualidad.Deuda - request.ValorAbono;
+            actualizarMensualidadRequest.id = mensualidad.Id;
             var respuesta = actualizarMensialidadService.Ejecutar(actualizarMensualidadRequest);
             if (respuesta.isOk()) {
                 Dominio.Abono newAbono = new Dominio.Abono(request.Mes, request.FechaPago, request.ValorAbono, request.EstadoAbono, request.IdMensualidad);

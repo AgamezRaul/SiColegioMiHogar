@@ -36,19 +36,19 @@
     <!-- valorMatricula Column -->
     <ng-container matColumnDef="valorMatricula">
       <th mat-header-cell *matHeaderCellDef> Matricula </th>
-      <td mat-cell *matCellDef="let element"> {{element.valorMatricula}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.valorMatricula | number: '3.0-2'}} </td>
     </ng-container>
     <!-- deuda Column -->
     <ng-container matColumnDef="deuda">
       <th mat-header-cell *matHeaderCellDef> Deuda </th>
-      <td mat-cell *matCellDef="let element"> {{element.deuda}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.deuda | number: '3.0-2'}} </td>
     </ng-container>
     <!--Options-->
     <ng-container matColumnDef="options">
       <th mat-header-cell *matHeaderCellDef>Opciones</th>
       <td mat-cell *matCellDef="let element">
         <button mat-icon-button color="warn" [routerLink]='["/editar-abono/"+element.id]'><mat-icon> border_color</mat-icon></button>
-        <button mat-icon-button color="warn" (click)="Eliminar(element.id,element.valorAbono)"><mat-icon>delete_outline</mat-icon></button>
+        <button mat-icon-button color="warn" (click)="Eliminar(element)"><mat-icon>delete_outline</mat-icon></button>
       </td>
     </ng-container>
 

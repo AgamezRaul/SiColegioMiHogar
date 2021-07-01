@@ -19,7 +19,7 @@ namespace BackEnd.Abono.Aplicacion.Service.Anular
         public AnularAbonoResponse Ejecutar(AnularAbonoRequest request)
         {
             Dominio.Abono abono = _unitOfWork.AbonoServiceRepository.FindFirstOrDefault(t => t.Id == request.id);
-            var mensualidad = _unitOfWork.MensualidadServiceRepository.FindFirstOrDefault(t => t.Id == request.idMesualidad);
+            var mensualidad = _unitOfWork.MensualidadServiceRepository.FindFirstOrDefault(t => t.Id == abono.IdMensualidad);
             if (abono == null)
             {
                 return new AnularAbonoResponse($"Abono no existe");
@@ -28,22 +28,30 @@ namespace BackEnd.Abono.Aplicacion.Service.Anular
             {
                 return new AnularAbonoResponse($"Mensualidad No existe");
             }
-            if (abono.EstadoAbono == "Anulado")
-            {
-                return new AnularAbonoResponse($"El abono ya esta anulado");
-            }
+            
             else
             {
-                actualizarMensualidadRequest.Deuda = mensualidad.Deuda + request.ValorAbono;
-                var respuesta = actualizarMensialidadService.Ejecutar(actualizarMensualidadRequest);
-                if (respuesta.isOk())
+                if (abono.EstadoAbono.Equals("Anulado"))
                 {
-                    abono.EstadoAbono = request.EstadoAbono;
-                    _unitOfWork.AbonoServiceRepository.Edit(abono);
-                    _unitOfWork.Commit();
-                    return new AnularAbonoResponse($"Abono Anulado Exitosamente");
-
+                    return new AnularAbonoResponse($"El abono ya esta anulado");
                 }
+                else
+                {
+                    actualizarMensualidadRequest.Deuda = mensualidad.Deuda + abono.ValorAbono;
+                    actualizarMensualidadRequest.id = mensualidad.Id;
+
+                    var respuesta = actualizarMensialidadService.Ejecutar(actualizarMensualidadRequest);
+                    if (respuesta.isOk())
+                    {
+                        abono.EstadoAbono = request.EstadoAbono;
+
+                        _unitOfWork.AbonoServiceRepository.Edit(abono);
+                        _unitOfWork.Commit();
+                        return new AnularAbonoResponse($"Abono Anulado Exitosamente");
+
+                    }
+                }
+                
                 return new AnularAbonoResponse($"Error al Anular Abono");
             }
         }

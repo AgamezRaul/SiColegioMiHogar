@@ -70,10 +70,6 @@ export class FormMensualidadComponent implements OnInit {
   }
   save() {
     let mensualidad: IMensualidad = Object.assign({}, this.formGroup.value);
-
-    mensualidad.deuda = parseInt(mensualidad.deuda.toString());
-    
-
     if (this.modoEdicion) {
       mensualidad.id = this.idMensu;
       if (this.formGroup.valid) {

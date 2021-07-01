@@ -32,7 +32,7 @@ export class ListAbonoComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute, private location: Location, private mensaje: MensajesModule) {
   }
   id: number;
-
+  estado: String;
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -61,18 +61,23 @@ export class ListAbonoComponent implements OnInit, OnDestroy {
     this.router.navigate(["/registrar-abono/" + this.id]);
   }
 
-  Eliminar(idAbono: number, valorAbono: number) {
-    let abono: IAbono;
-    abono.id = idAbono;
-    abono.valorAbono = valorAbono;
+  Eliminar(abono: IAbono) {
+    this.estado = abono.estadoAbono;
     this.abonoservice.AnularAbono(abono)
-      .subscribe(abono => this.onDeleteSuccess(),
+      .subscribe(abono => this.onDeleteSuccess(this.estado),
         error => this.mensaje.mensajeAlertaError('Error', error.error.toString()));
   }
-  
-  onDeleteSuccess() {
+
+  onDeleteSuccess(estado: String) {
     this.router.navigate(["/consultar-abono/" + this.id]);
-    this.mensaje.mensajeAlertaCorrecto('¡Exitoso!', 'Abono anulado correctamente');
+    if (estado == "Anulado") {
+      this.mensaje.mensajeAlertaError('Error','El abono ya fue anulado anteriormente');
+    }
+    else
+    {
+      this.mensaje.mensajeAlertaCorrecto('¡Exitoso!', 'Abono anulado correctamente');
+    }
+    
   }
  
   ConsultarAbono(idt: number) {

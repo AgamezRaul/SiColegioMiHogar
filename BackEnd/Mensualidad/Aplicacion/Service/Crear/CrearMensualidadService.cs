@@ -18,7 +18,8 @@ namespace BackEnd.Mensualidad.Aplicacion.Service.Crear
             var mensualidad = _unitOfWork.MensualidadServiceRepository.FindFirstOrDefault(t => t.Id == request.id || t.Mes == request.Mes && t.IdMatricula == request.IdMatricula && t.Año ==request.Año);
             var matricula = _unitOfWork.MatriculaServiceRepository.FindFirstOrDefault(t => t.Id == request.IdMatricula);
             var prematricula = _unitOfWork.PreMatriculaServiceRepository.FindFirstOrDefault(t => t.Id == matricula.IdePreMatricula);
-            var grado = _unitOfWork.GradoServiceRepository.FindFirstOrDefault(t => t.Nombre == prematricula.estudiante.GradoEstudiante);
+            var estudiante = _unitOfWork.EstudianteServiceRepository.FindFirstOrDefault(t => t.IdUsuario == prematricula.IdUsuario);
+            var grado = _unitOfWork.GradoServiceRepository.FindFirstOrDefault(t => t.Nombre == estudiante.GradoEstudiante);
             var valorMensualidad = _unitOfWork.ValorMensualidadServiceRepository.FindFirstOrDefault(t => t.IdGrado == grado.Id);
             if (mensualidad != null)
             {

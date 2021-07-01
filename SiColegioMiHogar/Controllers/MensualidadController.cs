@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using BackEnd;
 using BackEnd.Base;
+using BackEnd.Estudiante.Dominio;
 using BackEnd.Grado.Dominio;
 using BackEnd.Matricula.Dominio;
 using BackEnd.Mensualidad.Aplicacion.Request;
@@ -34,37 +35,39 @@ namespace SiColegioMiHogar.Controllers
             _unitOfWork = new UnitOfWork(_context);
         }
 
-         [HttpGet]
-         public object GetMensualidades()
-         {
-             var result = (from m in _context.Set<Mensualidad>()
-                           join ma in _context.Set<Matricula>()
-                           on m.IdMatricula equals ma.Id
-                           join p in _context.Set<PreMatricula>()
-                            on ma.IdePreMatricula equals p.Id
-                           join g in _context.Set<Grado>()
-                           on p.estudiante.GradoEstudiante equals g.Nombre
-                           join vm in _context.Set<ValorMensualidad>()
-                           on g.Id equals vm.IdGrado
-                           join u in _context.Set<Usuario>()
-                            on p.IdUsuario equals u.Id
-                           select new
-                           {
-                               Id = m.Id,
-                               Estudiante = p.estudiante.NomEstudiante,
-                               Mes = m.Mes,
-                               Año = m.Año,
-                               ValorMensualidad = vm.PrecioMensualidad,
-                               //DescuentoMensualidad = m.DescuentoMensualidad,
-                               
-                               Deuda = m.Deuda,
-                               Estado = m.Estado,
-                               //TotalMensualidad = m.TotalMensualidad,
-                               Correo = u.Correo
-                           }).ToList();
-             string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
-             return result;
-         }
+        [HttpGet]
+        public object GetMensualidades()
+        {
+            var result = (from m in _context.Set<Mensualidad>()
+                          join ma in _context.Set<Matricula>()
+                          on m.IdMatricula equals ma.Id
+                          join p in _context.Set<PreMatricula>()
+                           on ma.IdePreMatricula equals p.Id
+                          join u in _context.Set<Usuario>()
+                           on p.IdUsuario equals u.Id
+                          join e in _context.Set<Estudiante>()
+                          on p.IdUsuario equals e.IdUsuario
+                          join g in _context.Set<Grado>()
+                          on e.GradoEstudiante equals g.Nombre
+                          join vm in _context.Set<ValorMensualidad>()
+                          on g.Id equals vm.IdGrado
+                          select new
+                          {
+                              Id = m.Id,
+                              Estudiante = e.NomEstudiante,
+                              Mes = m.Mes,
+                              Anio = m.Año,
+                              ValorMensualidad = vm.PrecioMensualidad,
+                              //DescuentoMensualidad = m.DescuentoMensualidad,
+
+                              Deuda = m.Deuda,
+                              Estado = m.Estado,
+                              //TotalMensualidad = m.TotalMensualidad,
+                              Correo = u.Correo
+                          }).ToList();
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
+            return result;
+        }
 
         [HttpGet("GetMensualidadesMatricula/{id}")]
         public object GetMensualidadesMatricula([FromRoute] int id)
@@ -74,28 +77,26 @@ namespace SiColegioMiHogar.Controllers
                           on m.IdMatricula equals ma.Id
                           join p in _context.Set<PreMatricula>()
                            on ma.IdePreMatricula equals p.Id
-                          join g in _context.Set<Grado>()
-                          on p.estudiante.GradoEstudiante equals g.Nombre
-                          join vm in _context.Set<ValorMensualidad>()
-                          on g.Id equals vm.IdGrado
                           join u in _context.Set<Usuario>()
                            on p.IdUsuario equals u.Id
+                          join e in _context.Set<Estudiante>()
+                          on p.IdUsuario equals e.IdUsuario
+                          join g in _context.Set<Grado>()
+                          on  e.GradoEstudiante equals g.Nombre
+                          join vm in _context.Set<ValorMensualidad>()
+                          on g.Id equals vm.IdGrado
                           where ma.Id == id
                           select new
                           {
                               Id = m.Id,
-                              Estudiante = p.estudiante.NomEstudiante,
+                              Estudiante = e.NomEstudiante,
                               Mes = m.Mes,
-                              Año = m.Año,
+                              Anio = m.Año,
                               ValorMensualidad = vm.PrecioMensualidad,
-                              //DescuentoMensualidad = m.DescuentoMensualidad,
-                             
                               Deuda = m.Deuda,
                               Estado = m.Estado,
-                              //TotalMensualidad = m.TotalMensualidad,
                               Correo = u.Correo
                           }).ToList();
-            string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
             return result;
         }
 

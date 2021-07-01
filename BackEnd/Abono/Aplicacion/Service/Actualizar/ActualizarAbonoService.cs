@@ -19,7 +19,7 @@ namespace BackEnd.Abono.Aplicacion.Service.Actualizar
         public ActualizarAbonoResponse Ejecutar(ActualizarAbonoRequest request)
         {
             Dominio.Abono abono = _unitOfWork.AbonoServiceRepository.FindFirstOrDefault(t => t.Id == request.id);
-            var mensualidad = _unitOfWork.MensualidadServiceRepository.FindFirstOrDefault(t => t.Id == request.idMesualidad);
+            var mensualidad = _unitOfWork.MensualidadServiceRepository.FindFirstOrDefault(t => t.Id == abono.IdMensualidad);
             if (abono == null)
             {
                 return new ActualizarAbonoResponse($"Abono no existe");
@@ -35,6 +35,7 @@ namespace BackEnd.Abono.Aplicacion.Service.Actualizar
             else
             {
                 actualizarMensualidadRequest.Deuda = mensualidad.Deuda + abono.ValorAbono - request.ValorAbono;
+                actualizarMensualidadRequest.id = mensualidad.Id;
                 var respuesta = actualizarMensialidadService.Ejecutar(actualizarMensualidadRequest);
                 if (respuesta.isOk())
                 {

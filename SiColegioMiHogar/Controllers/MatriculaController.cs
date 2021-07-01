@@ -44,8 +44,8 @@ namespace SiColegioMiHogar.Controllers
                           {
                               IdMatricula = m.Id,
                               NomEstudiante = e.NomEstudiante,
-                              FecMatricula = m.FecConfirmacion,
-                              m.ValorMatricula
+                              FecMatricula = m.FecConfirmacion
+                             
                           }).ToList();
             return result;
         }
@@ -60,12 +60,12 @@ namespace SiColegioMiHogar.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateMatricula([FromBody] double valorMatricula, [FromRoute] int idPreMatricula)
+        public async Task<IActionResult> CreateMatricula( [FromBody] int idPreMatricula)
         {
             CrearMatriculaRequest request = new CrearMatriculaRequest
             {
-                IdPreMatricula = idPreMatricula,
-                ValorMatricula = valorMatricula
+                IdPreMatricula = idPreMatricula
+               
             };
             var rta = _crearService.EjecutarCrearMatricula(request);
             if (rta.isOk())
