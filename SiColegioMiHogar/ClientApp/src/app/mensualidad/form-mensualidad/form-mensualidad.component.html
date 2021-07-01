@@ -26,19 +26,7 @@
         </mat-form-field>
       </div>
 
-      <div class="form-group col-md-6">
-        <label for="deuda">Deuda</label>
-        <input [value]="DeudaChange" (change)="updateValueDeuda($event.target.value)"
-               class="form-control" formControlName="deuda" id="deuda" placeholder="Ej: 20.000">
-        <div class="alert-danger" *ngIf="deuda.invalid && (deuda.dirty || deuda.touched)">
-          <div class="container-error-message" *ngIf="deuda.errors.required">
-            El Deuda es requerido
-          </div>
-          <div class="container-error-message" *ngIf="deuda.errors.pattern">
-            Digite solo numeros por favor
-          </div>
-        </div>
-      </div>
+      
      
 
     </div>

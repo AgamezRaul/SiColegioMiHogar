@@ -22,10 +22,6 @@ namespace BackEnd.Mensualidad.Aplicacion.Request
 
             if (string.IsNullOrEmpty(mensualidad.Mes))
                 errors.Add("Campo Mes en que se realiza el pago vacio");
-            if (mensualidad.Deuda == 0)
-                errors.Add("Campo Deuda vacio");
-            if (string.IsNullOrEmpty(mensualidad.Estado))
-                errors.Add("Campo Estado de mensualidad vacio");
             if (mensualidad.IdMatricula == 0)
                 errors.Add("Campo identiificacion  de matricula  vacio");
             return errors;

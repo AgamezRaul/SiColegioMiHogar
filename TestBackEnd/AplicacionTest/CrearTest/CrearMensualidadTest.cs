@@ -36,7 +36,6 @@ namespace TestBackEnd.AplicacionTest.CrearTest
                 new CrearMensualidadRequest
                 {
                     Mes = "Marzo",
-                    Deuda = 5000,
                     IdMatricula = 001
                 },
                 "Mensualidad Creada Exitosamente"

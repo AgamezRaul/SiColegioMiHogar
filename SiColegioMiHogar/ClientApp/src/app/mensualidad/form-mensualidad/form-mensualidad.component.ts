@@ -22,10 +22,10 @@ export class FormMensualidadComponent implements OnInit {
   modoEdicion: boolean = false;
   id: number;
   idMensu: number;
-  DeudaChange: string;
+  
   formGroup = this.fb.group({
-    mes: ['', [Validators.required]],
-    deuda: ['', [Validators.required, Validators.pattern(/^[0-9]\d{0,20}$/)]]
+    mes: ['', [Validators.required]]
+    
   });
 
   ngOnInit(): void {
@@ -64,7 +64,7 @@ export class FormMensualidadComponent implements OnInit {
   cargarFormulario(mensualiadad: IMensualidad) {
     this.formGroup.patchValue({
       mes: mensualiadad.mes,
-      deuda: mensualiadad.deuda,
+      
      
     });
   }
@@ -111,24 +111,11 @@ export class FormMensualidadComponent implements OnInit {
   }
 
   
-  updateValueDeuda(value: string) {
-    let val = parseInt(value, 10);
-    if (Number.isNaN(val)) {
-      val = 0;
-    }
-    //this.ValorMensualidadChange = formatCurrency(val, 'es-CO', getCurrencySymbol('COP', 'wide'));
-    this.DeudaChange = new Intl.NumberFormat('en-US', {
-      currency: 'USD',
-      style: 'decimal',
-    }).format(val); // '100'
-    console.log(this.DeudaChange);
-  }
+  
   get mes() {
     return this.formGroup.get('mes');
   }
-  get deuda() {
-    return this.formGroup.get('deuda');
-  }
+
   
 }
 
