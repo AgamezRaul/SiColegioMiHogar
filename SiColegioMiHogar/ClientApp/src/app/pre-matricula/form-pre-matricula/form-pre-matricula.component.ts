@@ -83,7 +83,7 @@ export class FormPreMatriculaComponent implements OnInit {
     fecNacimiento: ['', [Validators.required]],
     lugNacimiento: ['Valledupar', [Validators.required]],
     lugExpedicion: ['Valledupar', [Validators.required]],
-    insProcedencia: ['N/A', [Validators.required]],
+    insProcedencia: ['Desconocido', [Validators.required]],
     dirResidencia: ['Desconocido', [Validators.required]],
     celEstudiante: ['Desconocido', [Validators.required]],
     tipSangre: ['Desconocido', [Validators.required]],
@@ -126,17 +126,21 @@ export class FormPreMatriculaComponent implements OnInit {
       //edita
       this.servicePrematricula.updatePreMatricula(this.prematricula)
         .subscribe(prematricula => this.onSaveSuccess(),
-          error => this.mensaje.mensajeAlertaError('Error', 'Asegúrese de llenar correctamente todos los campos'));
+          error => this.mensaje.mensajeAlertaError('Error', error.error.text));
     } else {
       //crea
       console.log(this.prematricula);
       this.servicePrematricula.createPrematricula(this.prematricula)
         .subscribe(prematricula => this.onSaveSuccess(),
-          error => this.mensaje.mensajeAlertaError('Error', 'Asegúrese de llenar correctamente todos los campos'));
+          error => {
+            this.mensaje.mensajeAlertaError('Error', error.error.text);
+            this.responsables.splice(0, this.responsables.length);
+            console.log(this.responsables);
+          });
     }
   }
 
-  cargarFormulario(prematricula: IPrematricula) {    
+  cargarFormulario(prematricula: IPrematricula) {
     this.formGroupE.patchValue({
       ideEstudiante: prematricula[0].estudiante[0].e['ideEstudiante'],
       nomEstudiante: prematricula[0].estudiante[0].e['nomEstudiante'],
