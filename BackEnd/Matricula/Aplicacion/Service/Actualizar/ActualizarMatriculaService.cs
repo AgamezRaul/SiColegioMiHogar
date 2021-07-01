@@ -18,7 +18,6 @@ namespace BackEnd.Matricula.Aplicacion.Service.Actualizar
                 return new ActualizarMatriculaResponse($"Matricula no existe");
             }
             matricula.IdePreMatricula = request.IdPreMatricula;
-            matricula.ValorMatricula = request.ValorMatricula;
             _unitOfWork.MatriculaServiceRepository.Edit(matricula);
             _unitOfWork.Commit();
             return new ActualizarMatriculaResponse($"Matricula Actualizada Exitosamente");
