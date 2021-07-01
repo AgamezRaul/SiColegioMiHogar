@@ -409,32 +409,32 @@ namespace BackEnd.Migrations
                         new
                         {
                             Id = 1,
-                            FechaFin = new DateTime(2021, 7, 6, 0, 0, 0, 0, DateTimeKind.Local),
-                            FechaInicio = new DateTime(2021, 6, 26, 0, 0, 0, 0, DateTimeKind.Local),
+                            FechaFin = new DateTime(2021, 6, 29, 0, 0, 0, 0, DateTimeKind.Local),
+                            FechaInicio = new DateTime(2021, 6, 19, 0, 0, 0, 0, DateTimeKind.Local),
                             NombrePeriodo = "Primer Periodo",
                             NumeroPeriodo = 1
                         },
                         new
                         {
                             Id = 2,
-                            FechaFin = new DateTime(2021, 7, 17, 0, 0, 0, 0, DateTimeKind.Local),
-                            FechaInicio = new DateTime(2021, 7, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            FechaFin = new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Local),
+                            FechaInicio = new DateTime(2021, 6, 30, 0, 0, 0, 0, DateTimeKind.Local),
                             NombrePeriodo = "Segundo Periodo",
                             NumeroPeriodo = 2
                         },
                         new
                         {
                             Id = 3,
-                            FechaFin = new DateTime(2021, 7, 28, 0, 0, 0, 0, DateTimeKind.Local),
-                            FechaInicio = new DateTime(2021, 7, 18, 0, 0, 0, 0, DateTimeKind.Local),
+                            FechaFin = new DateTime(2021, 7, 21, 0, 0, 0, 0, DateTimeKind.Local),
+                            FechaInicio = new DateTime(2021, 7, 11, 0, 0, 0, 0, DateTimeKind.Local),
                             NombrePeriodo = "Tercer Periodo",
                             NumeroPeriodo = 3
                         },
                         new
                         {
                             Id = 4,
-                            FechaFin = new DateTime(2021, 8, 8, 0, 0, 0, 0, DateTimeKind.Local),
-                            FechaInicio = new DateTime(2021, 7, 29, 0, 0, 0, 0, DateTimeKind.Local),
+                            FechaFin = new DateTime(2021, 8, 1, 0, 0, 0, 0, DateTimeKind.Local),
+                            FechaInicio = new DateTime(2021, 7, 22, 0, 0, 0, 0, DateTimeKind.Local),
                             NombrePeriodo = "Cuarto Periodo",
                             NumeroPeriodo = 4
                         });
