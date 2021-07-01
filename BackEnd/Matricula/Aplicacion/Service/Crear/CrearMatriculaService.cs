@@ -30,7 +30,7 @@ namespace BackEnd.Matricula.Aplicacion.Service.Crear
                 string listaErrors = "Errores: " + string.Join(".", errors);
                 return new CrearMatriculaResponse(listaErrors);
             }
-            Dominio.Matricula newMatricula = new Dominio.Matricula(request.FecConfirmacion, request.IdPreMatricula);
+            Dominio.Matricula newMatricula = new Dominio.Matricula(request.FecConfirmacion, request.IdPreMatricula, request.ValorMatricula);
             ActualizarPreMatriculaRequest preMatriculaRequest = new ActualizarPreMatriculaRequest
             {
                 id = request.IdPreMatricula,
