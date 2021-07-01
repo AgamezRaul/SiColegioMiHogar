@@ -42,7 +42,7 @@ export class FormUsuarioEstudianteComponent implements OnInit {
   }
   onSaveSuccess() {
     this.location.back();
-    this.alertService.success("Guardado exitoso");
+    this.alertService.success("Usuario estudiante registrado correctamente");
   }
   LLenarDocentes(estudiantes: IEstudiante2[]) {
     this.ListaEstudiantes = estudiantes;

@@ -75,6 +75,6 @@ export class TableCursoComponent implements OnInit, OnDestroy {
   }
   onDeleteSuccess() {
     this.router.navigate(["/cursos"]);
-    this.alertService.success("Eliminado exitoso");
+    this.alertService.success("Curso eliminado exitosamente");
   }
 }

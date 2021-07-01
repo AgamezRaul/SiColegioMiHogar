@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BackEnd.Matricula.Aplicacion.Request
+﻿namespace BackEnd.Matricula.Aplicacion.Request
 {
     public class EliminarMatriculaRequest
     {

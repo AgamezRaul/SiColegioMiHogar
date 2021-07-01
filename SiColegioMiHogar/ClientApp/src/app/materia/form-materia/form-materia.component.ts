@@ -101,7 +101,7 @@ export class FormMateriaComponent implements OnInit {
 
   onSaveSuccess() {
     this.router.navigate(["/materias"]);
-    this.alertService.success("Guardado exitoso");
+    this.alertService.success("Materia guardada exitosamente");
   }
 
 

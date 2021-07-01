@@ -62,7 +62,7 @@ export class FormUsuarioActualizarComponent implements OnInit {
   }
   onSaveSuccess() {
     this.location.back();
-    this.mensaje.mensajeAlertaCorrecto('¡Exitoso!', 'Actualización exitosa');
+    this.mensaje.mensajeAlertaCorrecto('¡Exitoso!', 'Actualización de usuario exitosa');
   }
 
   get correo() {
