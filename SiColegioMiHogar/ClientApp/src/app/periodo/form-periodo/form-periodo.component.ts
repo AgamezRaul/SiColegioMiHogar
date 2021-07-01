@@ -80,7 +80,7 @@ export class FormPeriodoComponent implements OnInit {
 
   onSaveSuccess() {
     this.router.navigate(["periodos"]);
-    this.alertService.success("Registro exitoso");
+    this.alertService.success("Registro exitoso del periodo");
   }
 
   get numeroPeriodo() {

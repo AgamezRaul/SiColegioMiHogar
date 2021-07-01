@@ -65,7 +65,7 @@ export class TablePeriodoComponent  implements OnInit {
 
   onDeleteSuccess() {
     this.router.navigate(["/periodos"]);
-    this.alertService.success("Eliminado exitoso");
+    this.alertService.success("Eliminación exitosa del periodo");
   }
 
 }

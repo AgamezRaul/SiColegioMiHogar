@@ -35,7 +35,7 @@ export class FormUsuarioComponent implements OnInit {
   }
   onSaveSuccess() {
     this.router.navigate(["/login"]);
-    this.alertService.success("Guardado exitoso");
+    this.alertService.success("Usuario responsable registrado exitosamente");
   }
 
   get correo() {

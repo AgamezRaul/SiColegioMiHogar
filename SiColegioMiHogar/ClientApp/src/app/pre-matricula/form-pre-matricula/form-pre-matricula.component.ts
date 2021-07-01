@@ -126,13 +126,13 @@ export class FormPreMatriculaComponent implements OnInit {
       //edita
       this.servicePrematricula.updatePreMatricula(this.prematricula)
         .subscribe(prematricula => this.onSaveSuccess(),
-          error => this.mensaje.mensajeAlertaError('Error', error.error.text));
+          error => this.mensaje.mensajeAlertaError('Error', 'Asegúrese de llenar correctamente todos los campos'));
     } else {
       //crea
       console.log(this.prematricula);
       this.servicePrematricula.createPrematricula(this.prematricula)
         .subscribe(prematricula => this.onSaveSuccess(),
-          error => this.mensaje.mensajeAlertaError('Error', error.error.text));
+          error => this.mensaje.mensajeAlertaError('Error', 'Asegúrese de llenar correctamente todos los campos'));
     }
   }
 

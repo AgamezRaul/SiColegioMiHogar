@@ -90,6 +90,6 @@ export class TablePrematriculaComponent implements OnInit {
 
   onDeleteSuccess() {
     this.router.navigate(["/prematricula"]);
-    this.alertService.success("Eliminado exitoso");
+    this.alertService.success("Eliminación exitosa de la prematrícula");
   }
 }

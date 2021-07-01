@@ -41,7 +41,7 @@ export class FormUsuarioDocenteComponent implements OnInit {
   }
   onSaveSuccess() {
     this.location.back();
-    this.alertService.success("Guardado exitoso");
+    this.alertService.success("Usuario docente registrado correctamente");
   }
   LLenarDocentes(docentes: IDocente[]) {
     this.ListaDocentes = docentes;
