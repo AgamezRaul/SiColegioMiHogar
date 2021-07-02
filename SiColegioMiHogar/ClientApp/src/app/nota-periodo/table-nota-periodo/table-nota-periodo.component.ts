@@ -76,7 +76,7 @@ export class TableNotaPeriodoComponent implements OnInit {
   }
   onDeleteSuccess() {
     this.router.navigate(["/notasperiodos"]);
-    this.alertService.success("Eliminado exitoso");
+    this.alertService.success("Eliminación exitosa de la nota");
   }
 
 }

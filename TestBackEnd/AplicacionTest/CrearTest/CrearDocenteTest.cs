@@ -4,9 +4,7 @@ using BackEnd.Docente.Aplicacion.Request;
 using BackEnd.Docente.Aplicacion.Service.Crear;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace TestBackEnd.AplicacionTest.CrearTest
 {

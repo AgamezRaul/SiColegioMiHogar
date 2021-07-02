@@ -1,0 +1,17 @@
+<div class="container">
+  <h1>Formulario de Grado</h1>
+  <form [formGroup]="formGroup" (ngSubmit)="save()">
+    <div class="form-row">
+      <div>
+        <mat-form-field class="col-med" appearance="fill" [ngClass]="{'has-error': ((nombre.touched || nombre.dirty)&& nombre.invalid)}">
+          <mat-label>Nombre del Grado:</mat-label>
+          <input matInput type="text"   style="text-transform:uppercase;"formControlName="nombre" placeholder="Pre-Jardin" required>
+          <mat-error *ngIf="((nombre.touched || nombre.dirty)&& nombre.invalid) && nombre.errors.required">  Nombre es<strong> requerido </strong></mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <button type="submit" mat-raised-button color="primary" [disabled]="!formGroup.valid">
+      Salvar Grado
+    </button>
+  </form>
+</div>

@@ -74,7 +74,7 @@ export class ListDocenteComponent implements OnInit, OnDestroy {
   }
   onDeleteSuccess() {
     this.router.navigate(["/Docente"]);
-    this.mensaje.mensajeAlertaCorrecto('¡Exitoso!', 'Eliminado exitoso');
+    this.mensaje.mensajeAlertaCorrecto('¡Exitoso!', 'Docente eliminado correctamente');
   }
   
 

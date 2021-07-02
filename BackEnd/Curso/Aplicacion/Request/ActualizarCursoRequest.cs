@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BackEnd.Curso.Aplicacion.Request
+﻿namespace BackEnd.Curso.Aplicacion.Request
 {
     public class ActualizarCursoRequest
     {

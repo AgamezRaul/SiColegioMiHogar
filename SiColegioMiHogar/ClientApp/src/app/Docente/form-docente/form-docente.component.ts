@@ -96,7 +96,7 @@ export class FormDocenteComponent implements OnInit {
   }
   onSaveSuccess() {
     this.router.navigate(["/Docente"]);
-    this.alertService.success("Guardado exitoso");
+    this.alertService.success("Docente registrado exitosamente");
   }
 
   get nombreCompleto() {

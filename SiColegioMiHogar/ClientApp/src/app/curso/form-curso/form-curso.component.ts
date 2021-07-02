@@ -96,7 +96,7 @@ export class FormCursoComponent implements OnInit {
   }
   onSaveSuccess() {
     this.router.navigate(["/cursos"]);
-    this.alertService.success("Guardado Exitoso");
+    this.alertService.success("Curso registrado correctamente");
   }
 
   get nombre() {

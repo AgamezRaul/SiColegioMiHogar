@@ -78,7 +78,7 @@ export class FormNotaComponent implements OnInit {
   
   onSaveSuccess() {
     this.router.navigate(["listar-notas"]);
-    this.alertService.success("Registrado exitoso");
+    this.alertService.success("Registro de nota exitoso");
   }
 
   get notasEstudiantes() {

@@ -1,8 +1,5 @@
 ﻿using BackEnd.Base;
 using BackEnd.Mensualidad.Dominio.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BackEnd.Mensualidad.Infra
 {

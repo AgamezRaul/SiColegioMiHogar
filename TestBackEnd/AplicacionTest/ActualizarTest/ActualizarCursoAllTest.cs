@@ -4,9 +4,7 @@ using BackEnd.Curso.Aplicacion.Request;
 using BackEnd.Curso.Aplicacion.Service.Actualizar;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace TestBackEnd.AplicacionTest.ActualizarTest
 {
@@ -46,4 +44,4 @@ namespace TestBackEnd.AplicacionTest.ActualizarTest
         }
 
     }
-    }
+}

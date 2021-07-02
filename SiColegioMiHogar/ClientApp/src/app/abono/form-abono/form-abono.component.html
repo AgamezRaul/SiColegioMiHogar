@@ -1,0 +1,26 @@
+<h1 *ngIf="modoEdicion">Actualizar Abono</h1>
+<h1 *ngIf="!modoEdicion">Registrar Abono</h1>
+
+<div class="container">
+  <h1>Formulario de Abono</h1>
+  <form [formGroup]="formGroup" (ngSubmit)="save()">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="valorAbono">Valor Abono</label>
+        <input [value]="ValorAbonoChange" (change)="updateValueValorAbono($event.target.value)"
+               class="form-control" formControlName="valorAbono" id="valorAbono" placeholder="Ej: 20.000">
+        <div class="alert-danger" *ngIf="valorAbono.invalid && (valorAbono.dirty || valorAbono.touched)">
+          <div class="container-error-message" *ngIf="valorAbono.errors.required">
+            El valor del abono es requerido
+          </div>
+          <div class="container-error-message" *ngIf="valorAbono.errors.pattern">
+            Digite solo numeros por favor
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="submit" mat-raised-button color="primary" [disabled]="!formGroup.valid">
+      Salvar Abono
+    </button>
+  </form>
+</div>

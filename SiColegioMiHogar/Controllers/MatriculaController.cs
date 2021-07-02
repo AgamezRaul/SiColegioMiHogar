@@ -7,10 +7,8 @@ using BackEnd.Matricula.Aplicacion.Service.Eliminar;
 using BackEnd.Matricula.Dominio;
 using BackEnd.PreMatricula.Dominio;
 using BackEnd.Usuario.Dominio;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -47,8 +45,8 @@ namespace SiColegioMiHogar.Controllers
                               IdMatricula = m.Id,
                               NomEstudiante = e.NomEstudiante,
                               FecMatricula = m.FecConfirmacion
+                             
                           }).ToList();
-            string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
             return result;
         }
 
@@ -62,11 +60,12 @@ namespace SiColegioMiHogar.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateMatricula([FromBody] int idPreMatricula)
+        public async Task<IActionResult> CreateMatricula( [FromBody] int idPreMatricula)
         {
             CrearMatriculaRequest request = new CrearMatriculaRequest
             {
                 IdPreMatricula = idPreMatricula
+               
             };
             var rta = _crearService.EjecutarCrearMatricula(request);
             if (rta.isOk())

@@ -1,12 +1,10 @@
 ﻿using BackEnd.Base;
 using BackEnd.Usuario.Dominio.Entidades;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BackEnd.Usuario.Dominio
 {
-   public class Usuario : Entity<int>
+    public class Usuario : Entity<int>
     {
         public string Correo { get; set; }
         public string Password { get; set; }

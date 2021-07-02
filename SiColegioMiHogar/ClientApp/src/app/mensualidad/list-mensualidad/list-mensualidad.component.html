@@ -12,7 +12,7 @@
       <td mat-cell *matCellDef="let element"> {{element.estudiante}} </td>
     </ng-container>
 
-      <!-- id Column -->
+    <!-- id Column -->
     <ng-container matColumnDef="id" style="display:none">
       <th mat-header-cell *matHeaderCellDef style="display:none"> Id </th>
       <td mat-cell *matCellDef="let element" style="display:none"> {{element.id}} </td>
@@ -23,55 +23,46 @@
       <th mat-header-cell *matHeaderCellDef> Mes </th>
       <td mat-cell *matCellDef="let element"> {{element.mes}} </td>
     </ng-container>
-    <!-- valorMensualidad Column -->
-    <ng-container matColumnDef="valorMensualidad">
-      <th mat-header-cell *matHeaderCellDef> Valor Mensualidad </th>
-      <td mat-cell *matCellDef="let element"> {{element.valorMensualidad}} </td>
-    </ng-container>
-    <!-- descuentoMensualidad Column -->
-    <ng-container matColumnDef="descuentoMensualidad">
-      <th mat-header-cell *matHeaderCellDef> Descuento Mensualidad </th>
-      <td mat-cell *matCellDef="let element"> {{element.descuentoMensualidad}} </td>
-    </ng-container>
-    <!-- abono Column -->
-    <ng-container matColumnDef="abono">
-      <th mat-header-cell *matHeaderCellDef> Abono </th>
-      <td mat-cell *matCellDef="let element"> {{element.abono}} </td>
+
+    <!-- anio Column -->
+    <ng-container matColumnDef="anio">
+      <th mat-header-cell *matHeaderCellDef> Año </th>
+      <td mat-cell *matCellDef="let element"> {{element.anio}} </td>
     </ng-container>
     <!-- deuda Column -->
     <ng-container matColumnDef="deuda">
       <th mat-header-cell *matHeaderCellDef> Deuda </th>
-      <td mat-cell *matCellDef="let element"> {{element.deuda}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.deuda| number: '3.0-2'}} </td>
     </ng-container>
     <!-- estado Column -->
     <ng-container matColumnDef="estado">
       <th mat-header-cell *matHeaderCellDef> Estado </th>
       <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
     </ng-container>
-    <!-- totalMensualidad Column -->
-    <ng-container matColumnDef="totalMensualidad">
-      <th mat-header-cell *matHeaderCellDef> Total Mensualidad </th>
-      <td mat-cell *matCellDef="let element"> {{element.totalMensualidad}} </td>
+    <!-- valorMensualidad Column -->
+    <ng-container matColumnDef="valorMensualidad">
+      <th mat-header-cell *matHeaderCellDef> Valor Mensualidad </th>
+      <td mat-cell *matCellDef="let element"> {{element.valorMensualidad | number: '3.0-2'}} </td>
     </ng-container>
-      <!-- correo Column -->
-      <ng-container matColumnDef="correo">
-        <th mat-header-cell *matHeaderCellDef> Correo </th>
-        <td mat-cell *matCellDef="let element"> {{element.correo}} </td>
-      </ng-container>
-      <!--Options-->
-      <ng-container matColumnDef="options">
-        <th mat-header-cell *matHeaderCellDef>Opciones</th>
-        <td mat-cell *matCellDef="let element">
-          <button mat-icon-button color="warn" [routerLink]='["/editar-mensualidad/"+element.id]'><mat-icon> border_color</mat-icon></button>
-          <button mat-icon-button color="warn" (click)="Eliminar(element.id)"><mat-icon>delete_outline</mat-icon></button>
-          <button mat-icon-button color="warn" (click)="EnviarMail(element,element.correo) "><mat-icon> email</mat-icon></button>
-        </td>
-      </ng-container>
+    <!-- correo Column -->
+    <ng-container matColumnDef="correo" style="display:none">
+      <th mat-header-cell *matHeaderCellDef style="display:none"> Correo </th>
+      <td mat-cell *matCellDef="let element" style="display:none"> {{element.correo}} </td>
+    </ng-container>
+    <!--Options-->
+    <ng-container matColumnDef="options">
+      <th mat-header-cell *matHeaderCellDef>Opciones</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button color="warn" (click)="Eliminar(element.id)"><mat-icon>delete_outline</mat-icon></button>
+        <button mat-icon-button color="warn" [routerLink]='["/consultar-abono/"+element.id]'><mat-icon>payment</mat-icon></button>
+        <button mat-icon-button color="warn" (click)="EnviarMail(element,element.correo) "><mat-icon> email</mat-icon></button>
+      </td>
+    </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
 </div>
 
   <button (click)="Registrar()" class="btn-flotante">Nueva Mensualidad</button>

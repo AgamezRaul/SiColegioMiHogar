@@ -9,7 +9,6 @@ using BackEnd.Usuario.Dominio;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -71,10 +70,10 @@ namespace SiColegioMiHogar.Controllers
         [HttpGet("GetDocenteUsuarios")]
         public Object GetDocenteUsuarios()
         {
-            var result = (from c in _context.Set<Docente>() 
-                          where!(
+            var result = (from c in _context.Set<Docente>()
+                          where !(
                           from u in _context.Set<Usuario>()
-                          select u.Correo).Contains(c.Correo) 
+                          select u.Correo).Contains(c.Correo)
                           select new
                           {
                               c.Id,

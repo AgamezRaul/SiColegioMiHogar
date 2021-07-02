@@ -1,17 +1,14 @@
 ﻿using BackEnd;
 using BackEnd.Base;
-using BackEnd.Estudiante.Aplicacion.Request;
 using BackEnd.Estudiante.Dominio;
 using BackEnd.EstudianteCurso.Dominio;
 using BackEnd.Materia.Dominio.Entidades;
 using BackEnd.Usuario.Dominio;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
 namespace SiColegioMiHogar.Controllers
@@ -91,6 +88,6 @@ namespace SiColegioMiHogar.Controllers
             return _context.Estudiante;
 
         }
-        
+
     }
 }

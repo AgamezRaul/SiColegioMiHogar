@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BackEnd.NotaPeriodo.Aplicacion.Request
+﻿namespace BackEnd.NotaPeriodo.Aplicacion.Request
 {
     public class ActualizarNotaPeriodoRequest
     {
