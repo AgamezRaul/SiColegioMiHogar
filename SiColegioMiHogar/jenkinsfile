@@ -25,8 +25,4 @@ node {
     bat 'dotnet publish SiColegioMiHogar/SiColegioMiHogar.csproj -c Release -o G:/ws/NetCore/Creditos'
   }
   
-  stage('Report Email') {
-      emailext body: 'Se terminó de desplegar', subject: 'NetNgCreditos - Se terminó de desplegar', to: 'raagamez@unicesar.edu.co'
-  }
-  
 }
