@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { IMensualidad, IMensualidad2 } from './mensualidad.component';
+import { IMensualidad, IMensualidadVista } from './mensualidad.component';
 
 @Injectable({
   providedIn: 'root'
@@ -15,12 +15,12 @@ export class MensualidadService {
   get refresh$() {
     return this._refresh$;
   }
-  getMensualidades(): Observable<IMensualidad2[]> {
-    return this.http.get<IMensualidad2[]>(this.apiURL);
+  getMensualidades(): Observable<IMensualidadVista[]> {
+    return this.http.get<IMensualidadVista[]>(this.apiURL);
   }
 
-  getMensualidadesMatricula(matricula: number): Observable<IMensualidad2[]> {
-    return this.http.get<IMensualidad2[]>(this.apiURL + '/GetMensualidadesMatricula/' + matricula);
+  getMensualidadesMatricula(matricula: number): Observable<IMensualidadVista[]> {
+    return this.http.get<IMensualidadVista[]>(this.apiURL + '/GetMensualidadesMatricula/' + matricula);
   }
 
 
@@ -45,7 +45,7 @@ export class MensualidadService {
 
       );
   }
-  EnviarEmail(mensualidad: IMensualidad2, correo: string): Observable<IMensualidad2> {
-    return this.http.put<IMensualidad2>(this.apiURL + '/PutEmail/' + correo,mensualidad);
+  EnviarEmail(mensualidad: IMensualidadVista, correo: string): Observable<IMensualidadVista> {
+    return this.http.put<IMensualidadVista>(this.apiURL + '/PutEmail/' + correo,mensualidad);
   }
 }

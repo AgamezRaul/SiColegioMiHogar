@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BackEnd.Estudiante.Aplicacion.Request
+﻿namespace BackEnd.Estudiante.Aplicacion.Request
 {
     public class EliminarEstudianteRequest
     {

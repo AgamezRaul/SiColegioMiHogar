@@ -1,13 +1,11 @@
 ﻿using BackEnd.Base;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BackEnd.Curso.Dominio
 {
     public class Curso : Entity<int>
     {
-        public string Nombre { get; set; }        
+        public string Nombre { get; set; }
         public int MaxEstudiantes { get; set; }
         public int IdDirectorDocente { get; set; }
         public string Letra { get; set; }

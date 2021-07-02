@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BackEnd.Nota.Aplicacion.Request
 {
@@ -8,8 +6,8 @@ namespace BackEnd.Nota.Aplicacion.Request
     {
         public int Id { get; set; }
         public string NomEstudiante { get; set; }
-        public double NotaAlumno{ get; set; }
-        public DateTime FechaNota { get=>DateTime.Now.Date; }
+        public double NotaAlumno { get; set; }
+        public DateTime FechaNota { get => DateTime.Now.Date; }
         public int IdActividad { get; set; }
         public int IdEstudiante { get; set; }
     }

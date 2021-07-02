@@ -4,9 +4,7 @@ using BackEnd.Mensualidad.Aplicacion.Request;
 using BackEnd.Mensualidad.Aplicacion.Service.Crear;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace TestBackEnd.AplicacionTest.CrearTest
 {
@@ -37,15 +35,8 @@ namespace TestBackEnd.AplicacionTest.CrearTest
             yield return new TestCaseData(
                 new CrearMensualidadRequest
                 {
-
-                     Mes = 4,
-                     DiaPago = 5,
-                     FechaPago = DateTime.Now,
-                     ValorMensualidad = 300.000,
-                     DescuentoMensualidad = 50.000,
-                     Abono = 100.000,
-                     IdMatricula = 001
-
+                    Mes = "Marzo",
+                    IdMatricula = 001
                 },
                 "Mensualidad Creada Exitosamente"
                 ).SetName("Crear Mensualidad Correctamente");

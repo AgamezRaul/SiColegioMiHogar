@@ -14,26 +14,25 @@ export class MensualidadComponent implements OnInit {
 
 }
 export interface IMensualidad {
-  
   id: number,
-  mes: number,
-  diaPago: number,
-  fechaPago: Date,
-  valorMensualidad: number,
-  descuentoMensualidad: number,
-  abono: number,
-  estado: string,
-  idMatricula: number
-}
-export interface IMensualidad2 {
-  id: number,
-  estudiante: string,
-  mes: number,
-  valorMensualidad: number,
-  descuentoMensualidad: number,
-  abono: number,
+  mes: string,
   deuda: number,
   estado: string,
-  totalMensualidad: number,
-  correo: string
+  año: number,
+  idMatricula: number
+ 
 }
+export interface IMensualidadVista {
+  id: number,
+  estudiante: string,
+  mes: string,
+  anio: number,
+  valorMensualidad: number,
+  //descuentoMensualidad: number,
+  deuda: number,
+  estado: string,
+  //totalMensualidad:number,
+  correo: string
+
+}
+

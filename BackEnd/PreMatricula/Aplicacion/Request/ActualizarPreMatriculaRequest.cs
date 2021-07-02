@@ -1,16 +1,10 @@
-﻿using BackEnd.Estudiante.Aplicacion.Request;
-using BackEnd.Responsable.Aplicacion.Request;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BackEnd.PreMatricula.Aplicacion.Request
+﻿namespace BackEnd.PreMatricula.Aplicacion.Request
 {
     public class ActualizarPreMatriculaRequest
     {
         public int id { get; set; }
         public string Estado { get; set; }
-        
+
     }
     public class ActualizarPreMatriculaResponse
     {

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BackEnd.Mensualidad.Aplicacion.Request
+﻿namespace BackEnd.Mensualidad.Aplicacion.Request
 {
-   public class EliminarMensualidadRequest
+    public class EliminarMensualidadRequest
     {
         public int IdMensualidad { get; set; }
     }

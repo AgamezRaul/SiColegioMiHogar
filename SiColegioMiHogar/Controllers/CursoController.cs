@@ -1,11 +1,11 @@
 ﻿using BackEnd;
 using BackEnd.Base;
-using BackEnd.Docente.Dominio;
 using BackEnd.Curso.Aplicacion.Request;
-using BackEnd.Curso.Aplicacion.Service.Crear;
 using BackEnd.Curso.Aplicacion.Service.Actualizar;
+using BackEnd.Curso.Aplicacion.Service.Crear;
 using BackEnd.Curso.Aplicacion.Service.Eliminar;
 using BackEnd.Curso.Dominio;
+using BackEnd.Docente.Dominio;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;

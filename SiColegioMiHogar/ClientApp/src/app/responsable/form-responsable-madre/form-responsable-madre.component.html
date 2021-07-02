@@ -40,9 +40,8 @@
     <mat-form-field class="col-media" appearance="fill" [ngClass]="{'has-error': ((tipDocumento.touched || tipDocumento.dirty)&& tipDocumento.invalid)}">
       <mat-label>Tipo de documento</mat-label>
       <mat-select formControlName="tipDocumento" placeholder="Elija una opción">
-        <mat-option value="Cedula de ciudadania">Cedula de ciudadania</mat-option>
+        <mat-option value="Cedula de ciudadania">Cédula de ciudadania</mat-option>
         <mat-option value="Cédula de extranjero">Cédula de extranjero</mat-option>
-        <mat-option value="Cedula de ciudadania">Cedula de ciudadania</mat-option>
         <mat-option value="Otro">Otro</mat-option>
       </mat-select>
       <mat-error *ngIf="((tipDocumento.touched || tipDocumento.dirty)&& tipDocumento.invalid) && tipDocumento.errors.required">  Tipo de documento es<strong> requerido </strong></mat-error>

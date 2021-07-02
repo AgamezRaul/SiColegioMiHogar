@@ -4,7 +4,7 @@ import { UrlSegment } from '@angular/router';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IMensualidad } from '../mensualidad.component';
 import { MensualidadService } from '../mensualidad.service';
-import { Location } from '@angular/common';
+import { formatCurrency, getCurrencySymbol, Location } from '@angular/common';
 import { error } from 'protractor';
 import { equal } from 'assert';
 import { MatDialog } from '@angular/material/dialog';
@@ -22,13 +22,10 @@ export class FormMensualidadComponent implements OnInit {
   modoEdicion: boolean = false;
   id: number;
   idMensu: number;
+  
   formGroup = this.fb.group({
-    mes: ['', [Validators.required, Validators.min(1), Validators.max(12)]],
-    diaPago: ['', [Validators.required, Validators.min(1), Validators.max(31)]],
-    fechaPago: ['', [Validators.required]],
-    valorMensualidad:  ['', [Validators.required]],
-    descuentoMensualidad: ['', [Validators.required]],
-    abono: ['', [Validators.required]] 
+    mes: ['', [Validators.required]]
+    
   });
 
   ngOnInit(): void {
@@ -67,18 +64,12 @@ export class FormMensualidadComponent implements OnInit {
   cargarFormulario(mensualiadad: IMensualidad) {
     this.formGroup.patchValue({
       mes: mensualiadad.mes,
-      diaPago: mensualiadad.diaPago,
-      fechaPago: mensualiadad.fechaPago,
-      valorMensualidad: mensualiadad.valorMensualidad,
-      descuentoMensualidad: mensualiadad.descuentoMensualidad,
-      abono: mensualiadad.abono,
+      
      
     });
   }
   save() {
     let mensualidad: IMensualidad = Object.assign({}, this.formGroup.value);
-  
-
     if (this.modoEdicion) {
       mensualidad.id = this.idMensu;
       if (this.formGroup.valid) {
@@ -115,25 +106,12 @@ export class FormMensualidadComponent implements OnInit {
     this.mensaje.mensajeAlertaCorrecto('Exitoso!', 'Mensualidad editada correctamente');
   }
 
-
+  
+  
   get mes() {
     return this.formGroup.get('mes');
   }
-  get diaPago() {
-    return this.formGroup.get('diaPago');
-  }
-  get fechaPago() {
-    return this.formGroup.get('fechaPago');
-  }
-  get valorMensualidad() {
-    return this.formGroup.get('valorMensualidad');
-  }
-  get descuentoMensualidad() {
-    return this.formGroup.get('descuentoMensualidad');
-  }
-  get abono() {
-    return this.formGroup.get('abono');
-  }
+
   
 }
 

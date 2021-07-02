@@ -1,7 +1,5 @@
-﻿using System;
+﻿using BackEnd.Base;
 using System.Collections.Generic;
-using System.Text;
-using BackEnd.Base;
 
 namespace BackEnd.Materia.Dominio.Entidades
 {
@@ -22,7 +20,7 @@ namespace BackEnd.Materia.Dominio.Entidades
 
         public IReadOnlyList<string> CanCrear(Materias materias)
         {
-            
+
             var errors = new List<string>();/*
             if (materias.IdDocente == 0)
                 errors.Add("Campo codigo del docente vacio");

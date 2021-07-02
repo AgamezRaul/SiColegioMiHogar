@@ -4,9 +4,7 @@ using BackEnd.Contrato.Aplicacion.Request;
 using BackEnd.Contrato.Aplicacion.Service;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace TestBackEnd.AplicacionTest.ActualizarTest
 {
@@ -35,11 +33,11 @@ namespace TestBackEnd.AplicacionTest.ActualizarTest
             yield return new TestCaseData(
                 new ActualizarContratoRequest
                 {
-                    FechaInicio=System.DateTime.Now,
-                    FechaFin= System.DateTime.Now.AddDays(365),
-                    Sueldo= 2000000,
-                    IdDocente=1
-                   
+                    FechaInicio = System.DateTime.Now,
+                    FechaFin = System.DateTime.Now.AddDays(365),
+                    Sueldo = 2000000,
+                    IdDocente = 1
+
                 },
                 "El  contrato del docente no existe"
                 ).SetName("Contrato Actualizado Correctamente");

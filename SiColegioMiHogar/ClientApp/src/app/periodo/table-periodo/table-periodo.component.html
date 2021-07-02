@@ -43,7 +43,7 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-  <mat-paginator style="padding: 0 7%;" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  <mat-paginator style="padding: 0 7%;" [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
 </div>
 <button (click)="Registrar()" class="btn-flotante">Nuevo Periodo</button>
   

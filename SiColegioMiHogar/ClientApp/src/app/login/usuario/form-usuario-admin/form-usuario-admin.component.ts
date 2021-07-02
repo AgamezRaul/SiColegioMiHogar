@@ -35,7 +35,7 @@ export class FormUsuarioAdminComponent implements OnInit {
   }
   onSaveSuccess() {
     this.location.back();
-    this.alertService.success("Guardado exitoso");
+    this.alertService.success("Usuario administrado registrado correctamente");
   }
   get correo() {
     return this.formGroup.get('correo');

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace BackEnd.EstudianteCurso.Aplicacion
 {
@@ -26,7 +24,7 @@ namespace BackEnd.EstudianteCurso.Aplicacion
         public CrearEstudianteCursoResponse(string message)
         {
             Message = message;
-        }        
+        }
         public bool IsOk()
         {
             return this.Message.Equals("Estudiantes se agregaron al curso correctamente");

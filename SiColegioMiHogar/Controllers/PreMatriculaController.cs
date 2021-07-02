@@ -8,10 +8,7 @@ using BackEnd.PreMatricula.Aplicacion.Service.Eliminar;
 using BackEnd.PreMatricula.Dominio;
 using BackEnd.Responsable.Dominio;
 using BackEnd.Usuario.Dominio;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -67,7 +64,7 @@ namespace SiColegioMiHogar.Controllers
                               {
                                   e
                               }).ToList();
-            
+
             var responsables = (from p in _context.Set<PreMatricula>()
                                 join u in _context.Set<Usuario>()
                                 on p.IdUsuario equals u.Id

@@ -2,7 +2,6 @@
 using BackEnd.Responsable.Aplicacion.Request;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BackEnd.PreMatricula.Aplicacion.Request
 {

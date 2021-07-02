@@ -1,38 +1,41 @@
-﻿using BackEnd.Estudiante.Dominio.Repositories;
+﻿using BackEnd.Abono.Dominio.Repositories;
+using BackEnd.Abono.Infra;
+using BackEnd.Actividad;
+using BackEnd.Boletin.Dominio.Repositories;
+using BackEnd.Boletin.Infra;
+using BackEnd.Contrato.Dominio;
+using BackEnd.Contrato.Infra;
+using BackEnd.Curso.Dominio.Repositories;
+using BackEnd.Curso.Infra;
+using BackEnd.Docente.Dominio.Repositories;
+using BackEnd.Docente.Infra;
+using BackEnd.Estudiante.Dominio.Repositories;
 using BackEnd.Estudiante.Infra;
+using BackEnd.EstudianteCurso.Dominio;
+using BackEnd.EstudianteCurso.Infra;
+using BackEnd.Grado.Dominio.Repositories;
+using BackEnd.Grado.Infra;
+using BackEnd.Materia.Dominio.Repositories;
+using BackEnd.Materia.Infra;
 using BackEnd.Matricula.Dominio.Repositories;
 using BackEnd.Matricula.Infra;
 using BackEnd.Mensualidad.Dominio.Repositories;
 using BackEnd.Mensualidad.Infra;
+using BackEnd.Nota.Dominio.Repositories;
+using BackEnd.Nota.Infra;
+using BackEnd.NotaPeriodo.Dominio.Repositories;
+using BackEnd.NotaPeriodo.Infra;
+using BackEnd.Periodo.Dominio.Repositories;
+using BackEnd.Periodo.Infra;
 using BackEnd.PreMatricula.Dominio.Repositories;
 using BackEnd.PreMatricula.Infra;
 using BackEnd.Responsable.Dominio.Repositories;
 using BackEnd.Responsable.Infra;
 using BackEnd.Usuario.Dominio.Repositories;
 using BackEnd.Usuario.Infra;
-using BackEnd.Curso.Dominio.Repositories;
-using BackEnd.Curso.Infra;
-using BackEnd.Docente.Dominio.Repositories;
-using BackEnd.Docente.Infra;
+using BackEnd.ValorMensualidad.Dominio.Repositories;
+using BackEnd.ValorMensualidad.Infra;
 using Microsoft.EntityFrameworkCore;
-using BackEnd.Nota.Dominio.Repositories;
-using BackEnd.Nota.Infra;
-using BackEnd.Periodo.Dominio.Repositories;
-using BackEnd.Periodo.Infra;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using BackEnd.Materia.Dominio.Repositories;
-using BackEnd.Materia.Infra;
-using BackEnd.NotaPeriodo.Dominio.Repositories;
-using BackEnd.NotaPeriodo.Infra;
-using BackEnd.Contrato.Dominio;
-using BackEnd.Contrato.Infra;
-using BackEnd.Actividad;
-using BackEnd.EstudianteCurso.Dominio;
-using BackEnd.EstudianteCurso.Infra;
-using BackEnd.Boletin.Dominio.Repositories;
-using BackEnd.Boletin.Infra;
 
 namespace BackEnd.Base
 {
@@ -181,6 +184,30 @@ namespace BackEnd.Base
             get
             {
                 return _estudianteCursoServiceRepository ?? (_estudianteCursoServiceRepository = new EstudianteCursoServiceRepository(_dbContext));
+            }
+        }
+        private IGradoServiceRepository _gradoServiceRepository;
+        public IGradoServiceRepository GradoServiceRepository
+        {
+            get
+            {
+                return _gradoServiceRepository ?? (_gradoServiceRepository = new GradoServiceRepository(_dbContext));
+            }
+        }
+        private IAbonoServiceRepository _abonoServiceRepository;
+        public IAbonoServiceRepository AbonoServiceRepository
+        {
+            get
+            {
+                return _abonoServiceRepository ?? (_abonoServiceRepository = new AbonoServiceRepository(_dbContext));
+            }
+        }
+        private IValorMensualidadServiceRepository _valorMensualidadServiceRepository;
+        public IValorMensualidadServiceRepository ValorMensualidadServiceRepository
+        {
+            get
+            {
+                return _valorMensualidadServiceRepository ?? (_valorMensualidadServiceRepository = new ValorMensualidadServiceRepository(_dbContext));
             }
         }
         public int Commit()

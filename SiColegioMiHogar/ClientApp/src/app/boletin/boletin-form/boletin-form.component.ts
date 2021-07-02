@@ -52,7 +52,7 @@ export class BoletinFormComponent implements OnInit {
   }
   onSaveSuccess() {
     this.location.back();
-    this.alertService.success("Guardado exitoso");
+    this.alertService.success("Boletín registrado exitosamente");
   }
   LLenarEstudiantes(estudiantes: IEstudiante2[]) {
     this.ListaEstudiantes = estudiantes;

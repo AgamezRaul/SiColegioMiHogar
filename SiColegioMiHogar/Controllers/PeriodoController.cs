@@ -3,12 +3,8 @@ using BackEnd.Base;
 using BackEnd.Periodo.Aplicacion.Request;
 using BackEnd.Periodo.Aplicacion.Services;
 using BackEnd.Periodo.Dominio;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace SiColegioMiHogar.Controllers
@@ -48,7 +44,7 @@ namespace SiColegioMiHogar.Controllers
             return BadRequest(rta.Message);
         }
 
-        
+
         [HttpGet("[action]")]
         public Periodo GetPeriodo(int id)
         {
@@ -56,7 +52,7 @@ namespace SiColegioMiHogar.Controllers
             return service.GetPeriodo(id);
         }
 
-        
+
         [HttpDelete("[action]")]
         public ActionResult<EliminarPeriodoResponse> DeletePeriodo(int id)
         {
@@ -64,8 +60,8 @@ namespace SiColegioMiHogar.Controllers
             EliminarPeriodoResponse response = service.DeletePeridodo(id);
             return Ok(response);
         }
-       
-        
+
+
         [HttpPut("[action]")]
         public ActionResult<ActualizarPeriodoResponse> ActualizarPeriodo([FromBody] CrearPeriodoRequest request)
         {
@@ -73,6 +69,6 @@ namespace SiColegioMiHogar.Controllers
             ActualizarPeriodoResponse response = service.ActualizarPeriodo(request);
             return Ok(response);
         }
-        
+
     }
 }

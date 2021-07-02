@@ -1,8 +1,5 @@
 ﻿using BackEnd.Base;
 using BackEnd.NotaPeriodo.Aplicacion.Request;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BackEnd.NotaPeriodo.Aplicacion.Service.Eliminar
 {

@@ -5,11 +5,8 @@ using BackEnd.Usuario.Aplicacion.Services.Actualizar;
 using BackEnd.Usuario.Aplicacion.Services.Crear;
 using BackEnd.Usuario.Aplicacion.Services.Eliminar;
 using BackEnd.Usuario.Dominio;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -26,7 +23,7 @@ namespace SiColegioMiHogar.Controllers
         private UnitOfWork _unitOfWork;
         public UsuarioController(MiHogarContext context)
         {
-            this._context = context; 
+            this._context = context;
             _unitOfWork = new UnitOfWork(_context);
         }
 
@@ -36,9 +33,9 @@ namespace SiColegioMiHogar.Controllers
             var result = (from u in _context.Set<Usuario>()
                           select new
                           {
-                              id=u.Id,
-                              correo= u.Correo,
-                              tipoUsuario= u.TipoUsuario
+                              id = u.Id,
+                              correo = u.Correo,
+                              tipoUsuario = u.TipoUsuario
                           }).ToList();
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented);
             return result;
@@ -53,7 +50,7 @@ namespace SiColegioMiHogar.Controllers
             return Ok(usuario);
         }
 
-      
+
         [HttpGet("GetUsuarioId/{id}")]
         public async Task<IActionResult> GetUsuarioId([FromRoute] int id)
         {
@@ -94,7 +91,7 @@ namespace SiColegioMiHogar.Controllers
         }
 
 
-       
+
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUsuario([FromRoute] int id, [FromBody] ActualizarUsuarioRequest usuario)
         {

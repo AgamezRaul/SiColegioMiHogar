@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BackEnd.Boletin.Aplicacion.Request
+﻿namespace BackEnd.Boletin.Aplicacion.Request
 {
-   public  class EliminarBoletinRequest
+    public class EliminarBoletinRequest
     {
         public int IdBoletin { get; set; }
     }

@@ -108,7 +108,7 @@ export class FormNotaPeriodoComponent implements OnInit {
 
   onSaveSuccess() {
     this.router.navigate(["/lista-nota-periodo"]);
-    this.alertService.success("Guardado Exitoso");
+    this.alertService.success("Guardado Exitoso de la nota del periodo");
   }
 
   get nota() {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BackEnd.Materia.Aplicacion.Request
+﻿namespace BackEnd.Materia.Aplicacion.Request
 {
     public class ActualizarMateriaRequest
     {

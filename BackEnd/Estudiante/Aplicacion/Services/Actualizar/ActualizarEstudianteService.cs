@@ -1,8 +1,5 @@
 using BackEnd.Base;
 using BackEnd.Estudiante.Aplicacion.Request;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BackEnd.Estudiante.Aplicacion.Services.Actualizar
 {
@@ -33,7 +30,7 @@ namespace BackEnd.Estudiante.Aplicacion.Services.Actualizar
                 estudiante.CelEstudiante = request.CelEstudiante;
                 estudiante.TipSangre = request.TipSangre;
                 estudiante.GradoEstudiante = request.GradoEstudiante;
-                estudiante.Eps=request.Eps;
+                estudiante.Eps = request.Eps;
                 estudiante.Correo = request.Correo;
                 estudiante.Sexo = request.Sexo;
                 estudiante.TipoDocumento = request.TipoDocumento;
@@ -42,7 +39,7 @@ namespace BackEnd.Estudiante.Aplicacion.Services.Actualizar
                 _unitOfWork.EstudianteServiceRepository.Edit(estudiante);
                 _unitOfWork.Commit();
                 return new ActualizarEstudianteResponse() { Message = $"Estudiante Actualizado Exitosamente" };
-               
+
             }
         }
     }

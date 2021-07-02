@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BackEnd.Contrato.Aplicacion.Request
+﻿namespace BackEnd.Contrato.Aplicacion.Request
 {
     public class EliminarContratoRequest
     {

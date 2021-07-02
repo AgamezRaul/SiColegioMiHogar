@@ -1,5 +1,7 @@
 ﻿using BackEnd;
 using BackEnd.Base;
+using BackEnd.Docente.Dominio;
+using BackEnd.EstudianteCurso.Dominio;
 using BackEnd.Materia.Aplicacion.Request;
 using BackEnd.Materia.Aplicacion.Services.Actualizar;
 using BackEnd.Materia.Aplicacion.Services.Crear;
@@ -8,10 +10,8 @@ using BackEnd.Materia.Dominio.Entidades;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Linq;
-using BackEnd.Docente.Dominio;
-using BackEnd.EstudianteCurso.Dominio;
+using System.Threading.Tasks;
 
 namespace SiColegioMiHogar.Controllers
 {

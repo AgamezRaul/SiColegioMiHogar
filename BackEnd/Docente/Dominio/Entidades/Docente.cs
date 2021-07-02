@@ -1,11 +1,9 @@
-﻿using System;
+﻿using BackEnd.Base;
 using System.Collections.Generic;
-using System.Text;
-using BackEnd.Base;
 
 namespace BackEnd.Docente.Dominio
 {
-    public class Docente: Entity<int>
+    public class Docente : Entity<int>
     {
 
         public string NombreCompleto { get; set; }

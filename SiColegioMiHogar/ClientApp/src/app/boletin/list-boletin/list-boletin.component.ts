@@ -24,43 +24,34 @@ export class ListBoletinComponent implements OnInit {
     'ideEstudiante',
     'gradoEstudiante',
     'nombrePeriodo',
-    'fechaGeneracion'];
-
+    'fechaGeneracion'  ];
+  
   dataSource = new MatTableDataSource<IBoletin2>(this.boletin);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   constructor(private boletinservice: BoletinService, private alertService: AlertService,
     private router: Router, private activatedRoute: ActivatedRoute,
-    private mensaje: MensajesModule) {
+    private mensaje: MensajesModule  ) {
   }
 
   ngOnInit(): void {
     this.cargardata();
-    this.suscription = this.boletinservice.refresh$.subscribe(() => {
-      this.cargardata();
-    });
   }
 
   cargardata() {
     this.boletinservice.getBoletines()
-      .subscribe(boletin => {
-        console.log(boletin)
+      .subscribe(boletin => {console.log(boletin)
         , this.dataSource.data = boletin
       },
         error => this.alertService.error(error));
-    console.table(this.boletin);
+    console.table(this.boletin); 
   }
 
-
+  
   Registrar() {
     this.router.navigate(["/registrar-boletin"]);
   }
-  
-  Eliminar(idBoletin: number) {
-    this.boletinservice.deleteBoletin(idBoletin).
-      subscribe(nit => this.cargardata(),
-        error => this.mensaje.mensajeAlertaError('Error', error.error.toString()));
-  }
+
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -70,5 +61,4 @@ export class ListBoletinComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-
 }
