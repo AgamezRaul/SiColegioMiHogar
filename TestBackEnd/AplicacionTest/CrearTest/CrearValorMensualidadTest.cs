@@ -39,7 +39,7 @@ namespace TestBackEnd.AplicacionTest.CrearTest
                     IdGrado = 001
 
                 },
-                "Valor Mensualidad Creada Exitosamente"
+                "Valor Mensualidad Creado Exitosamente"
                 ).SetName("Crear Valor Mensualidad Correctamente");
         }
     }

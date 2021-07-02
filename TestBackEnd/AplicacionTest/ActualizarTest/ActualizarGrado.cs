@@ -38,7 +38,7 @@ namespace TestBackEnd.AplicacionTest.ActualizarTest
                     Nombre = "Pre-Jardin",
                     id = 1
                 },
-                "Grado Actualizado Exitosamente"
+                "Grado no existe"
             ).SetName("Grado Actualizado Exitosamente");
         }
     }

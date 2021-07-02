@@ -36,7 +36,7 @@ namespace TestBackEnd.AplicacionTest.CrearTest
                     ValorAbono = 100000,
                     IdMensualidad = 001
                 },
-                "Abono Creado Exitosamente"
+                "Mensualidad No existe"
                 ).SetName("Crear Abono Correctamente");
         }
     }
