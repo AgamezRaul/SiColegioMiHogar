@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BackEnd.Responsable.Aplicacion.Request
+﻿namespace BackEnd.Responsable.Aplicacion.Request
 {
     public class EliminarResponsableRequest
     {

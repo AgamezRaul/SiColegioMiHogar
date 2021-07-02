@@ -1,9 +1,7 @@
 ﻿using BackEnd.Base;
 using BackEnd.Usuario.Aplicacion.Request;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace BackEnd.Usuario.Aplicacion.Services.Crear
 {
@@ -19,7 +17,7 @@ namespace BackEnd.Usuario.Aplicacion.Services.Crear
             var usuario = _unitOfWork.UsuarioServiceRepository.FindFirstOrDefault(t => t.Correo == request.Correo);
             if (usuario == null)
             {
-                Dominio.Usuario newUsuario = new Dominio.Usuario(request.Correo,request.Password, request.TipoUsuario);
+                Dominio.Usuario newUsuario = new Dominio.Usuario(request.Correo, request.Password, request.TipoUsuario);
 
                 if (newUsuario.Password.Length > 6)
                 {
@@ -44,7 +42,7 @@ namespace BackEnd.Usuario.Aplicacion.Services.Crear
                 else
                 {
                     return new CrearUsuarioResponse() { Message = $"La contraseña debe de contener mas de 6 digitos" };
-                }  
+                }
             }
             else
             {

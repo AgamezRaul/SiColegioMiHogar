@@ -1,0 +1,39 @@
+<div class="container">
+  <mat-dialog-content>
+    <form class="form-horizontal" novalidate autocomplete="off"
+          (ngSubmit)="save()" [formGroup]="formGroup">
+      <fieldset>
+        <div class="row">
+          <div class="form-group"
+               [ngClass]="{'has-error': ((valorMatricula.touched || valorMatricula.dirty) && valorMatricula.invalid)}">
+            <label class="col-md-auto control-label" for="valorMatricula">Valor Matricula</label>
+            <div class="col-md-auto">
+              <input class="form-control" id="valorMatricula" type="number" formControlName="valorMatricula" />
+              <input type="hidden" formControlName="idPrem" />
+              <div class="alert alert-danger" *ngIf="((valorMatricula.touched || valorMatricula.dirty )&& valorMatricula.invalid)">
+                <span *ngIf="valorMatricula.errors.required">
+                  El campo Valor Matricula es requerido
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-auto col-md-offset-2">
+            <span>
+              <button class="btn btn-success"
+                      type="submit"
+                      [disabled]="!formGroup.valid">
+                Confirmar pre matricula
+              </button>
+            </span>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cerrar</button>
+  </mat-dialog-actions>
+</div>

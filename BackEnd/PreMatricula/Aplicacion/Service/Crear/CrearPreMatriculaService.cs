@@ -1,8 +1,6 @@
 ﻿using BackEnd.Base;
-using BackEnd.Estudiante.Aplicacion.Request;
 using BackEnd.Estudiante.Aplicacion.Services.Crear;
 using BackEnd.PreMatricula.Aplicacion.Request;
-using BackEnd.Responsable.Aplicacion.Request;
 using BackEnd.Responsable.Aplicacion.Services.Crear;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +21,7 @@ namespace BackEnd.PreMatricula.Aplicacion.Service.Crear
         }
         public CrearPreMatriculaResponse EjecutarCrearPreMatricula(CrearPreMatriculaRequest request)
         {
-            var prematricula = _unitOfWork.PreMatriculaServiceRepository.FindFirstOrDefault(t => t.Id == request.id || t.IdUsuario == request.IdUsuario);
+            var prematricula = _unitOfWork.PreMatriculaServiceRepository.FindFirstOrDefault(t => t.Id == request.id);
             if (prematricula != null)
             {
                 return new CrearPreMatriculaResponse($"PreMatricula ya existe");

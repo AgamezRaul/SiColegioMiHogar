@@ -1,7 +1,5 @@
 ﻿using BackEnd.Base;
 using BackEnd.Estudiante.Aplicacion.Request;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace BackEnd.Estudiante.Aplicacion.Services.Crear
 {

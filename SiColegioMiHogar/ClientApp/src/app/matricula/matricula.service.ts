@@ -26,7 +26,7 @@ export class MatriculaService {
   }
 
   createMatricula(idPreMatricula: number): Observable<number> {
-    return this.http.post<number>(this.apiURL, idPreMatricula);
+    return this.http.post<number>(this.apiURL,idPreMatricula);
   }
 
   deleteMatricula(idMatricula: number): Observable<number> {

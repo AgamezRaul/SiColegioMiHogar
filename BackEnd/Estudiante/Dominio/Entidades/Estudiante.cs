@@ -1,7 +1,5 @@
 ﻿using BackEnd.Base;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BackEnd.Estudiante.Dominio
 {
@@ -25,8 +23,8 @@ namespace BackEnd.Estudiante.Dominio
         public int IdUsuario { get; set; }
 
         public Estudiante() { }
-        public Estudiante(string ideEstudiante, string nomEstudiante, DateTime fecNacimiento, string lugNacimiento, string lugExpedicion, 
-            string insProcedencia, string dirResidencia, string celEstudiante, string tipSangre, string gradoEstudiante, string eps, 
+        public Estudiante(string ideEstudiante, string nomEstudiante, DateTime fecNacimiento, string lugNacimiento, string lugExpedicion,
+            string insProcedencia, string dirResidencia, string celEstudiante, string tipSangre, string gradoEstudiante, string eps,
             string correo, string sexo, string tipoDocumento, string telEstudiante, int idUsuario)
         {
             IdeEstudiante = ideEstudiante;

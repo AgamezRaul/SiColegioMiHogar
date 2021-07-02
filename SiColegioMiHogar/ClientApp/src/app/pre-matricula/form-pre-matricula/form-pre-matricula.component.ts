@@ -83,7 +83,7 @@ export class FormPreMatriculaComponent implements OnInit {
     fecNacimiento: ['', [Validators.required]],
     lugNacimiento: ['Valledupar', [Validators.required]],
     lugExpedicion: ['Valledupar', [Validators.required]],
-    insProcedencia: ['Desconocido', [Validators.required]],
+    insProcedencia: ['N/A', [Validators.required]],
     dirResidencia: ['Desconocido', [Validators.required]],
     celEstudiante: ['Desconocido', [Validators.required]],
     tipSangre: ['Desconocido', [Validators.required]],

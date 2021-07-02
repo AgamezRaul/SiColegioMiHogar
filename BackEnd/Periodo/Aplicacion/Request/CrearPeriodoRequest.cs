@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BackEnd.Periodo.Aplicacion.Request
 {
-    
+
     public class CrearPeriodoRequest
     {
         public int Id { get; set; }

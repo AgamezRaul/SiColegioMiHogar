@@ -4,9 +4,7 @@ using BackEnd.Mensualidad.Aplicacion.Request;
 using BackEnd.Mensualidad.Aplicacion.Service.Actualizar;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace TestBackEnd.AplicacionTest.ActualizarTest
 {
@@ -37,11 +35,7 @@ namespace TestBackEnd.AplicacionTest.ActualizarTest
             yield return new TestCaseData(
                 new ActualizarMensualidadRequest
                 {
-                    DiaPago = 5,
-                    FechaPago = DateTime.Now,
-                    ValorMensualidad = 300.000,
-                    DescuentoMensualidad = 50.000,
-                    Abono = 100.000,
+                    Deuda = 2000,
                     id = 1
                 },
                 "Mensualidad no existe"

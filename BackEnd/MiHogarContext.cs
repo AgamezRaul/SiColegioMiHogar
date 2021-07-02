@@ -1,13 +1,12 @@
 ﻿using BackEnd.Base;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Linq;
 
 namespace BackEnd
 {
     public class MiHogarContext : DbContextBase
     {
-        
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Data Source=localhost\SQLEXPRESS; Initial Catalog=BdColegioMiHogar; Integrated Security=True; MultipleActiveResultSets=True");
@@ -16,13 +15,13 @@ namespace BackEnd
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Periodo.Dominio.Periodo>().HasData(
-                    new Periodo.Dominio.Periodo() 
+                    new Periodo.Dominio.Periodo()
                     {
-                        Id=1,
-                        NombrePeriodo="Primer Periodo",
-                        NumeroPeriodo=1,
-                        FechaInicio= DateTime.Today.Date.AddDays(-5),
-                        FechaFin= DateTime.Today.Date.AddDays(5)
+                        Id = 1,
+                        NombrePeriodo = "Primer Periodo",
+                        NumeroPeriodo = 1,
+                        FechaInicio = DateTime.Today.Date.AddDays(-5),
+                        FechaFin = DateTime.Today.Date.AddDays(5)
                     },
                     new Periodo.Dominio.Periodo()
                     {
@@ -50,10 +49,13 @@ namespace BackEnd
                     }
                 );
         }
-            public MiHogarContext(DbContextOptions options) : base(options)
+        public MiHogarContext(DbContextOptions options) : base(options)
         {
         }
 
+        public DbSet<Abono.Dominio.Abono> Abono { get; set; }
+        public DbSet<Grado.Dominio.Grado> Grado { get; set; }
+        public DbSet<ValorMensualidad.Dominio.ValorMensualidad> ValorMensualidad { get; set; }
         public DbSet<Boletin.Dominio.Boletin> Boletin { get; set; }
         public DbSet<Estudiante.Dominio.Estudiante> Estudiante { get; set; }
         public DbSet<Matricula.Dominio.Matricula> Matricula { get; set; }

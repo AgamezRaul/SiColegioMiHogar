@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BackEnd.Base
+﻿namespace BackEnd.Base
 {
     public interface IEntity<T>
     {

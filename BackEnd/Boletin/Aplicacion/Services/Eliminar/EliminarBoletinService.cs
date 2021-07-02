@@ -1,15 +1,12 @@
 ﻿using BackEnd.Base;
 using BackEnd.Boletin.Aplicacion.Request;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BackEnd.Boletin.Aplicacion.Services.Eliminar
 {
-    
+
     public class EliminarBoletinService
     {
-     readonly IUnitOfWork _unitOfWork;
+        readonly IUnitOfWork _unitOfWork;
         public EliminarBoletinService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -29,5 +26,5 @@ namespace BackEnd.Boletin.Aplicacion.Services.Eliminar
             }
         }
     }
-   
+
 }

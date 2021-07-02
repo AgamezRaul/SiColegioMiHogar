@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IMensualidad, IMensualidad2 } from '../mensualidad.component';
+import { IMensualidad, IMensualidadVista } from '../mensualidad.component';
 import { MensualidadService } from '../mensualidad.service';
 import { Location } from '@angular/common';
 import { Subscription } from 'rxjs';
@@ -17,20 +17,20 @@ import { MensajesModule } from '../../mensajes/mensajes.module';
 })
 export class ListMensualidadComponent implements OnInit, OnDestroy {
   suscription: Subscription;
-  mensualidad!: IMensualidad2[];
+  mensualidad!: IMensualidadVista[];
   displayedColumns: string[] = [
     'id',
     'estudiante',
     'mes',
+    'anio',
     'valorMensualidad',
-    'descuentoMensualidad',
-    'abono',
+    //'descuentoMensualidad',
     'deuda',
     'estado',
-    'totalMensualidad',
+   // 'totalMensualidad',
     'correo',
     'options'];
-  dataSource = new MatTableDataSource<IMensualidad2>(this.mensualidad);
+  dataSource = new MatTableDataSource<IMensualidadVista>(this.mensualidad);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   constructor(private mensualidadservice: MensualidadService, private router: Router,
@@ -74,7 +74,7 @@ export class ListMensualidadComponent implements OnInit, OnDestroy {
 
   onDeleteSuccess() {
     this.router.navigate(["/consultar-mensualidad/" + this.id]);
-    this.mensaje.mensajeAlertaCorrecto('¡Exitoso!','Mensualidad eliminada correctamente');
+    this.mensaje.mensajeAlertaCorrecto('¡Exitoso!','Mensualidad elimindad correctamente');
   }
   onSaveSuccess() {
     this.router.navigate(["/consultar-mensualidad/" + this.id]);
@@ -85,7 +85,7 @@ export class ListMensualidadComponent implements OnInit, OnDestroy {
       .subscribe(mensualidades => this.dataSource.data = mensualidades,
         error => this.mensaje.mensajeAlertaError('Error', error.error.toString()));
   }
-  EnviarMail(mensualidad: IMensualidad2, correo: string) {
+  EnviarMail(mensualidad: IMensualidadVista, correo: string) {
     this.mensualidadservice.EnviarEmail(mensualidad, correo)
       .subscribe(mensualidad => this.onSaveSuccess()),
       error => this.mensaje.mensajeAlertaError('Error', error.error.toString());

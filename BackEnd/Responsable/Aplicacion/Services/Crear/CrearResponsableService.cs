@@ -1,13 +1,10 @@
 ﻿using BackEnd.Base;
 using BackEnd.Responsable.Aplicacion.Request;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace BackEnd.Responsable.Aplicacion.Services.Crear
 {
-  public  class CrearResponsableService
+    public class CrearResponsableService
     {
 
         readonly IUnitOfWork _unitOfWork;

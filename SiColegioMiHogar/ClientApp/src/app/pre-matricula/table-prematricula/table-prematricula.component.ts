@@ -8,6 +8,8 @@ import { MatriculaService } from '../../matricula/matricula.service';
 import { IPrematricula, IPrematricula2 } from '../pre-matricula.component';
 import { AlertService } from '../../notifications/_services';
 import { Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogoPreMatriculaComponent } from '../dialogo-pre-matricula/dialogo-pre-matricula.component';
 
 @Component({
   selector: 'app-table-prematricula',
@@ -31,7 +33,7 @@ export class TablePrematriculaComponent implements OnInit {
 
   constructor(private prematriculaService: PreMatriculaService, private router: Router,
     private activatedRoute: ActivatedRoute, private matriculaService: MatriculaService,
-    private alertService: AlertService  ) { }
+    private alertService: AlertService, private dialog: MatDialog  ) { }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -61,7 +63,7 @@ export class TablePrematriculaComponent implements OnInit {
   }
 
   CrearMatricula(idPreMatricula: number) {
-    this.matriculaService.createMatricula(idPreMatricula).
+  this.matriculaService.createMatricula(idPreMatricula).
       subscribe(empleadoId => this.onCrearMatriculaSuccess(),
         error => this.alertService.error(error.error))
   }
@@ -79,6 +81,6 @@ export class TablePrematriculaComponent implements OnInit {
 
   onDeleteSuccess() {
     this.router.navigate(["/prematricula"]);
-    this.alertService.success("Eliminado exitoso");
+    this.alertService.success("Eliminación exitosa de la prematrícula");
   }
 }

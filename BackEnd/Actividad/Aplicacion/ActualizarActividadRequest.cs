@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BackEnd.Actividad
+﻿namespace BackEnd.Actividad
 {
     public class ActualizarActividadRequest
     {

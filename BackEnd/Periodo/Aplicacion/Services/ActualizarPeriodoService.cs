@@ -1,9 +1,5 @@
 ﻿using BackEnd.Base;
 using BackEnd.Periodo.Aplicacion.Request;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace BackEnd.Periodo.Aplicacion.Services
 {
@@ -28,7 +24,7 @@ namespace BackEnd.Periodo.Aplicacion.Services
                 Buscar.NombrePeriodo = request.NombrePeriodo;
                 Buscar.NumeroPeriodo = request.NumeroPeriodo;
                 Buscar.Id = request.Id;
-               
+
                 _unitOfWork.PeriodoServiceRepository.Edit(Buscar);
                 if (_unitOfWork.Commit() > 0)
                 {

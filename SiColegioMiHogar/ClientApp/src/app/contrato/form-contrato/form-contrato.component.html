@@ -36,11 +36,14 @@
          [ngClass]="{'has-error': ((sueldo.touched || sueldo.dirty) && sueldo.invalid)}">
       <label class="control-label"
              for="sueldoId"> Sueldo </label>
-      <input class="form-control" id="sueldoId"
-             type="number" formControlName="sueldo" />
+      <input [value]="SueldoChange" (change)="updateValueSueldo($event.target.value)"
+             class="form-control" id="sueldoId"  formControlName="sueldo" />
       <div class="alert alert-danger" *ngIf="((sueldo.touched || sueldo.dirty )&& sueldo.invalid)">
         <span *ngIf="sueldo.errors.required">
           El campo Sueldo es requerido
+        </span>
+        <span *ngIf="sueldo.errors.pattern">
+          Digite solo numeros por favor
         </span>
       </div>
     </div>

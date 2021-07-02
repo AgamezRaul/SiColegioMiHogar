@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IGrado } from '../../grado/grado.component';
+import { GradoService } from '../../grado/grado.service';
+import { MensajesModule } from '../../mensajes/mensajes.module';
 import { AlertService } from '../../notifications/_services';
 
 @Component({
@@ -9,13 +12,32 @@ import { AlertService } from '../../notifications/_services';
   styleUrls: ['./form-estudiante.component.css']
 })
 export class FormEstudianteComponent implements OnInit {
-
+  
   @Input() formGroupE: FormGroup;
-
+  ListaGrados: IGrado[] = [];
   constructor(private fb: FormBuilder, private router: Router,
-    private activatedRoute: ActivatedRoute, private alertService: AlertService) { }
+    private activatedRoute: ActivatedRoute, private alertService: AlertService, private mensaje: MensajesModule, private gradoService: GradoService) { }
+  modoPreJardin: boolean = false;
+
   ngOnInit() {
+    this.gradoService.getGrados().subscribe(grado => this.LLenarGrados(grado),
+      error => this.mensaje.mensajeAlertaError('Error', error.error.toString()));
   }
+ PreJardin(value: string) {
+   if (value == "PRE-JARDIN") {
+     this.modoPreJardin = true;
+    }
+    else {
+     this.modoPreJardin = false;
+    }
+   
+  }
+  
+
+  LLenarGrados(grados: IGrado[]) {
+    this.ListaGrados = grados;
+  }
+  
   get ideEstudiante() {
     return this.formGroupE.get('ideEstudiante');
   }

@@ -78,7 +78,7 @@ export class TableNotaComponent implements OnInit {
 
   onDeleteSuccess() {
     this.router.navigate(["/listar-notas"]);
-    this.alertService.success("Eliminado exitoso");
+    this.alertService.success("Nota eliminada exitosamente");
   }
 
 }

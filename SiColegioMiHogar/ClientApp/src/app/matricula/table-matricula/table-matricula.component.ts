@@ -56,6 +56,6 @@ export class TableMatriculaComponent implements OnInit {
   }
   onDeleteSuccess() {
     this.router.navigate(["/matricula"]);
-    this.alertService.success("Eliminado exitoso");
+    this.alertService.success("Matricula eliminada exitosamente");
   }
 }
